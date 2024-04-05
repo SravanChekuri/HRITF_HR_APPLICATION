@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'emp-search',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class EmpSearchComponent {
 
+  constructor(private router:Router){}
+
+  gotoAddEmp(){
+    this.router.navigate(['/addEmp']);
+  }
 }

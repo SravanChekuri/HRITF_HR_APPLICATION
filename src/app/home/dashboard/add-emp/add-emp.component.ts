@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'add-emp',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AddEmpComponent {
 
+  constructor(private router:Router){}
+
+  gotohome(){
+    this.router.navigate(['/home']);
+  }
 }
