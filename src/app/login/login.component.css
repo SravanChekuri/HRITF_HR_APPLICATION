@@ -1,0 +1,17 @@
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.logo-image{
+    margin-top: 10%;
+}
+
+.login-form{
+    margin-top: 10%;
+    padding:3rem;
+}
+
+/* .formelements{
+
+} */

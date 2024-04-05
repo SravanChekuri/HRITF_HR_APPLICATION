@@ -1,0 +1,13 @@
+.header{
+    width: 100%;
+    height:13%;
+    background-color:#47B7D0;
+    position: fixed;
+    top:0%;
+    /* border: 0.5px solid black; */
+}
+.image{
+    width: 80%;
+    height: auto;
+    padding-left: 40px;
+}

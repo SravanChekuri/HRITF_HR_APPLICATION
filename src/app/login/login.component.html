@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="logo-image border">
+        <img src="../../assets/Images/Login-Logo.png" alt="Logo Image" width="60%">
+    </div>
+    <div class="login-form border">
+        <h3>Login</h3>
+        <div class="formelements">
+            <form [formGroup]="loginform" (ngSubmit)="login()">
+                <label for="userid">User ID:</label><br>
+                <input type="text" id="userid" name="userid" formControlName="UserID" autofocus><br>
+                <label for="pw">Password:</label><br>
+                <input type="password" id="pw" name="password" formControlName="Password"><br>
+                <input type="checkbox" id="checkbox" name="checkbox">
+                <label for="checkbox">Remember me</label>
+                <a href="#"><u>Forgot Password?</u></a><br>
+                <button type="submit" class="btn btn-danger">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
