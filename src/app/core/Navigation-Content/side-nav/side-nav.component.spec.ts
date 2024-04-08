@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddEmpComponent } from './add-emp.component';
+import { SideNavComponent } from './side-nav.component';
 
-describe('AddEmpComponent', () => {
-  let component: AddEmpComponent;
-  let fixture: ComponentFixture<AddEmpComponent>;
+describe('SideNavComponent', () => {
+  let component: SideNavComponent;
+  let fixture: ComponentFixture<SideNavComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AddEmpComponent]
+      declarations: [SideNavComponent]
     });
-    fixture = TestBed.createComponent(AddEmpComponent);
+    fixture = TestBed.createComponent(SideNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

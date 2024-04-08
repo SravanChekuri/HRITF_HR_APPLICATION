@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmpSearchComponent } from './emp-search.component';
+import { TopHeaderComponent } from './top-header.component';
 
-describe('EmpSearchComponent', () => {
-  let component: EmpSearchComponent;
-  let fixture: ComponentFixture<EmpSearchComponent>;
+describe('TopHeaderComponent', () => {
+  let component: TopHeaderComponent;
+  let fixture: ComponentFixture<TopHeaderComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EmpSearchComponent]
+      declarations: [TopHeaderComponent]
     });
-    fixture = TestBed.createComponent(EmpSearchComponent);
+    fixture = TestBed.createComponent(TopHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

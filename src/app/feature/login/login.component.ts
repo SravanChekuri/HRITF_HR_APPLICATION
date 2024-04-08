@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { LoginService } from '../Services/login.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'login',
@@ -13,7 +13,9 @@ export class LoginComponent implements OnInit{
   loginform:FormGroup;
   // login:any;
 
-  constructor(private formbuilder:FormBuilder, private service:LoginService, private router:Router){}
+  constructor(private formbuilder:FormBuilder, 
+              private service:LoginService, 
+              private router:Router){}
 
   ngOnInit(): void {
     this.logininitilization();
@@ -30,7 +32,7 @@ export class LoginComponent implements OnInit{
   login(){
     console.log(this.loginform.value);
     
-    this.router.navigate(['/home']);
+    this.router.navigate(['/Home']);
 
     const data={
       Employee_ID:this.loginform.value['UserID'],
@@ -49,4 +51,3 @@ export class LoginComponent implements OnInit{
     }
     
   }
-
