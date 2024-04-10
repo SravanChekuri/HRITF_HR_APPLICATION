@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from  '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { FeatureModule } from './feature/feature.module';
 import { SharedModule } from './shared/shared.module';
@@ -16,12 +15,11 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
+    RouterModule,
     CoreModule,
     FeatureModule,
-    SharedModule
+    SharedModule,
+    // DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

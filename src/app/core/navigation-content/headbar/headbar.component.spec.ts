@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TopHeaderComponent } from './top-header.component';
+import { HeadbarComponent } from './headbar.component';
 
-describe('TopHeaderComponent', () => {
-  let component: TopHeaderComponent;
-  let fixture: ComponentFixture<TopHeaderComponent>;
+describe('HeadbarComponent', () => {
+  let component: HeadbarComponent;
+  let fixture: ComponentFixture<HeadbarComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TopHeaderComponent]
+      declarations: [HeadbarComponent]
     });
-    fixture = TestBed.createComponent(TopHeaderComponent);
+    fixture = TestBed.createComponent(HeadbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

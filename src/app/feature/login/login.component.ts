@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../Services/login.service';
@@ -8,14 +8,13 @@ import { LoginService } from '../Services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent {
+
   data:FormGroup;
   loginform:FormGroup;
   // login:any;
 
-  constructor(private formbuilder:FormBuilder, 
-              private service:LoginService, 
-              private router:Router){}
+  constructor(private formbuilder:FormBuilder, private service:LoginService, private router:Router){}
 
   ngOnInit(): void {
     this.logininitilization();
@@ -32,7 +31,7 @@ export class LoginComponent implements OnInit{
   login(){
     console.log(this.loginform.value);
     
-    this.router.navigate(['/Home']);
+    this.router.navigate(['/home']);
 
     const data={
       Employee_ID:this.loginform.value['UserID'],
@@ -49,5 +48,5 @@ export class LoginComponent implements OnInit{
       
     // })
     }
-    
-  }
+
+}

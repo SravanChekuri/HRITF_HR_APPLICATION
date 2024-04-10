@@ -17,6 +17,6 @@ export class LoginService {
   loginfunctionality2(data:any){
     const res=this.http.get('',data);
     return res;
-  }
 
+  }
 }

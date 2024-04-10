@@ -1,19 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TopHeaderComponent } from './Navigation-Content/top-header/top-header.component';
-import { SideNavComponent } from './Navigation-Content/side-nav/side-nav.component';
-import { HeadSidenavWrapperComponent } from './Navigation-Content/head-sidenav-wrapper/head-sidenav-wrapper.component';
+import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
+import { HeadbarComponent } from './navigation-content/headbar/headbar.component';
+import { SidebarComponent } from './navigation-content/sidebar/sidebar.component';
+import { HeadSideWapperComponent } from './navigation-content/head-side-wapper/head-side-wapper.component';
 
 
 
 @NgModule({
   declarations: [
-    TopHeaderComponent,
-    SideNavComponent,
-    HeadSidenavWrapperComponent
+    PageNotfoundComponent,
+    HeadbarComponent,
+    SidebarComponent,
+    HeadSideWapperComponent
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    HeadSideWapperComponent
   ]
 })
 export class CoreModule { }
