@@ -1,0 +1,10 @@
+.dash-home{
+    min-width: 192vh;
+    min-height:90vh;
+    position: fixed;
+    top:14%;
+    left:12.5%;
+    /* border:1px solid black; */
+    background-color: #ffffff;
+    overflow:auto;
+}

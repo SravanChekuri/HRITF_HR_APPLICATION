@@ -4,6 +4,7 @@ import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
 import { HeadbarComponent } from './navigation-content/headbar/headbar.component';
 import { SidebarComponent } from './navigation-content/sidebar/sidebar.component';
 import { HeadSideWapperComponent } from './navigation-content/head-side-wapper/head-side-wapper.component';
+import { DashboardRoutingModule } from '../feature/dashboard/dashboard-routing/dashboard-routing.module';
 
 
 
@@ -15,7 +16,8 @@ import { HeadSideWapperComponent } from './navigation-content/head-side-wapper/h
     HeadSideWapperComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    DashboardRoutingModule
   ],
   exports: [
     HeadSideWapperComponent
