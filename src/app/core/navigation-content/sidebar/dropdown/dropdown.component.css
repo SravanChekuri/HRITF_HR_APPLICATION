@@ -4,22 +4,37 @@
 i{
     color:#8C1428;
 }
-
+a{
+    color:black;
+}
+.home-drop-btn{
+    border: none;
+    background-color:#47B7D0;
+}
 .dropdown-btn{
-    text-align: justify;
+    /* text-align: justify; */
     background-color:#47B7D0;
     font-size: 17px;
     margin-bottom: 2px;
     padding: 5px;
     padding-left: 20px;
-    border: none;
+}
+.dropdown-content{
+    /* background-color: #a2dceb; */
+    font-size: 16px;
+    text-align: justify;
+    padding-left: 10px;
+    margin-bottom: 2px;
+    background-color: white;
 }
 .sub-dropdown-btn{
     border:none;
-    background-color:#47B7D0;
+    background-color:white;
+    font-size: 17px;
+}
+.drop-align{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
 
-}
-.dropdown-content{
-    background-color: #8ce1f4;
-    font-size: 16px;
-}
+

@@ -1,10 +1,12 @@
 <div class="dropdown">
-    <button class="dropdown-btn" (click)="toggleSubDropdown()">
+    <div class="dropdown-btn">
+    <button class="home-drop-btn" (click)="toggleSubDropdown()">
         <img src="../../../../../assets/Images/emp-logo.png" alt="img">
-        <span>Employees&nbsp;
+        <span style="padding-left: 5px;">Employees&nbsp;
             <i class="fa-solid fa-chevron-down"></i>
         </span>
     </button>
+    </div>
     <div class="dropdown-content" *ngIf="isSubDropdownOpen">
         <ng-container *ngFor="let item of items">
                 <div *ngIf="item.subItems; else regularItems">
@@ -17,8 +19,8 @@
                         </div>
                 </div>
             <ng-template #regularItems>
-                <div><a [routerLink]="item.route">{{ item.name }}</a></div>
+                <div class="drop-align"><a [routerLink]="item.route">{{ item.name }}</a></div>
             </ng-template>
         </ng-container>
-    </div>
+        </div>
 </div>
