@@ -18,32 +18,40 @@
         <h5>Add details of an employee</h5>
         <div>
             <form>
-                <label for="fn">First Name*:</label>
-                <input type="text" id="fn" name="fn" placeholder="Enter First Name">
+                <div>
+                    <label for="fn">First Name*:</label>
+                    <input type="text" id="fn" name="fn" placeholder="Enter First Name">
 
-                <label for="ln">Last Name*:</label>
-                <input type="text" id="ln" name="ln" placeholder="Enter Last Name">
+                    <label for="ln">Last Name*:</label>
+                    <input type="text" id="ln" name="ln" placeholder="Enter Last Name">
 
-                <label for="dob">Date of Birth*:</label>
-                <input type="date" id="dob" name="dob">
+                    <label for="dob">Date of Birth*:</label>
+                    <input type="date" id="dob" name="dob">
 
-                <label for="id">Employee ID*:</label>
+                    <label for="id">Employee ID*:</label>
                 <input type="text" id="id" name="id" placeholder="Enter Employee ID">
+                </div>
+                <br>
+                <div>
+                    <label for="email">Email*:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter Employee email">
 
-                <label for="email">Email*:</label>
-                <input type="email" id="email" name="email" placeholder="Enter Employee email">
+                    <label for="doj">Date of Joining*:</label>
+                    <input type="date" id="doj" name="doj">
 
-                <label for="doj">Date of Joining*:</label>
-                <input type="date" id="doj" name="doj">
+                    <label for="ctc">Annual CTC*:</label>
+                    <input type="number" id="ctc" name="ctc" placeholder="Enter Annual CTC">
 
-                <label for="ctc">Annual CTC*:</label>
-                <input type="number" id="ctc" name="ctc" placeholder="Enter Annual CTC">
-
-                <label for="location">Job Location*:</label>
-                <select name="location" id="location">
-                    <option value="Bangaluru">Bangalore</option>
-                </select>
-
+                    <label for="location">Job Location*:</label>
+                    <select name="location" id="location">
+                        <option value="Bangaluru">Bangalore</option>
+                    </select>
+                </div>
+                <br>
+                <div>
+                    <button type="submit" class="btn btn-info">Save</button>&nbsp;
+                    <button type="reset" class="btn btn-info">Cancle</button>
+                </div>
             </form>
         </div>
     </div>

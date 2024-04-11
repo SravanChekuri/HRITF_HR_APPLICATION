@@ -1,4 +1,191 @@
 <div class="emp-details">
-<h3>Emp details work!</h3>
+    <div>
+        <label for="search">Search:</label>&nbsp;
+        <input type="text" id="search">
+        <hr>
+    </div>
+    <div>
+        <img src="../../../../../assets/Images/emp_profile.png" alt="emp_profile" width="7%">
+        <p>Employee Name</p>
+        <p>Employee ID</p>
+        <hr>
+    </div>
+    <div>
+        <div><h6>Employee Information&nbsp;<i class="fa-solid fa-pen-to-square"></i></h6></div>
+        <div>
+            <form>
+                <div>
+                    <label for="empno">Employee Number:</label>
+                    <input type="text">
+
+                    <label for="title">Title:</label>
+                    <select  id="title">
+                        <option>Mr.</option>
+                        <option>Miss.</option>
+                        <option>Mrs.</option>
+                    </select>
+
+                    <label for="fn">First Name:</label>
+                    <input type="text" id="fn">
+
+                    <label for="mn">Middle Name:</label>
+                    <input type="text" id="mn">
+
+                    <label for="ln">Last Name:</label>
+                    <input type="text" id="ln">
+
+                </div>
+                <br>
+                <div>
+                    <label for="gender">Gender:</label>
+                    <select  id="gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Others</option>
+                    </select>
+
+                    <label for="mobile">Mobile:</label>
+                    <input type="tel" id="mobile">
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email">
+
+                    <label for="ctc">Annual CTC:</label>
+                    <input type="number" id="ctc">
+
+                    <label for="dpt">Department:</label>
+                    <input type="text" id="dpt">
+
+                </div>
+                <br>
+                <div>
+                    <label for="designation">Designation:</label>
+                    <input type="text" id="designation">
+
+                    <label for="joblocation">Job Location:</label>
+                    <input type="text" id="joblocation">
+                </div>
+                <br>
+                <div>
+                    <button type="submit" class="btn btn-info">Save</button>&nbsp;
+                    <button type="reset" class="btn btn-info">Cancle</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+
+        <div><h6>Joining Details&nbsp;<i class="fa-solid fa-pen-to-square"></i></h6></div>
+        <div>
+            <form>
+                <div>
+                    <label for="doj">Date of Joining:</label>
+                    <input type="date" id="doj">
+
+                    <label for="confirm">Confirmation Date:</label>
+                    <input type="date" id="confirm">
+
+                    <label for="probation">Probation Period:</label>
+                    <input type="text" id="probation">
+                </div>
+                <br>
+                <div>
+                    <label for="pre-rev">Pre-Revision:</label>
+                    <input type="number" id="pre-rev">
+
+                    <label for="post-rev">Post-Revision:</label>
+                    <input type="number" id="post-rev">
+
+                    <label for="notice">Notice Period:</label>
+                    <input type="text" id="notice">
+
+                </div>
+                <br>
+                <div>
+                    <button type="submit" class="btn btn-info">Save</button>&nbsp;
+                    <button type="reset" class="btn btn-info">Cancle</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+
+        <div><h6>Personal Information&nbsp;<i class="fa-solid fa-pen-to-square"></i></h6></div>
+        <div>
+            <form>
+                <div>
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob">
+
+                    <label for="blood">Blood Group:</label>
+                    <input type="text" id="blood">
+
+                    <label for="father">Father Name:</label>
+                    <input type="text" id="father">
+                </div>
+                <br>
+                <div>
+                    <label for="maritalstatus">Marital Status:</label>
+                    <select id="maritalstatus">
+                        <option>Single</option>
+                        <option>Unmarried</option>
+                        <option>Divorced</option>
+                    </select>
+
+                    <label for="nationality">Nationality:</label>
+                    <input type="text" id="nationality">
+
+                    <label for="pemail">Personial Email:</label>
+                    <input type="email" id="pemail">
+                </div>
+                <br>
+                <div>
+                    <label for="pob">Place of Birth:</label>
+                    <input type="text" id="pob">
+
+                    <label for="coo">Country of Origin:</label>
+                    <input type="text" id="coo">
+
+                    <label for="religion">Religion:</label>
+                    <input type="text" id="religion">
+                </div>
+                <br>
+                <div>
+                    <button type="submit" class="btn btn-info">Save</button>&nbsp;
+                    <button type="reset" class="btn btn-info">Cancle</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+
+        <div><h6>Address Details&nbsp;<i class="fa-solid fa-pen-to-square"></i></h6></div>
+        <div>
+            <form>
+                <div>
+                    <label for="address">Address:</label>
+                    <textarea id="address" cols="30" rows="3"></textarea>
+
+                    <label for="city">City:</label>
+                    <input type="text" id="city">
+
+                    <label for="state">State:</label>
+                    <input type="text" id="state">
+                </div>
+                <br>
+                <div>
+                    <label for="country">Country:</label>
+                    <input type="text" id="country">
+
+                    <label for="pin">PinCode:</label>
+                    <input type="text" id="pin">
+                </div>
+                <br>
+                <div>
+                    <button type="submit" class="btn btn-info">Save</button>&nbsp;
+                    <button type="reset" class="btn btn-info">Cancle</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+
+    </div>
 </div>
 <router-outlet></router-outlet>
