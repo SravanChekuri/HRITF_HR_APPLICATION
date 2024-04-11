@@ -1,9 +1,11 @@
 .emp-details{
-    min-width: 192vh;
-    min-height:90vh;
+    /* min-width: 192vh;
+    min-height:90vh; */
+    width: 192vh;
+    height: 90vh;
     position: fixed;
     top:14%;
     left:12.5%;
     background-color: #ffffff;
-    overflow:auto;
+    overflow-y: auto;
 }
