@@ -1,11 +1,42 @@
 .emp-details{
     /* min-width: 192vh;
     min-height:90vh; */
-    width: 192vh;
+    /* border: 1px solid black; */
+    width: 180vh;
     height: 90vh;
     position: fixed;
     top:14%;
     left:12.5%;
     background-color: #ffffff;
     overflow-y: auto;
+}
+
+
+.hr{
+    border: none;
+    height: 5px;
+    background-color:#bfbcbc;
+}
+.search-sec{
+    margin: 1%;
+}
+.search-icon{
+    position: absolute;
+    top:7%;
+    left: 28.5%;
+    cursor: pointer;
+}
+.align{
+    margin: 1%;
+}
+.bottom-spc{
+    margin-bottom: 50px;
+}
+.button{
+    margin-left: 85%;
+}
+.items-align{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
 }

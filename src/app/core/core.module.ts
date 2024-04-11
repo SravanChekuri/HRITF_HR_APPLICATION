@@ -6,6 +6,7 @@ import { SidebarComponent } from './navigation-content/sidebar/sidebar.component
 import { HeadSideWapperComponent } from './navigation-content/head-side-wapper/head-side-wapper.component';
 import { DashboardRoutingModule } from '../feature/dashboard/dashboard-routing/dashboard-routing.module';
 import { DropdownComponent } from './navigation-content/sidebar/dropdown/dropdown.component';
+// import { FooterComponent } from './navigation-content/footer/footer.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { DropdownComponent } from './navigation-content/sidebar/dropdown/dropdow
     SidebarComponent,
     HeadSideWapperComponent,
     DropdownComponent,
+    // FooterComponent,
   ],
   imports: [
     CommonModule,

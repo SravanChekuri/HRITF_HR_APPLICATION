@@ -1,15 +1,16 @@
 .emp-add{
     /* min-width: 192vh;
     min-height:90vh; */
-    width: 192vh;
+    /* border: 1px solid black; */
+    width: 180vh;
     height: 90vh;
     position: fixed;
     top:14%;
     left:12.5%;
     background-color: #ffffff;
     overflow-y: auto;
-
 }
+
 
 .back{
   text-align: right;

@@ -1,7 +1,7 @@
 .emp-search{
     /* min-width: 192vh;
     min-height:90vh; */
-    width: 192vh;
+    width: 180vh;
     height: 90vh;
     position: fixed;
     top:14%;
@@ -20,14 +20,14 @@ input{
 }
 .search-icon{
     position: absolute;
-    top:10%;
+    top:9%;
     left: 38%;
     cursor: pointer;
 }
 .addemp-btn{
     position: absolute;
     top:8%;
-    right: 2%;
+    right: 3%;
 }
 #hr{
     border: none;

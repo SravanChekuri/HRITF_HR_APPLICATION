@@ -19,7 +19,6 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     FeatureModule,
     SharedModule,
-    // DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
