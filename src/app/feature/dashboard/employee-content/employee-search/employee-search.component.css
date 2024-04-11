@@ -8,3 +8,33 @@
     background-color: #ffffff;
     overflow:auto;
 }
+.search-block{
+    margin: 1%;
+}
+input{
+    border-radius: 10px;
+    width: 40%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.search-icon{
+    position: absolute;
+    top:10%;
+    left: 38%;
+    cursor: pointer;
+}
+.addemp-btn{
+    position: absolute;
+    top:8%;
+    right: 2%;
+}
+#hr{
+    border: none;
+    height: 5px;
+    background-color:#bfbcbc;
+}
+.emp-list-block{
+    margin: 1%;
+    font-weight: bold;
+    margin-bottom: 0px;
+}

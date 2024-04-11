@@ -10,4 +10,27 @@
 a{
     color: black;
 }
-
+.home-btn{
+    /* border: 1px solid black; */
+    text-align: center;
+    background-color: #d6d3d3;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+.emp-btn{
+    text-align: justify;
+    background-color:#47B7D0;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 2px;
+    padding: 5px;
+    padding-left: 20px;
+}
+i{
+    color:#8C1428;
+}
+a > span{
+    padding-left: 10px;
+}

@@ -8,6 +8,7 @@ import { DashboardRoutingModule } from './dashboard-routing/dashboard-routing.mo
 import { DashHomeComponent } from './dash-home/dash-home.component';
 import { EmployeeMainComponent } from './employee-content/employee-main/employee-main.component';
 import { EmployeeAddComponent } from './employee-content/employee-add/employee-add.component';
+import { EmployeeDetailsComponent } from './employee-content/employee-details/employee-details.component';
 
 
 
@@ -16,7 +17,8 @@ import { EmployeeAddComponent } from './employee-content/employee-add/employee-a
     MainLayoutComponent,
     DashHomeComponent,
     EmployeeMainComponent,
-    EmployeeAddComponent
+    EmployeeAddComponent,
+    EmployeeDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -1,14 +1,43 @@
 <div class="emp-search">
-    <div>
-        <h4>Quick employee search</h4>
+    <div class="search-block">
+        <div>
+            <h5>Quick employee search</h5>
+        </div>
+        <span>
+            <form>
+                <input type="text" placeholder=" Search by First Name, Last Name, Emp ID, Email" autofocus>
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </form>
+        </span>
+        <span class="addemp-btn">
+            <button type="submit" class="btn btn-danger"(click)="addbtnclk()">Add New Employee</button>
+        </span>
     </div>
-    <div>
-        <form>
-            <input type="text">
-            <button type="submit" class="btn btn-info">Search</button>
-        </form>
+    <hr id="hr">
+    <div class="emp-list-block">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">Employee ID</div>
+                <div class="col">First Name</div>
+                <div class="col">Last Name</div>
+                <div class="col">Email</div>
+                <div class="col">CTC</div>
+                <div class="col">Date of Joining</div>
+            </div>
+        </div>
     </div>
+    <hr>
     <div>
-        <button type="submit" class="btn btn-danger"(click)="addbtnclk()">Add New Employee</button>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">Employee ID</div>
+                <div class="col">First Name</div>
+                <div class="col">Last Name</div>
+                <div class="col">Email</div>
+                <div class="col">CTC</div>
+                <div class="col">Date of Joining</div>
+            </div>
+        </div>
     </div>
+
 </div>

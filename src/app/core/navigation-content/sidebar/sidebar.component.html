@@ -1,10 +1,20 @@
 <nav class="sidebar">
     <div>
-        <div>
-                <a routerLink="/home"><i class="fa-solid fa-house-chimney"></i><span>Home</span></a>
+        <div class="home-btn">
+            <a routerLink="/home"><i class="fa-solid fa-house-chimney"></i><span>Home</span></a>
         </div>
-        <div>
-            <a routerLink="employees"><i class="fa-solid fa-users"></i><span>Employees</span></a>
+        <!-- <div class="emp-btn">
+            <a><img src="../../../../assets/Images/emp-logo.png" alt="img"><span>Employees&nbsp;<i class="fa-solid fa-chevron-down"></i></span></a>
+        </div> -->
+        <dropdown [items]="dropdownItems"></dropdown>
+        <div class="emp-btn">
+            <a><img src="../../../../assets/Images/Payroll-logo.png" alt="img"><span>Payroll</span></a>
+        </div>
+        <div class="emp-btn">
+            <a><img src="../../../../assets/Images/calender-logo.png" alt="img"><span>Calender</span></a>
+        </div>
+        <div class="emp-btn">
+            <a><img src="../../../../assets/Images/workflow-logo.png" alt="img"><span>Workflow</span></a>
         </div>
     </div>
 </nav>

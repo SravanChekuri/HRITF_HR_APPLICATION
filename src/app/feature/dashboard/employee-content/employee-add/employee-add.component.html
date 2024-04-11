@@ -1,5 +1,7 @@
 <div class="emp-add">
-    <div><a><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to Employee Search</a></div><br>
+    <div class="back">
+        <a routerLink=".."><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to Employee Search</a>
+    </div><br>
     <div>
         <h5>Quick add employee to the company</h5>
         <p>Add an employee by filling the form or add bunch of employees by clicking bulk upload</p>
@@ -9,7 +11,7 @@
         <input id="file-upload" type="file" accept=".xlsx, .xls" required/>
     </div>
     <div>
-        <img src="../../../../../assets/Images/bulk-emp.png" alt="Bulk add Image" class="image">
+        <!-- <img src="../../../../../assets/Images/bulk-emp.png" alt="Bulk add Image" class="image"> -->
     </div>
     <hr>
     <div>
@@ -22,8 +24,14 @@
                 <label for="ln">Last Name*:</label>
                 <input type="text" id="ln" name="ln" placeholder="Enter Last Name">
 
+                <label for="dob">Date of Birth*:</label>
+                <input type="date" id="dob" name="dob">
+
                 <label for="id">Employee ID*:</label>
                 <input type="text" id="id" name="id" placeholder="Enter Employee ID">
+
+                <label for="email">Email*:</label>
+                <input type="email" id="email" name="email" placeholder="Enter Employee email">
 
                 <label for="doj">Date of Joining*:</label>
                 <input type="date" id="doj" name="doj">
@@ -36,8 +44,6 @@
                     <option value="Bangaluru">Bangalore</option>
                 </select>
 
-                <label for="email">Email*:</label>
-                <input type="email" id="email" name="email" placeholder="Enter Employee email">
             </form>
         </div>
     </div>

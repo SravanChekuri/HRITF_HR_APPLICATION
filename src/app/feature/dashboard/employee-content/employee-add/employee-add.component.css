@@ -9,6 +9,10 @@
     overflow:auto;
 }
 
+.back{
+  text-align: right;
+}
+
 .custom-file-upload {
     background-color: #47B7D0;
     border: 1px solid #ccc;

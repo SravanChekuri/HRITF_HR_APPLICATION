@@ -1,0 +1,25 @@
+*{
+    font-weight: bold;
+}
+i{
+    color:#8C1428;
+}
+
+.dropdown-btn{
+    text-align: justify;
+    background-color:#47B7D0;
+    font-size: 17px;
+    margin-bottom: 2px;
+    padding: 5px;
+    padding-left: 20px;
+    border: none;
+}
+.sub-dropdown-btn{
+    border:none;
+    background-color:#47B7D0;
+
+}
+.dropdown-content{
+    background-color: #8ce1f4;
+    font-size: 16px;
+}

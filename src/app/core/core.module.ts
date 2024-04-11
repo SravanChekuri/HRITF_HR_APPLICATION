@@ -5,7 +5,7 @@ import { HeadbarComponent } from './navigation-content/headbar/headbar.component
 import { SidebarComponent } from './navigation-content/sidebar/sidebar.component';
 import { HeadSideWapperComponent } from './navigation-content/head-side-wapper/head-side-wapper.component';
 import { DashboardRoutingModule } from '../feature/dashboard/dashboard-routing/dashboard-routing.module';
-
+import { DropdownComponent } from './navigation-content/sidebar/dropdown/dropdown.component';
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { DashboardRoutingModule } from '../feature/dashboard/dashboard-routing/d
     PageNotfoundComponent,
     HeadbarComponent,
     SidebarComponent,
-    HeadSideWapperComponent
+    HeadSideWapperComponent,
+    DropdownComponent,
   ],
   imports: [
     CommonModule,
