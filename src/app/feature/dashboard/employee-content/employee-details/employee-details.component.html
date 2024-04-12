@@ -14,85 +14,81 @@
     <div>
         <div class="align"><h6>Employee Information&nbsp;<i class="fa-solid fa-pen-to-square"></i></h6></div>
             <div class="align">
-                <form>
-                    <div class="items-align">
-                        <div>
-                            <label for="empno">Employee Number:</label><br>
-                            <input type="text">
-                        </div>
+                <form [formGroup]="employeeInfoForm" (ngSubmit)="submitEmpInfo()">
+                    <div class="main-container">
+                        <div class="d-flex flex-row">
+                            <div class="d-flex flex-column">
+                                <label for="empno">Employee Number:</label>
+                                <input type="text" class="form-control  input" formControlName="EmployeeNumber">
+                            </div>
 
-                        <div>
-                            <label for="title">Title:</label><br>
-                            <select  id="title">
-                                <option>Mr.</option>
-                                <option>Miss.</option>
-                                <option>Mrs.</option>
-                            </select>
-                        </div>
+                            <div class="d-flex flex-column margin">
+                                <label for="title">Title:</label>
+                                <select  id="title" class="form-control  drop-down" formControlName="Title">
+                                    <option>Mr.</option>
+                                    <option>Miss.</option>
+                                    <option>Mrs.</option>
+                                </select>
+                            </div>
 
-                        <div>
-                            <label for="fn">First Name:</label><br>
-                            <input type="text" id="fn">
-                        </div>
+                            <div class="d-flex flex-column first margin">
+                                <label for="fn">First Name:</label>
+                                <input type="text" id="fn"  class="form-control  input" formControlName="FirstName">
+                            </div>
 
-                        <div>
-                            <label for="mn">Middle Name:</label><br>
-                            <input type="text" id="mn">
+                            <div class="d-flex flex-column margin">
+                                <label for="mn">Middle Name:</label>
+                                <input type="text" id="mn"  class="form-control  input" formControlName="MiddleName">
+                            </div>
+
+                            <div class="d-flex flex-column ">
+                                <label for="ln">Last Name:</label>
+                                <input type="text" id="ln" class="form-control  input " formControlName="LastName">
+                            </div>
+
+                            <div class="d-flex flex-column margin">
+                                <label for="gender">Gender:</label>
+                                <select  id="gender" class="form-control  drop-down " formControlName="Gender">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Others</option>
+                                </select>
+                            </div>
+
                         </div>
+                            <br>
+                        <div class="d-flex flex-row">
+                            <div class="d-flex flex-column">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" class="form-control input" formControlName="Email">
+                            </div>
+
+                            <div class="d-flex flex-column margin">
+                                <label for="ctc">Annual CTC:</label>
+                                <input type="number" id="ctc" class="form-control input" formControlName="AnnualCTC">
+                            </div>
+
+                            <div class="d-flex flex-column">
+                                <label for="dpt">Department:</label>
+                                <input type="text" id="dpt" class="form-control input" formControlName="Department">
+                            </div>
+                            <div class="d-flex flex-column margin">
+                                <label for="designation">Designation:</label>
+                                <input type="text" id="designation" class="form-control input" formControlName="Designation">
+                            </div>
+
+                            <div class="d-flex flex-column margin">
+                                <label for="joblocation">Job Location:</label>
+                                <input type="text" id="joblocation" class="form-control input" formControlName="JobLocation">
+                            </div>
+                        </div>
+                            <br>
                     </div>
-                    <br>
-                    <div class="items-align">
-                        <div>
-                            <label for="ln">Last Name:</label><br>
-                            <input type="text" id="ln">
-                        </div>
-                    
-                        <div>
-                            <label for="gender">Gender:</label><br>
-                            <select  id="gender">
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Others</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label for="mobile">Mobile:</label><br>
-                            <input type="tel" id="mobile">
-                        </div>
-
-                        <div>
-                            <label for="email">Email:</label><br>
-                            <input type="email" id="email">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="items-align">
-                        <div>
-                            <label for="ctc">Annual CTC:</label><br>
-                            <input type="number" id="ctc">
-                        </div>
-
-                        <div>
-                            <label for="dpt">Department:</label><br>
-                            <input type="text" id="dpt">
-                        </div>
-
-                        <div>
-                            <label for="designation">Designation:</label><br>
-                            <input type="text" id="designation">
-                        </div>
-
-                        <div>
-                            <label for="joblocation">Job Location:</label><br>
-                            <input type="text" id="joblocation">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="button">
-                        <button type="submit" class="btn btn-info">Save</button>&nbsp;
-                        <button type="reset" class="btn btn-info">Cancle</button>
-                    </div>
+                            <br>
+                            <div class="button">
+                                <button type="submit" class="btn btn-info">Save</button>&nbsp;
+                                <button type="reset" class="btn btn-info">Cancle</button>
+                            </div>
                 </form>
             </div>
 
@@ -100,78 +96,109 @@
 
         <div class="align"><h6>Joining Details&nbsp;<i class="fa-solid fa-pen-to-square"></i></h6></div>
             <div class="align">
-                <form>
-                    <div>
-                        <label for="doj">Date of Joining:</label>
-                        <input type="date" id="doj">
+                <form [formGroup]="joingDetailsForm" (ngSubmit)="submitEmpJoining()">
+                    <div class="main-container">
+                        <div class="d-flex flex-row">
+                            <div class="d-flex flex-column">
+                                <label for="doj">Date of Joining:</label>
+                                <input type="date" id="doj" class="form-control drop-down" formControlName="DateofJoining">
+                            </div>
 
-                        <label for="confirm">Confirmation Date:</label>
-                        <input type="date" id="confirm">
+                            <div class="d-flex flex-column margin">
+                                <label for="confirm">Confirmation Date:</label>
+                                <input type="date" id="confirm" class="form-control drop-down" formControlName="ConfirmationDate">
+                            </div>
 
-                        <label for="probation">Probation Period:</label>
-                        <input type="text" id="probation">
+                            <div class="d-flex flex-column margin">
+                                <label for="probation">Probation Period:</label>
+                                <input type="text" id="probation" class="form-control input" formControlName="ProbationPeriod">
+                            </div>
+
+                            <div class="d-flex flex-column">
+                                <label for="pre-rev">Pre-Revision:</label>
+                                <input type="number" id="pre-rev" class="form-control input" formControlName="PreRevision">
+                            </div>
+
+                            <div class="d-flex flex-column">
+                                <label for="post-rev">Post-Revision:</label>
+                                <input type="number" id="post-rev" class="form-control input" formControlName="PostRevision">
+                            </div>
+
+                            <div class="d-flex flex-column">
+                                <label for="notice">Notice Period:</label>
+                                <input type="text" id="notice" class="form-control input" formControlName="NoticePeriod">
+                            </div>
+                        </div>
                     </div>
                         <br>
-                    <div>
-                        <label for="pre-rev">Pre-Revision:</label>
-                        <input type="number" id="pre-rev">
-
-                        <label for="post-rev">Post-Revision:</label>
-                        <input type="number" id="post-rev">
-
-                        <label for="notice">Notice Period:</label>
-                        <input type="text" id="notice">
-
-                    </div>
-                        <br>
-                    <div class="button">
-                        <button type="submit" class="btn btn-info">Save</button>&nbsp;
-                        <button type="reset" class="btn btn-info">Cancle</button>
-                    </div>
+                        <div class="button">
+                            <button type="submit" class="btn btn-info">Save</button>&nbsp;
+                            <button type="reset" class="btn btn-info">Cancle</button>
+                        </div>
                 </form>
             </div>
 <hr class="hr">
 
         <div class="align"><h6>Personal Information&nbsp;<i class="fa-solid fa-pen-to-square"></i></h6></div>
             <div class="align">
-                <form>
-                    <div>
-                        <label for="dob">Date of Birth:</label>
-                        <input type="date" id="dob">
+                <form [formGroup]="personalDetailsForm" (ngSubmit)="submitPersonalDetails()">
+                    <div class="main-container">
+                        <div class="d-flex flex-row">
+                            <div class="d-flex flex-column">
+                                <label for="dob">Date of Birth:</label>
+                                <input type="date" id="dob" class="form-control drop-down" formControlName="DateofBirth">
+                            </div>
 
-                        <label for="blood">Blood Group:</label>
-                        <input type="text" id="blood">
+                            <div class="d-flex flex-column margin">
+                                <label for="blood">Blood Group:</label>
+                                <input type="text" id="blood" class="form-control input" formControlName="BloodGroup">
+                            </div>
 
-                        <label for="father">Father Name:</label>
-                        <input type="text" id="father">
+                            <div class="d-flex  flex-column">
+                                <label for="father">Father Name:</label>
+                                <input type="text" id="father" class="form-control input" formControlName="FatherName">
+                            </div>
+
+                            <div class="d-flex flex-column">
+                                <label for="maritalstatus">Marital Status:</label>
+                                <select id="maritalstatus" class="form-control drop-down" formControlName="MaritalStatus">
+                                    <option>Single</option>
+                                    <option>Unmarried</option>
+                                    <option>Divorced</option>
+                                </select>
+                            </div>
+
+                            <div class="d-flex flex-column margin">
+                                <label for="nationality">Nationality:</label>
+                                <input type="text" id="nationality" class="form-control input" formControlName="Nationality">
+                            </div>
+
+                            <div class="d-flex flex-column">
+                                <label for="pemail">Personial Email:</label>
+                                <input type="email" id="pemail" class="form-control input" formControlName="PersonalEmail">
+                            </div>
+                        </div>
                     </div>
-                        <br>
-                    <div>
-                        <label for="maritalstatus">Marital Status:</label>
-                        <select id="maritalstatus">
-                            <option>Single</option>
-                            <option>Unmarried</option>
-                            <option>Divorced</option>
-                        </select>
+                    <br>
+                    <div class="main-container">
+                        <div class="d-flex flex-row">
+                            <div class="d-flex flex-column">
+                                <label for="pob">Place of Birth:</label>
+                                <input type="text" id="pob" class="form-control input" formControlName="PlaceofBirth">
+                            </div>
+                        
+                            <div class="d-flex flex-column">
+                                <label for="coo">Country of Origin:</label>
+                                <input type="text" id="coo" class="form-control input" formControlName="CountryofOrigin">
+                            </div>
 
-                        <label for="nationality">Nationality:</label>
-                        <input type="text" id="nationality">
-
-                        <label for="pemail">Personial Email:</label>
-                        <input type="email" id="pemail">
+                            <div class="d-flex flex-column">
+                                <label for="religion">Religion:</label>
+                                <input type="text" id="religion" class="form-control input" formControlName="Religion">
+                            </div>
+                        </div>
                     </div>
-                        <br>
-                    <div>
-                        <label for="pob">Place of Birth:</label>
-                        <input type="text" id="pob">
-
-                        <label for="coo">Country of Origin:</label>
-                        <input type="text" id="coo">
-
-                        <label for="religion">Religion:</label>
-                        <input type="text" id="religion">
-                    </div>
-                        <br>
+                    <br>
                     <div class="button">
                         <button type="submit" class="btn btn-info">Save</button>&nbsp;
                         <button type="reset" class="btn btn-info">Cancle</button>
@@ -184,59 +211,77 @@
         <p class="align">Present Address:</p>
             <div class="align">
                 <form>
-                    <div>
-                        <label for="address">Address:</label>
-                        <textarea id="address" cols="30" rows="3"></textarea>
+                    <div class="main-container">
+                        <div class="d-flex flex-row">
+                            <div class="d-flex flex-column">
+                                <label for="address">Address:</label>
+                                <textarea id="address" cols="30" rows="1" class="form-control input"></textarea>
+                            </div>
 
-                        <label for="city">City:</label>
-                        <input type="text" id="city">
+                            <div class="d-flex flex-column">
+                                <label for="city">City:</label>
+                                <input type="text" id="city" class="form-control input">
+                            </div>
 
-                        <label for="state">State:</label>
-                        <input type="text" id="state">
-                    </div>
-                        <br>
-                    <div>
-                        <label for="country">Country:</label>
-                        <input type="text" id="country">
+                            <div class="d-flex flex-column">
+                                <label for="state">State:</label>
+                                <input type="text" id="state" class="form-control input">
+                            </div>
 
-                        <label for="pin">PinCode:</label>
-                        <input type="text" id="pin">
-                    </div>
-                        <br>
-                    <div class="button">
-                        <button type="submit" class="btn btn-info">Save</button>&nbsp;
-                        <button type="reset" class="btn btn-info">Cancle</button>
+                            <div class="d-flex flex-column">
+                                <label for="country">Country:</label>
+                                <input type="text" id="country" class="form-control input">
+                            </div>
+
+                            <div>
+                                <label for="pin">PinCode:</label>
+                                <input type="text" id="pin" class="form-control input">
+                            </div>
+                        </div>
                     </div>
                 </form>
+                <br>
             </div>
+            <hr>
         <p class="align">Permanent Address:</p>
-            <div class="align bottom-spc">
-                <form>
-                    <div>
-                        <label for="address">Address:</label>
-                        <textarea id="address" cols="30" rows="3"></textarea>
+        <div class="align bottom-spc">
+            <form>
+                <div class="main-container">
 
-                        <label for="city">City:</label>
-                        <input type="text" id="city">
+               
+                <div class="d-flex flex-row">
+                        <div class="d-flex flex-column">
+                            <label for="address">Address:</label>
+                            <textarea id="address" cols="30" rows="1" class="form-control input"></textarea>
+                        </div>
 
-                        <label for="state">State:</label>
-                        <input type="text" id="state">
-                    </div>
-                        <br>
-                    <div>
-                        <label for="country">Country:</label>
-                        <input type="text" id="country">
+                        <div class="d-flex flex-column">
+                            <label for="city">City:</label>
+                            <input type="text" id="city" class="form-control input">
+                        </div>
 
-                        <label for="pin">PinCode:</label>
-                        <input type="text" id="pin">
-                    </div>
-                        <br>
+                        <div class="d-flex flex-column">
+                            <label for="state">State:</label>
+                            <input type="text" id="state" class="form-control input">
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <label for="country">Country:</label>
+                            <input type="text" id="country" class="form-control input">
+                        </div>
+
+                        <div>
+                            <label for="pin">PinCode:</label>
+                            <input type="text" id="pin" class="form-control input">
+                        </div>
+                </div>
+                    <br>
                     <div class="button">
                         <button type="submit" class="btn btn-info">Save</button>&nbsp;
                         <button type="reset" class="btn btn-info">Cancle</button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
 </div>
 <router-outlet></router-outlet>

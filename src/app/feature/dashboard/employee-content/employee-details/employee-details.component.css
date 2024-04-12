@@ -27,16 +27,30 @@
     cursor: pointer;
 }
 .align{
-    margin: 1%;
+    margin:2%;
 }
 .bottom-spc{
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 .button{
     margin-left: 85%;
 }
-.items-align{
-    display: flex;
-    flex-direction: row;
-    margin-left: 20px;
+
+.input{
+    width: 80%;
+}
+
+.first{
+    margin-left: 5%;
+}
+
+.drop-down{
+    width: 100%;
+}
+
+.main-container{
+    margin-left: 5%;
+}
+.margin{
+    margin-left: 3%;
 }
