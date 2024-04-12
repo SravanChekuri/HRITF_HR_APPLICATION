@@ -46,17 +46,17 @@ export class EmployeeDetailsComponent implements OnInit{
     console.log(this.employeeInfoForm.value);
 
     const empInfoData={
-      EmployeeNumber:this.employeeInfoForm.value['EmployeeNumber'],
+      Employee_Number:this.employeeInfoForm.value['EmployeeNumber'],
       Title:this.employeeInfoForm.value['Title'],
-      FirstName:this.employeeInfoForm.value['FirstName'],
-      MiddleName:this.employeeInfoForm.value['MiddleName'],
-      LastName:this.employeeInfoForm.value['LastName'],
+      First_Name:this.employeeInfoForm.value['FirstName'],
+      Middle_Name:this.employeeInfoForm.value['MiddleName'],
+      Last_Name:this.employeeInfoForm.value['LastName'],
       Gender:this.employeeInfoForm.value['Gender'],
       Email:this.employeeInfoForm.value['Email'],
-      AnnualCTC:this.employeeInfoForm.value['AnnualCTC'],
+      Annual_CTC:this.employeeInfoForm.value['AnnualCTC'],
       Department:this.employeeInfoForm.value['Department'],
       Designation:this.employeeInfoForm.value['Designation'],
-      JobLocation:this.employeeInfoForm.value['JobLocation'],
+      Job_Location:this.employeeInfoForm.value['JobLocation'],
     }
     console.log(empInfoData);
     //POST method
@@ -91,12 +91,12 @@ export class EmployeeDetailsComponent implements OnInit{
     console.log(this.joingDetailsForm.value);
 
     const empJoiningData={
-      DateofJoining:this.joingDetailsForm.value['DateofJoining'],
-      ConfirmationDate:this.joingDetailsForm.value['ConfirmationDate'],
-      ProbationPeriod:this.joingDetailsForm.value['ProbationPeriod'],
-      PreRevision:this.joingDetailsForm.value['PreRevision'],
-      PostRevision:this.joingDetailsForm.value['PostRevision'],
-      NoticePeriod:this.joingDetailsForm.value['NoticePeriod'],
+      Date_of_Joining:this.joingDetailsForm.value['DateofJoining'],
+      Confirmation_Date:this.joingDetailsForm.value['ConfirmationDate'],
+      Probation_Period:this.joingDetailsForm.value['ProbationPeriod'],
+      Pre_Revision:this.joingDetailsForm.value['PreRevision'],
+      Post_Revision:this.joingDetailsForm.value['PostRevision'],
+      Notice_Period:this.joingDetailsForm.value['NoticePeriod'],
     }
     console.log(empJoiningData);
     
@@ -134,14 +134,14 @@ export class EmployeeDetailsComponent implements OnInit{
       console.log(this.personalDetailsForm.value);
 
       const empPersonalData={
-        DateofBirth:this.personalDetailsForm.value['DateofBirth'],
-        BloodGroup:this.personalDetailsForm.value['BloodGroup'],
-        FatherName:this.personalDetailsForm.value['FatherName'],
-        MaritalStatus:this.personalDetailsForm.value['MaritalStatus'],
+        Date_of_Birth:this.personalDetailsForm.value['DateofBirth'],
+        Blood_Group:this.personalDetailsForm.value['BloodGroup'],
+        Father_Name:this.personalDetailsForm.value['FatherName'],
+        Marital_Status:this.personalDetailsForm.value['MaritalStatus'],
         Nationality:this.personalDetailsForm.value['Nationality'],
-        PersonalEmail:this.personalDetailsForm.value['PersonalEmail'],
-        PlaceofBirth:this.personalDetailsForm.value['PlaceofBirth'],
-        CountryofOrigin:this.personalDetailsForm.value['CountryofOrigin'],
+        Personal_Email:this.personalDetailsForm.value['PersonalEmail'],
+        Place_of_Birth:this.personalDetailsForm.value['PlaceofBirth'],
+        Country_of_Origin:this.personalDetailsForm.value['CountryofOrigin'],
         Religion:this.personalDetailsForm.value['Religion'],
       }
       console.log(empPersonalData);
