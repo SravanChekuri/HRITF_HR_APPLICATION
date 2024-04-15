@@ -33,7 +33,6 @@ export class EmployeeAddComponent implements OnInit{
   }
 
   submitEmpData(){
-    alert("employee data submited!");
     console.log(this.addEmpForm);
 
     const addEmpData={
@@ -49,6 +48,7 @@ export class EmployeeAddComponent implements OnInit{
     
     this.service.addEmployee(addEmpData).subscribe(res=>{
       console.log(res);
+      alert("employee data submited!");
     },error=>{
       console.log(error);
       

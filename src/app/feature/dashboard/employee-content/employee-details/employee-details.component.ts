@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormGroup} from '@angular/forms';
-// import { EmployeeDetailsService } from 'src/app/feature/Services/employee-details.service';
+import { FormBuilder, FormGroup} from '@angular/forms';
+import { EmployeeDetailsService } from 'src/app/feature/Services/employee-details.service';
 
 @Component({
   selector: 'employee-details',
   templateUrl: './employee-details.component.html',
   styleUrls: ['./employee-details.component.css']
 })
-export class EmployeeDetailsComponent{}
 
-/*
+
 export class EmployeeDetailsComponent implements OnInit{
 
   employeeInfoForm;
@@ -167,4 +166,3 @@ export class EmployeeDetailsComponent implements OnInit{
 
 
 }
-*/
