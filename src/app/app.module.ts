@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { FeatureModule } from './feature/feature.module';
 import { SharedModule } from './shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     RouterModule,
     CoreModule,

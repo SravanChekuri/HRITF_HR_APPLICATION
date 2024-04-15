@@ -3,6 +3,10 @@
     flex-direction: row;
 }
 
+/* .login-container{
+    background-image: url('../../../assets/Images/login-img.png');
+} */
+
 .logo-image{
     margin-top: 10%;
 }

@@ -14,27 +14,53 @@
 
 .back{
   text-align: right;
+  margin-right: 20px;
+  margin-top: 10px;
 }
 
+
+.hr{
+  border: none;
+  height: 5px;
+  background-color:#bfbcbc;
+}
+
+.bulkUpload-container{
+  margin:0px 0px 10px 2%;
+}
+
+input[type="file"] {
+  display: none;
+}
+ 
 .custom-file-upload {
-    background-color: #47B7D0;
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-    border: none;
-    color:white;
-    border-radius: 8px;
-  }
+  background-color: #47B7D0;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: none;
+  color:white;
+  border-radius: 8px;
+}
+ 
+.form-container{
+  margin:0px 0px 10px 2%;
+}
 
-  input[type="file"] {
-    display: none;
-  }
+.label-container{
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+}
 
-  .image{
-    height: 150px;
-   width: 150px;
-   margin: 1%;
-  }
+.drop-down{
+  height: 40px;
+  width: 200px;
+}
 
-  
+.button-container{
+  position: absolute;
+  right: 5%;
+}
+ 

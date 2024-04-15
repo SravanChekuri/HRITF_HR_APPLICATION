@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import { DashboardModule } from './dashboard/dashboard.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -20,7 +20,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     HttpClientModule,
   ],
   exports:[
-    CommonModule,
+   
     LoginComponent
   ]
 })

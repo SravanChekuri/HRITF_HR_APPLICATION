@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup} from '@angular/forms';
-import { EmployeeDetailsService } from 'src/app/feature/Services/employee-details.service';
+// import { FormBuilder, FormGroup} from '@angular/forms';
+// import { EmployeeDetailsService } from 'src/app/feature/Services/employee-details.service';
 
 @Component({
   selector: 'employee-details',
   templateUrl: './employee-details.component.html',
   styleUrls: ['./employee-details.component.css']
 })
+export class EmployeeDetailsComponent{}
+
+/*
 export class EmployeeDetailsComponent implements OnInit{
 
-  employeeInfoForm:FormGroup;
-  joingDetailsForm:FormGroup;
-  personalDetailsForm:FormGroup;
-  addressDetailsForm:FormGroup;
+  employeeInfoForm;
+  joingDetailsForm;
+  personalDetailsForm;
+  addressDetailsForm;
 
   // empAddressData:FormGroup;
 
@@ -60,17 +63,17 @@ export class EmployeeDetailsComponent implements OnInit{
     }
     console.log(empInfoData);
     //POST method
-    this.service.updateEmployeeDetails1(empInfoData).subscribe(res =>{
-      console.log(res);
-    }, error=>{
-      console.log(error); 
-    }) 
+    // this.service.updateEmployeeDetails1(empInfoData).subscribe(res =>{
+    //   console.log(res);
+    // }, error=>{
+    //   console.log(error); 
+    // }) 
     // //GET method
-    this.service.updateEmployeeDetails2().subscribe(res=>{
-      console.log(res);
-    },error=>{
-      console.log(error);
-    })
+    // this.service.updateEmployeeDetails2().subscribe(res=>{
+    //   console.log(res);
+    // },error=>{
+    //   console.log(error);
+    // })
   } 
 
  
@@ -101,17 +104,17 @@ export class EmployeeDetailsComponent implements OnInit{
     console.log(empJoiningData);
     
     // //POST method
-    this.service.empJoiningDetails1(empJoiningData).subscribe(res =>{
-      console.log(res);
-    }, error=>{
-      console.log(error); 
-    }) 
+    // this.service.empJoiningDetails1(empJoiningData).subscribe(res =>{
+    //   console.log(res);
+    // }, error=>{
+    //   console.log(error); 
+    // }) 
     // //GET method
-    this.service.empJoiningDetails2().subscribe(res =>{
-      console.log(res);
-    }, error=>{
-      console.log(error); 
-    }) 
+    // this.service.empJoiningDetails2().subscribe(res =>{
+    //   console.log(res);
+    // }, error=>{
+    //   console.log(error); 
+    // }) 
   }
   //Employee Joining details end
 
@@ -147,20 +150,21 @@ export class EmployeeDetailsComponent implements OnInit{
       console.log(empPersonalData);
       
       // //POST method
-      this.service.empPersonalDetails1(empPersonalData).subscribe(res =>{
-        console.log(res);
-      }, error=>{
-        console.log(error); 
-      }) 
+      // this.service.empPersonalDetails1(empPersonalData).subscribe(res =>{
+      //   console.log(res);
+      // }, error=>{
+      //   console.log(error); 
+      // }) 
       // //GET method
-      this.service.empPersonalDetails2().subscribe(res =>{
-        console.log(res);
-      }, error=>{
-        console.log(error); 
-      }) 
+      // this.service.empPersonalDetails2().subscribe(res =>{
+      //   console.log(res);
+      // }, error=>{
+      //   console.log(error); 
+      // }) 
   
     }
   //Employee Personal details end
 
 
 }
+*/

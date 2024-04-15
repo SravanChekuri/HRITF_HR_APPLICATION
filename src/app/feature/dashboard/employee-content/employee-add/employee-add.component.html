@@ -1,58 +1,91 @@
 <div class="emp-add">
     <div class="back">
         <a routerLink=".."><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to Employee Search</a>
-    </div><br>
-    <div>
-        <h5>Quick add employee to the company</h5>
-        <p>Add an employee by filling the form or add bunch of employees by clicking bulk upload</p>
     </div>
     <div>
-        <label for="file-upload" class="custom-file-upload">Add Bulk Employee</label>
-        <input id="file-upload" type="file" accept=".xlsx, .xls" required/>
-    </div>
-    <div>
-        <!-- <img src="../../../../../assets/Images/bulk-emp.png" alt="Bulk add Image" class="image"> -->
-    </div>
-    <hr>
-    <div>
-        <h5>Add details of an employee</h5>
-        <div>
-            <form>
-                <div>
-                    <label for="fn">First Name*:</label>
-                    <input type="text" id="fn" name="fn" placeholder="Enter First Name">
+        <div class="bulkUpload-container">
+            <div>
+                <h5>Quick Add Employee to the company</h5>
+                <p>Add an employee by filling the from or add add a bunch of employee by clicking bulk upload </p>
+                <label for="file-upload" class="custom-file-upload">Add Bulk Employee</label>
+                <input id="file-upload" type="file"  accept=".xlsx, .xls" required/>
+            </div>
+        </div>
+        <hr class="hr">
+        <div class="form-container">
+            <h5>Add details of new employee:</h5>
+            <div>
+                <form [formGroup]="addEmpForm" (ngSubmit)="submitEmpData()">
+                    <div class="d-flex flex-row">
+                        <div class="label-container">
+                            <label for="fn">First Name*</label>
+                            <input type="text" id="fn" class="form-control" formControlName="FirstName">
+                            <div *ngIf="addEmpForm.get('FirstName').touched && addEmpForm.get('FirstName')?.hasError('required')" class="text-danger">
+                                *Employee First Name required
+                            </div>
+                        </div>
 
-                    <label for="ln">Last Name*:</label>
-                    <input type="text" id="ln" name="ln" placeholder="Enter Last Name">
+                        <div class="label-container">
+                            <label for="mn">Middle Name</label>
+                            <input type="text"id="mn" class="form-control" formControlName="MiddleName">
+                            <div *ngIf="addEmpForm.get('MiddleName').touched && addEmpForm.get('MiddleName')?.hasError('required')" class="text-danger">
+                                *Employee Middle Name required
+                            </div>
+                        </div>
 
-                    <label for="dob">Date of Birth*:</label>
-                    <input type="date" id="dob" name="dob">
+                        <div class="label-container">
+                            <label for="ln">Last Name*</label>
+                            <input type="text"id="ln" class="form-control" formControlName="LastName">
+                            <div *ngIf="addEmpForm.get('LastName').touched && addEmpForm.get('LastName')?.hasError('required')" class="text-danger">
+                                *Employee Last Name  required
+                            </div>
+                        </div>
 
-                    <label for="id">Employee ID*:</label>
-                <input type="text" id="id" name="id" placeholder="Enter Employee ID">
-                </div>
-                <br>
-                <div>
-                    <label for="email">Email*:</label>
-                    <input type="email" id="email" name="email" placeholder="Enter Employee email">
+                        <div class="label-container">
+                            <label for="empno">Employee Number*</label>
+                            <input type="text" id="empno" class="form-control" formControlName="EmployeeNumber">
+                            <div *ngIf="addEmpForm.get('EmployeeNumber').touched && addEmpForm.get('EmployeeNumber')?.hasError('required')" class="text-danger">
+                                *Employee Number required
+                            </div>
+                        </div>
 
-                    <label for="doj">Date of Joining*:</label>
-                    <input type="date" id="doj" name="doj">
+                        <div class="label-container">
+                            <label for="doj">Date of Joining*</label>
+                            <input type="date" id="doj"  class="form-control" formControlName="DateOfJoining">
+                            <div *ngIf="addEmpForm.get('DateOfJoining').touched && addEmpForm.get('DateOfJoining')?.hasError('required')" class="text-danger">
+                                *Employee Date Of Joining required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <div class="label-container">
+                            <label for="location">Location*</label>
+                            <select id="location" class="form-control drop-down" formControlName="Location">
+                                <option>Select</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                            </select>
+                            <div *ngIf="addEmpForm.get('Location').touched && addEmpForm.get('Location')?.hasError('required')" class="text-danger">
+                                *Location required
+                            </div>
+                        </div>
 
-                    <label for="ctc">Annual CTC*:</label>
-                    <input type="number" id="ctc" name="ctc" placeholder="Enter Annual CTC">
-
-                    <label for="location">Job Location*:</label>
-                    <select name="location" id="location">
-                        <option value="Bangaluru">Bangalore</option>
-                    </select>
-                </div>
-                <br>
-                <div>
-                    <button type="submit" class="btn btn-info">Save</button>&nbsp;
-                    <button type="reset" class="btn btn-info">Cancle</button>
-                </div>
-            </form>
+                        <div class="label-container">
+                            <label for="email">Email Id*</label>
+                            <input type="email" id="email" class="form-control" formControlName="Email">
+                            <div *ngIf="addEmpForm.get('Email').touched && addEmpForm.get('Email')?.hasError('required')" class="text-danger">
+                                *Email required
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <p>After saving the onboarding process will start and employee will receive a welcome email with the link to set hit password.</p>
+                    <div class="button-container">
+                        <button class="btn btn-info" type="submit">save</button>&nbsp;&nbsp;
+                        <button class="btn btn-info" type="reset">Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
