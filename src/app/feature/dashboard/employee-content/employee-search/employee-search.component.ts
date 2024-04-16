@@ -13,8 +13,6 @@ export class EmployeeSearchComponent implements OnInit{
   allEmp:any=[];
   searchTxt:any;
   filteredEmp:any=[];
-  
-
 
   constructor(private router:Router,private service:EmployeeAddService){}
 
@@ -22,7 +20,6 @@ export class EmployeeSearchComponent implements OnInit{
     this.getAllperson();
     console.log(this.allEmp);
   }
-
 
   getAllperson(){
     this.service.getAllperson().subscribe(res=>{

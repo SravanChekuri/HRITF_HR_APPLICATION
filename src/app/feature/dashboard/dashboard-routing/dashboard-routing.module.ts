@@ -18,6 +18,7 @@ const routes: Routes = [
       children: [
         {path: '', component:EmployeeSearchComponent},
         {path:'addemp',component:EmployeeAddComponent},
+        {path:'empProfile',component:EmployeeMainComponent},
         {path:'empdetails',component:EmployeeDetailsComponent}
       ]
       }

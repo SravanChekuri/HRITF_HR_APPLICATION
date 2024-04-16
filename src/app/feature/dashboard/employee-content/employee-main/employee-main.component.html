@@ -1,4 +1,22 @@
-<div>
-    <router-outlet></router-outlet>
+<div class="main-container">
+    <div class="search-sec">
+        <h6>Search for Employee profile</h6>
+        <input type="text" placeholder="search..." [(ngModel)]="searchTxt" (input)="filtEmpRes($event)" class="m-2">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    </div>
+    <br>
+    <div class="emp-notfound" *ngIf="filteredEmp.length === 0">Employee not found.</div>
+    <div class="card-order">
+        <div *ngFor="let filtemp of filteredEmp">
+            <div class="card" >
+                <img src="../../../../../assets/Images/emp_profile.png" alt="emp Img" width="50%">
+                <div style="font-weight: bold;">{{filtemp.Employee_Number}}</div>
+                <div style="color:#8C1428;">{{filtemp.Employee_First_Name}}&nbsp;{{filtemp.Last_Name}}</div>
+                <div></div>
+            </div>
+        </div>
+    </div>
 </div>
+<router-outlet></router-outlet>
+
   

@@ -10,7 +10,7 @@ export class SidebarComponent {
   dropdownItems = [
     { name: 'Overview',route:'/home/employees' },
     { name:'Add new Employee',route:'/home/employees/addemp'},
-    { name:'Employee Details',route:'/home/employees/empdetails'},
+    { name:'Employee Profile',route:'/home/employees/empProfile'},
     { name: 'Letters', subItems: [{ name: 'Generate Letters' }, { name: 'Letter Templates' }] },
     { name: 'Admin Settings' },
   ];

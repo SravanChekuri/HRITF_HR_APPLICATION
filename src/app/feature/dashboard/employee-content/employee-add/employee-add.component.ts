@@ -51,7 +51,7 @@ export class EmployeeAddComponent implements OnInit{
       alert("Employee data submited sucessfully");
     },error=>{
       console.log(error);
-      alert("Employee Number/Email already exist")
+      alert("Employee Number/Email already exist");
     });
 
     this.addEmpForm.reset();

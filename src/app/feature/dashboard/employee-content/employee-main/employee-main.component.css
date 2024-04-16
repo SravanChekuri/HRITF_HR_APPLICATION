@@ -1,0 +1,42 @@
+.main-container{
+    /* border: 1px solid black; */
+    width: 180vh;
+    height: 90vh;
+    position: fixed;
+    top:14%;
+    left:12.5%;
+    background-color:#EDEDED;
+    overflow-y: auto;
+}
+.search-sec{
+    background-color: #FFFFFF;
+    width: 180vh;
+    height: 10vh;
+}
+.card{
+    background-color: #FFFFFF;
+    width: 200px;
+    height: 150px;
+    border-radius:10px;
+    text-align: center; 
+    align-items: center;
+    flex:0 0 auto;
+    max-width: 200px; 
+    margin-right: 15px; 
+    margin-bottom: 15px; 
+    padding: 10px;
+}
+
+.card-order{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.emp-notfound{
+    font-size: 25px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+ }
+
+
