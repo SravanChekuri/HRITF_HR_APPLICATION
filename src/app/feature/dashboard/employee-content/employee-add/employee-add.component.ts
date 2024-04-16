@@ -48,11 +48,13 @@ export class EmployeeAddComponent implements OnInit{
     
     this.service.addEmployee(addEmpData).subscribe(res=>{
       console.log(res);
-      alert("employee data submited!");
+      alert("Employee data submited sucessfully");
     },error=>{
       console.log(error);
-      
+      alert("Employee Number/Email already exist")
     });
+
+    this.addEmpForm.reset();
   }
   
 }

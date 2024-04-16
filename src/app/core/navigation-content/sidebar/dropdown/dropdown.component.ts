@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class DropdownComponent {
 
   constructor(private router:Router){}
+  
   @Input() items:any[];
 
   isSubDropdownOpen:boolean=false;
@@ -21,6 +22,12 @@ export class DropdownComponent {
         this.router.navigate([item.route]);
     } else {
         item.isSubDropdownOpen = !item.isSubDropdownOpen;
+    }
+  }
+
+  onSubDropdownItemClick(subItem:any){
+    if(subItem.route){
+      this.router.navigate([subItem.route]);
     }
   }
 }
