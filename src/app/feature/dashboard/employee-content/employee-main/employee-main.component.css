@@ -13,10 +13,11 @@
     width: 180vh;
     height: 10vh;
 }
+
 .card{
     background-color: #FFFFFF;
     width: 200px;
-    height: 150px;
+    height: 180px;
     border-radius:10px;
     text-align: center; 
     align-items: center;
@@ -30,6 +31,7 @@
 .card-order{
     display: flex;
     flex-wrap: wrap;
+    margin-left: 2%;
 }
 
 .emp-notfound{
@@ -38,5 +40,25 @@
     font-weight: bold;
     text-align: center;
  }
+
+.edit-icon{
+    font-size: 12px;
+}
+.edit-text{
+    font-family: 'Lucida Sans Regular';
+    padding-left: 5px;
+}
+
+h6{
+    padding: 10px 0px 0px 25px;
+}
+
+input{
+    margin-left: 25px;
+    padding-left: 10px;
+    width: 30%;
+    border-radius: 10px;
+    
+}
 
 

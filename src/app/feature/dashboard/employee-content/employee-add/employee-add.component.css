@@ -29,14 +29,14 @@
   margin:0px 0px 10px 2%;
 }
 
-input[type="file"] {
+/* input[type="file"] {
   display: none;
-}
+} */
  
 .custom-file-upload {
   background-color: #47B7D0;
   border: 1px solid #ccc;
-  display: inline-block;
+  /* display: inline-block; */
   padding: 6px 12px;
   cursor: pointer;
   border: none;
@@ -63,4 +63,7 @@ input[type="file"] {
   position: absolute;
   right: 5%;
 }
- 
+
+.sucessfull-img{
+  width:7%;
+}

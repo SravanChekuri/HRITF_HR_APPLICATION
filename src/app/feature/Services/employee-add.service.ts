@@ -15,4 +15,8 @@ export class EmployeeAddService {
   return this.http.get("http://127.0.0.1:5000/get_emp_details")
   }
 
+  bulkUpload(formData:any){
+    return this.http.post("http://127.0.0.1:5000/add_emp_bulk",formData);
+  }
+
 }

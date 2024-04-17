@@ -13,6 +13,9 @@ export class EmployeeAddComponent implements OnInit{
   // addEmpForm:any=new FormGroup({});
   addEmpForm:FormGroup;
 
+  excelData:any
+  file:any;
+
   constructor(private formBuilder:FormBuilder,private service:EmployeeAddService,private router:Router){ }
 
   ngOnInit(): void {
@@ -55,6 +58,27 @@ export class EmployeeAddComponent implements OnInit{
     });
 
     this.addEmpForm.reset();
+    
+    // this.router.navigate(['/home/employees']);
+  }
+
+  selectFile(event:any){
+    console.log('event',event);
+    this.file=event.target.files[0];
+    console.log(this.file);
+  }
+
+  uploadFile(){
+    let formData=new FormData();
+    formData.append("EXCEL",this.file);
+
+    this.service.bulkUpload(formData).subscribe(res=>{
+      console.log("Bulk upload Successfull:",res);
+      alert("Successfully uploaded the data");
+    }, error=>{
+      console.log("Bulk Upload failed!");
+      alert(error);
+    });
   }
   
 }

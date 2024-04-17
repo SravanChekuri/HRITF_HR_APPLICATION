@@ -9,8 +9,8 @@ import { DashHomeComponent } from './dash-home/dash-home.component';
 import { EmployeeMainComponent } from './employee-content/employee-main/employee-main.component';
 import { EmployeeAddComponent } from './employee-content/employee-add/employee-add.component';
 import { EmployeeDetailsComponent } from './employee-content/employee-details/employee-details.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { EmployeeSearchComponent } from './employee-content/employee-search/employee-search.component';
+import { EmployeeLettersComponent } from './employee-content/employee-letters/employee-letters.component';
 
 
 
@@ -21,7 +21,8 @@ import { EmployeeSearchComponent } from './employee-content/employee-search/empl
     EmployeeMainComponent,
     EmployeeAddComponent,
     EmployeeDetailsComponent,
-    EmployeeSearchComponent
+    EmployeeSearchComponent,
+    EmployeeLettersComponent
   ],
   imports: [
     CommonModule,
