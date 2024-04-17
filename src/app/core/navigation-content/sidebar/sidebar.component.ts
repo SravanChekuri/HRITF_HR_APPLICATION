@@ -11,7 +11,7 @@ export class SidebarComponent {
     { name: 'Overview',route:'/home/employees' },
     { name:'Add new Employee',route:'/home/employees/addemp'},
     { name:'Employee Profile',route:'/home/employees/empProfile'},
-    { name: 'Letters', subItems: [{ name: 'Generate Letters' }, { name: 'Letter Templates',route:'/home/employees/empletters'}] },
+    { name: 'Letters', subItems: [{ name: 'Generate Letters',route:'/home/employees/generate-letters' }, { name: 'Letter Templates',route:'/home/employees/letter-templates'}] },
     { name: 'Admin Settings' },
   ];
 

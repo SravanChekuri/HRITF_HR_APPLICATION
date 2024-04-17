@@ -8,6 +8,7 @@ h1{
 }
 
 .page-not-found{
-    color: #FF5733;
+    /* color: #FF5733; */
+    color: red;
     font-weight: bold;
 }

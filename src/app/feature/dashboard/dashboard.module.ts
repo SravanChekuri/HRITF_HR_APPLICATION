@@ -10,7 +10,8 @@ import { EmployeeMainComponent } from './employee-content/employee-main/employee
 import { EmployeeAddComponent } from './employee-content/employee-add/employee-add.component';
 import { EmployeeDetailsComponent } from './employee-content/employee-details/employee-details.component';
 import { EmployeeSearchComponent } from './employee-content/employee-search/employee-search.component';
-import { EmployeeLettersComponent } from './employee-content/employee-letters/employee-letters.component';
+import { EmployeeLettersTemplatesComponent } from './employee-content/employee-letters-templates/employee-letters.component';
+import { EmployeeGenerateLettersComponent } from './employee-content/employee-generate-letters/employee-generate-letters.component';
 
 
 
@@ -22,7 +23,8 @@ import { EmployeeLettersComponent } from './employee-content/employee-letters/em
     EmployeeAddComponent,
     EmployeeDetailsComponent,
     EmployeeSearchComponent,
-    EmployeeLettersComponent
+    EmployeeLettersTemplatesComponent,
+    EmployeeGenerateLettersComponent
   ],
   imports: [
     CommonModule,
