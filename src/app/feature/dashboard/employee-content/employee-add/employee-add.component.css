@@ -12,11 +12,13 @@
 }
 
 
+
 .back{
   text-align: right;
   margin-right: 20px;
   margin-top: 10px;
 }
+
 
 
 .hr{
@@ -29,9 +31,10 @@
   margin:0px 0px 10px 2%;
 }
 
-/* input[type="file"] {
-  display: none;
-} */
+input[type="file"] {
+  color:green;
+  margin-bottom: 10px;
+} 
  
 .custom-file-upload {
   background-color: #47B7D0;
@@ -66,4 +69,28 @@
 
 .sucessfull-img{
   width:7%;
+}
+.fail-img{
+  width:7%;
+}
+.success-text{
+  color: green;
+  font-weight:bold;
+  font-family:'Lucida Sans';
+  background-color: rgb(208, 254, 208);
+}
+.success-msg{
+  text-align: right;
+  padding-right: 20px;
+}
+.fail-msg{
+  text-align: right;
+  padding-right: 20px; 
+}
+.fail-text{
+  color: red;
+  font-weight:bold;
+  font-family:'Lucida Sans';
+  background-color: rgb(244, 171, 171);
+
 }

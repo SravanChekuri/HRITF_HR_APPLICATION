@@ -11,6 +11,10 @@ import { EmployeeAddService } from 'src/app/feature/Services/employee-add.servic
 export class EmployeeAddComponent implements OnInit{
 
   // addEmpForm:any=new FormGroup({});
+
+  successmsg:boolean=false;
+  failmsg:boolean=false;
+
   addEmpForm:FormGroup;
 
   excelData:any
@@ -51,10 +55,13 @@ export class EmployeeAddComponent implements OnInit{
     
     this.service.addEmployee(addEmpData).subscribe(res=>{
       console.log(res);
-      alert("Employee data submited sucessfully");
+      // alert("Employee data submited sucessfully");
+      this.successmsg=!this.successmsg;
     },error=>{
       console.log(error);
-      alert("Employee Number/Email already exist");
+      alert(error.value);
+      // alert("Employee Number/Email already exist");
+      this.failmsg=!this.failmsg;
     });
 
     this.addEmpForm.reset();

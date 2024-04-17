@@ -7,14 +7,16 @@
             <div>
                 <h5>Quick Add Employee to the company</h5>
                 <p>Add an employee by filling the from or add add a bunch of employee by clicking bulk upload </p>
+                <input id="file-upload" class="file-upload" type="file"  accept=".xlsx, .xls" required (change)="selectFile($event)"/><br>
                 <label  class="custom-file-upload" (click)="uploadFile()">Add Bulk Employee</label>
-                <input id="file-upload" type="file"  accept=".xlsx, .xls" required (change)="selectFile($event)"/>
             </div>
         </div>
         <hr class="hr">
         <div class="form-container">
             <h5>Add details of new employee:</h5>
-            <!-- <div><img src=".../../../../../../../assets/Images/success-tick-dribbble-gif.gif" alt="Sucessfully img" class="sucessfull-img"> Employee Added Sucessfully to the database</div> -->
+            <div *ngIf="successmsg" class="success-msg"><img src=".../../../../../../../assets/Images/success-tick-dribbble-gif.gif" alt="Sucessfully img" class="sucessfull-img"><span class="success-text"> Employee Added Sucessfully to the database</span></div>
+            <div *ngIf="failmsg" class="fail-msg"><span class="fail-text">Failed to add : Employee Number/Email already exist</span></div>
+
             <div>
                 <form [formGroup]="addEmpForm" (ngSubmit)="submitEmpData()">
                     <div class="d-flex flex-row">
