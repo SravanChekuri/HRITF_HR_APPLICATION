@@ -9,14 +9,25 @@ export class LoginService {
 
   constructor(private http:HttpClient) { }
 
+  // Service for login
   loginfunctionality1(data:any){
-    const res = this.http.post('',data);
+    const res = this.http.post('http://127.0.0.1:5000/login',data);
     return res;
   }
 
-  loginfunctionality2(data:any){
-    const res=this.http.get('',data);
-    return res;
-
+  //Service for SignUp
+  signUpDataService(signupData:any){
+    return this.http.post("http://127.0.0.1:5000/add_admin_details",signupData);
   }
+
+  //Service for Forgot 
+  sendEmailOtp(sendEmailData:any){
+    return this.http.post("http://127.0.0.1:5000/email",sendEmailData);
+  }
+
+  // Sevice for OTP
+  sendOtp(sendOtp:any){
+    return this.http.post("http://127.0.0.1:5000/verify",sendOtp);
+  }
+  
 }

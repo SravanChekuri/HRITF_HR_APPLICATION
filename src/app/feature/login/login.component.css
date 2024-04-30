@@ -3,19 +3,79 @@
     flex-direction: row;
 }
 
-/* .login-container{
-    background-image: url('../../../assets/Images/login-img.png');
-} */
-
-.logo-image{
-    margin-top: 10%;
+.login-container{
+    background-image: url('../../../assets/Images/login-img-background.png');
+    height: 100vh;
+    background-size: cover;
+    max-width: 300vh;
 }
 
 .login-form{
-    margin-top: 10%;
+    margin: 2% 0 0 5%;
     padding:3rem;
 }
 
-/* .formelements{
+.sub-container{
+    display: flex;
+    flex-direction: row;
+}
 
-} */
+.logo-image{
+    margin-left: 6%;
+}
+.image{
+    height: 65vh;
+    width: 90vh;
+    margin-bottom: 8%;
+    margin-left: 5%;
+}
+
+input{
+    width: 180%;
+}
+
+input:focus{
+    outline: none !important;
+    border-color:#0c1013;
+    box-shadow: 0 0 10px #0c1013;
+}
+
+.flexContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+.margin{
+    margin-left: 125%;
+}
+
+.checkboxWidth{
+    width: 15px;
+    margin: 1%;  
+}
+
+.loginButton{
+    margin-top: 5%;
+    width: 170%;
+    height: 170%;
+}
+
+.heading{
+    margin-bottom: 10%;
+    font-weight: 600;
+    text-align: right;
+}
+
+::placeholder{
+    color: #8C1428;
+}
+
+.labels{
+    margin-bottom: 3%;
+}
+
+h5{
+    color: red;
+    background-color: rgb(243, 206, 206);
+}

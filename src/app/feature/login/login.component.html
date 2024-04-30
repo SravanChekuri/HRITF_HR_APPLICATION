@@ -1,20 +1,35 @@
-<div class="container login-container">
-    <div class="logo-image border">
-        <img src="../../assets/Images/Login-Logo.png" alt="Logo Image" width="60%">
-    </div>
-    <div class="login-form border">
-        <h3>Login</h3>
-        <div class="formelements">
-            <form [formGroup]="loginform" (ngSubmit)="login()">
-                <label for="userid">User ID:</label><br>
-                <input type="text" id="userid" name="userid" formControlName="UserID" autofocus><br>
-                <label for="pw">Password:</label><br>
-                <input type="password" id="pw" name="password" formControlName="Password"><br>
-                <input type="checkbox" id="checkbox" name="checkbox">
-                <label for="checkbox">Remember me</label>
-                <a href="#"><u>Forgot Password?</u></a><br>
-                <button type="submit" class="btn btn-danger">Login</button>
-            </form>
+<div class="login-container">
+    <img src="../../../assets/Images/Home-Img.png" alt="logo" class="m-4">
+    <div class="sub-container">
+        <div class="logo-image">
+            <img src="../../../assets/Images/login-image1.png" alt="Logo Image" class="image">
         </div>
+        <div class="login-form">
+            <h1 class="text-white heading">Login</h1>
+            <div *ngIf="loginFail"><h5>*Invalid Login Details*</h5></div>
+            <div class="formelements">
+                <form [formGroup]="loginform" (ngSubmit)="login()">
+                    <div class="m-2">
+                        <label for="userid" class="text-white labels">User ID:</label><br>
+                    <input type="text" id="userid" name="userid" formControlName="UserID" autofocus class="form-control" placeholder="User ID"><br>
+                    </div>
+                    <div  class="m-2">
+                        <label for="pw" class="text-white labels">Password:</label><br>
+                    <input type="password" id="pw" name="password" formControlName="Password" class="form-control" placeholder="Password"><br>
+
+                    </div>
+                    
+                    <div class="flexContainer">
+                        <div class="d-flex flex-row">
+                            <a routerLink="/signUp" style="color: #F9E108;">SignUp</a>
+                        </div>
+                        <div>
+                            <a routerLink="/forgotpassword" class="margin" style="color: #F9E108;"><u>ForgotPassword?</u></a>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger loginButton">Login</button>
+                </form>
+            </div>
+        </div> 
     </div>
 </div>

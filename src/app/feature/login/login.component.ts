@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../Services/login.service';
 
@@ -12,7 +12,7 @@ export class LoginComponent {
 
   data:FormGroup;
   loginform:FormGroup;
-  // login:any;
+  loginFail:boolean=false;
 
   constructor(private formbuilder:FormBuilder, private service:LoginService, private router:Router){}
 
@@ -22,31 +22,31 @@ export class LoginComponent {
 
   logininitilization(){
     this.loginform=this.formbuilder.group({
-      UserID:['',[]],
-      Password:['',[]]
-      // Checkbox:['',[]]
+      UserID:['',[Validators.required]],
+      Password:['',[Validators.required]]
     })
   }
 
   login(){
     console.log(this.loginform.value);
-    
-    this.router.navigate(['/home']);
 
     const data={
-      Employee_ID:this.loginform.value['UserID'],
+      User_Id:this.loginform.value['UserID'],
       Password:this.loginform.value['Password']
-      // Checkbox:this.loginform.value['Checkbox']
     }
     
     console.log(data);
 
-    // this.service.loginfunctionality1(data).subscribe(res => {
-    //   console.log(res);
-    // },error=>{
-    //   console.log(error);
-      
-    // })
+    this.service.loginfunctionality1(data).subscribe(res => {
+      // alert("Login Success")
+      this.router.navigate(['/home']);
+
+      console.log(res);
+    },error=>{
+      // alert("Incorrect credintial")
+      this.loginFail=true;
+      console.log(error);
+    });
     }
 
 }
