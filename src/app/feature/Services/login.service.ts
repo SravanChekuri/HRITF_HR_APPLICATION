@@ -29,5 +29,9 @@ export class LoginService {
   sendOtp(sendOtp:any){
     return this.http.post("http://127.0.0.1:5000/verify",sendOtp);
   }
-  
+ 
+  //Service for Reset Password
+  newPassword(newPasswordSend:any){
+    return this.http.put("http://127.0.0.1:5000/change_password",newPasswordSend)
+  }
 }

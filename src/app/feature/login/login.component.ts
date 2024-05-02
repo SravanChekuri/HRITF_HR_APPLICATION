@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../Services/login.service';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 @Component({
   selector: 'login',
@@ -13,6 +14,9 @@ export class LoginComponent {
   data:FormGroup;
   loginform:FormGroup;
   loginFail:boolean=false;
+
+  email:string='';
+
 
   constructor(private formbuilder:FormBuilder, private service:LoginService, private router:Router){}
 

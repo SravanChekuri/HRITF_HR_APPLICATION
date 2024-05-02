@@ -7,7 +7,7 @@
         <div class="login-form">
             <h1 class="text-white heading">Login</h1>
             <div *ngIf="loginFail"><h5>*Invalid Login Details*</h5></div>
-            <div class="formelements">
+            <div>
                 <form [formGroup]="loginform" (ngSubmit)="login()">
                     <div class="m-2">
                         <label for="userid" class="text-white labels">User ID:</label><br>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { LoginService } from '../../Services/login.service';
 
 @Component({
@@ -12,13 +12,15 @@ export class ForgotpasswordComponent implements OnInit{
 
   forgotPasswordForm:FormGroup;
   verifyOTP:FormGroup;
-  email:string;
+
   otpSentSuccess:boolean=false;
   otpSentFail:boolean=false;
+
   verifyotpFail:boolean=false;
 
+  email:string ='';
 
-  constructor(private formbuilder:FormBuilder,private router:Router,private service:LoginService) { }
+  constructor(private formbuilder:FormBuilder,private router:Router,private route:ActivatedRoute,private service:LoginService) { }
 
   ngOnInit() {
     this.forgotPasswordFormIntilization();
@@ -33,9 +35,9 @@ export class ForgotpasswordComponent implements OnInit{
   sendOtp(){
     const sendEmailData={
       Email_Id:this.forgotPasswordForm.value['emailId']
-    }
+    };
 
-    console.log(sendEmailData);
+    // console.log("Sending email id to backend:",sendEmailData.Email_Id);
 
     this.service.sendEmailOtp(sendEmailData).subscribe((res)=>{
       // alert("Send Otp Success")
@@ -43,8 +45,7 @@ export class ForgotpasswordComponent implements OnInit{
     },error=>{
       // alert("send otp Fail")
       this.otpSentFail=true;
-    });
-
+    }); 
   }
 
   otpInitialization(){
@@ -55,16 +56,19 @@ export class ForgotpasswordComponent implements OnInit{
 
   verifyOtp(){
     const sendOtp={
-      Email_Id:this.forgotPasswordForm.value['emailId'],
-      OTP:this.verifyOTP.value['otp']
+      OTP:this.verifyOTP.value['otp'],
+      Email_Id:this.forgotPasswordForm.value['emailId']
+      // Email_Id:this.email
+
     };
-    console.log(sendOtp);
+    
+    console.log('Sending OTP and email to backend:',sendOtp.OTP,sendOtp.Email_Id);
     
 
     this.service.sendOtp(sendOtp).subscribe(
       (res) => {
-        // alert('OTP Success');
-        this.router.navigate(['/resetpassword']);
+        // alert('OTP Success'); 
+        this.router.navigate(['/resetpassword', { email: sendOtp.Email_Id }]);
       },
       (error) => {
         // alert('OTP verification failed');
