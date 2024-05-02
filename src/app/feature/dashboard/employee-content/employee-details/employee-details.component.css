@@ -10,6 +10,11 @@
     background-color: #FFFFFF;
     overflow-y: auto;
 }
+.sub-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 
 
 .hr{

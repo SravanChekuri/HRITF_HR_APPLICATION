@@ -1,4 +1,67 @@
 <div class="emp-details">
     <div><a routerLink="/home/employees/empProfile"><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to Employee Profiles</a></div>
+    <form  [formGroup]="updateForm">
+        <div class="sub-container">
+
+      
+        <div  class="m-2 d-flex flex-column">
+            <label for="">Employee FirstName</label>
+            <input type="text" formControlName="firstName" class="form-control">
+           </div>
+           <div  class="m-2 d-flex flex-column">
+            <label for="">Middle Name</label>
+            <input type="text" formControlName="middleName" class="form-control">
+           </div>
+           <div class="m-2 d-flex flex-column">
+            <label for="">Last Name</label>
+            <input type="text" formControlName="lastName" class="form-control">
+           </div>
+           <div class="m-2 d-flex flex-column">
+            <label for="">Employee Number</label>
+            <input type="text" formControlName="employeeNumber" class="form-control">
+           </div>
+           <div class="m-2 d-flex flex-column">
+            <label for="">Date of Joining</label>
+            <input type="date" formControlName="dateOfJoining" class="form-control">
+           </div>
+           <div class="m-2 d-flex flex-column">
+            <label for="">Location</label>
+           <select name="" id="" class="w-50" formControlName="location" class="form-control">
+            <option value="select">select</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Hyderabad">Hyderabad</option>
+           </select>
+           </div>
+           <div class="m-2 d-flex flex-column">
+            <label for="">Email</label>
+            <input type="text" formControlName="email" class="form-control">
+           </div>
+           <div class="m-2 d-flex flex-column">
+            <label for="">Worker Type</label>
+            <select name="" id=""  formControlName="workerType" class="form-control">
+                <option value="Select">Select</option>
+                <option value="Candidate">Candidate</option>
+                <option value="Employee">Employee</option>
+            </select>
+        </div>
+        <div class="m-2 d-flex flex-column">
+            <label for="">Effective StartDate</label>
+            <input type="date" formControlName="startDate" class="form-control">
+           </div>
+
+           <div  class="m-2 d-flex flex-column">
+            <label for="">Effective End Date</label>
+            <!-- <input type="date" formControlName="endDate">
+             -->
+             <input type="date" value="4712-12-31" class="form-control" formControlName="endDate"/>
+
+
+
+           </div>
+        </div>
+           <button (click)="update()" class="btn btn-primary m-3">update</button>
+        
+    </form>
+
 </div> 
 <router-outlet></router-outlet>
