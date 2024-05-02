@@ -1,6 +1,32 @@
 <div class="main-container">
     <div>
-        <p>letter templates</p>
+        <div class="m-5">
+            <label for="letterType">Select Letter Type:</label>
+            <select id="letterType" (change)="onLetterTypeChange($event)" class="form-control w-50" >
+                <option value="">select</option>
+                <ng-container *ngFor="let data of lettersData">
+                <option value={{data.name}}>{{data.name}}</option>
+                </ng-container>
+            </select>
+          </div>
+          <div class="margin m-5">
+           
+            <input type="file" id="rtfFile" (change)="onFileChange($event)" accept=".rtf" class="form-control w-50">
+            <span id="fileError" style="color: red; display: none;"></span>
+            <br>
+            <button (click)="uploadFile()" class="btn btn-primary m-3">submit</button>
+            <!-- <button (click)=" beforeStoringDatabase()" class="btn btn-primary">before View </button> -->
+            
+            <button (click)="displayPdf(letterId)" class="btn btn-primary m-3"> View </button>
+            <br/>
+            <div class="d-flex flex-column">
+                <label for="">Letter ID</label>
+           <input type="text" value="{{letterId}}" class="form-control w-50" >
+
+            </div>
+           
+          </div>
+
     </div>
 </div>
 <router-outlet></router-outlet>

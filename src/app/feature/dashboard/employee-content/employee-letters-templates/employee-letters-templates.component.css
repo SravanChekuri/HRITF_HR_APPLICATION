@@ -7,3 +7,18 @@
     background-color: #FFFFFF;
     overflow-y: auto;
 }
+.margin{
+    margin-top: 40px;
+}
+
+
+.custom-file-upload {
+    background-color: #47B7D0;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border: none;
+    color:white;
+    border-radius: 8px;
+  }

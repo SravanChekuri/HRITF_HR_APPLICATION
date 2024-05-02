@@ -4,7 +4,8 @@
     </div>
     <div>
         <div><h4 class="text-white heading">Registration for Admin/HR persons</h4></div>
-        <div class="card container">
+        <div class="reg-fail" *ngIf="registerFail"><p>**Registaration Fail, Details already exist**</p></div>
+        <div class="card container" *ngIf="!submitted">
             <div class="card-body">
                 <form [formGroup]="signUpForm" (ngSubmit)="submitForm()">
                     <div class="input-container d-flex flex-wrap">
@@ -115,11 +116,17 @@
                         </div>
                     </div>
                     <div class="align-btn">
-                        <button class="btn btn-primary m-2" type="submit">Save</button>
+                        <button class="btn btn-primary m-2" type="submit" [disabled]="signUpForm.invalid">Save</button>
                         <button class="btn btn-secondary m-2" type="button" (click)="resetForm()" routerLink="..">Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>    
+    </div> 
+    <div class="success-div" *ngIf="submitted">
+        <div><h3 class="para" style="color:rgb(8, 195, 8)">Congratulations!</h3></div>
+        <div><p class="para text-white">You Have Successfully Registered</p></div>
+        <div><button type="submit" routerLink="/" class="btn btn-info" style="margin-bottom: 5%;">Back to Login</button></div>
+    </div>
+    <div></div>   
 </div>

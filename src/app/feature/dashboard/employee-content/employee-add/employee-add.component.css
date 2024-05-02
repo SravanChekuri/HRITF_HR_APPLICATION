@@ -11,15 +11,11 @@
     overflow-y: auto;
 }
 
-
-
 .back{
   text-align: right;
   margin-right: 20px;
   margin-top: 10px;
 }
-
-
 
 .hr{
   border: none;
@@ -31,10 +27,10 @@
   margin:0px 0px 10px 2%;
 }
 
-input[type="file"] {
-  color:green;
-  margin-bottom: 10px;
-} 
+      /* input[type="file"] {
+        color:green;
+        margin-bottom: 10px;
+      }  */
  
 .custom-file-upload {
   background-color: #47B7D0;
@@ -92,5 +88,14 @@ input[type="file"] {
   font-weight:bold;
   font-family:'Lucida Sans';
   background-color: rgb(244, 171, 171);
+}
 
+select.form-control {
+  appearance: none; 
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNiIgdmlld0JveD0iMCAwIDEyIDYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMmgxMkw2IDZMNCA0eiIgZmlsbD0iIzAwMDAwMCIvPjwvc3ZnPg=='); 
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px; 
+  padding-right: 30px; 
+  
 }

@@ -11,7 +11,9 @@ import { LoginService } from '../../Services/login.service';
 })
 export class SignupComponent implements OnInit {
 
-  submitted:boolean=false
+  submitted:boolean=false;
+
+  registerFail:boolean=false;
 
   signUpForm:FormGroup;
 
@@ -36,7 +38,6 @@ export class SignupComponent implements OnInit {
       })
   }
   submitForm(){
-    this.submitted=true
     const signupData={
       User_Id:this.signUpForm.value['userId'],
       First_Name:this.signUpForm.value['firstName'],
@@ -51,10 +52,13 @@ export class SignupComponent implements OnInit {
       }
       console.log(signupData);
       this.service.signUpDataService(signupData).subscribe((res)=>{
-        alert("signupdata Success")
-        this.router.navigate(['/'])
+        // alert("signupdata Success")
+        // this.router.navigate(['/'])
+        this.submitted=true
+
       },error=>{
-        alert("signup failure")
+        this.registerFail=true;
+        // alert("signup failure")
       })
     }
     resetForm(){

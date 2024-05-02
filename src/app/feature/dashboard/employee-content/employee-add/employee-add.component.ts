@@ -19,6 +19,9 @@ export class EmployeeAddComponent implements OnInit{
 
   excelData:any
   file:any;
+  msg:any;
+  submitted=false;
+
 
   constructor(private formBuilder:FormBuilder,private service:EmployeeAddService,private router:Router){ }
 
@@ -35,11 +38,16 @@ export class EmployeeAddComponent implements OnInit{
       EmployeeNumber:['',Validators.required],
       DateOfJoining:['',Validators.required],
       Location:['',Validators.required],
-      Email:['',Validators.required]
+      Email:['',Validators.required],
+      workerType:['',Validators.required],
+      startDate:['',Validators.required],
+      endDate:['4712-12-31']
+
     })
   }
 
   submitEmpData(){
+    this.submitted=true
     console.log(this.addEmpForm);
 
     const addEmpData={
@@ -49,22 +57,42 @@ export class EmployeeAddComponent implements OnInit{
       Employee_Number:this.addEmpForm.value['EmployeeNumber'],
       Date_Of_Joining:this.addEmpForm.value['DateOfJoining'],
       Location:this.addEmpForm.value['Location'],
-      Email_Id:this.addEmpForm.value['Email']
+      Email_Id:this.addEmpForm.value['Email'],
+      Worker_Type:this.addEmpForm.value['workerType'],
+      Effective_Start_Date:this.addEmpForm.value['startDate'],
+      Effective_End_Date:this.addEmpForm.value['endDate']
+
     }
     console.log(addEmpData);
     
+    if (this.addEmpForm.status==='VALID'){
     this.service.addEmployee(addEmpData).subscribe(res=>{
       console.log(res);
       // alert("Employee data submited sucessfully");
-      this.successmsg=!this.successmsg;
+      this.successmsg=true;
+      this.addEmpForm.reset();
+      // this.successmsg=!this.successmsg;
     },error=>{
       console.log(error);
-      alert(error.value);
+      if (error.error && error.error.message) {
+        console.log(error);
+      // alert(error.value);
       // alert("Employee Number/Email already exist");
       this.failmsg=!this.failmsg;
+      alert(error.error.message); 
+          this.msg=error.error.message;
+      }
+      else{
+        console.log(error);
+        alert("An error occurred: " + error.statusText);
+      }
     });
+  }
+    else{
+      alert("form is Invalid")
+    }
 
-    this.addEmpForm.reset();
+    // this.failmsg=!this.failmsg;
     
     // this.router.navigate(['/home/employees']);
   }
@@ -84,7 +112,12 @@ export class EmployeeAddComponent implements OnInit{
       alert("Successfully uploaded the data");
     }, error=>{
       console.log("Bulk Upload failed!");
-      alert(error);
+      alert("fail");
+      if (error.error && error.error.message) {
+        console.log(error);
+        alert("failed to add employee")
+        alert(error.error.message); 
+      }
     });
   }
   
