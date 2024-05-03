@@ -22,7 +22,7 @@ export class EmployeeDetailsComponent implements OnInit{
   constructor(private service:EmployeeDetailsService,private formbulider:FormBuilder){
    
     this.empData = JSON.parse(localStorage.getItem('empData'));
-    // this.editemp();
+    this.editemp();
     console.log('this.empData',this.empData);
 
   }

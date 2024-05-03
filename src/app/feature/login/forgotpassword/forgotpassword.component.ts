@@ -18,6 +18,8 @@ export class ForgotpasswordComponent implements OnInit{
 
   verifyotpFail:boolean=false;
 
+  submitted:boolean=false;
+
   email:string ='';
 
   constructor(private formbuilder:FormBuilder,private router:Router,private route:ActivatedRoute,private service:LoginService) { }
@@ -42,6 +44,7 @@ export class ForgotpasswordComponent implements OnInit{
     this.service.sendEmailOtp(sendEmailData).subscribe((res)=>{
       // alert("Send Otp Success")
       this.otpSentSuccess=true;
+      this.submitted=true;
     },error=>{
       // alert("send otp Fail")
       this.otpSentFail=true;
