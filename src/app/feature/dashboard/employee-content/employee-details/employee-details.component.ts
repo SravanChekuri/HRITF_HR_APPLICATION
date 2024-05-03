@@ -2,7 +2,6 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeDetailsService } from 'src/app/feature/Services/employee-details.service';
-import { LettersService } from 'src/app/feature/Services/letters.service';
 
 
 @Component({
@@ -20,15 +19,16 @@ export class EmployeeDetailsComponent implements OnInit{
   employeeForm:FormGroup; 
 
   
-  constructor(private service:LettersService,private empdetailsseevice:EmployeeDetailsService,private formbulider:FormBuilder){
+  constructor(private service:EmployeeDetailsService,private formbulider:FormBuilder){
    
     this.empData = JSON.parse(localStorage.getItem('empData'));
-    this.editemp();
+    // this.editemp();
     console.log('this.empData',this.empData);
 
   }
   ngOnInit(): void {
     this.form1();
+    this.form2()
   }
 
   form1(){
@@ -83,7 +83,7 @@ export class EmployeeDetailsComponent implements OnInit{
     Employee_Number:this.updateForm.value['employeeNumber'],
     Date_Of_Joining:this.updateForm.value['dateOfJoining'],
     Location:this.updateForm.value['location'],
-    Email_Id:this.updateForm.value['email'],
+    Email:this.updateForm.value['email'],
     Worker_Type:this.updateForm.value['workerType'],
     Effective_Start_Date:this.updateForm.value['startDate'],
     Effective_End_Date:this.updateForm.value['endDate']
@@ -124,7 +124,7 @@ export class EmployeeDetailsComponent implements OnInit{
  }
  console.log("data",data);
  
- this.empdetailsseevice.empData(this.empData.Employee_id,data).subscribe((res)=>{
+ this.service.empData(this.empData.Employee_id,data).subscribe((res)=>{
    alert("send data success")
  },
  error=>{
@@ -140,7 +140,7 @@ export class EmployeeDetailsComponent implements OnInit{
       //   employeeId:[this.empData.Employee_id],
       //   organizationName:['HRIT'],
       //   designation:['Developer'],
-      this.empdetailsseevice.getEmpData(this.empData.Employee_id).subscribe((res)=>{
+      this.service.getEmpData(this.empData.Employee_id).subscribe((res)=>{
         console.log(this.empData.Employee_id);
        
         console.log("empDataDetails",res);

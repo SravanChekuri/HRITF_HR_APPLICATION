@@ -5,9 +5,18 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EmployeeDetailsService {
+  
+  updateApi="http://127.0.0.1:5000/update_emp"
 
   constructor(private http:HttpClient) { }
 
+  updateEmp(empdata:any,id:any){
+    const update=`${this.updateApi}/${id}`
+    console.log(update);
+    
+    return this.http.put(update,empdata)
+  
+   }
   empData(id:any,data:any){
     console.log(id);
    

@@ -14,7 +14,6 @@ export class LettersService {
   }
   getApi='http://127.0.0.1:5000/convert_rtf';
   rtfApi='http://127.0.0.1:5000/retrieve_template'
-  updateApi="http://127.0.0.1:5000/update_emp"
 
   constructor(private http:HttpClient) { }
   loadTemplate(formData:any){
@@ -30,12 +29,5 @@ export class LettersService {
   
    }
   
-   updateEmp(empdata:any,id:any){
-    const update=`${this.updateApi}/${id}`
-    console.log(update);
-    
-    return this.http.put(update,empdata)
-  
-   }
   
 }

@@ -36,10 +36,14 @@ export class EmployeeMainComponent implements OnInit{
     }
     else{
       this.filteredEmp=this.allEmp.filter((employee)=>employee.Employee_First_Name.toLowerCase().includes(filterValueLower) ||
-      employee.Employee_Number.toLowerCase().includes(filterValueLower)||
+      employee.EMPLOYEE_NUMBER.toLowerCase().includes(filterValueLower)||
       employee.Last_Name.toLowerCase().includes(filterValueLower)||
       employee.Email.toLowerCase().includes(filterValueLower))
     }
   }
-
+  updateEmp(filtemp) {
+    console.log("editdata", filtemp);
+    localStorage.setItem('empData', JSON.stringify(filtemp));
+    // this.router.navigateByUrl('/home/employees/empdetails');
+}
 }
