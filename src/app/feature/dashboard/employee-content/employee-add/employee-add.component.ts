@@ -20,8 +20,12 @@ export class EmployeeAddComponent implements OnInit{
   excelData:any
   file:any;
   msg:any;
+
   submitted=false;
 
+  bulkpass:boolean=false;
+  bulkfail:boolean=false;
+  bulkmsg:any='';
 
   constructor(private formBuilder:FormBuilder,private service:EmployeeAddService,private router:Router){ }
 
@@ -78,9 +82,11 @@ export class EmployeeAddComponent implements OnInit{
         console.log(error);
       // alert(error.value);
       // alert("Employee Number/Email already exist");
-      this.failmsg=!this.failmsg;
-      alert(error.error.message); 
+          this.failmsg=!this.failmsg;
+      // alert(error.error.message); 
           this.msg=error.error.message;
+          this.addEmpForm.reset();
+
       }
       else{
         console.log(error);
@@ -109,16 +115,25 @@ export class EmployeeAddComponent implements OnInit{
 
     this.service.bulkUpload(formData).subscribe(res=>{
       console.log("Bulk upload Successfull:",res);
-      alert("Successfully uploaded the data");
+      // alert("Successfully uploaded the data");
+      this.bulkpass=true;
     }, error=>{
       console.log("Bulk Upload failed!");
-      alert("fail");
+      // alert("fail");
       if (error.error && error.error.message) {
         console.log(error);
-        alert("failed to add employee")
-        alert(error.error.message); 
+        this.bulkfail=true;
+        // alert("failed to add employee:"+ error.error.message)
+        this.bulkmsg=error.error.message;
       }
     });
+  }
+  resetForm(): void {
+    this.addEmpForm.reset(); 
+    this.submitted = false; 
+    this.addEmpForm.markAsPristine(); 
+    this.successmsg = false; 
+    this.failmsg = false; 
   }
   
 }
