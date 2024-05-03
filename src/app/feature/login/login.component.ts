@@ -14,6 +14,8 @@ export class LoginComponent {
   data:FormGroup;
   loginform:FormGroup;
   loginFail:boolean=false;
+  submitted:boolean=false;
+
 
   email:string='';
 
@@ -32,6 +34,7 @@ export class LoginComponent {
   }
 
   login(){
+    this.submitted=true
     console.log(this.loginform.value);
 
     const data={
@@ -43,6 +46,8 @@ export class LoginComponent {
 
     this.service.loginfunctionality1(data).subscribe(res => {
       // alert("Login Success")
+  
+
       this.router.navigate(['/home']);
 
       console.log(res);
@@ -53,4 +58,8 @@ export class LoginComponent {
     });
     }
 
+    resetlogin(){
+      this.loginFail=false;
+      this.loginform.reset();
+    }
 }

@@ -70,7 +70,7 @@ export class EmployeeAddComponent implements OnInit{
       console.log(res);
       // alert("Employee data submited sucessfully");
       this.successmsg=true;
-      this.addEmpForm.reset();
+      // this.addEmpForm.reset();
       // this.successmsg=!this.successmsg;
     },error=>{
       console.log(error);

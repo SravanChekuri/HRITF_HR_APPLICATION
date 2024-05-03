@@ -8,39 +8,15 @@ export class EmployeeDetailsService {
 
   constructor(private http:HttpClient) { }
 
-  //Employee Information
-  updateEmployeeDetails1(empInfo:any){
-    return this.http.post('',empInfo);
+  empData(id:any,data:any){
+    console.log(id);
+   
+    return this.http.post("http://127.0.0.1:5000/employement_details/"+id,data)
+ 
   }
-
-  updateEmployeeDetails2(){
-    return this.http.get('');
-  }
-
-  // updateEmployeeDetails3(empInfo:any){
-  //   return this.http.put('',empInfo);
-  // }
-
-  // updateEmployeeDetails4(empInfo:any){
-  //   return this.http.delete('',empInfo);
-  // }
-
-  //Employee joining Details
-  empJoiningDetails1(joiningInfo:any){
-    return this.http.post('',joiningInfo);
-  }
-
-  empJoiningDetails2(){
-    return this.http.get('');
-  }
-
-  //Employee Personal details
-  empPersonalDetails1(personalInfo:any){
-    return this.http.post('',personalInfo);
-  }
-
-  empPersonalDetails2(){
-    return this.http.get('');
+ 
+  getEmpData(id:any){
+    return this.http.get("http://127.0.0.1:5000/get_employement_details/"+id)
   }
 
 }
