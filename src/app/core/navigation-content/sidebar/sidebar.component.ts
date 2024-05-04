@@ -8,11 +8,24 @@ import { Component } from '@angular/core';
 export class SidebarComponent {
 
   dropdownItems = [
-    { name: 'Overview',route:'/home/employees' },
-    { name:'Add new Employee',route:'/home/employees/addemp'},
-    { name:'Employee Profile',route:'/home/employees/empProfile'},
-    { name: 'Letters', subItems: [{ name: 'Generate Letters',route:'/home/employees/generate-letters' }, { name: 'Letter Templates',route:'/home/employees/letter-templates'}] },
-    { name: 'Admin Settings' },
+    { name: 'Overview',route:'/home/employees',icon:'fa-clipboard' },
+    { name:'Add new Employee',route:'/home/employees/addemp',icon: 'fa-user-plus'},
+    { name:'Employee Profile',route:'/home/employees/empProfile',icon: 'fa-user'},
+    { 
+      name: 'Letters', 
+      subItems: [
+        { name: 'Generate Letters',route:'/home/employees/generate-letters',icon: 'fa-envelope'}, 
+        { name: 'Letter Templates',route:'/home/employees/letter-templates',icon: 'fa-file-alt'}
+      ],
+      icon: 'fa-envelope' 
+    },
+    { name: 'Admin Settings',subItems:[
+      {
+        name:'Add a New Role',
+        route:'/home/employees/add-newrole',
+        icon: 'fa-cog'}],
+      icon: 'fa-cog'
+    },
   ];
 
 }

@@ -12,6 +12,7 @@ import { EmployeeDetailsComponent } from './employee-content/employee-details/em
 import { EmployeeSearchComponent } from './employee-content/employee-search/employee-search.component';
 import { EmployeeLettersTemplatesComponent } from './employee-content/employee-letters-templates/employee-letters.component';
 import { EmployeeGenerateLettersComponent } from './employee-content/employee-generate-letters/employee-generate-letters.component';
+import { EmployeeNewroleComponent } from './employee-content/employee-newrole/employee-newrole.component';
 
 
 
@@ -24,7 +25,8 @@ import { EmployeeGenerateLettersComponent } from './employee-content/employee-ge
     EmployeeDetailsComponent,
     EmployeeSearchComponent,
     EmployeeLettersTemplatesComponent,
-    EmployeeGenerateLettersComponent
+    EmployeeGenerateLettersComponent,
+    EmployeeNewroleComponent
   ],
   imports: [
     CommonModule,

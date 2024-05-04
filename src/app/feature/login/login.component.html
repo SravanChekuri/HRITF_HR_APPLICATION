@@ -31,11 +31,13 @@
                     </div>
                     
                     <div class="flexContainer">
-                        <div class="d-flex flex-row">
+                        <!-- <div class="d-flex flex-row">
                             <a routerLink="/signUp" style="color: #F9E108;">SignUp</a>
-                        </div>
+                            <input type="checkbox" name="rem-me" id="rem-me">&nbsp;
+                            <label for="rem-me">Remember me</label>
+                        </div> -->
                         <div>
-                            <a routerLink="/forgotpassword" class="margin" style="color: #F9E108;"><u>ForgotPassword?</u></a>
+                            <a routerLink="/forgotpassword" class="margin" style="color: #F9E108; margin-left: 100%;"><u>ForgotPassword?</u></a>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-danger loginButton" [disabled]="loginform.invalid">Login</button>

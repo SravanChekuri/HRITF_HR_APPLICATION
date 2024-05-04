@@ -9,6 +9,7 @@ import { EmployeeAddComponent } from '../employee-content/employee-add/employee-
 import { EmployeeDetailsComponent } from '../employee-content/employee-details/employee-details.component';
 import { EmployeeLettersTemplatesComponent } from '../employee-content/employee-letters-templates/employee-letters.component';
 import { EmployeeGenerateLettersComponent } from '../employee-content/employee-generate-letters/employee-generate-letters.component';
+import { EmployeeNewroleComponent } from '../employee-content/employee-newrole/employee-newrole.component';
 
 const routes: Routes = [
   {path: "",
@@ -21,10 +22,11 @@ const routes: Routes = [
         {path: '', component:EmployeeSearchComponent},
         {path:'addemp',component:EmployeeAddComponent},
         {path:'empProfile',component:EmployeeMainComponent},
+        {path:'add-newrole',component:EmployeeNewroleComponent},
         // {path:'empdetails/:id',component:EmployeeDetailsComponent},
         {path:'empdetails',component:EmployeeDetailsComponent},
         {path:'letter-templates',component:EmployeeLettersTemplatesComponent},
-        {path:'generate-letters',component:EmployeeGenerateLettersComponent}
+        {path:'generate-letters',component:EmployeeGenerateLettersComponent},
       ]
       }
   ]

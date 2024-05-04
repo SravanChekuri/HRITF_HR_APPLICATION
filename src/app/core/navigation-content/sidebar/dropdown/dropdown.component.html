@@ -11,7 +11,7 @@
         <ng-container *ngFor="let item of items">
                 <div *ngIf="item.subItems; else regularItems">
                     <button class="sub-dropdown-btn" (click)="onDropdownItemClick(item)">
-                        <i class="fa-solid fa-envelope"></i>
+                        <i class="fa-solid {{item.icon}}"></i>
                         {{item.name}}&nbsp;<i class="fa-solid fa-chevron-down"></i>
                     </button>
                         <div *ngIf="item.isSubDropdownOpen" class="sub-dropdown-content">
@@ -19,7 +19,7 @@
                         </div>
                 </div>
             <ng-template #regularItems>
-                <div class="drop-align"><a [routerLink]="item.route">{{ item.name }}</a></div>
+                <div class="drop-align"><a [routerLink]="item.route"><i class="fa-solid {{item.icon}}"></i>&nbsp;{{ item.name }}</a></div>
             </ng-template>
         </ng-container>
         </div>

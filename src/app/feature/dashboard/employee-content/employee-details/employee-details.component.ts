@@ -50,7 +50,7 @@ export class EmployeeDetailsComponent implements OnInit{
 
   form2(){
     this.employeeForm=this.formbulider.group({
-      assignmentId:[''],
+      // assignmentId:[''],
       employeeId:[this.empData.Employee_id],
       organizationName:['',Validators.required],
       designation:['',Validators.required],
@@ -106,7 +106,7 @@ export class EmployeeDetailsComponent implements OnInit{
   employeeData(){
     console.log(this.employeeForm.value);
     const data={
-    Assignment_Id:this.employeeForm.value['assignmentId'],
+    // Assignment_Id:this.employeeForm.value['assignmentId'],
     Employee_Id:this.employeeForm.value['employeeId'],
     Organization_Name:this.employeeForm.value['organizationName'],
     Designation:this.employeeForm.value['designation'],
@@ -148,7 +148,7 @@ export class EmployeeDetailsComponent implements OnInit{
    
         //console.log("empData",this.empDataDetails.ORGANIZATION_NAME);
         this.employeeForm=this.formbulider.group({
-          assignmentId:[this.empDataDetails.ASSIGNMENT_ID],
+          // assignmentId:[this.empDataDetails.ASSIGNMENT_ID],
           employeeId:[this.empData.Employee_id],
           organizationName:[this.empDataDetails.ORGANIZATION_NAME,Validators.required],
           designation:[this.empDataDetails.DESIGNATION,Validators.required],
