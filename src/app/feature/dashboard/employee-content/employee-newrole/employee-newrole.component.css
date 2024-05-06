@@ -8,8 +8,27 @@
     overflow-y: auto;
 }
 
+.heading{
+    margin: 2%;
+}
 .input-container{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: wrap;
+
+    /* flex-direction: row; */
+    justify-content:space-between;
+}
+
+.input-sec-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.success-div{
+    margin: 0 2% 2% 0;
+}
+
+.mandatory{
+    color: red;
+    font-weight: bold;
 }

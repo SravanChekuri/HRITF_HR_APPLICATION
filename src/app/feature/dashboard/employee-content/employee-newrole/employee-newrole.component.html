@@ -1,86 +1,151 @@
 <div class="main-container">
      <div>
-        <div><h4 class="heading">Registration for Admin/HR persons</h4></div>
+        <div><h4 class="heading">Registration for Admin/HR persons:</h4></div>
+        <div class="d-flex flex-row justify-content-end success-div" *ngIf="registerFail">
+            <div><i class="fa-regular fa-circle-xmark" style="color: red;"></i></div>&nbsp;
+            <p style="color:red;font-weight: bold;">Failed to add new role, because {{msg}}</p></div>
+        <div class="d-flex flex-row justify-content-end success-div" *ngIf="submitted">
+            <div><i class="fa-regular fa-circle-check" style="color: green;"></i></div>&nbsp;
+            <div><p style="color:rgb(8, 195, 8);font-weight: bold;">Congratulations!&nbsp;You Have Successfully registered a new role</p></div>
+        </div>
         <div>
-            <div class="card container border">
-                <form>
-                    <div class="d-flex flex-wrap input-container border">
+            <div class="container">
+                <form [formGroup]="signUpForm" (ngSubmit)="submitForm()">
+                    <div class="d-flex flex-wrap input-container">
                         <div class="d-flex flex-column">
-                            <label for="role">Role*</label>
-                            <select id="role">
-                                <option value="" disabled selected>Select....</option>
+                            <label for="role">Role<span class="mandatory">*</span></label>
+                            <select id="role" formControlName="role" class="form-control form-select">
+                                <option disabled selected value="">Select....</option>
                                 <option value="admin">Admin</option>
                                 <option value="hr">HR</option>
                             </select>
-                        </div>
-
-                        <div class="d-flex flex-column">
-                            <label for="access">Access*</label>
-                            <select id="access">
-                                <option value="" disabled selected>Select...</option>
-                                <option value="read">Read</option>
-                                <option value="write">Write</option>
-                                <option value="readwrite">ReadWrite</option>
-                            </select>
+                            <div *ngIf="signUpForm.get('role').touched && signUpForm.get('role').invalid || submitted && signUpForm.get('role').invalid" class="text-danger">
+                                <div *ngIf="signUpForm.get('role')?.hasError('required')">
+                                    *Role required
+                                </div>
+                            </div>
                         </div>
                         
                         <div class="d-flex flex-column">
-                            <label for="fn">First Name*</label>
-                            <input type="text" id="fn">
+                            <label for="fn">First Name<span class="mandatory">*</span></label>
+                            <input type="text" id="fn" formControlName="firstName" class="form-control">
+                            <div *ngIf="signUpForm.get('firstName').touched && signUpForm.get('firstName').invalid || submitted && signUpForm.get('firstName').invalid" class="text-danger">
+                                <div *ngIf="signUpForm.get('firstName')?.hasError('required')">
+                                    *First Name  required
+                                </div>
+                            </div>
                         </div>
 
                         <div class="d-flex flex-column">
-                            <label for="mn">Middle Name*</label>
-                            <input type="text" id="mn">
+                            <label for="mn">Middle Names</label>
+                            <input type="text" id="mn" class="form-control" formControlName="middleName">
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <label for="ln">Last Name<span class="mandatory">*</span></label>
+                            <input type="text" id="ln" class="form-control" formControlName="lastName">
+                            <div *ngIf="signUpForm.get('lastName').touched && signUpForm.get('lastName').invalid || submitted && signUpForm.get('lastName').invalid" class="text-danger">
+                                <div *ngIf="signUpForm.get('lastName')?.hasError('required')">
+                                    *Last Name  required
+                                </div>
+                            </div>
+                            <div *ngIf="signUpForm.hasError('sameName') && (signUpForm.get('firstName').dirty || signUpForm.get('lastName').dirty)" class="text-danger">
+                                *First Name and Last Name cannot be the same
+                              </div>
+                        </div>
+
+                    </div><br>
+                    <div class="-flex flex-wrap input-container">
+                        
+
+                        <div class="d-flex flex-column">
+                            <label for="mobile">Contact<span class="mandatory">*</span></label>
+                            <input type="tel" id="mobile" class="form-control" formControlName="mobileNumber">
+                            <div *ngIf="signUpForm.get('mobileNumber').touched && signUpForm.get('mobileNumber').invalid || submitted && signUpForm.get('mobileNumber').invalid" class="text-danger">
+                                <div *ngIf="signUpForm.get('mobileNumber')?.hasError('required')">
+                                    *Mobile Number required
+                                </div>
+                            </div>
+                            <div *ngIf="signUpForm.get('mobileNumber').errors?.['pattern']" class="text-danger">
+                                *Mobile Number must contain only numbers
+                            </div>
+                            <div *ngIf="signUpForm.get('mobileNumber').errors?.['maxlength']" class="text-danger">
+                                *Mobile Number must be 10 digits long
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <label for="email">Email<span class="mandatory">*</span></label>
+                            <input type="email" id="email" class="form-control" formControlName="emailId" (click)="resetmsg()">
+                            <div *ngIf="signUpForm.get('emailId').touched && signUpForm.get('emailId').invalid || submitted && signUpForm.get('emailId').invalid" class="text-danger">
+                                <div *ngIf="signUpForm.get('emailId')?.hasError('required')">
+                                    *Email required
+                                </div>
+                            </div>
+                            <div *ngIf="signUpForm.get('emailId').touched && signUpForm.get('emailId').hasError('email')" class="text-danger">
+                                *Invalid email format
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <label for="userid">User ID<span class="mandatory">*</span></label>
+                            <input type="text" id="userid" class="form-control" formControlName="userId" (click)="resetmsg()">
+                            <div *ngIf="signUpForm.get('userId').touched && signUpForm.get('userId').invalid || submitted && signUpForm.get('userId').invalid" class="text-danger">
+                                <div *ngIf="signUpForm.get('userId')?.hasError('required')">
+                                    *User Id  required
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <label for="pw">Generate Password<span class="mandatory">*</span></label>
+                            <input type="password" id="pw" class="form-control" formControlName="password">
+                            <!-- <div *ngIf="signUpForm.get('password').touched && signUpForm.get('password').invalid || submitted && signUpForm.get('password').invalid" class="text-danger">
+                                <div *ngIf="signUpForm.get('password')?.hasError('required')">
+                                    *Password required
+                                </div>
+                            </div> -->
+                            <div *ngIf="signUpForm.get('password').touched && signUpForm.get('password').hasError('required')" class="text-danger">
+                                *Password required
+                            </div>
+                            <div *ngIf="signUpForm.get('password').touched && signUpForm.get('password').hasError('minlength')" class="text-danger">
+                                *Password must be at least 8 characters long
+                            </div>
+                            <div *ngIf="signUpForm.get('password').touched && signUpForm.get('password').hasError('maxlength')" class="text-danger">
+                                *Password is not more than 8 characters long
+                            </div>
+                            <div *ngIf="signUpForm.get('password').touched && signUpForm.get('password').hasError('pattern')" class="text-danger">
+                                *Password must contain at least one uppercase letter, one digit, and one special character
+                            </div>                          
                         </div>
 
                     </div>
-                    <div class="-flex flex-wrap input-container border">
-                        <div class="d-flex flex-column">
-                            <label for="ln">Last Name*</label>
-                            <input type="text" id="ln">
-                        </div>
+                    <br>
+                    <div class="-flex flex-wrap input-sec-container">
 
                         <div class="d-flex flex-column">
-                            <label for="mobile">Contact*</label>
-                            <input type="tel" id="mobile">
+                            <label for="effectivestartdate">Effective Start Date <span class="mandatory">*</span></label>
+                            <input type="date" id="effectivestartdate" class="form-control" formControlName="effectiveStartDate">
+                            <div *ngIf="signUpForm.get('effectiveStartDate').touched && signUpForm.get('effectiveStartDate').invalid || submitted && signUpForm.get('effectiveStartDate').invalid" class="text-danger">
+                                <div *ngIf="signUpForm.get('effectiveStartDate')?.hasError('required')">
+                                    *Effective start date required
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="d-flex flex-column">
-                            <label for="email">Email*</label>
-                            <input type="email" id="email">
-                        </div>
-
-                        <div class="d-flex flex-column">
-                            <label for="userid">User ID*</label>
-                            <input type="text" id="userid">
-                        </div>
-
-                    </div>
-                    <div class="-flex flex-wrap input-container border">
-                        <div class="d-flex flex-column">
-                            <label for="pw">Generate Password*</label>
-                            <input type="password" id="pw">
-                        </div>
-
-                        <div class="d-flex flex-column">
-                            <label for="effectivestartdate">Effective Start Date*</label>
-                            <input type="date" id="effectivestartdate">
-                        </div>
-
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-column" style="margin-left: 5%;">
                             <label for="effectiveenddate">Effective End Date</label>
-                            <input type="date" id="effectiveenddate"> 
+                            <input type="date" id="effectiveenddate" class="form-control" value="4712-12-31"> 
                         </div>
 
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                    </div><br>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Save</button>&nbsp;
+                        <button type="reset" class="btn btn-secondary" (click)="resetmsg()">Cancel</button>
                     </div>
                 </form>
             </div>
-        </div>
+        </div>    
      </div>
 </div>
 <router-outlet></router-outlet>

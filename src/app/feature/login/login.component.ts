@@ -1,8 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../Services/login.service';
-import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 @Component({
   selector: 'login',
@@ -13,12 +12,14 @@ export class LoginComponent {
 
   data:FormGroup;
   loginform:FormGroup;
+
   loginFail:boolean=false;
   submitted:boolean=false;
 
-
   email:string='';
 
+  successMessage: string = '';
+  errorMsg:string='';
 
   constructor(private formbuilder:FormBuilder, private service:LoginService, private router:Router){}
 
@@ -35,31 +36,40 @@ export class LoginComponent {
 
   login(){
     this.submitted=true
-    console.log(this.loginform.value);
+    // console.log(this.loginform.value);
 
     const data={
       User_Id:this.loginform.value['UserID'],
       Password:this.loginform.value['Password']
     }
-    
-    console.log(data);
+
+    // console.log(data);
 
     this.service.loginfunctionality1(data).subscribe(res => {
       // alert("Login Success")
-  
-
-      this.router.navigate(['/home']);
-
+      this.successMessage = 'Successfully logged in';
+      // this.router.navigate(['/home']);
+      setTimeout(() => {
+        this.router.navigate(['/home']);
+      }, 1500);
       console.log(res);
     },error=>{
-      // alert("Incorrect credintial")
+      // alert("Incorrect credintial");
       this.loginFail=true;
-      console.log(error);
+      // console.log(error);
+      if (error.error && error.error.error){
+        // alert(error.error.error);
+        this.errorMsg=error.error.error;
+      }else{
+        // console.log(error);
+        // alert("An error occured:"+error.statusText);
+        this.errorMsg=error.statusText;
+      }
     });
     }
-
     resetlogin(){
       this.loginFail=false;
+      this.successMessage = '';
       this.loginform.reset();
     }
 }

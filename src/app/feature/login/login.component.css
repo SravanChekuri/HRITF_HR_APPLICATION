@@ -11,8 +11,17 @@
 }
 
 .login-form{
-    margin: 2% 0 0 5%;
-    padding:3rem;
+    width: 30%;
+    height: 30%;
+    background-color: rgba(0,0,0,0.2);
+    margin:3% 0 0 10%;
+}
+
+.heading{
+    text-align: center;
+    margin:2% 0 2% 0;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: underline;
 }
 
 .sub-container{
@@ -20,63 +29,60 @@
     flex-direction: row;
 }
 
-.logo-image{
-    margin-left: 6%;
-}
 .image{
-    height: 65vh;
-    width: 90vh;
-    margin-bottom: 8%;
-    margin-left: 5%;
+    height: 60vh;
+    width: 80vh;
+    margin:0 0 0 3%;
 }
 
-input{
-    width: 180%;
+.align{
+    margin: 2%;
 }
-
+ input{
+    margin-top: 2%;
+ }
 input:focus{
     outline: none !important;
     border-color:#0c1013;
     box-shadow: 0 0 10px #0c1013;
 }
 
-.flexContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 2%;
-}
-.margin{
-    margin-left: 125%;
-}
 
-.checkboxWidth{
-    width: 15px;
-    margin: 1%;  
-}
-
-.loginButton{
-    margin-top: 5%;
-    width: 170%;
-    height: 170%;
-}
-
-.heading{
-    margin-bottom: 10%;
-    font-weight: 600;
-    text-align: right;
-}
-
-::placeholder{
-    color: #8C1428;
-}
-
-.labels{
-    margin-bottom: 3%;
-}
-
-h5{
+.error-msg{
     color: red;
-    background-color: rgb(243, 206, 206);
+    font-family: 'Times New Roman', Times, serif;
+    /* background-color: rgba(243, 206, 206,0.5); */
+    font-size: 12px;
+    /* width:80%; */
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
 }
 
+.text-danger{
+    font-weight: bold;
+}
+ 
+label{
+    font-weight: bold;
+    margin:0 0 0 1%
+}
+
+.forgot-pw{
+    text-align: center;
+    margin: 1% 0 2% 0;
+}
+.loginButton{
+    width: 96%;
+    margin: 2%;
+}
+
+.success-div{
+    color: rgb(11, 193, 11);
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12px;
+    text-align: center;
+    text-shadow: 1px 1px green;
+
+}
