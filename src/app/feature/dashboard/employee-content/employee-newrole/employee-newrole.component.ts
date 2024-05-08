@@ -17,6 +17,10 @@ export class EmployeeNewroleComponent implements OnInit{
 
   msg:any='';
 
+  newPasswordVisible: boolean = false;
+  reEnterPasswordVisible: boolean = false;
+
+
   constructor(private formbulider:FormBuilder,private router:Router, private service:LoginService) { }
 
   ngOnInit() {
@@ -30,7 +34,7 @@ export class EmployeeNewroleComponent implements OnInit{
       middleName:['',],
       lastName:['',Validators.required],
       emailId:['',[Validators.required,Validators.email]],
-      mobileNumber:['',[Validators.required,Validators.pattern(/^[0-9]*$/), Validators.maxLength(10)]],
+      mobileNumber:['',[Validators.required,Validators.pattern(/^[0-9]*$/), Validators.maxLength(10),Validators.minLength(10)]],
       role:['',Validators.required],
       password:['',[Validators.required,Validators.minLength(8),this.passwordValidator]],
       effectiveStartDate:['',Validators.required],
@@ -52,12 +56,35 @@ export class EmployeeNewroleComponent implements OnInit{
 
   passwordValidator(control: any): { [key: string]: boolean } | null {
     const password = control.value;
-    if (!password || password.length < 8 || password.length > 8 || !/[A-Z]/.test(password) || !/\d/.test(password) || !/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) {
-      return { 'minlength': true };
+  
+    if (!password || password.length < 8 || password.length > 8) {
+      return { 'length': true }; 
     }
+  
+    if (!/[A-Z]/.test(password)) {
+      return { 'uppercase': true }; 
+    }
+  
+    if (!/\d/.test(password)) {
+      return { 'number': true }; 
+    }
+  
+    if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) {
+      return { 'special': true }; 
+    }
+  
     return null;
   }
-
+  
+  togglePasswordVisibility(inputId: string) {
+    const inputElement = document.getElementById(inputId) as HTMLInputElement;
+    if (inputElement) {
+      inputElement.type = inputElement.type === 'password' ? 'text' : 'password';
+      if (inputId === 'pw') {
+        this.newPasswordVisible = !this.newPasswordVisible;
+    } 
+    }
+  }
 
   submitForm(){
     const signupData={
@@ -83,7 +110,7 @@ export class EmployeeNewroleComponent implements OnInit{
           return;
         }
         this.submitted=true;
-        this.signUpForm.reset();
+        // this.signUpForm.reset();
 
       },error=>{
         this.registerFail=true;

@@ -10,18 +10,16 @@ import { EmployeeAddService } from 'src/app/feature/Services/employee-add.servic
 })
 export class EmployeeAddComponent implements OnInit{
 
-  // addEmpForm:any=new FormGroup({});
+  addEmpForm:FormGroup;
 
   successmsg:boolean=false;
   failmsg:boolean=false;
 
-  addEmpForm:FormGroup;
+  submitted=false;
 
   excelData:any
   file:any;
   msg:any;
-
-  submitted=false;
 
   bulkpass:boolean=false;
   bulkfail:boolean=false;
@@ -31,28 +29,38 @@ export class EmployeeAddComponent implements OnInit{
 
   ngOnInit(): void {
     this.empData();
-    
   }
   
   empData(){
     this.addEmpForm=this.formBuilder.group({
       FirstName:['',Validators.required],
-      MiddleName:['',[]],
+      MiddleName:['',],
       LastName:['',Validators.required],
-      EmployeeNumber:['',Validators.required],
+      EmployeeNumber:['',[Validators.required,Validators.maxLength(8)]],
       DateOfJoining:['',Validators.required],
       Location:['',Validators.required],
-      Email:['',Validators.required],
+      Email:['',[Validators.required,Validators.email]],
       workerType:['',Validators.required],
       startDate:['',Validators.required],
       endDate:['4712-12-31']
+    });
 
-    })
+    this.addEmpForm.setValidators(this.customValidation.bind(this));  
+  }
+
+  customValidation(formGroup: FormGroup): { [key: string]: any } | null {
+    const firstName = formGroup.get('FirstName').value.toLowerCase();
+    const lastName = formGroup.get('LastName').value.toLowerCase();
+    if (firstName && lastName && firstName === lastName) {
+      return { sameName: true };
+    }
+    return null
   }
 
   submitEmpData(){
     this.submitted=true
-    console.log(this.addEmpForm);
+    // console.log(this.addEmpForm);
+    if (this.addEmpForm.status==='VALID'){
 
     const addEmpData={
       First_Name:this.addEmpForm.value['FirstName'],
@@ -65,42 +73,40 @@ export class EmployeeAddComponent implements OnInit{
       Worker_Type:this.addEmpForm.value['workerType'],
       Effective_Start_Date:this.addEmpForm.value['startDate'],
       Effective_End_Date:this.addEmpForm.value['endDate']
+    };
 
-    }
-    console.log(addEmpData);
-    
-    if (this.addEmpForm.status==='VALID'){
-    this.service.addEmployee(addEmpData).subscribe(res=>{
+      console.log(addEmpData);
+      
+      this.service.addEmployee(addEmpData).subscribe(res=>{
       console.log(res);
       // alert("Employee data submited sucessfully");
-      this.successmsg=true;
-      // this.addEmpForm.reset();
-      // this.successmsg=!this.successmsg;
+      this.successmsg = true;
+        setTimeout(() => {
+          this.successmsg = false;
+          this.router.navigate(['/home/employees']); 
+        }, 1500);
+        this.submitted = false;
+        this.addEmpForm.reset();
     },error=>{
       console.log(error);
       if (error.error && error.error.message) {
+        this.failmsg = true;
+        this.msg = error.error.message;
         console.log(error);
-      // alert(error.value);
-      // alert("Employee Number/Email already exist");
-          this.failmsg=!this.failmsg;
       // alert(error.error.message); 
-          this.msg=error.error.message;
-          this.addEmpForm.reset();
-
       }
       else{
+        this.failmsg=true;
         console.log(error);
-        alert("An error occurred: " + error.statusText);
+        // alert("An error occurred: " + error.statusText);
+        this.msg = 'An error occurred while adding the employee';
       }
     });
   }
     else{
-      alert("form is Invalid")
+      // alert("form is Invalid");
+      this.msg='Form is Invalid';
     }
-
-    // this.failmsg=!this.failmsg;
-    
-    // this.router.navigate(['/home/employees']);
   }
 
   selectFile(event:any){
@@ -117,6 +123,11 @@ export class EmployeeAddComponent implements OnInit{
       console.log("Bulk upload Successfull:",res);
       // alert("Successfully uploaded the data");
       this.bulkpass=true;
+      setTimeout(() => {
+        this.bulkpass = false;
+        this.router.navigate(['/home/employees']); 
+      }, 1500);
+
     }, error=>{
       console.log("Bulk Upload failed!");
       // alert("fail");
@@ -130,10 +141,16 @@ export class EmployeeAddComponent implements OnInit{
   }
   resetForm(): void {
     this.addEmpForm.reset(); 
+    this.addEmpForm.markAsUntouched(); 
+    this.addEmpForm.markAsPristine();
     this.submitted = false; 
-    this.addEmpForm.markAsPristine(); 
-    this.successmsg = false; 
     this.failmsg = false; 
+    this.successmsg = false;
+  }
+
+  resetBulk(){
+    this.bulkpass=false;
+    this.bulkfail=false;
   }
   
 }

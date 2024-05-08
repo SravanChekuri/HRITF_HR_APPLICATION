@@ -70,6 +70,6 @@ export class LoginComponent {
     resetlogin(){
       this.loginFail=false;
       this.successMessage = '';
-      this.loginform.reset();
+      // this.loginform.reset();
     }
 }

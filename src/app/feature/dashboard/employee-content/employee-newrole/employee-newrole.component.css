@@ -32,3 +32,15 @@
     color: red;
     font-weight: bold;
 }
+
+.show-hide{
+    margin-left: 1%;
+    border-radius: 4px;
+    width:20%;
+    /* background-color: #FFFFFF; */
+    border: 1px solid black;
+} 
+
+button:hover{
+    background-color: #FFFFFF;
+}

@@ -99,3 +99,8 @@ select.form-control {
   padding-right: 30px; 
   
 }
+
+.mandatory{
+  color: red;
+  font-weight: bold;
+}

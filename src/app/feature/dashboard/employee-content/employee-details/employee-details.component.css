@@ -19,11 +19,11 @@ select.form-control {
     padding-right: 30px;
   }
 
-.sub-container{
+/* .sub-container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-}
+} */
 
 
 .hr{
@@ -72,4 +72,17 @@ select.form-control {
 .empInfo{
     margin: 2%;
     font-weight: 500;
+}
+
+.card{
+    border: none;
+    margin: 1%;
+}
+
+.align-div{
+    margin: 1% 2% 1% 0;
+}
+
+p{
+    font-weight: bold;
 }

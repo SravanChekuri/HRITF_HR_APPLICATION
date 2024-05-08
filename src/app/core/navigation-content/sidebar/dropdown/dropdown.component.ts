@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,11 +12,19 @@ export class DropdownComponent {
   
   @Input() items:any[];
 
+  @Output() dropdownToggled = new EventEmitter<boolean>(); 
+
   isSubDropdownOpen:boolean=false;
 
   toggleSubDropdown(){
     this.isSubDropdownOpen=!this.isSubDropdownOpen;
+    this.dropdownToggled.emit(this.isSubDropdownOpen);
   }
+
+  collapseEmployeesDropdown() {
+    this.isSubDropdownOpen = false;
+  }
+  
   onDropdownItemClick(item: any) {
     if (item.route) {
         this.router.navigate([item.route]);

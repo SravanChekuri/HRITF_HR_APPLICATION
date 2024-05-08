@@ -1,98 +1,118 @@
 <div class="emp-details">
-    <div><a routerLink="/home/employees/empProfile"><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to Employee Profiles</a></div>
-    <form  [formGroup]="updateForm">
-        <div class="sub-container">
+    <div style="margin:1% 0 1% 2%"><a routerLink="/home/employees/empProfile"><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to Employee Profiles</a></div>
+    <hr class="hr">
 
-      
-        <div  class="m-2 d-flex flex-column">
-            <label for="">Employee FirstName</label>
-            <input type="text" formControlName="firstName" class="form-control">
-           </div>
-           <div  class="m-2 d-flex flex-column">
-            <label for="">Middle Name</label>
-            <input type="text" formControlName="middleName" class="form-control">
-           </div>
-           <div class="m-2 d-flex flex-column">
-            <label for="">Last Name</label>
-            <input type="text" formControlName="lastName" class="form-control">
-           </div>
-           <div class="m-2 d-flex flex-column">
-            <label for="">Employee Number</label>
-            <input type="text" formControlName="employeeNumber" class="form-control">
-           </div>
-           <div class="m-2 d-flex flex-column">
-            <label for="">Date of Joining</label>
-            <input type="date" formControlName="dateOfJoining" class="form-control">
-           </div>
-           <div class="m-2 d-flex flex-column">
-            <label for="">Location</label>
-           <select name="" id="" class="w-50" formControlName="location" class="form-control">
-            <option value="select">select</option>
-            <option value="Bangalore">Bangalore</option>
-            <option value="Hyderabad">Hyderabad</option>
-           </select>
-           </div>
-           <div class="m-2 d-flex flex-column">
-            <label for="">Email</label>
-            <input type="text" formControlName="email" class="form-control">
-           </div>
-           <div class="m-2 d-flex flex-column">
-            <label for="">Worker Type</label>
-            <select name="" id=""  formControlName="workerType" class="form-control">
-                <option value="Select">Select</option>
-                <option value="Candidate">Candidate</option>
-                <option value="Employee">Employee</option>
-            </select>
+    <!--- Employee details -->
+    <div class="card">
+        <div class="d-flex flex-row">
+            <p>Employee Details:</p>&nbsp;&nbsp;
+            <i class="fa-solid fa-pen-to-square edit-icon" (click)="toggleEdit()"></i>
         </div>
-        <div class="m-2 d-flex flex-column">
-            <label for="">Effective StartDate</label>
-            <input type="date" formControlName="startDate" class="form-control">
-           </div>
+        <form  [formGroup]="updateForm">
+            <div class="sub-container">
+                <div class="row align-div">
+                        <div  class="col-md-3 d-flex flex-column">
+                            <label for="">Employee FirstName:</label>
+                            <input type="text" formControlName="firstName" class="form-control">
+                        </div>
 
-           <div  class="m-2 d-flex flex-column">
-            <label for="">Effective End Date</label>
-            <!-- <input type="date" formControlName="endDate">
-             -->
-             <input type="date" value="4712-12-31" class="form-control" formControlName="endDate"/>
-           </div>
-        </div>
-           <button (click)="update()" class="btn btn-primary m-3">update</button>
-    </form>
+                        <div  class="col-md-3 d-flex flex-column">
+                            <label for="">Middle Name:</label>
+                            <input type="text" formControlName="middleName" class="form-control">
+                        </div>
 
-    <div class="container">
-        <div style="margin-bottom: 50px;">
-            <div class="d-flex flex-row">
-                <p class="empInfo">Employment Details</p>
-                <i class="fa-solid fa-pen-to-square edit-icon" style="margin-top: 2%;" (click)="editemp()"></i>
+                        <div class="col-md-3 d-flex flex-column">
+                            <label for="">Last Name:</label>
+                            <input type="text" formControlName="lastName" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 d-flex flex-column">
+                            <label for="">Employee Number:</label>
+                            <input type="text" formControlName="employeeNumber" class="form-control">
+                        </div>
+
+                </div>
+                <div class="row align-div">
+                        <div class="col-md-3 d-flex flex-column">
+                            <label for="">Date of Joining:</label>
+                            <input type="date" formControlName="dateOfJoining" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 d-flex flex-column">
+                            <label for="">Location:</label>
+                            <select name="" id="" class="w-50" formControlName="location" class="form-control">
+                                <option value="select">select</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 d-flex flex-column">
+                            <label for="">Email:</label>
+                            <input type="text" formControlName="email" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 d-flex flex-column">
+                            <label for="">Worker Type:</label>
+                            <select name="" id=""  formControlName="workerType" class="form-control">
+                                <option value="Select">Select</option>
+                                <option value="Candidate">Candidate</option>
+                                <option value="Employee">Employee</option>
+                            </select>
+                        </div>
+
+                </div>
+                <div class="row align-div">
+                        <div class="col-md-3 d-flex flex-column">
+                            <label for="">Effective StartDate:</label>
+                            <input type="date" formControlName="startDate" class="form-control">
+                        </div>
+
+                        <div  class="col-md-3 d-flex flex-column">
+                            <label for="">Effective End Date:</label>
+                            <input type="date" value="4712-12-31" class="form-control" formControlName="endDate"/>
+                        </div>
+                </div>
             </div>
-           
-            <form action="" [formGroup]="employeeForm" (ngSubmit)="employeeData()">
+                <div *ngIf="isEditable" style="text-align: right; margin-right: 2%;">
+                    <button type="button" class="btn btn-info">Cancel</button>
+                    <button (click)="update()" class="btn btn-primary m-2">update</button>
+                </div>
+        </form>
+    </div>
+    <hr class="hr">
+
+    <!--Employment Details-->
+    <div class="card" style="margin-bottom: 2%;">
+        <div *ngIf="ishide">
+            <div class="d-flex flex-row">
+                <p>Employment Details:</p>&nbsp;&nbsp;
+                <i class="fa-solid fa-pen-to-square edit-icon"></i>
+            </div>
+            <form (ngSubmit)="employeeData()">
                 <div class="row" style="margin: 1%;">
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="employeeId">Employee Id</label>
-                            <input type="text" class="form-control" id="employeeId" formControlName="employeeId">
+                            <input type="text" class="form-control" id="employeeId" formControlName="employeeId"  [value]="empData.Employee_id" readonly>
                         </div>
                     </div>
-                    <!-- <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="">Assignment ID</label>
-                            <input type="text" class="form-control" id="" formControlName="assignmentId">
-                        </div>
-                    </div> -->
+                    
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="organizationName">Organization Name</label>
                             <input type="text" class="form-control" id="organizationName" formControlName="organizationName">
                         </div>
                     </div>
+                    
                     <div class="col-md-3 ">
                         <div class="form-group">
                             <label for="designation">Designation</label>
                             <input type="text" class="form-control" id="designation" formControlName="designation">
                         </div>
                     </div>
-                    <div class="col-md-3 mt-2">
+                    
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select class="form-control" id="status" formControlName="status">
@@ -101,54 +121,70 @@
                             </select>
                         </div>
                     </div>
-
-                   
                 </div>
-   
                 <div class="row" style="margin: 1%;">
-
-                    <div class="col-md-3 mt-2">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="probationPeriod">Probation Period</label>
                             <input type="text" class="form-control" id="probationPeriod" formControlName="probationPeriod">
                         </div>
                     </div>
-                    <div class="col-md-3 mt-2">
+                    
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="noticePeriod">Notice Period</label>
                             <input type="text" class="form-control" id="noticePeriod" formControlName="noticePeriod">
                         </div>
                     </div>
-                    <div class="col-md-3 mt-2">
+                    
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="currentCompanyExp">Current Company Experience</label>
                             <input type="text" class="form-control" id="currentCompanyExp" formControlName="currentCompanyExp">
                         </div>
                     </div>
+                    
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="currentCompanyExp">Previous Experience</label>
                             <input type="text" class="form-control" id="currentCompanyExp" formControlName="previousExp">
                         </div>
                     </div>
+                </div>
+                <div class="row" style="margin: 1%;">
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="currentCompanyExp">Total Experience</label>
                             <input type="text" class="form-control" id="currentCompanyExp" formControlName="totalExp">
+                            
                         </div>
                     </div>
+                    
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="currentCompanyExp">preAnnualSalary</label>
+                            <label for="currentCompanyExp">Pre Annual Salary</label>
                             <input type="text" class="form-control" id="currentCompanyExp" formControlName="preAnnualSalary">
+                           
                         </div>
                     </div>
+                    
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="currentCompanyExp">postAnnualSalary</label>
+                            <label for="currentCompanyExp">Post Annual Salary</label>
                             <input type="text" class="form-control" id="currentCompanyExp" formControlName="postAnnualSalary">
+                           
                         </div>
                     </div>
+                    
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="confirmationDate">Confirmation Date</label>
+                            <input type="date" class="form-control" id="confirmationDate" formControlName="confirmationDate">
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin: 1%;">
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="currentCompanyExp">Effective Start Date</label>
@@ -161,25 +197,17 @@
                             <input type="date" class="form-control" id="currentCompanyExp" formControlName="effectiveEndDate">
                         </div>
                     </div>
-                    <div class="col-md-3 ">
-                        <div class="form-group">
-                            <label for="confirmationDate">Confirmation Date</label>
-                            <input type="date" class="form-control" id="confirmationDate" formControlName="confirmationDate">
-                        </div>
-                    </div>
                 </div>
-   
-                <!-- Add similar rows for other fields -->
-   
-             
-                   
-                        <button class="btn btn-primary text-white m-2" type="submit">Save</button>
-                 
-                 
-                       
-             
+                <div style="text-align: right; margin-right: 2%;">
+                    <button type="button" class="btn btn-info">Cancel</button>
+                    <button  class="btn btn-primary text-white m-2" type="submit">update</button>
+                </div>
             </form>
+    
         </div>
     </div>
+    <hr class="hr">
+
+
 </div> 
 <router-outlet></router-outlet>

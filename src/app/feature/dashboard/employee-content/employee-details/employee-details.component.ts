@@ -13,11 +13,14 @@ import { EmployeeDetailsService } from 'src/app/feature/Services/employee-detail
 
 export class EmployeeDetailsComponent implements OnInit{
   empData:any;
+  submitted:any=false;
   data:any;
+  ishide:any=false;
   empDataDetails:any;
   updateForm:FormGroup;
   employeeForm:FormGroup; 
 
+  isEditable: boolean = false;
   
   constructor(private service:EmployeeDetailsService,private formbulider:FormBuilder){
    
@@ -34,6 +37,10 @@ export class EmployeeDetailsComponent implements OnInit{
   form1(){
     console.log(formatDate(this.empData.Date_of_Joining, 'yyyy-MM-dd','en'));
     
+    if (this.empData.WORKER_TYPE==='Employee'){
+      this.ishide=true;
+    }
+
     this.updateForm=this.formbulider.group({
       firstName:[this.empData.Employee_First_Name,Validators.required],
       middleName:[this.empData.Middle_Name],
@@ -45,12 +52,21 @@ export class EmployeeDetailsComponent implements OnInit{
       workerType:[this.empData.WORKER_TYPE,Validators.required],
       startDate:[formatDate(this.empData.EFFECTIVE_START_DATE, 'yyyy-MM-dd','en'),Validators.required],
       endDate:[formatDate(this.empData.EFFECTIVE_END_DATE,'yyyy-MM-dd','en'),Validators.required]
-    })
+    });
+    this.updateForm.disable();
+  }
+  
+  toggleEdit(): void {
+    this.isEditable = !this.isEditable;
+    if (this.isEditable) {
+      this.updateForm.enable();
+    } else {
+      this.updateForm.disable();
+    }
   }
 
   form2(){
     this.employeeForm=this.formbulider.group({
-      // assignmentId:[''],
       employeeId:[this.empData.Employee_id],
       organizationName:['',Validators.required],
       designation:['',Validators.required],
@@ -69,12 +85,13 @@ export class EmployeeDetailsComponent implements OnInit{
   }
 
   update(){
-   // console.log("name",this.updateForm.firstName);
+    this.submitted=true;
+
     const employeeNumber = this.updateForm.get('employeeNumber');
     console.log("name" ,employeeNumber.value);
     const id=employeeNumber.value;
-   const empId=this.empData.Employee_id;
-   console.log("empId",empId);
+    const empId=this.empData.Employee_id;
+    console.log("empId",empId);
    
    const empdata ={
     First_Name:this.updateForm.value['firstName'],
@@ -95,18 +112,17 @@ export class EmployeeDetailsComponent implements OnInit{
     },
     error=>{
       console.log(error);
-      
-      alert("update failure")
-
-    }
-    )
-
+      if (error.error && error.error.message) {
+        console.log(error);
+      // alert("update failure");
+      alert(error.error.message); 
+      }
+    });
   }
 
   employeeData(){
     console.log(this.employeeForm.value);
     const data={
-    // Assignment_Id:this.employeeForm.value['assignmentId'],
     Employee_Id:this.employeeForm.value['employeeId'],
     Organization_Name:this.employeeForm.value['organizationName'],
     Designation:this.employeeForm.value['designation'],
@@ -122,24 +138,19 @@ export class EmployeeDetailsComponent implements OnInit{
     Effective_Start_Date:this.employeeForm.value['EffectiveStartDate'],
     Effective_End_Date:this.employeeForm.value['effectiveEndDate']
  }
- console.log("data",data);
+    console.log("data",data);
  
- this.service.empData(this.empData.Employee_id,data).subscribe((res)=>{
-   alert("send data success")
- },
- error=>{
-   alert("send data fail")
- });
-  }
+    this.service.empData(this.empData.Employee_id,data).subscribe((res)=>{
+     alert("send data success")
+  },
+    error=>{
+      alert("send data fail");
+      console.log(error);
+    });
+    }
 
   editemp(){
-    //  console.log("dfhk",this.data.Notice_Period);
-     
-      //alert("dgfhjk")
-      // this.employeeForm=this.formbulider.group({
-      //   employeeId:[this.empData.Employee_id],
-      //   organizationName:['HRIT'],
-      //   designation:['Developer'],
+
       this.service.getEmpData(this.empData.Employee_id).subscribe((res)=>{
         console.log(this.empData.Employee_id);
        

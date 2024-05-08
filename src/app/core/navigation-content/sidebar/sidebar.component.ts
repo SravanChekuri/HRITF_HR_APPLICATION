@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 @Component({
   selector: 'sidebar',
@@ -21,11 +22,23 @@ export class SidebarComponent {
     },
     { name: 'Admin Settings',subItems:[
       {
-        name:'Add a New Role',
+        name:'Add a New User',
         route:'/home/employees/add-newrole',
         icon: 'fa-cog'}],
       icon: 'fa-cog'
     },
   ];
+
+  @ViewChild(DropdownComponent) dropdownComponent: DropdownComponent;
+
+  constructor() {
+    // Populate dropdownItems
+  }
+
+  collapseEmployeesDropdown() {
+    if (this.dropdownComponent) {
+      this.dropdownComponent.collapseEmployeesDropdown();
+    }
+  }
 
 }
