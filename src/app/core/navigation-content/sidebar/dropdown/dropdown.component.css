@@ -14,27 +14,63 @@ a{
 .dropdown-btn{
     /* text-align: justify; */
     background-color:#47B7D0;
-    font-size: 17px;
+    font-size: 1.5em;
     margin-bottom: 2px;
-    padding: 5px;
-    padding-left: 20px;
+    padding: 0.5em;
+    padding-left: 2%;
 }
 .dropdown-content{
     /* background-color: #a2dceb; */
-    font-size: 16px;
+    font-size: 1.4em;
     text-align: justify;
-    padding-left: 7px;
+    padding-left: 1%;
     margin-bottom: 2px;
     background-color: white;
 }
 .sub-dropdown-btn{
     border:none;
     background-color:white;
-    font-size: 17px;
+    font-size: 1.5em;
 }
 .drop-align{
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+@media screen and (max-width: 768px) {
+    .dropdown-btn {
+        font-size: 1.2em;
+        padding-left: 1%;
+    }
+    .dropdown-content {
+        font-size: 1.1em;
+        padding-left: 0.5%;
+    }
+    .sub-dropdown-btn {
+        font-size: 1.2em;
+    }
+    .drop-align {
+        margin-bottom: 1%;
+        margin-top: 1%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .dropdown-btn {
+        font-size: 1em;
+        padding-left: 0.5%;
+    }
+    .dropdown-content {
+        font-size: 0.9em;
+         padding-left: 0.3%; 
+    }
+    .sub-dropdown-btn {
+        font-size: 1em;
+    }
+    .drop-align {
+        margin-bottom: 0.5%;
+        margin-top: 0.5%;
+    }
 }
 
 

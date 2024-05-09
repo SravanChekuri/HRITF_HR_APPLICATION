@@ -20,6 +20,8 @@ export class EmployeeNewroleComponent implements OnInit{
   newPasswordVisible: boolean = false;
   reEnterPasswordVisible: boolean = false;
 
+  regSuccessMsg:string='';
+
 
   constructor(private formbulider:FormBuilder,private router:Router, private service:LoginService) { }
 
@@ -36,7 +38,7 @@ export class EmployeeNewroleComponent implements OnInit{
       emailId:['',[Validators.required,Validators.email]],
       mobileNumber:['',[Validators.required,Validators.pattern(/^[0-9]*$/), Validators.maxLength(10),Validators.minLength(10)]],
       role:['',Validators.required],
-      password:['',[Validators.required,Validators.minLength(8),this.passwordValidator]],
+      // password:['',[Validators.required,Validators.minLength(8),this.passwordValidator]],
       effectiveStartDate:['',Validators.required],
       effectiveEndDate:['4712-12-31']
       });
@@ -54,37 +56,37 @@ export class EmployeeNewroleComponent implements OnInit{
     return null
   }
 
-  passwordValidator(control: any): { [key: string]: boolean } | null {
-    const password = control.value;
+  // passwordValidator(control: any): { [key: string]: boolean } | null {
+  //   const password = control.value;
   
-    if (!password || password.length < 8 || password.length > 8) {
-      return { 'length': true }; 
-    }
+  //   if (!password || password.length < 8 || password.length > 8) {
+  //     return { 'length': true }; 
+  //   }
   
-    if (!/[A-Z]/.test(password)) {
-      return { 'uppercase': true }; 
-    }
+  //   if (!/[A-Z]/.test(password)) {
+  //     return { 'uppercase': true }; 
+  //   }
   
-    if (!/\d/.test(password)) {
-      return { 'number': true }; 
-    }
+  //   if (!/\d/.test(password)) {
+  //     return { 'number': true }; 
+  //   }
   
-    if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) {
-      return { 'special': true }; 
-    }
+  //   if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) {
+  //     return { 'special': true }; 
+  //   }
   
-    return null;
-  }
+  //   return null;
+  // }
   
-  togglePasswordVisibility(inputId: string) {
-    const inputElement = document.getElementById(inputId) as HTMLInputElement;
-    if (inputElement) {
-      inputElement.type = inputElement.type === 'password' ? 'text' : 'password';
-      if (inputId === 'pw') {
-        this.newPasswordVisible = !this.newPasswordVisible;
-    } 
-    }
-  }
+  // togglePasswordVisibility(inputId: string) {
+  //   const inputElement = document.getElementById(inputId) as HTMLInputElement;
+  //   if (inputElement) {
+  //     inputElement.type = inputElement.type === 'password' ? 'text' : 'password';
+  //     if (inputId === 'pw') {
+  //       this.newPasswordVisible = !this.newPasswordVisible;
+  //   } 
+  //   }
+  // }
 
   submitForm(){
     const signupData={
@@ -95,7 +97,7 @@ export class EmployeeNewroleComponent implements OnInit{
       Email_Id:this.signUpForm.value['emailId'],
       Mobile_Number:this.signUpForm.value['mobileNumber'],
       Role:this.signUpForm.value['role'],
-      Password:this.signUpForm.value['password'],
+      // Password:this.signUpForm.value['password'],
       Effective_Start_Date:this.signUpForm.value['effectiveStartDate'],
       Effective_End_Date:this.signUpForm.value['effectiveEndDate']
       };
@@ -111,6 +113,8 @@ export class EmployeeNewroleComponent implements OnInit{
         }
         this.submitted=true;
         // this.signUpForm.reset();
+        console.log(res);
+        this.regSuccessMsg=(res as any).message;
 
       },error=>{
         this.registerFail=true;

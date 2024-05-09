@@ -32,7 +32,13 @@
 
                         <div class="align">
                             <label for="pw" class="text-white labels">Password:</label><br>
-                            <input type="password" id="pw" name="password" formControlName="Password" class="form-control" placeholder="Enter Password"  (click)="resetlogin()"><br>
+                                <div class="password-input-wrapper">
+                                    <input type="{{ passwordVisible ? 'text' : 'password' }}" id="pw" name="password" formControlName="Password" class="form-control" placeholder="Enter Password">
+                                    <span class="password-toggle" (click)="togglePasswordVisibility()">
+                                        <i class="fas" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
+                                    </span>
+                                </div>
+                                <br>
                                 <div *ngIf="loginform.get('Password').touched && loginform.get('Password').invalid || submitted && loginform.get('Password').invalid" class="text-danger">
                                     <div *ngIf="loginform.get('Password')?.hasError('required')">*Password required</div>
                                 </div>

@@ -107,3 +107,19 @@ label{
         width: 90%;
     }
 }
+
+.password-input-wrapper {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 10px; 
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.password-toggle i {
+    color: #575252; 
+}

@@ -21,6 +21,8 @@ export class LoginComponent {
   successMessage: string = '';
   errorMsg:string='';
 
+  passwordVisible: boolean = false;
+
   constructor(private formbuilder:FormBuilder, private service:LoginService, private router:Router){}
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class LoginComponent {
   }
 
   login(){
-    this.submitted=true
+    this.submitted=true;
     // console.log(this.loginform.value);
 
     const data={
@@ -55,7 +57,7 @@ export class LoginComponent {
       console.log(res);
     },error=>{
       // alert("Incorrect credintial");
-      this.loginFail=true;
+      this.loginFail=!this.loginFail;
       // console.log(error);
       if (error.error && error.error.error){
         // alert(error.error.error);
@@ -73,4 +75,7 @@ export class LoginComponent {
       // this.loginform.reset();
     }
     
+    togglePasswordVisibility() {
+      this.passwordVisible = !this.passwordVisible; 
+    }
 }
