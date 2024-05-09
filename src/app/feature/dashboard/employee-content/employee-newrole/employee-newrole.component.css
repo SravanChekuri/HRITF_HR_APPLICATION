@@ -41,6 +41,6 @@
     border: 1px solid black;
 } 
 
-button:hover{
+.show-hide:hover{
     background-color: #FFFFFF;
 }

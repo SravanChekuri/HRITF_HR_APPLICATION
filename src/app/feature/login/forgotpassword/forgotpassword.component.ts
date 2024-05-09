@@ -41,6 +41,7 @@ export class ForgotpasswordComponent implements OnInit{
       emailId:['',Validators.required]
     });
   }
+  
   sendOtp(){
     const sendEmailData={
       Email_Id:this.forgotPasswordForm.value['emailId']

@@ -31,7 +31,7 @@ export class LoginComponent {
     this.loginform=this.formbuilder.group({
       UserID:['',[Validators.required]],
       Password:['',[Validators.required]]
-    })
+    });
   }
 
   login(){
@@ -62,14 +62,15 @@ export class LoginComponent {
         this.errorMsg=error.error.error;
       }else{
         // console.log(error);
-        // alert("An error occured:"+error.statusText);
         this.errorMsg=error.statusText;
       }
     });
     }
+
     resetlogin(){
       this.loginFail=false;
       this.successMessage = '';
       // this.loginform.reset();
     }
+    
 }

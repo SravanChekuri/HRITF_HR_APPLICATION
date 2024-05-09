@@ -1,22 +1,35 @@
-.container{
-    display: flex;
-    flex-direction: row;
-}
-
+/* css for main container:complete screen settings for login like width,height,bg image */
 .login-container{
     background-image: url('../../../assets/Images/login-img-background.png');
     height: 100vh;
     background-size: cover;
-    max-width: 300vh;
+    max-width: 100%;
 }
 
+/* css for for side image and loginform */
+.sub-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* css for 2nd image size and alignments */
+.image{
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* css for login form card*/
 .login-form{
-    width: 30%;
-    height: 30%;
+    width: 80%;
+    max-width: 500px;
     background-color: rgba(0,0,0,0.2);
-    margin:3% 0 0 10%;
+    margin:3% auto;
+    padding: 20px;
 }
 
+/* heading for the form  */
 .heading{
     text-align: center;
     margin:2% 0 2% 0;
@@ -24,36 +37,26 @@
     text-decoration: underline;
 }
 
-.sub-container{
-    display: flex;
-    flex-direction: row;
-}
-
-.image{
-    height: 60vh;
-    width: 80vh;
-    margin:0 0 0 3%;
-}
-
+/* align for user Id and password elements */
 .align{
     margin: 2%;
 }
+
  input{
     margin-top: 2%;
  }
+
 input:focus{
     outline: none !important;
     border-color:#0c1013;
     box-shadow: 0 0 10px #0c1013;
 }
 
-
+/* css for error messages */
 .error-msg{
     color: red;
     font-family: 'Times New Roman', Times, serif;
-    /* background-color: rgba(243, 206, 206,0.5); */
     font-size: 12px;
-    /* width:80%; */
     text-align: center;
     font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
@@ -62,7 +65,8 @@ input:focus{
 .text-danger{
     font-weight: bold;
 }
- 
+
+/* css for bottom space for labels */
 label{
     font-weight: bold;
     margin:0 0 0 1%
@@ -72,6 +76,7 @@ label{
     text-align: center;
     margin: 1% 0 2% 0;
 }
+
 .loginButton{
     width: 96%;
     margin: 2%;
@@ -85,4 +90,20 @@ label{
     text-align: center;
     text-shadow: 1px 1px green;
 
+}
+
+
+/* alignments for different desktop screens */
+@media screen and (max-width: 768px) {
+    .sub-container {
+        flex-direction: column;
+    }
+    .image {
+        height: auto;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .login-form {
+        width: 90%;
+    }
 }
