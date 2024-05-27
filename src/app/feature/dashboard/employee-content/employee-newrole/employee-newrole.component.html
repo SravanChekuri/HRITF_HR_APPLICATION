@@ -1,19 +1,26 @@
-<div class="main-container">
+<div class="main-container"><!--manin div-->
+
      <div>
         <div><h4 class="heading">Registration for Admin/HR persons:</h4></div>
+
         <div class="d-flex flex-row justify-content-end success-div" *ngIf="registerFail">
             <div><i class="fa-regular fa-circle-xmark" style="color: red;"></i></div>&nbsp;
-            <p style="color:red;font-weight: bold;">Failed to add new role, because {{msg}}</p></div>
+            <p style="color:red;font-weight: bold;font-size: 1.1em;">Failed to add new role, because {{msg}}</p>
+        </div>
+
         <div class="d-flex flex-row justify-content-end success-div" *ngIf="submitted">
             <div><i class="fa-regular fa-circle-check" style="color: green;"></i></div>&nbsp;
-            <div><p style="color:rgb(8, 195, 8);font-weight: bold;">Congratulations!&nbsp;{{regSuccessMsg}}</p></div>
+            <div><p style="color:rgb(8, 195, 8);font-weight: bold;font-size: 1.1em;">Congratulations!&nbsp;{{regSuccessMsg}}</p></div>
         </div>
-        <div>
-            <div class="container">
+
+        <div class="d-flex flex-row formandimg-container"><!--***************************************************Form Started***************************************************-->
+            <div class="form-container"> <!--Form main container-->
+
                 <form [formGroup]="signUpForm" (ngSubmit)="submitForm()">
-                    <div class="d-flex flex-wrap input-container">
-                        <div class="d-flex flex-column">
-                            <label for="role">Role<span class="mandatory">*</span></label>
+
+                    <div class="input-container">
+                        <div>
+                            <label for="role">Role<span class="mandatory">*</span>:</label>
                             <select id="role" formControlName="role" class="form-control form-select" (click)="resetmsg()">
                                 <option disabled selected value="">Select....</option>
                                 <option value="admin">Admin</option>
@@ -26,8 +33,8 @@
                             </div>
                         </div>
                         
-                        <div class="d-flex flex-column">
-                            <label for="fn">First Name<span class="mandatory">*</span></label>
+                        <div >
+                            <label for="fn">First Name<span class="mandatory">*</span>:</label>
                             <input type="text" id="fn" formControlName="firstName" class="form-control">
                             <div *ngIf="signUpForm.get('firstName').touched && signUpForm.get('firstName').invalid || submitted && signUpForm.get('firstName').invalid" class="text-danger">
                                 <div *ngIf="signUpForm.get('firstName')?.hasError('required')">
@@ -36,13 +43,13 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-column">
-                            <label for="mn">Middle Names</label>
+                        <div >
+                            <label for="mn">Middle Names:</label>
                             <input type="text" id="mn" class="form-control" formControlName="middleName">
                         </div>
 
-                        <div class="d-flex flex-column">
-                            <label for="ln">Last Name<span class="mandatory">*</span></label>
+                        <div >
+                            <label for="ln">Last Name<span class="mandatory">*</span>:</label>
                             <input type="text" id="ln" class="form-control" formControlName="lastName">
                             <div *ngIf="signUpForm.get('lastName').touched && signUpForm.get('lastName').invalid || submitted && signUpForm.get('lastName').invalid" class="text-danger">
                                 <div *ngIf="signUpForm.get('lastName')?.hasError('required')">
@@ -54,12 +61,13 @@
                               </div>
                         </div>
 
-                    </div><br>
-                    <div class="-flex flex-wrap input-container">
+                    <!-- </div><br> -->
+
+                    <!-- <div class="-flex flex-wrap input-container"> -->
                         
 
-                        <div class="d-flex flex-column">
-                            <label for="mobile">Contact<span class="mandatory">*</span></label>
+                        <div >
+                            <label for="mobile">Contact<span class="mandatory">*</span>:</label>
                             <input type="tel" id="mobile" class="form-control" formControlName="mobileNumber" (click)="resetmsg()">
                             <div *ngIf="signUpForm.get('mobileNumber').touched && signUpForm.get('mobileNumber').invalid || submitted && signUpForm.get('mobileNumber').invalid" class="text-danger">
                                 <div *ngIf="signUpForm.get('mobileNumber')?.hasError('required')">
@@ -75,10 +83,10 @@
                               <div *ngIf="signUpForm.get('mobileNumber').errors?.['minlength']" class="text-danger">
                                 *Mobile Number must be 10 digits long
                               </div>
-                                                      </div>
+                            </div>
 
-                        <div class="d-flex flex-column">
-                            <label for="email">Email<span class="mandatory">*</span></label>
+                        <div >
+                            <label for="email">Email<span class="mandatory">*</span>:</label>
                             <input type="email" id="email" class="form-control" formControlName="emailId" (click)="resetmsg()">
                             <div *ngIf="signUpForm.get('emailId').touched && signUpForm.get('emailId').invalid || submitted && signUpForm.get('emailId').invalid" class="text-danger">
                                 <div *ngIf="signUpForm.get('emailId')?.hasError('required')">
@@ -90,8 +98,8 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-column">
-                            <label for="userid">User ID<span class="mandatory">*</span></label>
+                        <div >
+                            <label for="userid">User ID<span class="mandatory">*</span>:</label>
                             <input type="text" id="userid" class="form-control" formControlName="userId" (click)="resetmsg()">
                             <div *ngIf="signUpForm.get('userId').touched && signUpForm.get('userId').invalid || submitted && signUpForm.get('userId').invalid" class="text-danger">
                                 <div *ngIf="signUpForm.get('userId')?.hasError('required')">
@@ -100,8 +108,8 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-column">
-                            <label for="effectivestartdate">Effective Start Date <span class="mandatory">*</span></label>
+                        <div >
+                            <label for="effectivestartdate">Effective Start Date <span class="mandatory">*</span>:</label>
                             <input type="date" id="effectivestartdate" class="form-control" formControlName="effectiveStartDate">
                             <div *ngIf="signUpForm.get('effectiveStartDate').touched && signUpForm.get('effectiveStartDate').invalid || submitted && signUpForm.get('effectiveStartDate').invalid" class="text-danger">
                                 <div *ngIf="signUpForm.get('effectiveStartDate')?.hasError('required')">
@@ -113,7 +121,7 @@
 
                         <!-- <div class="d-flex flex-column">
                             <label for="pw">Generate Password<span class="mandatory">*</span></label>
-                            <div class="d-flex flex-row">
+                            <div >
                                 <input type="password" id="pw" formControlName="password">
                                 <button type="button" class="show-hide" (click)="togglePasswordVisibility('pw')">{{ newPasswordVisible ? 'Hide' : 'Show' }}</button>
                             </div>
@@ -139,24 +147,27 @@
                                 *Password must contain at least one special character
                               </div>                                                       
                         </div> -->
-                    </div>
-                    <br>
-                    <div class="-flex flex-wrap input-sec-container">
-
-
-                        <div class="d-flex flex-column" style="margin-left: 5%;">
-                            <label for="effectiveenddate">Effective End Date</label>
+                    <!-- </div> -->
+<!-- <div class="-flex flex-wrap input-container"> -->
+                        <div >
+                            <label for="effectiveenddate">Effective End Date:</label>
                             <input type="date" id="effectiveenddate" class="form-control" value="4712-12-31"> 
                         </div>
 
                     </div><br>
-                    <div style="text-align: center;">
-                        <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Save</button>&nbsp;
+                    <div class="button-align">
+                        <button type="submit" class="btn btn-primary" [disabled]="!isFormValid()" (click)="submitForm()">Save</button>&nbsp;
                         <button type="reset" class="btn btn-secondary" (click)="resetmsg()">Cancel</button>
                     </div>
                 </form>
+
             </div>
-        </div>    
+            <div class="img-form">
+                <img src="../../../../../assets/Images/role-sec.png" alt="image" width="100%">
+            </div>
+        </div>
+
      </div>
-</div>
+
+</div><!--manin div-->
 <router-outlet></router-outlet>

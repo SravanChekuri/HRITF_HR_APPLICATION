@@ -36,12 +36,14 @@ export class EmployeeAddComponent implements OnInit{
       FirstName:['',Validators.required],
       MiddleName:['',],
       LastName:['',Validators.required],
-      EmployeeNumber:['',[Validators.required,Validators.maxLength(8)]],
+      EmployeeNumber:['',Validators.required],
+      mobileNumber:['',[Validators.required,Validators.pattern(/^[0-9]*$/), Validators.maxLength(10),Validators.minLength(10)]],
       DateOfJoining:['',Validators.required],
       Location:['',Validators.required],
       Email:['',[Validators.required,Validators.email]],
       workerType:['',Validators.required],
       startDate:['',Validators.required],
+      DateOfBirth:['',Validators.required],
       endDate:['4712-12-31']
     });
 
@@ -67,12 +69,14 @@ export class EmployeeAddComponent implements OnInit{
       Middle_Name:this.addEmpForm.value['MiddleName'],
       Last_Name:this.addEmpForm.value['LastName'],
       Employee_Number:this.addEmpForm.value['EmployeeNumber'],
+      Mobile_No:this.addEmpForm.value['mobileNumber'],
       Date_Of_Joining:this.addEmpForm.value['DateOfJoining'],
-      Location:this.addEmpForm.value['Location'],
+      Job_Location:this.addEmpForm.value['Location'],
       Email_Id:this.addEmpForm.value['Email'],
       Worker_Type:this.addEmpForm.value['workerType'],
       Effective_Start_Date:this.addEmpForm.value['startDate'],
-      Effective_End_Date:this.addEmpForm.value['endDate']
+      Effective_End_Date:this.addEmpForm.value['endDate'],
+      Date_Of_Birth:this.addEmpForm.value['DateOfBirth']
     };
 
       console.log(addEmpData);

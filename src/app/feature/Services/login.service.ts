@@ -35,7 +35,7 @@ export class LoginService {
     return this.http.put("http://127.0.0.1:5000/change_password",newPasswordSend);
   }
 
-  getadmin(admindata:any){
-   return this.http.get("http://127.0.0.1:5000/get_admin_details",admindata);
+  getadmin(){
+   return this.http.get("http://127.0.0.1:5000/get_admin_details");
   }
 }

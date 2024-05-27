@@ -1,25 +1,25 @@
 <div class="dropdown">
+    
     <div class="dropdown-btn">
     <button class="home-drop-btn" (click)="toggleSubDropdown()">
-        <img src="../../../../../assets/Images/emp-logo.png" alt="img">
-        <span style="padding-left: 5px;">Employees&nbsp;
-            <i class="fa-solid fa-chevron-down"></i>
-        </span>
+        <img src="../../../../../assets/Images/emp-logo.png" alt="img">&nbsp;
+        <span>Employees &nbsp;<i class="fa-solid fa-chevron-down"></i></span>
     </button>
     </div>
+
     <div class="dropdown-content" *ngIf="isSubDropdownOpen">
         <ng-container *ngFor="let item of items">
-                <div *ngIf="item.subItems; else regularItems">
+                <div *ngIf="item.subItems; else regularItems" class="main-dropdown-item">
                     <button class="sub-dropdown-btn" (click)="onDropdownItemClick(item)">
-                        <i class="fa-solid {{item.icon}}"></i>
+                        <i class="fa-solid {{item.icon}}"></i>&nbsp;
                         {{item.name}}&nbsp;<i class="fa-solid fa-chevron-down"></i>
                     </button>
-                        <div *ngIf="item.isSubDropdownOpen" class="sub-dropdown-content">
-                            <a *ngFor="let subItem of item.subItems"[routerLink]="subItem.route"><div>{{ subItem.name }}</div></a>
+                        <div *ngIf="item.isSubDropdownOpen" class="">
+                            <a *ngFor="let subItem of item.subItems"[routerLink]="subItem.route"><div class="sub-dropdown-content">{{ subItem.name }}</div></a>
                         </div>
                 </div>
             <ng-template #regularItems>
-                <div class="drop-align"><a [routerLink]="item.route"><i class="fa-solid {{item.icon}}"></i>&nbsp;{{ item.name }}</a></div>
+                <div class="drop-align main-dropdown-item"><a [routerLink]="item.route"><i class="fa-solid {{item.icon}}"></i>&nbsp;{{ item.name }}</a></div>
             </ng-template>
         </ng-container>
         </div>

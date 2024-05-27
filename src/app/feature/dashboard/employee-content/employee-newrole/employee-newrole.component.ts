@@ -1,6 +1,5 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { LoginService } from 'src/app/feature/Services/login.service';
 
 @Component({
@@ -17,13 +16,13 @@ export class EmployeeNewroleComponent implements OnInit{
 
   msg:any='';
 
-  newPasswordVisible: boolean = false;
-  reEnterPasswordVisible: boolean = false;
+  // newPasswordVisible: boolean = false;
+  // reEnterPasswordVisible: boolean = false;
 
   regSuccessMsg:string='';
 
 
-  constructor(private formbulider:FormBuilder,private router:Router, private service:LoginService) { }
+  constructor(private formbulider:FormBuilder, private service:LoginService) { }
 
   ngOnInit() {
     this.signUpFormIntilization()
@@ -89,6 +88,10 @@ export class EmployeeNewroleComponent implements OnInit{
   // }
 
   submitForm(){
+    if (this.signUpForm.invalid) {
+      this.submitted = true;
+      return;
+    }
     const signupData={
       User_Id:this.signUpForm.value['userId'],
       First_Name:this.signUpForm.value['firstName'],
@@ -102,28 +105,28 @@ export class EmployeeNewroleComponent implements OnInit{
       Effective_End_Date:this.signUpForm.value['effectiveEndDate']
       };
 
-      console.log(signupData);
+      // console.log(signupData);
 
       this.service.signUpDataService(signupData).subscribe((res)=>{
-        // alert("signupdata Success")
+            // alert("signupdata Success")
         // this.router.navigate(['/'])
-        if (this.signUpForm.invalid) {
-          this.submitted = true;
-          return;
-        }
+        // if (this.signUpForm.invalid) {
+        //   this.submitted = true;
+        //   return;
+        // }
         this.submitted=true;
         // this.signUpForm.reset();
-        console.log(res);
+            // console.log(res);
         this.regSuccessMsg=(res as any).message;
 
       },error=>{
         this.registerFail=true;
         if (error.error && error.error.message){
           // alert(error.error.error);
-          console.log(error.error.message);
+          // console.log(error.error.message);
           this.msg=error.error.message;
         }else{
-          console.log(error);
+          // console.log(error);
           // alert("An error occured:"+error.statusText);
           this.msg=error.statusText;
         }
@@ -133,7 +136,11 @@ export class EmployeeNewroleComponent implements OnInit{
     resetmsg(){
       this.submitted=false;
       this.registerFail=false;
+      // this.signUpForm.reset();
     }
 
+    isFormValid(): boolean {
+      return this.signUpForm.valid;
+    }
 
 }

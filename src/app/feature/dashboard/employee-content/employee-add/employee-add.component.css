@@ -44,13 +44,13 @@
 }
  
 .form-container{
-  margin:0px 0px 10px 2%;
+  margin:1% 0 1% 2%;
 }
 
 .label-container{
   display: flex;
   flex-direction: column;
-  margin: 1%;
+  margin: 1% 10% 1% 1%;
 }
 
 .drop-down{
@@ -61,6 +61,7 @@
 .button-container{
   position: absolute;
   right: 5%;
+  margin-bottom: 10%;
 }
 
 .sucessfull-img{
@@ -104,3 +105,4 @@ select.form-control {
   color: red;
   font-weight: bold;
 }
+
