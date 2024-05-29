@@ -1,7 +1,7 @@
 <div class="emp-search">
     <div class="search-block">
         <div>
-            <h5>Quick employee search</h5>
+            <h5>Quick Search</h5>
         </div>
         <span>
             <form>
@@ -10,7 +10,7 @@
             </form>
         </span>
         <span class="addemp-btn">
-            <button type="submit" class="btn btn-danger"(click)="addbtnclk()">Add New Employee</button>
+            <button type="submit" class="btn btn-danger"(click)="addbtnclk()">Add New Profile</button>
         </span>
     </div>
     <hr id="hr">
@@ -33,12 +33,12 @@
             <div class="container text-center" *ngFor="let filtemp of filteredEmp">
                 <div class="row">
                     <!-- <div class="col">{{filtemp.Employee_id}}</div> -->
-                    <div class="col">{{filtemp.EMPLOYEE_NUMBER}}</div>
+                    <div class="col">{{filtemp.Employee_Number}}</div>
                     <div class="col">{{filtemp.Employee_First_Name}}</div>
                     <div class="col">{{filtemp.Last_Name}}</div>
                     <div class="col">{{filtemp.Email}}</div>
                     <div class="col">{{filtemp.WORKER_TYPE}}</div>
-                    <div class="col">{{filtemp.Location}}</div>
+                    <div class="col">{{filtemp.JOB_LOCATION}}</div>
                     <hr style="margin-bottom: 8px;">
                 </div>
             </div>

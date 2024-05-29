@@ -10,7 +10,7 @@
         <div *ngFor="let filtemp of filteredEmp">
             <div class="card" style="cursor: pointer;">
                 <div><img src="../../../../../assets/Images/emp_profile.png" alt="emp Img" width="50%"></div>
-                <div style="font-weight: bold;">{{filtemp.EMPLOYEE_NUMBER}}</div>
+                <div style="font-weight: bold;">{{filtemp.Employee_Number}}</div>
                 <div style="color:#8C1428;">{{filtemp.Employee_First_Name}}&nbsp;{{filtemp.Last_Name}}</div>
                 <div routerLink="/home/employees/empdetails" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square edit-icon"><span class="edit-text"(click)="updateEmp(filtemp)">Edit</span></i></div>
             </div>

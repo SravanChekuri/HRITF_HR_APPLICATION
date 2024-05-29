@@ -10,8 +10,8 @@ export class SidebarComponent {
 
   dropdownItems = [
     { name: 'Overview',route:'/home/employees',icon:'fa-clipboard' },
-    { name:'Add new Candidate',route:'/home/employees/addemp',icon: 'fa-user-plus'},
-    { name:'All Profiles',route:'/home/employees/empProfile',icon: 'fa-user'},
+    { name:'Add new Profile',route:'/home/employees/addemp',icon: 'fa-user-plus'},
+    { name:'View All Profiles',route:'/home/employees/empProfile',icon: 'fa-user'},
     { 
       name: 'Letters', 
       subItems: [

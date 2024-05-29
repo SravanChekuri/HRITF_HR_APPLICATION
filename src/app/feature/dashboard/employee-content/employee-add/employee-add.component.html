@@ -1,151 +1,170 @@
-<div class="emp-add">
+<div class="main-container"><!--Main div-->
+
+
     <div class="back">
-        <a routerLink=".."><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to Employee Search</a>
+        <a routerLink=".."><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to Search</a>
     </div>
-    <div>
-        <div class="bulkUpload-container">
+
+    <div> <!--Bulk div and Form div-->
+
+        <div class="bulkUpload-container"><!--bulk div sec start-->
             <div>
-                <h5>Quick Add Employee to the company</h5>
-                <p>Add an employee by filling the from or add add a bunch of employee by clicking bulk upload </p>
+                <h5>Quick Add Candidate/Employee to the company</h5>
+                <p>Add an Candidate/Employee by filling the from or add add a bunch of employee by clicking bulk upload </p>
 
                 <div *ngIf="bulkpass"><p style="text-align:right;padding:0 3% 0 0;color:green;font-weight:bold;"><i class="fa-solid fa-check" style="color: green;"></i>&nbsp;Successfully uploaded the data</p></div>
                 <div *ngIf="bulkfail"><p style="text-align: right; padding: 0 3% 0 0;color:red;font-weight: bold;"><i class="fa-solid fa-xmark" style="color: red;"></i>&nbsp;Failed to add Employees,because {{bulkmsg}}</p></div>
 
                 <input id="file-upload" class="file-upload" type="file"  accept=".xlsx, .xls" required (change)="selectFile($event)" (click)="resetBulk()"/> <br><br>
 
-                <label  class="custom-file-upload" (click)="uploadFile()">Add Bulk Employee</label>
+                <label  class="custom-file-upload" (click)="uploadFile()">Add Bulk Details</label>
             </div>
-        </div>
+        </div><!--bulk div sec end-->
+
         <hr class="hr">
-        <div class="form-container">
-            <h5>Add details of new employee:</h5>
+
+        <div class="form-container"><!--Form sec start-->
+
+            <div><h5>Add details of new Candidate/Employee:</h5></div>
+
             <div *ngIf="successmsg" class="success-msg"><img src=".../../../../../../../assets/Images/success-tick-dribbble-gif.gif" alt="Sucessfully img" class="sucessfull-img"><span class="success-text"> Employee Added Sucessfully to the database</span></div>
+
             <div *ngIf="failmsg" class="fail-msg"><span class="fail-text">Failed to add employee: {{msg}}</span></div>
-        <div>
-            <form [formGroup]="addEmpForm" (ngSubmit)="submitEmpData()">
+
+            <div> <!--form start-->
+
+                <form [formGroup]="addEmpForm" (ngSubmit)="submitEmpData()">
                 
-                <div class="d-flex flex-row">
+                    <div class="grid-container">
 
-                    <div class="label-container">
-                        <label for="worker">Worker Type<span class="mandatory">*</span>:</label>
-                        <select name="" id="worker" class="form-control" formControlName="workerType">
-                            <option value="" disabled selected>Select...</option>
-                            <option value="Candidate">Candidate</option>
-                            <option value="Employee">Employee</option>
-                        </select>
-                        <div *ngIf="addEmpForm.get('workerType').touched && addEmpForm.get('workerType')?.hasError('required')" class="text-danger">
-                            *Worker Type required
+                        <div class="label-container">
+                            <label for="worker">Worker Type<span class="mandatory">*</span>:</label>
+                            <select id="worker" class="form-control" formControlName="workerType">
+                                <option value="" disabled selected>Select...</option>
+                                <option value="Candidate">Candidate</option>
+                                <option value="Employee">Employee</option>
+                            </select>
+                            <div *ngIf="addEmpForm.get('workerType').touched && addEmpForm.get('workerType')?.hasError('required')" class="text-danger">*Worker Type required</div>
                         </div>
-                    </div>
 
-                    <div class="label-container">
-                        <label for="fn">First Name<span class="mandatory">*</span>:</label>
-                        <input type="text" id="fn" class="form-control" formControlName="FirstName">
-                        <div *ngIf="addEmpForm.get('FirstName').touched && addEmpForm.get('FirstName').invalid || submitted && addEmpForm.get('FirstName').invalid">
-                            <div *ngIf="addEmpForm.get('FirstName')?.hasError('required')" class="text-danger">*Employee First Name required</div> 
+                        <div class="label-container">
+                            <label for="">Effective start Date<span class="mandatory">*</span>:</label>
+                            <input type="date" class="form-control" formControlName="startDate"/>
+                            <div *ngIf="addEmpForm.get('startDate').touched && addEmpForm.get('startDate')?.hasError('required')" class="text-danger">
+                                *Effective start Date required
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="label-container">
-                        <label for="mn">Middle Name:</label>
-                        <input type="text"id="mn" class="form-control" formControlName="MiddleName">
-                        <div *ngIf="addEmpForm.get('MiddleName').touched && addEmpForm.get('MiddleName')?.hasError('required')" class="text-danger">*Employee Middle Name required</div>
-                    </div>
-
-                    <div class="label-container">
-                        <label for="ln">Last Name<span class="mandatory">*</span>:</label>
-                        <input type="text"id="ln" class="form-control" formControlName="LastName">
-                        <div *ngIf="addEmpForm.get('LastName').touched && addEmpForm.get('LastName').invalid || submitted && addEmpForm.get('LastName').invalid" class="text-danger">
-                            <div *ngIf="addEmpForm.get('LastName')?.hasError('required')">*Employee Last Name  required</div>
+                        <div class="label-container">
+                            <label for="">Effective End Date</label>
+                            <input type="date" value="4712-12-31" class="form-control" formControlName="endDate"/>
                         </div>
-                        <div *ngIf="addEmpForm.hasError('sameName') && (addEmpForm.get('FirstName').dirty || addEmpForm.get('LastName').dirty)" class="text-danger">*First Name and Last Name cannot be the same</div>
-                    </div>
 
-                </div>
-
-                <div class="d-flex flex-row">
-
-                    <div class="label-container">
-                        <label for="dob">Date of Birth<span class="mandatory">*</span>:</label>
-                        <input type="date" class="form-control" formControlName="DateOfBirth">
-                        <div *ngIf="addEmpForm.get('DateOfBirth').touched && addEmpForm.get('DateOfBirth')?.hasError('required')" class="text-danger">
-                            *Date Of Birth is required
+                        <div class="label-container">
+                            <!-- <label for="empno">Candidate Number<span class="mandatory">*</span>:</label> -->
+                            <label for="empno">
+                                {{ addEmpForm.get('workerType').value === 'Employee' ? 'Employee Number' : 'Candidate Number' }}
+                                <span class="mandatory">*</span>:
+                            </label>
+                            <input type="text" id="empno" class="form-control" formControlName="EmployeeNumber">
+                            <div *ngIf="addEmpForm.get('EmployeeNumber').touched && addEmpForm.get('EmployeeNumber').invalid || submitted && addEmpForm.get('EmployeeNumber').invalid" class="text-danger">
+                                <div *ngIf="addEmpForm.get('EmployeeNumber')?.hasError('required')">*Candidate Number required</div>
+                            </div>
+                            <div *ngIf="addEmpForm.get('EmployeeNumber').touched && addEmpForm.get('EmployeeNumber').hasError('maxlength')" class="text-danger">*Employee number must not exceed 8 characters</div>
                         </div>
-                    </div>
 
-                    <div class="label-container">
-                        <label for="mobile">Contact<span class="mandatory">*</span>:</label>
-                        <input type="tel" id="mobile" class="form-control" formControlName="mobileNumber">
-                        <div *ngIf="addEmpForm.get('mobileNumber').touched && addEmpForm.get('mobileNumber').invalid || submitted && addEmpForm.get('mobileNumber').invalid" class="text-danger">
-                        <div *ngIf="addEmpForm.get('mobileNumber')?.hasError('required')">*Mobile Number required</div>
+                        <div class="label-container">
+                            <label for="location">Job Location<span class="mandatory">*</span>:</label>
+                            <select id="location" class="form-control" formControlName="Location">
+                                <option value="" disabled selected>Select...</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Hyderabad">Chennai</option>
+                                <option value="Hyderabad">Kolkata</option>
+                                <option value="Hyderabad">Pune</option>
+
+                            </select>
+                            <div *ngIf="addEmpForm.get('Location').touched && addEmpForm.get('Location')?.hasError('required')" class="text-danger">
+                                *Location required
+                            </div>
                         </div>
-                        <div *ngIf="addEmpForm.get('mobileNumber').errors?.['pattern']" class="text-danger">*Mobile Number must contain only numbers</div>
-                        <div *ngIf="addEmpForm.get('mobileNumber').errors?.['maxlength']" class="text-danger">*Mobile Number must be 10 digits long</div>
-                        <div *ngIf="addEmpForm.get('mobileNumber').errors?.['minlength']" class="text-danger">*Mobile Number must be 10 digits long</div>
-                    </div>
 
-                    <div class="label-container">
-                        <label for="email">Email Id<span class="mandatory">*</span>:</label>
-                        <input type="email" id="email" class="form-control" formControlName="Email">
-                        <div *ngIf="addEmpForm.get('Email').touched && addEmpForm.get('Email')?.hasError('required')" class="text-danger">*Email required</div>
-                        <div *ngIf="addEmpForm.get('Email')?.hasError('email')" class="text-danger">*Invalid Email format</div>
-                    </div>
-
-                    <div class="label-container">
-                        <label for="empno">Candidate Number<span class="mandatory">*</span>:</label>
-                        <input type="text" id="empno" class="form-control" formControlName="EmployeeNumber">
-                        <div *ngIf="addEmpForm.get('EmployeeNumber').touched && addEmpForm.get('EmployeeNumber').invalid || submitted && addEmpForm.get('EmployeeNumber').invalid" class="text-danger">
-                            <div *ngIf="addEmpForm.get('EmployeeNumber')?.hasError('required')">*Candidate Number required</div>
+                        <div class="label-container">
+                            <label for="fn">First Name<span class="mandatory">*</span>:</label>
+                            <input type="text" id="fn" class="form-control" formControlName="FirstName">
+                            <div *ngIf="addEmpForm.get('FirstName').touched && addEmpForm.get('FirstName').invalid || submitted && addEmpForm.get('FirstName').invalid">
+                                <div *ngIf="addEmpForm.get('FirstName')?.hasError('required')" class="text-danger">*Employee First Name required</div> 
+                            </div>
                         </div>
-                        <div *ngIf="addEmpForm.get('EmployeeNumber').touched && addEmpForm.get('EmployeeNumber').hasError('maxlength')" class="text-danger">*Employee number must not exceed 8 characters</div>
-                    </div>
 
-                </div>
-
-                <div class="d-flex flex-row">
-                    <div class="label-container">
-                        <label for="location">Job Location<span class="mandatory">*</span>:</label>
-                        <select id="location" class="form-control" formControlName="Location">
-                            <option value="" disabled selected>Select...</option>
-                            <option value="Bangalore">Bangalore</option>
-                            <option value="Hyderabad">Hyderabad</option>
-                        </select>
-                        <div *ngIf="addEmpForm.get('Location').touched && addEmpForm.get('Location')?.hasError('required')" class="text-danger">
-                            *Location required
+                        <div class="label-container">
+                            <label for="mn">Middle Name:</label>
+                            <input type="text"id="mn" class="form-control" formControlName="MiddleName">
+                            <div *ngIf="addEmpForm.get('MiddleName').touched && addEmpForm.get('MiddleName')?.hasError('required')" class="text-danger">*Employee Middle Name required</div>
                         </div>
-                    </div>
 
-                    <div class="label-container">
-                        <label for="doj">Date of Joining:</label>
-                        <input type="date" id="doj"  class="form-control" formControlName="DateOfJoining">
-                    </div>
-
-                    <div class="label-container">
-                        <label for="">Effective start Date<span class="mandatory">*</span>:</label>
-                        <input type="date" class="form-control" formControlName="startDate"/>
-                        <div *ngIf="addEmpForm.get('startDate').touched && addEmpForm.get('startDate')?.hasError('required')" class="text-danger">
-                            *Effective start Date required
+                        <div class="label-container">
+                            <label for="ln">Last Name<span class="mandatory">*</span>:</label>
+                            <input type="text"id="ln" class="form-control" formControlName="LastName">
+                            <div *ngIf="addEmpForm.get('LastName').touched && addEmpForm.get('LastName').invalid || submitted && addEmpForm.get('LastName').invalid" class="text-danger">
+                                <div *ngIf="addEmpForm.get('LastName')?.hasError('required')">*Employee Last Name  required</div>
+                            </div>
+                            <div *ngIf="addEmpForm.hasError('sameName') && (addEmpForm.get('FirstName').dirty || addEmpForm.get('LastName').dirty)" class="text-danger">*First Name and Last Name cannot be the same</div>
                         </div>
+
+                        <div class="label-container">
+                            <label for="dob">Date of Birth<span class="mandatory">*</span>:</label>
+                            <input type="date" class="form-control" formControlName="DateOfBirth">
+                            <div *ngIf="addEmpForm.get('DateOfBirth').touched && addEmpForm.get('DateOfBirth')?.hasError('required')" class="text-danger">
+                                *Date Of Birth is required
+                            </div>
+                        </div>
+
+                        <div class="label-container">
+                            <label for="mobile">Contact<span class="mandatory">*</span>:</label>
+                            <input type="tel" id="mobile" class="form-control" formControlName="mobileNumber">
+                            <div *ngIf="addEmpForm.get('mobileNumber').touched && addEmpForm.get('mobileNumber').invalid || submitted && addEmpForm.get('mobileNumber').invalid" class="text-danger">
+                            <div *ngIf="addEmpForm.get('mobileNumber')?.hasError('required')">*Mobile Number required</div>
+                            </div>
+                            <div *ngIf="addEmpForm.get('mobileNumber').errors?.['pattern']" class="text-danger">*Mobile Number must contain only numbers</div>
+                            <div *ngIf="addEmpForm.get('mobileNumber').errors?.['maxlength']" class="text-danger">*Mobile Number must be 10 digits long</div>
+                            <div *ngIf="addEmpForm.get('mobileNumber').errors?.['minlength']" class="text-danger">*Mobile Number must be 10 digits long</div>
+                        </div>
+
+                        <div class="label-container">
+                            <label for="email">Email Id<span class="mandatory">*</span>:</label>
+                            <input type="email" id="email" class="form-control" formControlName="Email">
+                            <div *ngIf="addEmpForm.get('Email').touched && addEmpForm.get('Email')?.hasError('required')" class="text-danger">*Email required</div>
+                            <div *ngIf="addEmpForm.get('Email')?.hasError('Email')" class="text-danger">*Invalid Email format</div>
+                        </div>
+
+
+
+                        <!-- <div class="label-container">
+                            <label for="doj">Date of Joining:</label>
+                            <input type="date" id="doj"  class="form-control" formControlName="DateOfJoining">
+                        </div> -->
+
+
                     </div>
 
-                    <div class="label-container">
-                        <label for="">Effective End Date</label>
-                        <input type="date" value="4712-12-31" class="form-control" formControlName="endDate"/>
+                    <br>
+
+                    <p>After saving the onboarding process will start and employee will receive a welcome email with the link to set hit password.</p>
+
+                    <div class="button-container">
+                        <button class="btn btn-info" type="submit" [disabled]="addEmpForm.invalid || submitted">save</button>&nbsp;&nbsp;
+                        <button class="btn btn-info" type="button">Cancel</button>
                     </div>
 
-                </div>
+                </form>
 
-                <br>
+            </div><!--form end-->
 
-                <p>After saving the onboarding process will start and employee will receive a welcome email with the link to set hit password.</p>
+        </div><!--Form sec end-->
 
-                <div class="button-container">
-                    <button class="btn btn-info" type="submit" [disabled]="addEmpForm.invalid || submitted">save</button>&nbsp;&nbsp;
-                    <button class="btn btn-info" type="button">Cancel</button>
-                </div>
+    </div><!--Bulk div and Form div end-->
 
-            </form>
-        </div>
-        </div>
-    </div>
-</div>
+
+
+</div><!--Main div-->
