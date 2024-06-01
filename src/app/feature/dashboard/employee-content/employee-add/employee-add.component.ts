@@ -25,10 +25,13 @@ export class EmployeeAddComponent implements OnInit{
   bulkfail:boolean=false;
   bulkmsg:any='';
 
+  today: string;
+
   constructor(private formBuilder:FormBuilder,private service:EmployeeAddService,private router:Router){ }
 
   ngOnInit(): void {
     this.empData();
+    this.today = this.getTodayDate();
     this.addEmpForm.patchValue({ workerType: 'Candidate' });
   }
   
@@ -57,7 +60,15 @@ export class EmployeeAddComponent implements OnInit{
     if (firstName && lastName && firstName === lastName) {
       return { sameName: true };
     }
-    return null
+    return null;
+  }
+
+  getTodayDate(): string {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
   submitEmpData(){
@@ -91,8 +102,8 @@ export class EmployeeAddComponent implements OnInit{
           this.router.navigate(['/home/employees/empProfile']); 
         }, 2000);
         this.submitted = false;
-        // this.resetForm();
-        this.addEmpForm.reset();
+        this.resetForm();
+        // this.addEmpForm.reset();
     },error=>{
       console.log(error);
       if (error.error && error.error.message) {
@@ -104,8 +115,9 @@ export class EmployeeAddComponent implements OnInit{
       else{
         this.failmsg=true;
         console.log(error);
-        alert("An error occurred: " + error.statusText);
-        this.msg = 'An error occurred while adding the employee';
+        // alert("An error occurred: " + error.statusText);
+        // this.msg = 'An error occurred while adding the employee';
+        this.msg=error.error.error;
       }
     });
   }
@@ -131,7 +143,7 @@ export class EmployeeAddComponent implements OnInit{
       this.bulkpass=true;
       setTimeout(() => {
         this.bulkpass = false;
-        this.router.navigate(['/home/employees']); 
+        this.router.navigate(['/home/employees/empProfile']); 
       }, 1500);
 
     }, error=>{
@@ -147,7 +159,7 @@ export class EmployeeAddComponent implements OnInit{
   }
   resetForm(): void {
     this.addEmpForm.reset(); 
-    this.addEmpForm.patchValue({ workerType: 'Candidate' });
+    // this.addEmpForm.patchValue({ workerType: 'Candidate' });
     this.addEmpForm.markAsUntouched(); 
     this.addEmpForm.markAsPristine();
     this.submitted = false; 

@@ -38,7 +38,7 @@ export class EmployeeSearchComponent implements OnInit{
     }
     else{
       this.filteredEmp=this.allEmp.filter((employee)=>employee.Employee_First_Name.toLowerCase().includes(filterValueLower) ||
-      employee.EMPLOYEE_NUMBER.toLowerCase().includes(filterValueLower)||
+      employee.Employee_Number.toLowerCase().includes(filterValueLower)||
       employee.Last_Name.toLowerCase().includes(filterValueLower)||
       employee.Email.toLowerCase().includes(filterValueLower))
     }

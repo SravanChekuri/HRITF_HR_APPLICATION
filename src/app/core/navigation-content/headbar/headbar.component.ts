@@ -18,7 +18,7 @@ export class HeadbarComponent implements OnInit {
 
     getAdminDetails():void{
     this.service.getadmin().subscribe((res:any)=>{
-      console.log('Admin details:',res);
+      // console.log('Admin details:',res);
     },error=>{
       console.log('Error fetching admin details:', error);
     }); 

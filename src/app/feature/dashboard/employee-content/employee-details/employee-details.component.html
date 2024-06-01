@@ -1,213 +1,288 @@
-<div class="emp-details">
-    <div style="margin:1% 0 1% 2%"><a routerLink="/home/employees/empProfile"><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to Employee Profiles</a></div>
-    <hr class="hr">
+    <div class="emp-details">
+        <div style="margin:1% 2% 0 2%; text-align:right;"><a routerLink="/home/employees/empProfile"><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to all Profiles</a></div>
 
-    <!--- Employee details -->
-    <div class="card">
-        <div class="d-flex flex-row">
-            <p>Employee Details:</p>&nbsp;&nbsp;
-            <i class="fa-solid fa-pen-to-square edit-icon" (click)="toggleEdit()"></i>
+        <!-- <hr class="hr"> -->
+
+        <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
+
+        <div class="d-flex flex-row grid-container" style="margin:0 0 1% 3%;">
+            <div>
+                <label for="stratDate">Effective Start Date :</label><br>
+                <input type="date" class="form-control">
+            </div>
+            <div>
+                <label for="stratDate">Effective End Date :</label><br>
+                <input type="date" class="form-control">
+            </div>
         </div>
-        <form  [formGroup]="updateForm">
-            <div class="sub-container">
-                <div class="row align-div">
-                        <div  class="col-md-3 d-flex flex-column">
-                            <label for="">Employee FirstName:</label>
-                            <input type="text" formControlName="firstName" class="form-control">
-                        </div>
 
-                        <div  class="col-md-3 d-flex flex-column">
-                            <label for="">Middle Name:</label>
-                            <input type="text" formControlName="middleName" class="form-control">
-                        </div>
+        <hr class="hr">
 
-                        <div class="col-md-3 d-flex flex-column">
-                            <label for="">Last Name:</label>
-                            <input type="text" formControlName="lastName" class="form-control">
-                        </div>
 
-                        <div class="col-md-3 d-flex flex-column">
-                            <label for="">Employee Number:</label>
-                            <input type="text" formControlName="employeeNumber" class="form-control">
-                        </div>
+        <!--- Candidate/Employee details -->
+        <div>
 
+            <h5 style="margin: 1% 0 1% 1.5%; ">{{ updateForm.get('workerType').value === 'Employee' ? 'Employee Details :' : 'Candidate Details :' }}&nbsp; <i class="fa-solid fa-pen-to-square"></i></h5>
+
+            <form [formGroup]="updateForm">
+
+                <div class="grid-container form-container">
+
+                    <div class="label-container">
+                        <label for="">Effective start Date :</label>
+                        <input type="date" class="form-control" formControlName="startDate"/>
+                    </div>
+
+                    <div class="label-container">
+                        <label for="">Effective End Date :</label>
+                        <input type="date" value="4712-12-31" class="form-control" formControlName="endDate"/>
+                    </div>
+
+                    <div class="label-container">
+                        <label for="worker">Worker Type :</label>
+                        <select id="worker" class="form-control" formControlName="workerType">
+                            <option value="" disabled selected>Select...</option>
+                            <option value="Candidate">Candidate</option>
+                            <option value="Employee">Employee</option>
+                        </select>
+                    </div>
+
+                    <div class="label-container">
+                        <label for="empno">{{ updateForm.get('workerType').value === 'Employee' ? 'Employee Number' : 'Candidate Number' }} :</label>
+                        <input type="text" id="empno" class="form-control" formControlName="employeeNumber">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="email">Email Id :</label>
+                        <input type="email" id="email" class="form-control" formControlName="email">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="fn">First Name :</label>
+                        <input type="text" id="fn" class="form-control" formControlName="firstName">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="mn">Middle Name :</label>
+                        <input type="text" id="mn" class="form-control" formControlName="middleName">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="ln">Last Name :</label>
+                        <input type="text" id="ln" class="form-control" formControlName="lastName">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="dob">Date of Birth :</label>
+                        <input type="date" class="form-control" formControlName="dateOfBirth">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="mobile">Contact :</label>
+                        <input type="tel" id="mobile" class="form-control" formControlName="phoneNumber">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="location">Job Location :</label>
+                        <select id="location" class="form-control" formControlName="location">
+                            <option value="" disabled selected>Select...</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Hyderabad">Chennai</option>
+                            <option value="Hyderabad">Kolkata</option>
+                            <option value="Hyderabad">Pune</option>
+                        </select>
+                    </div>
+                
                 </div>
-                <div class="row align-div">
-                        <div class="col-md-3 d-flex flex-column">
-                            <label for="">Date of Joining:</label>
-                            <input type="date" formControlName="dateOfJoining" class="form-control">
-                        </div>
 
-                        <div class="col-md-3 d-flex flex-column">
-                            <label for="">Location:</label>
-                            <select name="" id="" class="w-50" formControlName="location" class="form-control">
-                                <option value="select">select</option>
-                                <option value="Bangalore">Bangalore</option>
-                                <option value="Hyderabad">Hyderabad</option>
-                            </select>
-                        </div>
+                <div class="btn-align">
+                    <button type="submit" class="btn btn-info">Update</button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary">Cancel</button>
+                </div>
 
-                        <div class="col-md-3 d-flex flex-column">
-                            <label for="">Email:</label>
-                            <input type="text" formControlName="email" class="form-control">
-                        </div>
-
-                        <div class="col-md-3 d-flex flex-column">
-                            <label for="">Worker Type:</label>
-                            <select name="" id=""  formControlName="workerType" class="form-control">
-                                <option value="Select">Select</option>
-                                <option value="Candidate">Candidate</option>
-                                <option value="Employee">Employee</option>
-                            </select>
-                        </div>
-
-                </div>
-                <div class="row align-div">
-                        <div class="col-md-3 d-flex flex-column">
-                            <label for="">Effective StartDate:</label>
-                            <input type="date" formControlName="startDate" class="form-control">
-                        </div>
-
-                        <div  class="col-md-3 d-flex flex-column">
-                            <label for="">Effective End Date:</label>
-                            <input type="date" value="4712-12-31" class="form-control" formControlName="endDate"/>
-                        </div>
-                </div>
-            </div>
-                <div *ngIf="isEditable" style="text-align: right; margin-right: 2%;">
-                    <button type="button" class="btn btn-info">Cancel</button>
-                    <button (click)="update()" class="btn btn-primary m-2">update</button>
-                </div>
-        </form>
-    </div>
-    <hr class="hr">
-
-    <!--Employment Details-->
-    <div class="card" style="margin-bottom: 2%;">
-        <div *ngIf="ishide">
-            <div class="d-flex flex-row">
-                <p>Employment Details:</p>&nbsp;&nbsp;
-                <i class="fa-solid fa-pen-to-square edit-icon"></i>
-            </div>
-            <form (ngSubmit)="employeeData()">
-                <div class="row" style="margin: 1%;">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="employeeId">Employee Id</label>
-                            <input type="text" class="form-control" id="employeeId" formControlName="employeeId"  [value]="empData.Employee_id" readonly>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="organizationName">Organization Name</label>
-                            <input type="text" class="form-control" id="organizationName" formControlName="organizationName">
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3 ">
-                        <div class="form-group">
-                            <label for="designation">Designation</label>
-                            <input type="text" class="form-control" id="designation" formControlName="designation">
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="status">Status</label>
-                            <select class="form-control" id="status" formControlName="status">
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="margin: 1%;">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="probationPeriod">Probation Period</label>
-                            <input type="text" class="form-control" id="probationPeriod" formControlName="probationPeriod">
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="noticePeriod">Notice Period</label>
-                            <input type="text" class="form-control" id="noticePeriod" formControlName="noticePeriod">
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="currentCompanyExp">Current Company Experience</label>
-                            <input type="text" class="form-control" id="currentCompanyExp" formControlName="currentCompanyExp">
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="currentCompanyExp">Previous Experience</label>
-                            <input type="text" class="form-control" id="currentCompanyExp" formControlName="previousExp">
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="margin: 1%;">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="currentCompanyExp">Total Experience</label>
-                            <input type="text" class="form-control" id="currentCompanyExp" formControlName="totalExp">
-                            
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="currentCompanyExp">Pre Annual Salary</label>
-                            <input type="text" class="form-control" id="currentCompanyExp" formControlName="preAnnualSalary">
-                           
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="currentCompanyExp">Post Annual Salary</label>
-                            <input type="text" class="form-control" id="currentCompanyExp" formControlName="postAnnualSalary">
-                           
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="confirmationDate">Confirmation Date</label>
-                            <input type="date" class="form-control" id="confirmationDate" formControlName="confirmationDate">
-                           
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="margin: 1%;">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="currentCompanyExp">Effective Start Date</label>
-                            <input type="date" class="form-control" id="currentCompanyExp" formControlName="EffectiveStartDate">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="currentCompanyExp">Effective End Date</label>
-                            <input type="date" class="form-control" id="currentCompanyExp" formControlName="effectiveEndDate">
-                        </div>
-                    </div>
-                </div>
-                <div style="text-align: right; margin-right: 2%;">
-                    <button type="button" class="btn btn-info">Cancel</button>
-                    <button  class="btn btn-primary text-white m-2" type="submit">update</button>
-                </div>
             </form>
-    
+
         </div>
-    </div>
-    <hr class="hr">
+
+        <hr class="hr">
 
 
-</div> 
-<router-outlet></router-outlet>
+        <!--Employment Details-->
+
+        <div>
+
+            <h5 style="margin: 1% 0 1% 1.5%;">Employment Details : <i class="fa-solid fa-pen-to-square"></i></h5>
+
+            <form>
+
+                <div class="grid-container form-container">
+
+                    <div class="label-container">
+                        <label for="esd">Effective Start Date :</label>
+                        <input type="date" class="form-control" formControlName="effectiveStartDate">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="eed">Effective End Date :</label>
+                        <input type="date" class="form-control" formControlName="effectiveEndDate">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="persontype">Person Type :</label>
+                        <select id="persontype" class="form-control" formControlName="personType">
+                            <option value="" selected disabled>Select...</option>
+                            <option value="Candidate">Candidate</option>
+                            <option value="Employee">Employee</option>
+                        </select>
+                    </div>
+
+                    <div class="label-container">
+                        <label for="status">Status :</label>
+                        <select id="status" class="form-control" formControlName="status">
+                            <option value="" selected disabled>Select...</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+
+                    <div class="label-container">
+                        <label for="orgname">Organization Name :</label>
+                        <input type="text" class="form-control" formControlName="organizationName">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="dept">Department :</label>
+                        <select id="dept" class="form-control" formControlName="department">
+                            <option value="" selected disabled>Select...</option>
+                            <option value="Software Development">Software Development</option>
+                            <option value="Database Administration">Database Administration</option>
+                            <option value="Quality Assurance (QA) and Testing">Quality Assurance (QA) and Testing</option>
+                            <option value="DevOps">DevOps</option>
+                            <option value="IT Support/Help Desk">IT Support/Help Desk</option>
+                            <option value="Network and Infrastructure">Network and Infrastructure</option>
+                        </select>
+                    </div>
+
+                    <div class="label-container">
+                        <label for="desig">Designation :</label>
+                        <select id="desig" class="form-control" formControlName="designation">
+                            <option value="" selected disabled>Select...</option>
+                            <option value="Project Manager">Project Manager</option>
+                            <option value="Software Developer/Engineer">Software Developer/Engineer</option>
+                            <option value="Database Administrator (DBA)">Database Administrator (DBA)</option>
+                            <option value="QA Engineer">QA Engineer</option>
+                            <option value="Data Analyst">Data Analyst</option>
+                            <option value="DevOps Engineer">DevOps Engineer</option>
+                            <option value="Network Engineer">Network Engineer</option>
+                            <option value="Software Architect">Software Architect</option>
+                            <option value="Front-End Developer">Front-End Developer</option>
+                            <option value="Back-End Developer">Back-End Developer</option>
+                            <option value="Full-Stack Developer">Full-Stack Developer</option>
+                            <option value="Cloud Engineer">Cloud Engineer</option>
+                        </select>
+
+                    </div>
+
+                    <div class="label-container">
+                        <label for="cnfdate">Conformation Date :</label>
+                        <input type="date" class="form-control" formControlName="confirmationDate">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="doj">Date of Joining :</label>
+                        <input type="date" class="form-control" formControlName="dateOfJoining">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="CAS">Current Annual Salary :</label>
+                        <input type="number" class="form-control" formControlName="currentAnnualSalary">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="CExp">Current Experince :</label>
+                        <input type="text" class="form-control" formControlName="currentCompanyExp">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="PAS">Previous Annual Salary :</label>
+                        <input type="number" class="form-control" formControlName="previousAnnualSalary">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="PExp">Previous Experince :</label>
+                        <input type="text" class="form-control" formControlName="previousExp">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="TExp">Total Experince :</label>
+                        <input type="text" class="form-control" formControlName="totalExp">
+                    </div>
+
+                    <div class="label-container">
+                        <label for="PP">Probation Period :</label>
+                        <select id="PP" class="form-control" formControlName="probationPeriod">
+                            <option value="" disabled selected>Select...</option>
+                            <option value="3 months"> 3 Months</option>
+                            <option value="6 months">6 Months</option>
+                            <option value="9 months">9 Months</option>
+                            <option value="12 months">12 Months</option>
+                        </select>
+                    </div>
+
+                    <div class="label-container">
+                        <label for="NP">Notice Period :</label>
+                        <select id="NP" class="form-control" formControlName="noticePeriod">
+                            <option value="" disabled selected>Select...</option>
+                            <option value="1 month"> 1 Month</option>
+                            <option value="2 month"> 2 Months</option>
+                            <option value="3 month">3 Months</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <br>    
+                
+                <div class="btn-align">
+                    <button type="submit" class="btn btn-info">Update</button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary">Cancel</button>
+                </div>
+
+            </form>
+
+        </div>
+
+        <hr class="hr">
+
+        <div>
+
+            <h5 style="margin: 1% 0 1% 1.5%;">Address Details : <i class="fa-solid fa-pen-to-square"></i></h5>
+
+            <form >
+                
+                <div class="grid-container form-container">
+
+
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <!-- <div>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque neque consequatur eligendi velit tempore deleniti expedita autem? Repellendus nam tempore nemo officia, pariatur, nihil expedita eaque voluptatibus dolor optio eos.
+            Dolorem doloribus excepturi odit, consequuntur laudantium corporis, velit ex sequi quis veniam officiis voluptatum aliquam consectetur dolorum enim quasi rem reprehenderit suscipit molestiae quo ipsa eligendi iste. Consectetur, optio vero!
+            Aliquid vel aut a repudiandae blanditiis fugiat recusandae in provident magnam consequatur ipsum labore nobis eos aliquam, laboriosam autem nisi quibusdam reiciendis nemo animi tempore! Ratione officia deserunt temporibus voluptatibus.
+            Molestias laborum obcaecati odio eius excepturi quas debitis soluta nesciunt. Voluptate sit quos natus. Aperiam nisi esse laborum magni totam et facilis veritatis earum atque velit, consectetur dicta explicabo enim?
+            Hic libero ex cupiditate enim quasi qui eius deserunt possimus exercitationem architecto repellendus velit placeat, aut beatae ullam aliquam saepe officiis distinctio soluta doloremque ut similique consectetur? Consectetur, reprehenderit obcaecati.
+            A quo repudiandae accusantium magni voluptatum nemo aliquid architecto voluptates voluptas quas optio vero facere possimus pariatur, assumenda odit eum dolorum impedit natus ab neque dignissimos iste deleniti. Tempora, ut.
+            Rerum eveniet perferendis, similique asperiores amet et eaque aliquam consectetur, corrupti tenetur expedita enim doloremque deserunt mollitia repellendus est placeat architecto atque. A harum, blanditiis veniam cum aliquid saepe ea!
+            Est quos id in. Optio quibusdam vel commodi obcaecati cumque quisquam excepturi quis, incidunt dignissimos nemo ducimus molestias voluptatem in soluta iusto mollitia consequuntur perspiciatis sint debitis praesentium! Eveniet, consectetur!
+            Illum, nobis odit. Eligendi, cum ex. Reiciendis ullam earum quasi, aliquam enim commodi iure. Ducimus accusamus earum quos recusandae a dolor consequatur quas et totam iste, laborum libero illo odit.
+            Minus, ex nam sapiente delectus optio neque beatae ullam temporibus iusto corrupti deleniti sint voluptas enim nulla facilis. Temporibus inventore tempore atque eligendi! Beatae nesciunt doloremque, quaerat blanditiis minima harum.
+        </div> -->
+        
+    </div> 
+    <router-outlet></router-outlet>

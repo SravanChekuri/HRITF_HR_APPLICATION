@@ -25,7 +25,7 @@
 
         <div class="form-container"><!--Form sec start-->
 
-            <div><h5>Add details of new Candidate/Employee:</h5></div>
+            <div style="margin: 0 0 1.5% 0;"><h5>Add details of new Candidate/Employee:</h5></div>
 
             <div *ngIf="successmsg" class="success-msg"><img src=".../../../../../../../assets/Images/success-tick-dribbble-gif.gif" alt="Sucessfully img" class="sucessfull-img"><span class="success-text"> Employee Added Sucessfully to the database</span></div>
 
@@ -82,7 +82,6 @@
                                 <option value="Hyderabad">Chennai</option>
                                 <option value="Hyderabad">Kolkata</option>
                                 <option value="Hyderabad">Pune</option>
-
                             </select>
                             <div *ngIf="addEmpForm.get('Location').touched && addEmpForm.get('Location')?.hasError('required')" class="text-danger">
                                 *Location required
@@ -114,7 +113,7 @@
 
                         <div class="label-container">
                             <label for="dob">Date of Birth<span class="mandatory">*</span>:</label>
-                            <input type="date" class="form-control" formControlName="DateOfBirth">
+                            <input type="date" class="form-control" formControlName="DateOfBirth" [max]="today">
                             <div *ngIf="addEmpForm.get('DateOfBirth').touched && addEmpForm.get('DateOfBirth')?.hasError('required')" class="text-danger">
                                 *Date Of Birth is required
                             </div>
@@ -150,11 +149,11 @@
 
                     <br>
 
-                    <p>After saving the onboarding process will start and employee will receive a welcome email with the link to set hit password.</p>
+                    <p style="font-weight: 500;margin-top: 1%;">After saving the details, Onboarding process will start.</p>
 
                     <div class="button-container">
                         <button class="btn btn-info" type="submit" [disabled]="addEmpForm.invalid || submitted">save</button>&nbsp;&nbsp;
-                        <button class="btn btn-info" type="button">Cancel</button>
+                        <button class="btn btn-secondary" type="button">Cancel</button>
                     </div>
 
                 </form>

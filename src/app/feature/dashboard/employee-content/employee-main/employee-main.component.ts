@@ -17,12 +17,12 @@ export class EmployeeMainComponent implements OnInit{
 
   ngOnInit(){
     this.getAllperson();
-    console.log(this.allEmp);
+    // console.log(this.allEmp);
   }
 
   getAllperson(){
     this.service.getAllperson().subscribe(res=>{
-      console.log(res);
+      // console.log(res);
       this.empData=res['data'];
       this.allEmp=res['data'];
       this.filteredEmp=res['data'];
@@ -36,13 +36,13 @@ export class EmployeeMainComponent implements OnInit{
     }
     else{
       this.filteredEmp=this.allEmp.filter((employee)=>employee.Employee_First_Name.toLowerCase().includes(filterValueLower) ||
-      employee.EMPLOYEE_NUMBER.toLowerCase().includes(filterValueLower)||
+      employee.Employee_Number.toLowerCase().includes(filterValueLower)||
       employee.Last_Name.toLowerCase().includes(filterValueLower)||
       employee.Email.toLowerCase().includes(filterValueLower))
     }
   }
   updateEmp(filtemp) {
-    console.log("editdata", filtemp);
+    // console.log("editdata", filtemp);
     localStorage.setItem('empData', JSON.stringify(filtemp));
     // this.router.navigateByUrl('/home/employees/empdetails');
 }

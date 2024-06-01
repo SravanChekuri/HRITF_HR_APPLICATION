@@ -19,70 +19,55 @@ select.form-control {
     padding-right: 30px;
   }
 
-/* .sub-container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-} */
-
 
 .hr{
     border: none;
     height: 5px;
     background-color:#bfbcbc;
 }
-.search-sec{
-    margin: 1%;
-}
-.search-icon{
-    position: absolute;
-    top:7%;
-    left: 28.5%;
-    cursor: pointer;
-}
-.align{
-    margin:2%;
-}
-.bottom-spc{
-    margin-bottom: 100px;
-}
-.button{
-    margin-left: 85%;
-}
 
-.input{
-    width: 80%;
-}
 
-.first{
-    margin-left: 5%;
-}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3%;
+  }
 
-.drop-down{
-    width: 100%;
-}
+  .label-container{
+    margin: 1% 8% 1% 2%;
+  }
+  
+  .label-container > label{
+    font-weight:400;
+    /* color: #8C1428; */
+    margin-bottom: 2%;
+  }
 
-.main-container{
-    margin-left: 5%;
-}
-.margin{
-    margin-left: 3%;
-}
+  label{
+    font-weight:500;
+    /* color: #8C1428; */
+    margin-bottom: 2%;
+  }
 
-.empInfo{
-    margin: 2%;
+input{
+    border: 0.5px solid gray;
+    background-color:#e3f6fb;
+  }
+
+input, select{
     font-weight: 500;
 }
+  
+  .label-container > input , select{
+    border: 0.5px solid gray;
+    /* background-color: rgb(246, 243, 243); */
+    background-color:#e3f6fb;
+  }
 
-.card{
-    border: none;
-    margin: 1%;
-}
+  .form-container{
+    margin-left: 2%;
+  }
 
-.align-div{
-    margin: 1% 2% 1% 0;
-}
-
-p{
-    font-weight: bold;
-}
+  .btn-align{
+    margin: 2.3% 0 1% 85.6%;
+  }

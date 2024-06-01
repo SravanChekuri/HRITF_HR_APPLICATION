@@ -12,79 +12,71 @@ import { EmployeeDetailsService } from 'src/app/feature/Services/employee-detail
 
 
 export class EmployeeDetailsComponent implements OnInit{
+
   empData:any;
-  submitted:any=false;
   data:any;
-  ishide:any=false;
   empDataDetails:any;
+  submitted:any=false;
+  ishide:any=false;
+
+  
   updateForm:FormGroup;
-  employeeForm:FormGroup; 
+  employementForm:FormGroup; 
 
   isEditable: boolean = false;
   
   constructor(private service:EmployeeDetailsService,private formbulider:FormBuilder){
    
     this.empData = JSON.parse(localStorage.getItem('empData'));
-    this.editemp();
-    console.log('this.empData',this.empData);
+    // console.log('this.empData',this.empData);
 
   }
-  ngOnInit(): void {
+
+  ngOnInit(){
     this.form1();
-    this.form2()
   }
+
+
+// Candidate/Employee details 
 
   form1(){
-    console.log(formatDate(this.empData.Date_of_Joining, 'yyyy-MM-dd','en'));
-    
+            // console.log("editemp",this.empData);
+    // console.log(this.empData.Employee_First_Name);
+    // console.log('this.empData.WORKER_TYPE',this.empData.WORKER_TYPE);
+
     if (this.empData.WORKER_TYPE==='Employee'){
       this.ishide=true;
     }
 
     this.updateForm=this.formbulider.group({
+      startDate:[formatDate(this.empData.EFFECTIVE_START_DATE, 'yyyy-MM-dd','en'),Validators.required],
+      endDate:[formatDate(this.empData.EFFECTIVE_END_DATE,'yyyy-MM-dd','en'),Validators.required],
+      workerType:[this.empData.WORKER_TYPE,Validators.required],
+      employeeNumber:[this.empData.Employee_Number,Validators.required],
+      email:[this.empData.Email,Validators.required],
       firstName:[this.empData.Employee_First_Name,Validators.required],
       middleName:[this.empData.Middle_Name],
       lastName:[this.empData.Last_Name,Validators.required],
-      employeeNumber:[this.empData.EMPLOYEE_NUMBER,Validators.required],
-      dateOfJoining:[formatDate(this.empData.Date_of_Joining, 'yyyy-MM-dd','en'),Validators.required],
-      location:[this.empData.Location,Validators.required],
-      email:[this.empData.Email,Validators.required],
-      workerType:[this.empData.WORKER_TYPE,Validators.required],
-      startDate:[formatDate(this.empData.EFFECTIVE_START_DATE, 'yyyy-MM-dd','en'),Validators.required],
-      endDate:[formatDate(this.empData.EFFECTIVE_END_DATE,'yyyy-MM-dd','en'),Validators.required]
+      dateOfBirth:[formatDate(this.empData.DATE_OF_BIRTH,'yyyy-MM-dd','en'),Validators.required],
+      phoneNumber:[this.empData.MOBILE_NO,Validators.required],
+      location:[this.empData.JOB_LOCATION,Validators.required]
     });
-    this.updateForm.disable();
+
+    // this.updateForm.disable();
+
   }
   
-  toggleEdit(): void {
-    this.isEditable = !this.isEditable;
-    if (this.isEditable) {
-      this.updateForm.enable();
-    } else {
-      this.updateForm.disable();
-    }
-  }
-
-  form2(){
-    this.employeeForm=this.formbulider.group({
-      employeeId:[this.empData.Employee_id],
-      organizationName:['',Validators.required],
-      designation:['',Validators.required],
-      confirmationDate:['',Validators.required],
-      status:['',Validators.required],
-      probationPeriod:['',Validators.required],
-      noticePeriod:['',Validators.required],
-      currentCompanyExp:['',Validators.required],
-      previousExp:['',Validators.required],
-      totalExp:['',Validators.required],
-      preAnnualSalary:['',Validators.required],
-      postAnnualSalary:['',Validators.required],
-      EffectiveStartDate:['',Validators.required],
-      effectiveEndDate:['4712-12-31']
-    });
-  }
+  // toggleEdit(): void {
+  //   this.isEditable = !this.isEditable;
+  //   if (this.isEditable) {
+  //     this.updateForm.enable();
+  //   } else {
+  //     this.updateForm.disable();
+  //   }
+  // }
 
   update(){
+
     this.submitted=true;
 
     const employeeNumber = this.updateForm.get('employeeNumber');
@@ -93,22 +85,30 @@ export class EmployeeDetailsComponent implements OnInit{
     const empId=this.empData.Employee_id;
     console.log("empId",empId);
    
-   const empdata ={
-    First_Name:this.updateForm.value['firstName'],
-    Middle_Name:this.updateForm.value['middleName'],
-    Last_Name:this.updateForm.value['lastName'],
-    Employee_Number:this.updateForm.value['employeeNumber'],
-    Date_Of_Joining:this.updateForm.value['dateOfJoining'],
-    Location:this.updateForm.value['location'],
-    Email:this.updateForm.value['email'],
-    Worker_Type:this.updateForm.value['workerType'],
-    Effective_Start_Date:this.updateForm.value['startDate'],
-    Effective_End_Date:this.updateForm.value['endDate']
+    const empdata ={
+      Effective_Start_Date:this.updateForm.value['startDate'],
+      Effective_End_Date:this.updateForm.value['endDate'],
+      Worker_Type:this.updateForm.value['workerType'],
+      Employee_Number:this.updateForm.value['employeeNumber'],
+      Email:this.updateForm.value['email'],
+      First_Name:this.updateForm.value['firstName'],
+      Middle_Name:this.updateForm.value['middleName'],
+      Last_Name:this.updateForm.value['lastName'],
+      Date_Of_Birth:this.updateForm.value['dateOfBirth'],
+      Mobile_No:this.updateForm.value['phoneNumber'],
+      Job_Location:this.updateForm.value['location']
    }
+
    console.log("updateData",empdata);
 
-    this.service.updateEmp(empdata,empId).subscribe((res)=>{
-      alert("update success")
+    this.service.updateEmp(empdata,empId).subscribe((res:any)=>{
+      console.log(res);
+      console.log(res);
+      if (res && res.message) {
+        alert(res.message); 
+      }
+      this.ishide=true;
+
     },
     error=>{
       console.log(error);
@@ -120,65 +120,72 @@ export class EmployeeDetailsComponent implements OnInit{
     });
   }
 
-  employeeData(){
-    console.log(this.employeeForm.value);
-    const data={
-    Employee_Id:this.employeeForm.value['employeeId'],
-    Organization_Name:this.employeeForm.value['organizationName'],
-    Designation:this.employeeForm.value['designation'],
-    Confirmation_Date:this.employeeForm.value['confirmationDate'],
-    Status:this.employeeForm.value['status'],
-    Probation_Period:this.employeeForm.value['probationPeriod'],
-    Notice_Period:this.employeeForm.value['noticePeriod'],
-    Current_Company_Experience:this.employeeForm.value['currentCompanyExp'],
-    Previous_Experience:this.employeeForm.value['previousExp'],
-    Total_Experience:this.employeeForm.value['totalExp'],
-    Pre_Annual_Salary:this.employeeForm.value['preAnnualSalary'],
-    Post_Annual_Salary:this.employeeForm.value['postAnnualSalary'],
-    Effective_Start_Date:this.employeeForm.value['EffectiveStartDate'],
-    Effective_End_Date:this.employeeForm.value['effectiveEndDate']
- }
-    console.log("data",data);
- 
-    this.service.empData(this.empData.Employee_id,data).subscribe((res)=>{
-     alert("send data success")
-  },
-    error=>{
-      alert("send data fail");
-      console.log(error);
+
+// Employement Details
+
+  form2(){
+    this.employementForm=this.formbulider.group({
+      effectiveStartDate:['',Validators.required],
+      effectiveEndDate:['4712-12-31'],
+      personType:[,Validators.required],
+      status:['',Validators.required],
+      organizationName:['',Validators.required],
+      department:['',Validators.required],
+      designation:['',Validators.required],
+      confirmationDate:['',],
+      dateOfJoining:['',Validators.required],
+      currentAnnualSalary:['',Validators.required],
+      currentCompanyExp:['',Validators.required],
+      previousAnnualSalary:['',Validators.required],
+      previousExp:['',Validators.required],
+      totalExp:['',Validators.required],
+      probationPeriod:['',Validators.required],
+      noticePeriod:['',Validators.required],
     });
-    }
 
-  editemp(){
-
-      this.service.getEmpData(this.empData.Employee_id).subscribe((res)=>{
-        console.log(this.empData.Employee_id);
-       
-        console.log("empDataDetails",res);
-        this.empDataDetails=res['data']
-   
-        //console.log("empData",this.empDataDetails.ORGANIZATION_NAME);
-        this.employeeForm=this.formbulider.group({
-          // assignmentId:[this.empDataDetails.ASSIGNMENT_ID],
-          employeeId:[this.empData.Employee_id],
-          organizationName:[this.empDataDetails.ORGANIZATION_NAME,Validators.required],
-          designation:[this.empDataDetails.DESIGNATION,Validators.required],
-          confirmationDate:[formatDate(this.empDataDetails.CONFIRMATION_DATE, 'yyyy-MM-dd','en'),Validators.required],
-          status:[this.empDataDetails.STATUS,Validators.required],
-          probationPeriod:[this.empDataDetails.PROBATION_PERIOD,Validators.required],
-          noticePeriod:[this.empDataDetails.NOTICE_PERIOD,Validators.required],
-          currentCompanyExp:[this.empDataDetails.CURRENT_COMPANY_EXPERIENCE,Validators.required],
-          previousExp:[this.empDataDetails.PREVIOUS_EXPERIENCE,Validators.required],
-          totalExp:[this.empDataDetails.TOTAL_EXPERIENCE,Validators.required],
-          preAnnualSalary:[this.empDataDetails.PRE_ANNUAL_SALARY,Validators.required],
-          postAnnualSalary:[this.empDataDetails.POST_ANNUAL_SALARY,Validators.required],
-          EffectiveStartDate:[formatDate(this.empDataDetails.EFFECTIVE_START_DATE, 'yyyy-MM-dd','en'),Validators.required],
-          effectiveEndDate:['4712-12-31']
-     })
-
-      });
-    }
-   
+  }
   
+  employementData(){
+    console.log(this.employementForm.value);
+
+    const data = {
+      Effective_Start_Date:this.employementForm.value['effectiveStartDate'],
+      Effective_End_Date:this.employementForm.value['effectiveEndDate'],
+      Person_Type:this.employementForm.value['personType'],
+      Status:this.employementForm.value['status'],
+      Organization_Name:this.employementForm.value['organizationName'],
+      Department:this.employementForm.value['department'],
+      Designation:this.employementForm.value['designation'],
+      Confirmation_Date:this.employementForm.value['confirmationDate'],
+      Date_Of_Joining:this.employementForm.value['dateOfJoining'],
+      Ctc:this.employementForm.value['currentAnnualSalary'],
+      Current_Company_Experience:this.employementForm.value['currentCompanyExp'],
+      Post_Annual_Salary:this.employementForm.value['previousAnnualSalary'],
+      Previous_Experience:this.employementForm.value['previousExp'],
+      Total_Experience:this.employementForm.value['totalExp'],
+      Probation_Period:this.employementForm.value['probationPeriod'],
+      Notice_Period:this.employementForm.value['noticePeriod']
+    }
+
+    console.log("data",data);
+
+    this.service.empData(this.empData.Employee_id,data).subscribe((res:any)=>{
+
+      if (res && res.message) {
+        alert(res.message);
+      }
+    },
+    error=>{
+      console.log(error);
+      if (error.error && error.error.message){
+        alert(error.error.message)
+      }
+      else {
+        console.log(error);
+        alert("An error occurred: " + error.statusText);
+      } 
+    })
+  }
+
   
 }
