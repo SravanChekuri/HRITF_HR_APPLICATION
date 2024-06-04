@@ -38,6 +38,9 @@ export class EmployeeDetailsComponent implements OnInit{
 
   msg:any=''; //for storing msg value from the backend
 
+  empRecord:any;
+  startDate:any;
+  endDate:any = '4712-12-31';
 
   constructor(private service:EmployeeDetailsService,private formbulider:FormBuilder){
    
@@ -54,10 +57,13 @@ export class EmployeeDetailsComponent implements OnInit{
 
     this.form2();
 
+    //***setting default values to respective worker type ***
+
     if(this.candOrempFormUpdate.get('workerType').value === 'Candidate'){
       this.employementForm.patchValue({ personType:'Candidate'});
     }
     else this.employementForm.patchValue({ personType: 'Employee'})
+
 
   }
 
@@ -211,6 +217,57 @@ export class EmployeeDetailsComponent implements OnInit{
         this.updateFailMsg = false;
       },3000);
     });
+  }
+
+
+  onStartDateChange(event:any){
+    // console.log("start date:",event.target.value);
+        this.startDate = event.target.value;
+        // console.log("Emp/Candi Start Date:",this.startDate);
+  }
+
+
+  onEndDateChange(event:any){
+    console.log("end date:",event.target.value);
+        this.endDate = event.target.value;
+        console.log("Emp/Candi End Date",this.endDate); 
+  }
+
+
+  submitData(){
+
+    // console.log(this.startDate);
+    // console.log(this.endDate);
+    
+        this.service.sendDate(this.startDate,this.empData.Employee_id,this.endDate).subscribe((res)=>{
+            // console.log(res);
+          this.empRecord = res['data'];
+            // console.log("empRecord",this.empRecord.Employee_First_Name);
+          this.candOrempFormUpdate = this.formbulider.group({
+            startDate:[formatDate(this.empRecord.EFFECTIVE_START_DATE, 'yyyy-MM-dd','en'),Validators.required],
+            endDate:[formatDate(this.empRecord.EFFECTIVE_END_DATE,'yyyy-MM-dd','en'),Validators.required],
+            workerType:[this.empRecord.WORKER_TYPE,Validators.required],
+            employeeNumber:[this.empRecord.Employee_Number,Validators.required],
+            email:[this.empRecord.Email,Validators.required],
+            firstName:[this.empRecord.Employee_First_Name,Validators.required],
+            middleName:[this.empRecord.Middle_Name],
+            lastName:[this.empRecord.Last_Name,Validators.required],
+            dateOfBirth:[formatDate(this.empRecord.DATE_OF_BIRTH,'yyyy-MM-dd','en'),Validators.required],
+            phoneNumber:[this.empRecord.MOBILE_NO,Validators.required],
+            location:[this.empRecord.JOB_LOCATION,Validators.required]
+          })
+        },
+          error=>{
+            // console.log(error);
+            if(error.error && error.error.message){
+              this.updateFailMsg = true;
+              this.msg = error.error.message;
+            };
+            setTimeout(() =>{
+              this.updateFailMsg = false;
+            },3000);      
+      
+          });
   }
 
 

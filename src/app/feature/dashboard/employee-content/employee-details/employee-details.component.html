@@ -1,29 +1,42 @@
     <div class="emp-details">
-        <div style="margin:1% 2% 0 2%; text-align:right;"><a routerLink="/home/employees/empProfile"><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to all Profiles</a></div>
+        <div style="margin:1% 2% 0 2%; text-align:right;"><a routerLink="/home/employees/empProfile"><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to Profiles Search</a></div>
 
         <!-- <hr class="hr"> -->
 
-        <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
 
-        <div class="d-flex flex-row grid-container" style="margin:0 0 1% 3%;">
-            <div>
-                <label for="stratDate">Effective Start Date :</label><br>
-                <input type="date" class="form-control">
+        <hr class="hr">
+
+        <div class="profile-container">
+            <img src="../../../../../assets/Images/emp_profile.png" alt="emp Img" class="profile-img">
+            <div class="profile-info"><h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Name :' : 'Candidate Name :' }} <span style="color: red;">{{ empData.Employee_First_Name }} {{ empData.Middle_Name }} {{ empData.Last_Name }}</span></h6>
+                <h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Number :' : 'Candidate Number :' }}<span style="color: red;"> {{ empData.Employee_Number }}</span></h6>
+                <!-- <h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Status :' : '' }} {{ empDataDetails.STATUS }}</h6> -->
             </div>
-            <div>
-                <label for="stratDate">Effective End Date :</label><br>
-                <input type="date" class="form-control">
-            </div>
-            <!-- <div>
-                <button class="btn btn-info">Search</button>
-            </div> -->
         </div>
 
         <hr class="hr">
 
-
         <!--- Candidate/Employee details -->
         <div>
+
+            <div [hidden]="!isEditable1">
+                <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
+
+                <div class="d-flex flex-row grid-container" style="margin:0 0 1% 3%;">
+                    <div>
+                        <label for="stratDate">Effective Start Date :</label><br>
+                        <input type="date" id="startDate" class="form-control" (change)="onStartDateChange($event)">
+                    </div>
+                    <div>
+                        <label for="endDate">Effective End Date :</label><br>
+                        <input type="date" id="endDate" class="form-control" [value]="endDate" (change)="onEndDateChange($event)">
+                    </div>
+                    <div>
+                        <label for="src-btn" style="color: white;">Search :</label><br>
+                        <button id="src-btn" class="btn btn-info" (click)="submitData()">Search</button>
+                    </div>
+                </div>
+            </div>
 
             <h5 style="margin: 1% 0 1% 1.5%; ">{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Details :' : 'Candidate Details :' }}&nbsp; <span (click)="toggleEdit1()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
 
@@ -130,6 +143,10 @@
                         <label for="stratDate">Effective End Date :</label><br>
                         <input type="date" class="form-control">
                     </div>
+                    <div>
+                        <label for="" style="color: white;">Search :</label><br>
+                        <button class="btn btn-info">Search</button>
+                    </div>        
                 </div>
             </div>    
 

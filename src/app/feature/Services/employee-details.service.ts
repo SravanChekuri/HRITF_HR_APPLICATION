@@ -26,4 +26,14 @@ export class EmployeeDetailsService {
     return this.http.get("http://127.0.0.1:5000/get_employement_details/"+id)
   }
 
+  sendDate(date:any,id:any,enddate:any){
+    return this.http.get("http://127.0.0.1:5000/get_employee_details/"+id+'/'+date+'/'+enddate)
+
+  }
+
+  empSendDate(date:any,id:any,enddate:any){
+    return this.http.get("http://127.0.0.1:5000/get_employement_detail/"+id+'/'+date+'/'+enddate)
+
+  }
+
 }
