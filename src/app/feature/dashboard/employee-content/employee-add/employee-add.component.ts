@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployeeAddService } from 'src/app/feature/Services/employee-add.service';
 
@@ -26,12 +26,16 @@ export class EmployeeAddComponent implements OnInit{
   bulkmsg:any='';
 
   today: string;
+  maxDate: string;
+  minDate: string;
 
   constructor(private formBuilder:FormBuilder,private service:EmployeeAddService,private router:Router){ }
 
   ngOnInit(): void {
     this.empData();
     this.today = this.getTodayDate();
+    this.maxDate = this.getMaxDate();
+    this.minDate = this.getMinDate();
     this.addEmpForm.patchValue({ workerType: 'Candidate' });
   }
   
@@ -47,7 +51,7 @@ export class EmployeeAddComponent implements OnInit{
       Email:['',[Validators.required,Validators.email]],
       workerType:['',Validators.required],
       startDate:['',Validators.required],
-      DateOfBirth:['',Validators.required],
+      DateOfBirth:['',[Validators.required,this.dateOfBirthValidator.bind(this)]],
       endDate:['4712-12-31']
     });
 
@@ -63,13 +67,46 @@ export class EmployeeAddComponent implements OnInit{
     return null;
   }
 
-  getTodayDate(): string {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    const day = String(today.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
+      getTodayDate(): string {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        const day = String(today.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+
+      getMaxDate(): string {
+        const today = new Date();
+        const year = today.getFullYear() - 18;
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+
+      getMinDate(): string {
+        const today = new Date();
+        const year = today.getFullYear() - 67;
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+
+      dateOfBirthValidator(control: AbstractControl): { [key: string]: boolean } | null {
+        if (!control.value) {
+          return null; 
+        }
+        const dob = new Date(control.value);
+        const today = new Date();
+        const minAge = 18;
+        const maxAge = 67;
+        const minDate = new Date(today.getFullYear() - maxAge, today.getMonth(), today.getDate());
+        const maxDate = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
+
+        if (dob < minDate || dob > maxDate) {
+          return { invalidDateOfBirth: true };
+        }
+        return null;
+      }
 
   submitEmpData(){
     this.submitted=true

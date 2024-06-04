@@ -61,13 +61,44 @@ input, select{
   .label-container > input , select{
     border: 0.5px solid gray;
     /* background-color: rgb(246, 243, 243); */
-    background-color:#e3f6fb;
+    /* background-color:#e3f6fb; */
+  }
+
+  select{
+        background-color:#e3f6fb;
+
   }
 
   .form-container{
-    margin-left: 2%;
+    margin: 0 0 3% 2%;
   }
 
   .btn-align{
     margin: 2.3% 0 1% 85.6%;
   }
+
+  input[disabled],
+  select[disabled],
+  textarea[disabled],
+  button[disabled] {
+  cursor: not-allowed;
+}
+
+.success-msg{
+  width: 20%;
+  text-align: center; 
+  margin-left: 77%; 
+  color: green; 
+  font-weight: bold; 
+  background-color: rgb(154, 239, 154);
+}
+
+.fail-msg{
+  width: 40%;
+  text-align: center; 
+  margin-left: 57%;
+  font-weight: bold; 
+  color: red;
+  background-color: rgb(250, 159, 159);
+ 
+}

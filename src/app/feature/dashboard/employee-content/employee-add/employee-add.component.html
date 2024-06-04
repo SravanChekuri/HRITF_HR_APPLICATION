@@ -113,10 +113,13 @@
 
                         <div class="label-container">
                             <label for="dob">Date of Birth<span class="mandatory">*</span>:</label>
-                            <input type="date" class="form-control" formControlName="DateOfBirth" [max]="today">
+                            <input type="date" class="form-control" formControlName="DateOfBirth" [min]="minDate" [max]="maxDate">
                             <div *ngIf="addEmpForm.get('DateOfBirth').touched && addEmpForm.get('DateOfBirth')?.hasError('required')" class="text-danger">
                                 *Date Of Birth is required
                             </div>
+                            <div *ngIf="addEmpForm.get('DateOfBirth').touched && addEmpForm.get('DateOfBirth')?.hasError('invalidDateOfBirth')" class="text-danger">
+                                Age must be in between 18 and 67 years old.
+                              </div>
                         </div>
 
                         <div class="label-container">

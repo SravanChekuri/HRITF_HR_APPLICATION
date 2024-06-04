@@ -14,6 +14,9 @@
                 <label for="stratDate">Effective End Date :</label><br>
                 <input type="date" class="form-control">
             </div>
+            <!-- <div>
+                <button class="btn btn-info">Search</button>
+            </div> -->
         </div>
 
         <hr class="hr">
@@ -22,9 +25,12 @@
         <!--- Candidate/Employee details -->
         <div>
 
-            <h5 style="margin: 1% 0 1% 1.5%; ">{{ updateForm.get('workerType').value === 'Employee' ? 'Employee Details :' : 'Candidate Details :' }}&nbsp; <i class="fa-solid fa-pen-to-square"></i></h5>
+            <h5 style="margin: 1% 0 1% 1.5%; ">{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Details :' : 'Candidate Details :' }}&nbsp; <span (click)="toggleEdit1()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
 
-            <form [formGroup]="updateForm">
+            <div *ngIf="updateSuccessMsg" class="success-msg"><p>{{ msg }}</p></div>
+            <div *ngIf="updateFailMsg" class="fail-msg"><p>{{ msg }}</p></div>
+
+            <form [formGroup]="candOrempFormUpdate">
 
                 <div class="grid-container form-container">
 
@@ -48,7 +54,7 @@
                     </div>
 
                     <div class="label-container">
-                        <label for="empno">{{ updateForm.get('workerType').value === 'Employee' ? 'Employee Number' : 'Candidate Number' }} :</label>
+                        <label for="empno">{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Number' : 'Candidate Number' }} :</label>
                         <input type="text" id="empno" class="form-control" formControlName="employeeNumber">
                     </div>
 
@@ -74,7 +80,7 @@
 
                     <div class="label-container">
                         <label for="dob">Date of Birth :</label>
-                        <input type="date" class="form-control" formControlName="dateOfBirth">
+                        <input type="date" class="form-control" formControlName="dateOfBirth" [min]="minDate" [max]="maxDate">
                     </div>
 
                     <div class="label-container">
@@ -96,8 +102,8 @@
                 
                 </div>
 
-                <div class="btn-align">
-                    <button type="submit" class="btn btn-info">Update</button>&nbsp;&nbsp;
+                <div class="btn-align" [hidden]="!isEditable1">
+                    <button type="submit" class="btn btn-info" (click)="update()">Update</button>&nbsp;&nbsp;
                     <button type="button" class="btn btn-secondary">Cancel</button>
                 </div>
 
@@ -112,11 +118,26 @@
 
         <div>
 
-            <h5 style="margin: 1% 0 1% 1.5%;">Employment Details : <i class="fa-solid fa-pen-to-square"></i></h5>
+            <div [hidden]="!isEditable2">
+                <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
 
-            <form>
+                <div class="d-flex flex-row grid-container" style="margin:0 0 1% 3%;">
+                    <div>
+                        <label for="stratDate">Effective Start Date :</label><br>
+                        <input type="date" class="form-control">
+                    </div>  
+                    <div>
+                        <label for="stratDate">Effective End Date :</label><br>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+            </div>    
 
-                <div class="grid-container form-container">
+            <h5 style="margin: 2% 0 1% 1.5%;">Employment Details : <span (click)="toggleEdit2()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
+
+            <form [formGroup]="employementForm">
+
+                <div class="grid-container form-container" style="margin-bottom: 4%;">
 
                     <div class="label-container">
                         <label for="esd">Effective Start Date :</label>
@@ -130,14 +151,14 @@
 
                     <div class="label-container">
                         <label for="persontype">Person Type :</label>
-                        <select id="persontype" class="form-control" formControlName="personType">
-                            <option value="" selected disabled>Select...</option>
+                        <select id="persontype" class="form-control form-selected" formControlName="personType">
+                            <option value="" disabled >Select...</option>
                             <option value="Candidate">Candidate</option>
                             <option value="Employee">Employee</option>
                         </select>
                     </div>
 
-                    <div class="label-container">
+                    <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
                         <label for="status">Status :</label>
                         <select id="status" class="form-control" formControlName="status">
                             <option value="" selected disabled>Select...</option>
@@ -195,26 +216,27 @@
                     </div>
 
                     <div class="label-container">
-                        <label for="CAS">Current Annual Salary :</label>
+                        <label for="CAS" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">Current Annual Salary :</label>
+                        <label for="CAS" [hidden]="candOrempFormUpdate.get('workerType').value === 'Employee'">CTC :</label>
                         <input type="number" class="form-control" formControlName="currentAnnualSalary">
                     </div>
 
-                    <div class="label-container">
+                    <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
                         <label for="CExp">Current Experince :</label>
                         <input type="text" class="form-control" formControlName="currentCompanyExp">
                     </div>
 
-                    <div class="label-container">
+                    <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
                         <label for="PAS">Previous Annual Salary :</label>
                         <input type="number" class="form-control" formControlName="previousAnnualSalary">
                     </div>
 
-                    <div class="label-container">
+                    <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
                         <label for="PExp">Previous Experince :</label>
                         <input type="text" class="form-control" formControlName="previousExp">
                     </div>
 
-                    <div class="label-container">
+                    <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
                         <label for="TExp">Total Experince :</label>
                         <input type="text" class="form-control" formControlName="totalExp">
                     </div>
@@ -241,10 +263,8 @@
                     </div>
 
                 </div>
-
-                <br>    
                 
-                <div class="btn-align">
+                <div class="btn-align" [hidden]="!isEditable2" style="margin-top:4%;">
                     <button type="submit" class="btn btn-info">Update</button>&nbsp;&nbsp;
                     <button type="button" class="btn btn-secondary">Cancel</button>
                 </div>
@@ -255,9 +275,9 @@
 
         <hr class="hr">
 
-        <div>
+        <!--<div>
 
-            <h5 style="margin: 1% 0 1% 1.5%;">Address Details : <i class="fa-solid fa-pen-to-square"></i></h5>
+            <h5 style="margin: 1% 0 1% 1.5%;">Address Details :<span><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
 
             <form >
                 
@@ -269,8 +289,8 @@
 
             </form>
 
-        </div>
-
+        </div>-->
+        
         <!-- <div>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque neque consequatur eligendi velit tempore deleniti expedita autem? Repellendus nam tempore nemo officia, pariatur, nihil expedita eaque voluptatibus dolor optio eos.
             Dolorem doloribus excepturi odit, consequuntur laudantium corporis, velit ex sequi quis veniam officiis voluptatum aliquam consectetur dolorum enim quasi rem reprehenderit suscipit molestiae quo ipsa eligendi iste. Consectetur, optio vero!
