@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../Services/login.service';
+import { AuthService } from '../Auth-Service/auth.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'login',
@@ -13,7 +16,7 @@ export class LoginComponent {
   data:FormGroup;
   loginform:FormGroup;
 
-  loginFail:boolean=false;
+  // loginFail:boolean=false;
   submitted:boolean=false;
 
   email:string='';
@@ -23,7 +26,7 @@ export class LoginComponent {
 
   passwordVisible: boolean = false;
 
-  constructor(private formbuilder:FormBuilder, private service:LoginService, private router:Router){}
+  constructor(private formbuilder:FormBuilder, private service:LoginService, private router:Router, private AuthService:AuthService){}
 
   ngOnInit(): void {
     this.logininitilization();
@@ -49,33 +52,64 @@ export class LoginComponent {
 
     this.service.loginfunctionality1(data).subscribe(res => {
       // alert("Login Success")
-      this.successMessage = 'Successfully logged in';
+      // this.successMessage = 'Successfully logged in';
       // this.router.navigate(['/home']);
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "Login Successfull 🎉",
+        text:"You have successfully login into HRIT Factory HR compensation application",
+        showConfirmButton: false,
+        width:400,
+        timer: 2000
+      });
       setTimeout(() => {
-        this.router.navigate(['/home']);
+        // this.router.navigate(['/home']);
+        this.onlogin();
       }, 1500);
-      console.log(res);
+                // console.log(res);
     },error=>{
       // alert("Incorrect credintial");
-      this.loginFail=!this.loginFail;
-      // console.log(error);
+      // this.loginFail=!this.loginFail;
+              // console.log(error);
       if (error.error && error.error.error){
         // alert(error.error.error);
         this.errorMsg=error.error.error;
+
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "Failed to Login ☹️",
+          text: `${this.errorMsg}`,
+          width:400,
+        });
       }else{
         // console.log(error);
         this.errorMsg=error.statusText;
+        Swal.fire({
+          position: "top",
+          title: "The Server?",
+          text: "🤔 Backend Server is not running?",
+          icon: "question",
+          width:400,
+        });
       }
     });
     }
 
     resetlogin(){
-      this.loginFail=false;
-      this.successMessage = '';
+      // this.loginFail=false;
+      // this.successMessage = '';
       // this.loginform.reset();
     }
     
     togglePasswordVisibility() {
       this.passwordVisible = !this.passwordVisible; 
     }
+
+    onlogin(){
+      this.AuthService.Login();
+    }
+
+
 }

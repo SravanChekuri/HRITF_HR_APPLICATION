@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { AuthService } from '../../../feature/Auth-Service/auth.service';
+
 
 @Component({
   selector: 'sidebar',
@@ -7,6 +9,13 @@ import { DropdownComponent } from './dropdown/dropdown.component';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+
+  constructor(private AuthService:AuthService) {}
+
+  onlogout(){
+    this.AuthService.Logout();
+  }
+
 
   dropdownItems = [
     { name: 'Overview',route:'/home/employees',icon:'fa-clipboard' },
@@ -24,21 +33,30 @@ export class SidebarComponent {
       {
         name:'Add a New User',
         route:'/home/employees/add-newrole',
-        icon: 'fa-cog'}],
+        icon: 'fa-cog'},
+      {
+        name: 'View all Users',
+        route: '/home/employees/all-users',
+        icon: 'fa-user'
+      },
+      {
+        name: 'Backend Data',
+        route: '/home/employees/backend-data',
+        icon: 'fa-cog'
+      }
+    ],
       icon: 'fa-cog'
     },
   ];
 
   @ViewChild(DropdownComponent) dropdownComponent: DropdownComponent;
 
-  constructor() {
-    // Populate dropdownItems
-  }
 
   collapseEmployeesDropdown() {
     if (this.dropdownComponent) {
       this.dropdownComponent.collapseEmployeesDropdown();
     }
   }
+
 
 }

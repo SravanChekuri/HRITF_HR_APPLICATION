@@ -5,12 +5,13 @@ import { PageNotfoundComponent } from './core/page-notfound/page-notfound.compon
 // import { SignupComponent } from './feature/login/sign-up/sign-up.component';
 import { ForgotpasswordComponent } from './feature/login/forgotpassword/forgotpassword.component';
 import { ResetPasswordComponent } from './feature/login/reset-password/reset-password.component';
+import { AuthGuard } from './feature/Route-Guard/auth.guard';
 const routes: Routes = [
-  {path:'',component:LoginComponent},
-  // {path:'signUp',component:SignupComponent},
+  {path:'login',component:LoginComponent},
   {path:'forgotpassword',component:ForgotpasswordComponent},
   {path:'resetpassword',component:ResetPasswordComponent},
-  {path: 'home', loadChildren: () => import('./feature/dashboard/dashboard.module').then(mod => mod.DashboardModule),},
+  {path: 'home', loadChildren: () => import('./feature/dashboard/dashboard.module').then(mod => mod.DashboardModule),canActivate:[AuthGuard]},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path:'**',component:PageNotfoundComponent}
 ];
 

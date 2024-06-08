@@ -20,6 +20,8 @@ export class ResetPasswordComponent implements OnInit {
   newPasswordVisible: boolean = false;
   reEnterPasswordVisible: boolean = false;
 
+  // loading:boolean = false;
+
   // pwSuccessMsg:string='';
   // pwFailMsg:string='';
 
@@ -28,7 +30,7 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit(){
     this.route.params.subscribe(params =>{
       this.email=params['email'];
-      console.log("reset email:",this.email);
+      // console.log("reset email:",this.email);
     })
     this.resetFormIntilization()
   }
@@ -82,12 +84,16 @@ export class ResetPasswordComponent implements OnInit {
         Email_Id: this.email
       };
       // console.log("emailreset",newPasswordSend);
+      // this.loading = true;
 
       this.service.newPassword(newPasswordSend).subscribe((res)=>{
         // alert("successfully changed password")
+        // this.loading = false;
+
         this.passwordChanged=true;
         // this.pwSuccessMsg= (res as any).message;
       }, error=>{
+        // this.loading = false;
         // alert("fail to change password")
         // this.pwFailMsg=error.error.message;
         console.log(error.error.message);

@@ -10,23 +10,25 @@ import { EmployeeDetailsComponent } from '../employee-content/employee-details/e
 import { EmployeeLettersTemplatesComponent } from '../employee-content/employee-letters-templates/employee-letters.component';
 import { EmployeeGenerateLettersComponent } from '../employee-content/employee-generate-letters/employee-generate-letters.component';
 import { EmployeeNewroleComponent } from '../employee-content/employee-newrole/employee-newrole.component';
+import { AuthGuard } from '../../Route-Guard/auth.guard';
 
 const routes: Routes = [
   {path: "",
   component: MainLayoutComponent,
+  canActivate:[AuthGuard],
   children:[
-      {path:'', component:DashHomeComponent},
+      {path:'', component:DashHomeComponent,canActivate:[AuthGuard]},
       {path:'employees',
       component:EmployeeMainComponent,
+      canActivate:[AuthGuard],
       children: [
-        {path: '', component:EmployeeSearchComponent},
-        {path:'addemp',component:EmployeeAddComponent},
-        {path:'empProfile',component:EmployeeMainComponent},
-        {path:'add-newrole',component:EmployeeNewroleComponent},
-        // {path:'empdetails/:id',component:EmployeeDetailsComponent},
-        {path:'empdetails',component:EmployeeDetailsComponent},
-        {path:'letter-templates',component:EmployeeLettersTemplatesComponent},
-        {path:'generate-letters',component:EmployeeGenerateLettersComponent},
+        {path: '', component:EmployeeSearchComponent , canActivate:[AuthGuard]},
+        {path:'addemp',component:EmployeeAddComponent, canActivate:[AuthGuard]},
+        {path:'empProfile',component:EmployeeMainComponent, canActivate:[AuthGuard]},
+        {path:'add-newrole',component:EmployeeNewroleComponent, canActivate:[AuthGuard]},
+        {path:'empdetails',component:EmployeeDetailsComponent, canActivate:[AuthGuard]},
+        {path:'letter-templates',component:EmployeeLettersTemplatesComponent, canActivate:[AuthGuard]},
+        {path:'generate-letters',component:EmployeeGenerateLettersComponent, canActivate:[AuthGuard]},
       ]
       }
   ]

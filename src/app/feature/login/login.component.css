@@ -53,14 +53,11 @@ input:focus{
 }
 
 /* css for error messages */
-.error-msg{
+/* .error-msg{
     color: red;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 12px;
     text-align: center;
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
-}
+} */
 
 .text-danger{
     font-weight: bold;
@@ -82,15 +79,14 @@ label{
     margin: 2%;
 }
 
-.success-div{
+/* .success-div{
     color: rgb(11, 193, 11);
     font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
     font-size: 12px;
     text-align: center;
     text-shadow: 1px 1px green;
-
-}
+} */
 
 
 /* alignments for different desktop screens */
