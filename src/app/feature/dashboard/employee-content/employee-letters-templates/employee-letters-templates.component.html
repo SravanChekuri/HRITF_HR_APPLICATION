@@ -1,5 +1,5 @@
 <div class="main-container">
-    <div>
+    <div >
         <div class="m-5">
             <label for="letterType">Select Letter Type:</label>
             <select id="letterType" (change)="onLetterTypeChange($event)" class="form-control w-50" >
@@ -9,6 +9,7 @@
                 </ng-container>
             </select>
           </div>
+          
           <div class="margin m-5">
            
             <input type="file" id="rtfFile" (change)="onFileChange($event)" accept=".rtf" class="form-control w-50">
@@ -19,14 +20,34 @@
             
             <button (click)="displayPdf(letterId)" class="btn btn-primary m-3"> View </button>
             <br/>
-            <div class="d-flex flex-column">
-                <label for="">Letter ID</label>
-           <input type="text" value="{{letterId}}" class="form-control w-50" >
-
-            </div>
+            <!-- <form action="" (ngSubmit)="genarateletter()">
+                <div class="d-flex flex-column">
+                    <label for="">Letter Type</label>
+               <input type="text" value="{{letterType}}" class="form-control w-50" formControlName="letterType">
+    
+                </div>
+              
+                <div class="d-flex flex-column">
+                    <label for="">Employee Number</label>
+               <input type="text" class="form-control w-50" formControlName="employeeNumber">
+    
+                </div>
+                <div class="d-flex flex-column">
+                    <label for="">CTC</label>
+               <input type="text" class="form-control w-50" formControlName="ctc">
+    
+                </div>
+                <button class="btn btn-primary m-2" type="submit">Genarate Letter</button>
+                
+            </form> -->
+            
            
           </div>
-
+          
+        
     </div>
 </div>
+
+
 <router-outlet></router-outlet>
+ 

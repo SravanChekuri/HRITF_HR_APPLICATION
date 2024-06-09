@@ -10,7 +10,10 @@ import { EmployeeDetailsComponent } from '../employee-content/employee-details/e
 import { EmployeeLettersTemplatesComponent } from '../employee-content/employee-letters-templates/employee-letters.component';
 import { EmployeeGenerateLettersComponent } from '../employee-content/employee-generate-letters/employee-generate-letters.component';
 import { EmployeeNewroleComponent } from '../employee-content/employee-newrole/employee-newrole.component';
+import { EmployeeViewallUsersComponent } from '../employee-content/employee-viewall-users/employee-viewall-users.component';
+import { EmployeeBackendDataSettingsComponent } from '../employee-content/employee-backend-data-settings/employee-backend-data-settings.component';
 import { AuthGuard } from '../../Route-Guard/auth.guard';
+
 
 const routes: Routes = [
   {path: "",
@@ -29,6 +32,9 @@ const routes: Routes = [
         {path:'empdetails',component:EmployeeDetailsComponent, canActivate:[AuthGuard]},
         {path:'letter-templates',component:EmployeeLettersTemplatesComponent, canActivate:[AuthGuard]},
         {path:'generate-letters',component:EmployeeGenerateLettersComponent, canActivate:[AuthGuard]},
+        {path:'all-users',component:EmployeeViewallUsersComponent,canActivate:[AuthGuard]},
+        {path:'backend-data',component:EmployeeBackendDataSettingsComponent,canActivate:[AuthGuard]},
+
       ]
       }
   ]

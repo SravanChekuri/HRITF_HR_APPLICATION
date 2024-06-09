@@ -1,32 +1,35 @@
 <div class="main-container">
-        <div>
-            <form action="" [formGroup]="genarateLetterForm" (ngSubmit)="Genarate()">
-             <div class="m-5">
-                 <label for="letterType">Select Letter Type:</label>
-                 <select id="letterType" (change)="onLetterTypeChange($event)" class="form-control w-50" formControlName="letterTypeName">
-                     <option value="">select</option>
-                     <ng-container *ngFor="let data of lettersData">
-                     <option value={{data.name}}>{{data.name}}</option>
-                     </ng-container>
-                 </select>
-               </div>
-               <div class="m-5">
-                 <label for="">Letter Id</label>
-                 <input type="text" value={{letterId}} class="form-control w-50" formControlName="letterIdNumber">
-      
-               </div>
-               <div class="m-5">
-                 <label for="">Employee Number</label>
-                 <input type="text"  class="form-control w-50" formControlName="employeeNumber" formControlName="employeeNumber">
-      
-               </div>
-               <div class="m-5">
-                 <label for="">CTC</label>
-                 <input type="text"  class="form-control w-50" formControlName="ctc">
-      
-               </div>
-               <button class="btn btn-primary m-5" type="submit">Genarate Letter</button>
-            </form>
-         </div>
+  <div>
+     <form action="" [formGroup]="genarateLetterForm" (ngSubmit)="Genarate()">
+      <div class="m-5">
+          <label for="letterType">Select Letter Type:</label>
+          <select id="letterType" (change)="onLetterTypeChange($event)" class="form-control w-50" formControlName="letterTypeName">
+              <option value="">select</option>
+              <ng-container *ngFor="let data of lettersData">
+              <option value={{data.name}}>{{data.name}}</option>
+              </ng-container>
+          </select>
+        </div>
+        <div class="m-5">
+          <label for="">Letter Id</label>
+          <input type="text" value={{letterId}} class="form-control w-50" formControlName="letterIdNumber" id="letterId">
+
+        </div>
+        <div class="m-5">
+          <label for="">Employee Number</label>
+          <input type="text"  class="form-control w-50" formControlName="employeeNumber" formControlName="employeeNumber" id="empNum">
+
+        </div>
+        <!-- <div class="m-5">
+          <label for="">CTC</label>
+          <input type="text"  class="form-control w-50" formControlName="ctc">
+
+        </div> -->
+        <button class="btn btn-primary m-5" type="submit">Genarate Letter</button>
+        <button class="btn btn-primary m-2" (click)="view()" type="button"> Letter view</button>
+          
+     </form>
+  </div>
 </div>
+
 <router-outlet></router-outlet>

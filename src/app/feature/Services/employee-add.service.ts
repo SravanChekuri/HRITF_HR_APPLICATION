@@ -19,4 +19,14 @@ export class EmployeeAddService {
     return this.http.post("http://127.0.0.1:5000/add_emp_bulk",formData);
   }
 
+  bulkUpdate(formData:any){
+    return this.http.put("http://127.0.0.1:5000/Bulk_update",formData);
+  }
+
+  sendDateOrEmpnumber(empNum:any,date:any,enddate:any){
+    return this.http.get("http://127.0.0.1:5000/Search_employee_details/"+empNum+'/'+date+'/'+enddate);
+ 
+  }
+
+
 }

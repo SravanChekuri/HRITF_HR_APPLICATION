@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployeeAddService } from 'src/app/feature/Services/employee-add.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'employee-add',
@@ -12,21 +13,20 @@ export class EmployeeAddComponent implements OnInit{
 
   addEmpForm:FormGroup;
 
-  successmsg:boolean=false;
-  failmsg:boolean=false;
-
   submitted=false;
 
-  excelData:any
   file:any;
+
   msg:any;
 
-  bulkpass:boolean=false;
-  bulkfail:boolean=false;
   bulkmsg:any='';
 
+  bulkUpadateMsg:any='';
+
   today: string;
+
   maxDate: string;
+  
   minDate: string;
 
   constructor(private formBuilder:FormBuilder,private service:EmployeeAddService,private router:Router){ }
@@ -109,9 +109,9 @@ export class EmployeeAddComponent implements OnInit{
       }
 
   submitEmpData(){
-    this.submitted=true
+    this.submitted = true;
     // console.log(this.addEmpForm);
-    if (this.addEmpForm.status==='VALID'){
+    if (this.addEmpForm.valid){
 
     const addEmpData={
       First_Name:this.addEmpForm.value['FirstName'],
@@ -133,36 +133,59 @@ export class EmployeeAddComponent implements OnInit{
       this.service.addEmployee(addEmpData).subscribe(res=>{
       console.log(res);
       // alert("Employee data submited sucessfully");
-      this.successmsg = true;
-        setTimeout(() => {
-          this.successmsg = false;
-          this.router.navigate(['/home/employees/empProfile']); 
-        }, 2000);
-        this.submitted = false;
+      // this.successmsg = true;
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Profile added Successfull 🎉",
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(()=>{
         this.resetForm();
+        this.router.navigate(['/home/employees/empProfile']); 
+      });
         // this.addEmpForm.reset();
     },error=>{
       console.log(error);
       if (error.error && error.error.message) {
-        this.failmsg = true;
+        // this.failmsg = true;
         this.msg = error.error.message;
-        console.log(error);
+        // console.log(error);
       // alert(error.error.message); 
       }
       else{
-        this.failmsg=true;
+        // this.failmsg=true;
         console.log(error);
         // alert("An error occurred: " + error.statusText);
         // this.msg = 'An error occurred while adding the employee';
-        this.msg=error.error.error;
+        this.msg = error.error.error;
       }
+
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "Failed to Add ☹️",
+        text: `${this.msg}`,
+        width:400,
+      });
+        this.submitted = false;
     });
   }
     else{
       // alert("form is Invalid");
       this.msg='Form is Invalid';
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "Failed to Add ☹️",
+        text: `${this.msg}`,
+        width:400,
+      });
     }
   }
+
+
 
   selectFile(event:any){
     console.log('event',event);
@@ -177,36 +200,84 @@ export class EmployeeAddComponent implements OnInit{
     this.service.bulkUpload(formData).subscribe(res=>{
       console.log("Bulk upload Successfull:",res);
       // alert("Successfully uploaded the data");
-      this.bulkpass=true;
-      setTimeout(() => {
-        this.bulkpass = false;
-        this.router.navigate(['/home/employees/empProfile']); 
-      }, 1500);
+      // this.bulkpass=true;
 
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "BulkUpload Successfull 🎉",
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(() => {
+        // this.bulkpass = false;
+        this.router.navigate(['/home/employees/empProfile']); 
+      });
     }, error=>{
       console.log("Bulk Upload failed!");
       // alert("fail");
       if (error.error && error.error.message) {
         console.log(error);
-        this.bulkfail=true;
+        // this.bulkfail=true;
         // alert("failed to add employee:"+ error.error.message)
         this.bulkmsg=error.error.message;
+
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "Failed to Add ☹️",
+          text: `${this.bulkmsg}`,
+          width:400,
+        });
+        
       }
     });
   }
+
+  updateBulk(){
+    let formData = new FormData();
+    formData.append("EXCEL",this.file);
+
+    this.service.bulkUpdate(formData).subscribe(res=>{
+      console.log("bulk Update Success",res);
+      // this.bulkpass=true;
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "BulkUpdate Successfull 🎉",
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(() => {
+        // this.bulkpass = false;
+        this.router.navigate(['/home/employees/empProfile']); 
+      });
+    },error=>{
+      console.log("bulk Update fail");
+      if (error.error && error.error.error) {
+        console.log(error);
+        // this.bulkfail=true;
+        this.bulkUpadateMsg=error.error.error;
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "Failed to Add ☹️",
+          text: `${this.bulkUpadateMsg}`,
+          width:400,
+        });
+
+      }
+    });
+  }
+
+
   resetForm(): void {
     this.addEmpForm.reset(); 
     // this.addEmpForm.patchValue({ workerType: 'Candidate' });
     this.addEmpForm.markAsUntouched(); 
     this.addEmpForm.markAsPristine();
     this.submitted = false; 
-    this.failmsg = false; 
-    this.successmsg = false;
+    // this.failmsg = false; 
+    // this.successmsg = false;
   }
 
-  resetBulk(){
-    this.bulkpass=false;
-    this.bulkfail=false;
-  }
   
 }

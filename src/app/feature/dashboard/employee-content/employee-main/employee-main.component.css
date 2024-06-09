@@ -5,17 +5,24 @@
     position: fixed;
     top:14%;
     left:12.5%;
-    background-color:#EDEDED;
+    /* background-color:#EDEDED; */
+    background-color: #FFFFFF;
     overflow-y: auto;
 }
-.search-sec{
+/* .search-sec{
     background-color: #FFFFFF;
     width: 180vh;
-    height: 10vh;
+    height:32vh;
+} */
+
+.hr{
+    border: none;
+    height: 5px;
+    background-color:#bfbcbc;
 }
 
 .card{
-    background-color: #FFFFFF;
+    background-color: #e3f6fb;
     width: 200px;
     height: 180px;
     border-radius:10px;
@@ -49,16 +56,47 @@
     padding-left: 5px;
 }
 
-h6{
+h5{
     padding: 10px 0px 0px 25px;
 }
 
+label{
+    font-weight: 500;
+    margin-bottom: 1%;
+}
+
 input{
+    background-color:#e3f6fb;
+    border: 0.5px solid gray;
+}
+/* input{
     margin-left: 25px;
     padding-left: 10px;
     width: 30%;
     border-radius: 10px;
     
+} */
+
+.btn-align{
+    /* text-align: center; */
+    margin-left: 32%;
 }
 
+.btn-align button{
+    width: 30%;
+    margin-top: 3%;
+}
+
+.align-inputs{
+    margin-right: 21%;
+}
+
+.align-inputs > input{
+    width: 165%;
+    margin-top: 2%;
+}
+
+.align-inputs > label{
+    margin-top: 4%;
+}
 

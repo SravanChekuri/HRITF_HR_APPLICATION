@@ -7,6 +7,7 @@
     background-color: #FFFFFF;
     overflow-y: auto;
 }
+
 .margin{
     margin-top: 40px;
 }
@@ -22,3 +23,7 @@
     color:white;
     border-radius: 8px;
   }
+
+  /* input[type="file"] {
+    display: none;
+  } */

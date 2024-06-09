@@ -13,6 +13,8 @@ import { EmployeeSearchComponent } from './employee-content/employee-search/empl
 import { EmployeeLettersTemplatesComponent } from './employee-content/employee-letters-templates/employee-letters.component';
 import { EmployeeGenerateLettersComponent } from './employee-content/employee-generate-letters/employee-generate-letters.component';
 import { EmployeeNewroleComponent } from './employee-content/employee-newrole/employee-newrole.component';
+import { EmployeeViewallUsersComponent } from './employee-content/employee-viewall-users/employee-viewall-users.component';
+import { EmployeeBackendDataSettingsComponent } from './employee-content/employee-backend-data-settings/employee-backend-data-settings.component';
 
 
 
@@ -26,7 +28,9 @@ import { EmployeeNewroleComponent } from './employee-content/employee-newrole/em
     EmployeeSearchComponent,
     EmployeeLettersTemplatesComponent,
     EmployeeGenerateLettersComponent,
-    EmployeeNewroleComponent
+    EmployeeNewroleComponent,
+    EmployeeViewallUsersComponent,
+    EmployeeBackendDataSettingsComponent
   ],
   imports: [
     CommonModule,

@@ -36,4 +36,10 @@ export class EmployeeDetailsService {
 
   }
 
+  address(addressData:any){
+    // console.log("http://127.0.0.1:5000/address_details/"+addressData.Employee_Id);
+    return this.http.post("http://127.0.0.1:5000/address_details/"+addressData.Employee_Id,addressData);
+  }
+
+
 }

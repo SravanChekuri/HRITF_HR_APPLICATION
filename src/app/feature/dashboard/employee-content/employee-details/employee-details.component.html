@@ -1,290 +1,394 @@
-    <div class="emp-details">
-        <div style="margin:1% 2% 0 2%; text-align:right;"><a routerLink="/home/employees/empProfile"><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to Profiles Search</a></div>
+<div class="emp-details">
+    <div style="margin:1% 2% 0 2%; text-align:right;"><a routerLink="/home/employees/empProfile"><i class="fa-solid fa-arrow-left-long"></i>&nbsp;Back to Profiles Search</a></div>
 
-        <!-- <hr class="hr"> -->
+    <!-- <hr class="hr"> -->
 
 
-        <hr class="hr">
+    <hr class="hr">
 
-        <div class="profile-container">
-            <img src="../../../../../assets/Images/emp_profile.png" alt="emp Img" class="profile-img">
-            <div class="profile-info"><h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Name :' : 'Candidate Name :' }} <span style="color: red;">{{ empData.Employee_First_Name }} {{ empData.Middle_Name }} {{ empData.Last_Name }}</span></h6>
-                <h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Number :' : 'Candidate Number :' }}<span style="color: red;"> {{ empData.Employee_Number }}</span></h6>
-                <!-- <h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Status :' : '' }} {{ empDataDetails.STATUS }}</h6> -->
-            </div>
+    <div class="profile-container">
+        <img src="../../../../../assets/Images/emp_profile.png" alt="emp Img" class="profile-img">
+        <div class="profile-info"><h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Name :' : 'Candidate Name :' }} <span style="color: red;">{{ empData.Employee_First_Name }} {{ empData.Middle_Name }} {{ empData.Last_Name }}</span></h6>
+            <h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Number :' : 'Candidate Number :' }}<span style="color: red;"> {{ empData.Employee_Number }}</span></h6>
+            <!-- <h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Status :' : '' }} {{ empDataDetails.STATUS }}</h6> -->
         </div>
+    </div>
 
-        <hr class="hr">
+    <hr class="hr">
 
-        <!--- Candidate/Employee details -->
-        <div>
+    <!--- Candidate/Employee details --> 
 
-            <div [hidden]="!isEditable1">
-                <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
+    
+    <div>
 
-                <div class="d-flex flex-row grid-container" style="margin:0 0 1% 3%;">
-                    <div>
-                        <label for="stratDate">Effective Start Date :</label><br>
-                        <input type="date" id="startDate" class="form-control" (change)="onStartDateChange($event)">
-                    </div>
-                    <div>
-                        <label for="endDate">Effective End Date :</label><br>
-                        <input type="date" id="endDate" class="form-control" [value]="endDate" (change)="onEndDateChange($event)">
-                    </div>
-                    <div>
-                        <label for="src-btn" style="color: white;">Search :</label><br>
-                        <button id="src-btn" class="btn btn-info" (click)="submitData()">Search</button>
-                    </div>
+        <h5 style="margin: 1% 0 1% 1.5%; ">{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Details :' : 'Candidate Details :' }}&nbsp; <span (click)="toggleEdit1()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
+
+        <div [hidden]="!isEditable1">
+            <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
+
+            <div class="d-flex flex-row grid-container" style="margin:0 0 2% 3%;">
+                <div>
+                    <label for="stratDate">Effective Start Date :</label><br>
+                    <input type="date" id="startDate" class="form-control" (change)="onStartDateChange($event)" [(ngModel)]="empsd">
+                </div>
+                <div>
+                    <label for="endDate">Effective End Date :</label><br>
+                    <input type="date" id="endDate" class="form-control" [value]="endDate" (change)="onEndDateChange($event)">
+                </div>
+                <div>
+                    <label for="src-btn" style="color: white;">Search :</label><br>
+                    <button id="src-btn" class="btn btn-info" (click)="submitData()">Search</button>
                 </div>
             </div>
+        </div>
+        
+        <div *ngIf="updateSuccessMsg" class="success-msg"><p>{{ msg }}</p></div>
+        <div *ngIf="updateFailMsg" class="fail-msg"><p>{{ msg }}</p></div>
 
-            <h5 style="margin: 1% 0 1% 1.5%; ">{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Details :' : 'Candidate Details :' }}&nbsp; <span (click)="toggleEdit1()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
+        <form [formGroup]="candOrempFormUpdate" (ngSubmit)="update()">
 
-            <div *ngIf="updateSuccessMsg" class="success-msg"><p>{{ msg }}</p></div>
-            <div *ngIf="updateFailMsg" class="fail-msg"><p>{{ msg }}</p></div>
+            <div class="grid-container form-container">
 
-            <form [formGroup]="candOrempFormUpdate">
+                <div class="label-container">
+                    <label for="">Effective start Date :</label>
+                    <input type="date" class="form-control" formControlName="startDate"/>
+                </div>
 
+                <div class="label-container">
+                    <label for="">Effective End Date :</label>
+                    <input type="date" value="4712-12-31" class="form-control" formControlName="endDate"/>
+                </div>
+
+                <div class="label-container">
+                    <label for="worker">Worker Type :</label>
+                    <select id="worker" class="form-control" formControlName="workerType">
+                        <option value="" disabled selected>Select...</option>
+                        <option value="Candidate">Candidate</option>
+                        <option value="Employee">Employee</option>
+                    </select>
+                </div>
+
+                <div class="label-container">
+                    <label for="empno">{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Number' : 'Candidate Number' }} :</label>
+                    <input type="text" id="empno" class="form-control" formControlName="employeeNumber">
+                </div>
+
+                <div class="label-container">
+                    <label for="email">Email Id :</label>
+                    <input type="email" id="email" class="form-control" formControlName="email">
+                </div>
+
+                <div class="label-container">
+                    <label for="fn">First Name :</label>
+                    <input type="text" id="fn" class="form-control" formControlName="firstName">
+                </div>
+
+                <div class="label-container">
+                    <label for="mn">Middle Name :</label>
+                    <input type="text" id="mn" class="form-control" formControlName="middleName">
+                </div>
+
+                <div class="label-container">
+                    <label for="ln">Last Name :</label>
+                    <input type="text" id="ln" class="form-control" formControlName="lastName">
+                </div>
+
+                <div class="label-container">
+                    <label for="dob">Date of Birth :</label>
+                    <input type="date" class="form-control" formControlName="dateOfBirth" [min]="minDate" [max]="maxDate">
+                </div>
+
+                <div class="label-container">
+                    <label for="mobile">Contact :</label>
+                    <input type="tel" id="mobile" class="form-control" formControlName="phoneNumber">
+                </div>
+
+                <div class="label-container">
+                    <label for="location">Job Location :</label>
+                    <select id="location" class="form-control" formControlName="location">
+                        <option value="" disabled selected>Select...</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Hyderabad">Chennai</option>
+                        <option value="Hyderabad">Kolkata</option>
+                        <option value="Hyderabad">Pune</option>
+                    </select>
+                </div>
+            
+            </div>
+
+            <div class="btn-align" [hidden]="!isEditable1">
+                <button type="submit" class="btn btn-info">Update</button>&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="toggleEdit1()">Cancel</button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <hr class="hr">
+
+
+    <!--Employment Details-->
+
+    <div>
+
+        <h5 style="margin: 2% 0 1% 1.5%;">Employment Details : <span (click)="toggleEdit2()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
+
+        <div [hidden]="!isEditable2">
+
+            <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
+
+            <div class="d-flex flex-row grid-container" style="margin:0 0 2% 3%;">
+                <div>
+                    <label for="stratDate">Effective Start Date :</label><br>
+                    <input type="date" class="form-control" (change)="onEmpStartDateChange($event)" [(ngModel)]="employeement">
+                </div>  
+                <div>
+                    <label for="stratDate">Effective End Date :</label><br>
+                    <input type="date" class="form-control" [value]="empEndDate" (change)="onEmpEndDateChange($event)">
+                </div>
+                <div>
+                    <label for="" style="color: white;">Search :</label><br>
+                    <button type="submit" class="btn btn-info" (click)="submitEmployementData()">Search</button>
+                </div>
+
+            </div>
+
+        </div>    
+
+
+        <form [formGroup]="employementForm" (ngSubmit)="employementData()">
+
+            <div class="grid-container form-container" style="margin-bottom: 4%;">
+
+                <div class="label-container">
+                    <label for="esd">Effective Start Date :</label>
+                    <input type="date" class="form-control" formControlName="effectiveStartDate">
+                </div>
+
+                <div class="label-container">
+                    <label for="eed">Effective End Date :</label>
+                    <input type="date" class="form-control" formControlName="effectiveEndDate">
+                </div>
+
+                <div class="label-container">
+                    <label for="persontype">Person Type :</label>
+                    <select id="persontype" class="form-control form-selected" formControlName="personType">
+                        <option value="" disabled >Select...</option>
+                        <option value="Candidate">Candidate</option>
+                        <option value="Employee">Employee</option>
+                    </select>
+                </div>
+
+                <div class="label-container">
+                    <label for="empID">{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee ID' : 'Candidate ID' }} :</label>
+                    <input type="text" class="form-control" id="empId" formControlName="employeeId"  [value]="empData.Employee_id" readonly style="cursor: not-allowed;">
+                </div>
+
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                    <label for="status">Status :</label>
+                    <select id="status" class="form-control" formControlName="status">
+                        <option value="" selected disabled>Select...</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+
+                <div class="label-container">
+                    <label for="orgname">Organization Name :</label>
+                    <input type="text" class="form-control" formControlName="organizationName">
+                </div>
+
+                <div class="label-container">
+                    <label for="dept">Department :</label>
+                    <select id="dept" class="form-control" formControlName="department">
+                        <option value="" selected disabled>Select...</option>
+                        <option value="Software Development">Software Development</option>
+                        <option value="Database Administration">Database Administration</option>
+                        <option value="Quality Assurance (QA) and Testing">Quality Assurance (QA) and Testing</option>
+                        <option value="DevOps">DevOps</option>
+                        <option value="IT Support/Help Desk">IT Support/Help Desk</option>
+                        <option value="Network and Infrastructure">Network and Infrastructure</option>
+                    </select>
+                </div>
+
+                <div class="label-container">
+                    <label for="desig">Designation :</label>
+                    <select id="desig" class="form-control" formControlName="designation">
+                        <option value="" selected disabled>Select...</option>
+                        <option value="Project Manager">Project Manager</option>
+                        <option value="Software Developer/Engineer">Software Developer/Engineer</option>
+                        <option value="Database Administrator (DBA)">Database Administrator (DBA)</option>
+                        <option value="QA Engineer">QA Engineer</option>
+                        <option value="Data Analyst">Data Analyst</option>
+                        <option value="DevOps Engineer">DevOps Engineer</option>
+                        <option value="Network Engineer">Network Engineer</option>
+                        <option value="Software Architect">Software Architect</option>
+                        <option value="Front-End Developer">Front-End Developer</option>
+                        <option value="Back-End Developer">Back-End Developer</option>
+                        <option value="Full-Stack Developer">Full-Stack Developer</option>
+                        <option value="Cloud Engineer">Cloud Engineer</option>
+                    </select>
+
+                </div>
+
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                    <label for="cnfdate">Conformation Date :</label>
+                    <input type="date" class="form-control" formControlName="confirmationDate" readonly style="cursor: not-allowed;">
+                </div>
+
+                <div class="label-container">
+                    <label for="doj">Date of Joining :</label>
+                    <input type="date" class="form-control" formControlName="dateOfJoining">
+                </div>
+
+                <div class="label-container">
+                    <label for="CAS" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">Current Annual Salary :</label>
+                    <label for="CAS" [hidden]="candOrempFormUpdate.get('workerType').value === 'Employee'">CTC :</label>
+                    <input type="number" class="form-control" formControlName="currentAnnualSalary">
+                </div>
+
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                    <label for="CExp">Current Experince :</label>
+                    <input type="text" class="form-control" formControlName="currentCompanyExp">
+                </div>
+
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                    <label for="PAS">Previous Annual Salary :</label>
+                    <input type="number" class="form-control" formControlName="previousAnnualSalary">
+                </div>
+
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                    <label for="PExp">Previous Experince :</label>
+                    <input type="text" class="form-control" formControlName="previousExp">
+                </div>
+
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                    <label for="TExp">Total Experince :</label>
+                    <input type="text" class="form-control" formControlName="totalExp">
+                </div>
+
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                    <label for="PP">Probation Period :</label>
+                    <select id="PP" class="form-control" formControlName="probationPeriod">
+                        <option value="" disabled selected>Select...</option>
+                        <option value="3 months"> 3 Months</option>
+                        <option value="6 months">6 Months</option>
+                        <option value="9 months">9 Months</option>
+                        <option value="12 months">12 Months</option>
+                    </select>
+                </div>
+
+                <div class="label-container">
+                    <label for="NP">Notice Period :</label>
+                    <select id="NP" class="form-control" formControlName="noticePeriod">
+                        <option value="" disabled selected>Select...</option>
+                        <option value="1 month"> 1 Month</option>
+                        <option value="2 month"> 2 Months</option>
+                        <option value="3 month">3 Months</option>
+                    </select>
+                </div>
+
+            </div>
+            
+            <div class="btn-align" [hidden]="!isEditable2" style="margin-top:4%;">
+                <button type="submit" class="btn btn-info">Update</button>&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="toggleEdit2()">Cancel</button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <hr class="hr" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+
+    <div [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' " style="margin-bottom: 7%;">
+
+        <h5 style="margin: 2% 0 2% 1.5%;">Address Details : <span (click)="toggleEdit3()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
+
+        <div>
+
+            <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
+
+            <div class="d-flex flex-row grid-container" style="margin:0 0 1% 3%;">
+                <div>
+                    <label for="stratDate">Date From :</label><br>
+                    <input type="date" class="form-control"  [(ngModel)]="addressEsd">
+                </div>  
+                <div>
+                    <label for="stratDate">Date To :</label><br>
+                    <input type="date" class="form-control" [value]="empEndDate" [(ngModel)]="addressEnd">
+                </div>
+
+                <div>
+                    <label for="" style="color: white;">Search :</label><br>
+                    <button type="submit" class="btn btn-info" >Search</button>
+                </div>
+
+            </div>
+            
+        </div>    
+
+        <div>
+
+            <form [formGroup]="PermanentAddressForm">
+
+                <h6 class="address-heading">Present Address :</h6>
+                
                 <div class="grid-container form-container">
 
                     <div class="label-container">
-                        <label for="">Effective start Date :</label>
-                        <input type="date" class="form-control" formControlName="startDate"/>
+                        <label for="address">Date From :</label>
+                        <input type="date" id="address" formControlName="workEffectiveStartDate" class="form-control">            
                     </div>
 
                     <div class="label-container">
-                        <label for="">Effective End Date :</label>
-                        <input type="date" value="4712-12-31" class="form-control" formControlName="endDate"/>
+                        <label for="address">Date To :</label>
+                        <input type="date" id="address" formControlName="workEffectiveEndDate" class="form-control">            
                     </div>
 
                     <div class="label-container">
-                        <label for="worker">Worker Type :</label>
-                        <select id="worker" class="form-control" formControlName="workerType">
-                            <option value="" disabled selected>Select...</option>
-                            <option value="Candidate">Candidate</option>
-                            <option value="Employee">Employee</option>
-                        </select>
+                        <label for="addressType">Address Type :</label>
+                        <input  type="text" id="addressType" formControlName="workAddressType" class="form-control" value="Present" readonly style="cursor: not-allowed;">            
+                    </div>
+ 
+                    <div class="label-container" hidden="true">
+                        <label for="employeeId">Employee Id :</label>
+                        <input type="text" id="employeeId" formControlName="employeeId" class="form-control grayed-out" value="{{empData.Employee_id}}" readonly style="cursor: not-allowed;">            
+                    </div>
+    
+                    <div class="label-container">
+                        <label for="address">Address :</label>
+                        <textarea id="address" formControlName="workAddress" class="form-control"></textarea>         
                     </div>
 
                     <div class="label-container">
-                        <label for="empno">{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Number' : 'Candidate Number' }} :</label>
-                        <input type="text" id="empno" class="form-control" formControlName="employeeNumber">
+                        <label for="city">City :</label>
+                        <input type="text" id="city" formControlName="workCity" class="form-control">            
                     </div>
 
                     <div class="label-container">
-                        <label for="email">Email Id :</label>
-                        <input type="email" id="email" class="form-control" formControlName="email">
+                        <label for="addressId">State :</label>
+                        <input type="text" id="addressId" formControlName="workState" class="form-control">            
                     </div>
 
                     <div class="label-container">
-                        <label for="fn">First Name :</label>
-                        <input type="text" id="fn" class="form-control" formControlName="firstName">
+                        <label for="employeeId">Country :</label>
+                        <input type="text" id="employeeId" formControlName="workCountry" class="form-control">            
                     </div>
 
                     <div class="label-container">
-                        <label for="mn">Middle Name :</label>
-                        <input type="text" id="mn" class="form-control" formControlName="middleName">
-                    </div>
-
-                    <div class="label-container">
-                        <label for="ln">Last Name :</label>
-                        <input type="text" id="ln" class="form-control" formControlName="lastName">
-                    </div>
-
-                    <div class="label-container">
-                        <label for="dob">Date of Birth :</label>
-                        <input type="date" class="form-control" formControlName="dateOfBirth" [min]="minDate" [max]="maxDate">
-                    </div>
-
-                    <div class="label-container">
-                        <label for="mobile">Contact :</label>
-                        <input type="tel" id="mobile" class="form-control" formControlName="phoneNumber">
-                    </div>
-
-                    <div class="label-container">
-                        <label for="location">Job Location :</label>
-                        <select id="location" class="form-control" formControlName="location">
-                            <option value="" disabled selected>Select...</option>
-                            <option value="Bangalore">Bangalore</option>
-                            <option value="Hyderabad">Hyderabad</option>
-                            <option value="Hyderabad">Chennai</option>
-                            <option value="Hyderabad">Kolkata</option>
-                            <option value="Hyderabad">Pune</option>
-                        </select>
-                    </div>
-                
-                </div>
-
-                <div class="btn-align" [hidden]="!isEditable1">
-                    <button type="submit" class="btn btn-info" (click)="update()">Update</button>&nbsp;&nbsp;
-                    <button type="button" class="btn btn-secondary">Cancel</button>
-                </div>
-
-            </form>
-
-        </div>
-
-        <hr class="hr">
-
-
-        <!--Employment Details-->
-
-        <div>
-
-            <div [hidden]="!isEditable2">
-                <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
-
-                <div class="d-flex flex-row grid-container" style="margin:0 0 1% 3%;">
-                    <div>
-                        <label for="stratDate">Effective Start Date :</label><br>
-                        <input type="date" class="form-control">
-                    </div>  
-                    <div>
-                        <label for="stratDate">Effective End Date :</label><br>
-                        <input type="date" class="form-control">
-                    </div>
-                    <div>
-                        <label for="" style="color: white;">Search :</label><br>
-                        <button class="btn btn-info">Search</button>
-                    </div>        
-                </div>
-            </div>    
-
-            <h5 style="margin: 2% 0 1% 1.5%;">Employment Details : <span (click)="toggleEdit2()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
-
-            <form [formGroup]="employementForm">
-
-                <div class="grid-container form-container" style="margin-bottom: 4%;">
-
-                    <div class="label-container">
-                        <label for="esd">Effective Start Date :</label>
-                        <input type="date" class="form-control" formControlName="effectiveStartDate">
-                    </div>
-
-                    <div class="label-container">
-                        <label for="eed">Effective End Date :</label>
-                        <input type="date" class="form-control" formControlName="effectiveEndDate">
-                    </div>
-
-                    <div class="label-container">
-                        <label for="persontype">Person Type :</label>
-                        <select id="persontype" class="form-control form-selected" formControlName="personType">
-                            <option value="" disabled >Select...</option>
-                            <option value="Candidate">Candidate</option>
-                            <option value="Employee">Employee</option>
-                        </select>
-                    </div>
-
-                    <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
-                        <label for="status">Status :</label>
-                        <select id="status" class="form-control" formControlName="status">
-                            <option value="" selected disabled>Select...</option>
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
-                        </select>
-                    </div>
-
-                    <div class="label-container">
-                        <label for="orgname">Organization Name :</label>
-                        <input type="text" class="form-control" formControlName="organizationName">
-                    </div>
-
-                    <div class="label-container">
-                        <label for="dept">Department :</label>
-                        <select id="dept" class="form-control" formControlName="department">
-                            <option value="" selected disabled>Select...</option>
-                            <option value="Software Development">Software Development</option>
-                            <option value="Database Administration">Database Administration</option>
-                            <option value="Quality Assurance (QA) and Testing">Quality Assurance (QA) and Testing</option>
-                            <option value="DevOps">DevOps</option>
-                            <option value="IT Support/Help Desk">IT Support/Help Desk</option>
-                            <option value="Network and Infrastructure">Network and Infrastructure</option>
-                        </select>
-                    </div>
-
-                    <div class="label-container">
-                        <label for="desig">Designation :</label>
-                        <select id="desig" class="form-control" formControlName="designation">
-                            <option value="" selected disabled>Select...</option>
-                            <option value="Project Manager">Project Manager</option>
-                            <option value="Software Developer/Engineer">Software Developer/Engineer</option>
-                            <option value="Database Administrator (DBA)">Database Administrator (DBA)</option>
-                            <option value="QA Engineer">QA Engineer</option>
-                            <option value="Data Analyst">Data Analyst</option>
-                            <option value="DevOps Engineer">DevOps Engineer</option>
-                            <option value="Network Engineer">Network Engineer</option>
-                            <option value="Software Architect">Software Architect</option>
-                            <option value="Front-End Developer">Front-End Developer</option>
-                            <option value="Back-End Developer">Back-End Developer</option>
-                            <option value="Full-Stack Developer">Full-Stack Developer</option>
-                            <option value="Cloud Engineer">Cloud Engineer</option>
-                        </select>
-
-                    </div>
-
-                    <div class="label-container">
-                        <label for="cnfdate">Conformation Date :</label>
-                        <input type="date" class="form-control" formControlName="confirmationDate">
-                    </div>
-
-                    <div class="label-container">
-                        <label for="doj">Date of Joining :</label>
-                        <input type="date" class="form-control" formControlName="dateOfJoining">
-                    </div>
-
-                    <div class="label-container">
-                        <label for="CAS" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">Current Annual Salary :</label>
-                        <label for="CAS" [hidden]="candOrempFormUpdate.get('workerType').value === 'Employee'">CTC :</label>
-                        <input type="number" class="form-control" formControlName="currentAnnualSalary">
-                    </div>
-
-                    <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
-                        <label for="CExp">Current Experince :</label>
-                        <input type="text" class="form-control" formControlName="currentCompanyExp">
-                    </div>
-
-                    <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
-                        <label for="PAS">Previous Annual Salary :</label>
-                        <input type="number" class="form-control" formControlName="previousAnnualSalary">
-                    </div>
-
-                    <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
-                        <label for="PExp">Previous Experince :</label>
-                        <input type="text" class="form-control" formControlName="previousExp">
-                    </div>
-
-                    <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
-                        <label for="TExp">Total Experince :</label>
-                        <input type="text" class="form-control" formControlName="totalExp">
-                    </div>
-
-                    <div class="label-container">
-                        <label for="PP">Probation Period :</label>
-                        <select id="PP" class="form-control" formControlName="probationPeriod">
-                            <option value="" disabled selected>Select...</option>
-                            <option value="3 months"> 3 Months</option>
-                            <option value="6 months">6 Months</option>
-                            <option value="9 months">9 Months</option>
-                            <option value="12 months">12 Months</option>
-                        </select>
-                    </div>
-
-                    <div class="label-container">
-                        <label for="NP">Notice Period :</label>
-                        <select id="NP" class="form-control" formControlName="noticePeriod">
-                            <option value="" disabled selected>Select...</option>
-                            <option value="1 month"> 1 Month</option>
-                            <option value="2 month"> 2 Months</option>
-                            <option value="3 month">3 Months</option>
-                        </select>
+                        <label for="addressType">Pincode :</label>
+                        <input type="text" id="addressType" formControlName="workPincode" class="form-control">            
                     </div>
 
                 </div>
-                
-                <div class="btn-align" [hidden]="!isEditable2" style="margin-top:4%;">
+
+                <div class="btn-align" style="margin-top:2%;">
                     <button type="submit" class="btn btn-info">Update</button>&nbsp;&nbsp;
                     <button type="button" class="btn btn-secondary">Cancel</button>
-                </div>
+                </div>    
 
             </form>
 
@@ -292,22 +396,71 @@
 
         <hr class="hr">
 
-        <!--<div>
+        <div>
+            <form [formGroup]="PresentAddressForm">
 
-            <h5 style="margin: 1% 0 1% 1.5%;">Address Details :<span><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
-
-            <form >
+                <h6 class="address-heading">Permanent Address :</h6>
                 
                 <div class="grid-container form-container">
 
+                    <div class="label-container">
+                        <label for="address">Date From :</label>
+                        <input type="date" id="address" formControlName="effectiveStartDate" class="form-control">            
+                    </div>
 
+                    <div class="label-container">
+                        <label for="address">Date To :</label>
+                        <input type="date" id="address" formControlName="effectiveEndDate" class="form-control">            
+                    </div>
 
+                    <div class="label-container">
+                        <label for="addressType">Address Type :</label>
+                        <input  type="text" id="addressType" formControlName="addressType" class="form-control" value="Permanent" readonly style="cursor: not-allowed;">            
+                    </div>
+
+                    <div class="label-container" hidden="true">
+                        <label for="employeeId">Employee Id :</label>
+                        <input type="text" id="employeeId" formControlName="employeeId" class="form-control grayed-out" value="{{empData.Employee_id}}" readonly style="cursor: not-allowed;">            
+                    </div>
+    
+                    <div class="label-container">
+                        <label for="address">Address :</label>
+                        <textarea type="text" id="address" formControlName="address" class="form-control"></textarea>            
+                    </div>
+
+                    <div class="label-container">
+                        <label for="city">City :</label>
+                        <input type="text" id="city" formControlName="city" class="form-control">            
+                    </div>
+
+                    <div class="label-container">
+                        <label for="addressId">State :</label>
+                        <input type="text" id="addressId" formControlName="state" class="form-control">            
+                    </div>
+
+                    <div class="label-container">
+                        <label for="employeeId">Country :</label>
+                        <input type="text" id="employeeId" formControlName="country" class="form-control">            
+                    </div>
+
+                    <div class="label-container">
+                        <label for="addressType">Pincode :</label>
+                        <input type="text" id="addressType" formControlName="pincode" class="form-control">            
+                    </div>
+    
                 </div>
+
+                <div class="btn-align" style="margin-top:2%;">
+                    <button type="submit" class="btn btn-info">Update</button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary">Cancel</button>
+                </div>    
 
             </form>
 
-        </div>-->
-        
-        
-    </div> 
-    <router-outlet></router-outlet>
+        </div>
+
+    </div>
+    
+    
+</div> 
+<router-outlet></router-outlet>

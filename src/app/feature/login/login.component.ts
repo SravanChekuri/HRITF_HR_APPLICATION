@@ -83,6 +83,7 @@ export class LoginComponent {
           text: `${this.errorMsg}`,
           width:400,
         });
+        
       }else{
         // console.log(error);
         this.errorMsg=error.statusText;

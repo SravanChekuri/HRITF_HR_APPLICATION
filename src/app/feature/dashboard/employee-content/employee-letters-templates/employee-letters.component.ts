@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { LettersService } from 'src/app/feature/Services/letters.service';
 
@@ -15,6 +16,9 @@ export class EmployeeLettersTemplatesComponent implements OnInit{
   letterType:any;
   letterId:any;
   templateName:any;
+  employeeNumber:any;
+  CTC:any;
+  GenrateLetter:any=new FormGroup({})
    
   fileUrl: SafeUrl | null = null;
   lettersData:any=[
@@ -25,12 +29,36 @@ export class EmployeeLettersTemplatesComponent implements OnInit{
 
     
   ]
-  constructor(private service:LettersService,private sanitizer: DomSanitizer) { }
 
+
+
+  constructor(private service:LettersService,private sanitizer: DomSanitizer,private formbulider:FormBuilder) { }
+
+  
   ngOnInit() {
-    //this.getLetter()
+    this.genarate()
+   
     
   }
+  
+  genarate(){
+    this.GenrateLetter=this.formbulider.group({
+      letterType:['',Validators.required],
+      employeeNumber:['',Validators.required],
+      ctc:['',Validators.required]
+
+
+
+
+    })
+  }
+
+  genarateletter(){
+    console.log("letterdata",this.GenrateLetter.value);
+    
+  }
+
+
 
   onLetterTypeChange(event:any){
     this.letterType=event.target.value
@@ -98,6 +126,7 @@ export class EmployeeLettersTemplatesComponent implements OnInit{
     formData.append("TEMPLATE",this.file);
     formData.append("letterType",this.letterType)
     formData.append("letterId",this.letterId)
+  
 
     this.service.loadTemplate(formData).subscribe(res=>{
       alert("Success")
