@@ -14,6 +14,16 @@ export class EmployeeSearchComponent implements OnInit{
   searchTxt:any;
   filteredEmp:any=[];
 
+  displayedEmp: any = [];
+
+  recordCount:any;
+
+  initialRecordsCount: number = 10;
+  totalRecordsCount: number = 0;
+  currentPage: number = 1;
+  totalPages: number = 0;
+  
+
   constructor(private router:Router,private service:EmployeeAddService){}
 
   ngOnInit(){
@@ -27,7 +37,13 @@ export class EmployeeSearchComponent implements OnInit{
       this.empData=res['data'];
       this.allEmp=res['data'];
       this.filteredEmp=res['data'];
-    })
+      this.recordCount = this.empData.length;
+      // console.log("emp count:",this.recordCount);
+      this.totalRecordsCount = this.filteredEmp.length;
+      // this.loadInitialRecords();
+      this.totalPages = Math.ceil(this.totalRecordsCount / this.initialRecordsCount);
+      this.loadRecords();
+    });
   }
 
   filtEmpRes(event:any){
@@ -42,11 +58,37 @@ export class EmployeeSearchComponent implements OnInit{
       employee.Last_Name.toLowerCase().includes(filterValueLower)||
       employee.Email.toLowerCase().includes(filterValueLower))
     }
+    this.totalRecordsCount = this.filteredEmp.length;
+    this.totalPages = Math.ceil(this.totalRecordsCount / this.initialRecordsCount);
+    this.currentPage = 1;
+    this.loadRecords();
   }
 
   addbtnclk(){
     this.router.navigate(['/home/employees/addemp']);
   }
+
+
+  loadRecords() {
+    const start = (this.currentPage - 1) * this.initialRecordsCount;
+    const end = this.currentPage * this.initialRecordsCount;
+    this.displayedEmp = this.filteredEmp.slice(start, end);
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.loadRecords();
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadRecords();
+    }
+  }
+
 
 }
 

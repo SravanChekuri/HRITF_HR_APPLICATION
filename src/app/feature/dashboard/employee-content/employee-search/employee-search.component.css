@@ -1,6 +1,4 @@
 .emp-search{
-    /* min-width: 192vh;
-    min-height:90vh; */
     width: 180vh;
     height: 90vh;
     position: fixed;
@@ -9,43 +7,74 @@
     background-color: #ffffff;
     overflow-y: auto;
 }
+
 .search-block{
     margin: 1%;
 }
+
 input{
     border-radius: 10px;
     width: 40%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px auto;
 }
+
 .search-icon{
     position: absolute;
     top:9%;
     left: 38%;
     cursor: pointer;
 }
+
 .addemp-btn{
     position: absolute;
-    top:8%;
-    right: 3%;
+    top:5%;
+    right: 5%;
 }
-#hr{
+
+.hr{
     border: none;
     height: 5px;
     background-color:#bfbcbc;
 }
+
 .emp-list-block{
     margin: 1%;
     font-weight: bold;
     margin-bottom: 1%;
 }
+
  .bottom-spc{
-    margin-bottom: 40px;
+    margin-bottom: 5vh;
  }
 
  .emp-notfound{
-    font-size: 25px;
+    font-size: 2vw;
     color: red;
     font-weight: bold;
     text-align: center;
  }
+
+ @media screen and (max-width: 768px) {
+    .emp-search {
+        width: 90vw;
+        left: 5%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .emp-search {
+        width: 95vw;
+        left: 2.5%;
+    }
+    input {
+        width: 90%;
+    }
+    .search-icon,
+    .addemp-btn {
+        top: 3%;
+        left: 45%;
+    }
+    .emp-notfound {
+        font-size: 3vw;
+    }
+}

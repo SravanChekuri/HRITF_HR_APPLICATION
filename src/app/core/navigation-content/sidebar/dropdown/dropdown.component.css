@@ -83,3 +83,54 @@ a:hover {
     color: black;
     margin-right: 1%;
 }
+
+@media screen and (max-width: 1024px) {
+    .dropdown-btn, .home-drop-btn {
+        font-size: 1em;
+        padding-left: 5%;
+    }
+    .dropdown-content {
+        padding-left: 5%;
+    }
+    .main-dropdown-item, .main-dropdown-item2 {
+        font-size: 0.95em;
+    }
+    .sub-dropdown-content {
+        padding-left: 5%;
+        font-size: 0.95em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dropdown-btn, .home-drop-btn {
+        font-size: 0.9em;
+        padding-left: 3%;
+    }
+    .dropdown-content {
+        padding-left: 3%;
+    }
+    .main-dropdown-item, .main-dropdown-item2 {
+        font-size: 0.9em;
+    }
+    .sub-dropdown-content {
+        padding-left: 3%;
+        font-size: 0.9em;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .dropdown-btn, .home-drop-btn {
+        font-size: 0.8em;
+        padding-left: 2%;
+    }
+    .dropdown-content {
+        padding-left: 2%;
+    }
+    .main-dropdown-item, .main-dropdown-item2 {
+        font-size: 0.85em;
+    }
+    .sub-dropdown-content {
+        padding-left: 2%;
+        font-size: 0.85em;
+    }
+}
