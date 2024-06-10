@@ -50,8 +50,9 @@ export class EmployeeDetailsComponent implements OnInit{
 
   empmentDetails:any;
 
-  empsd:any;
-  employeement:any;
+  empSD:any;
+  employeementSD:any;
+  addressSD:any;
 
   empPresentAddress:any;
   empPermanentAddress:any;
@@ -65,13 +66,18 @@ export class EmployeeDetailsComponent implements OnInit{
    
     this.empData = JSON.parse(localStorage.getItem('empData')); // ***coping Local Storage data to this property***
     console.log('empData from constr:',this.empData);
+
     this.empmentDetails=JSON.parse(localStorage.getItem('employementData'));
       console.log("employement Data from constr:",this.empmentDetails);
-    this.empsd = localStorage.getItem('effectiveStartDate');
-    this.employeement = localStorage.getItem('effectiveStartDate');
-    this.empPresentAddress=JSON.parse(localStorage.getItem('empPresentAddress'));
+
+    this.empSD = localStorage.getItem('effectiveStartDate');
+    this.employeementSD = localStorage.getItem('effectiveStartDate');
+    this.addressSD = localStorage.getItem('effectiveStartDate');
+
+    this.empPresentAddress=JSON.parse(localStorage.getItem('presentAddress'));
     console.log("empPresentAddress from constr:", this.empPresentAddress);
-    this.empPermanentAddress=JSON.parse(localStorage.getItem('empPermanentAddress'));
+
+    this.empPermanentAddress=JSON.parse(localStorage.getItem('permanentAddress'));
     console.log("empPermanentAddress from constr:",this.empPermanentAddress);
 
   }
@@ -95,9 +101,6 @@ export class EmployeeDetailsComponent implements OnInit{
 
     if(this.empmentDetails){
             this.editemp();
-            this.form2();
-            this.form3();
-            this.form4();            
     }
 
     if(this.empPresentAddress){
@@ -111,7 +114,7 @@ export class EmployeeDetailsComponent implements OnInit{
 
     //***setting default values to respective presenter type ***
 
-    if(this.candOrempFormUpdate.get('presenterType').value === 'Candidate'){
+    if(this.candOrempFormUpdate.get('workerType').value === 'Candidate'){
       this.employementForm.patchValue({ personType:'Candidate'});
     }
     else this.employementForm.patchValue({ personType: 'Employee'});
@@ -133,7 +136,7 @@ export class EmployeeDetailsComponent implements OnInit{
 
       startDate:[formatDate(this.empData.EFFECTIVE_START_DATE, 'yyyy-MM-dd','en'),Validators.required],
       endDate:[formatDate(this.empData.EFFECTIVE_END_DATE,'yyyy-MM-dd','en'),Validators.required],
-      presenterType:[this.empData.presentER_TYPE,Validators.required],
+      workerType:[this.empData.WORKER_TYPE,Validators.required],
       employeeNumber:[this.empData.Employee_Number,Validators.required],
       email:[this.empData.Email,Validators.required],
       firstName:[this.empData.Employee_First_Name,Validators.required],
@@ -230,7 +233,7 @@ export class EmployeeDetailsComponent implements OnInit{
 
       Effective_Start_Date:this.candOrempFormUpdate.value['startDate'],
       Effective_End_Date:this.candOrempFormUpdate.value['endDate'],
-      presenter_Type:this.candOrempFormUpdate.value['presenterType'],
+      Worker_Type:this.candOrempFormUpdate.value['workerType'],
       Employee_Number:this.candOrempFormUpdate.value['employeeNumber'],
       Email_Id:this.candOrempFormUpdate.value['email'],
       First_Name:this.candOrempFormUpdate.value['firstName'],
@@ -293,15 +296,17 @@ export class EmployeeDetailsComponent implements OnInit{
 
       this.empmentDetails=res['Employement_Details'];
       this.empPresentAddress=res['Home_Address_Details'];
+      console.log("empPresentAddress",this.empPresentAddress);
+      
       this.empPermanentAddress=res['present_Address_Details'];
 
       console.log("employeementData from getempDetails method:",this.empmentDetails);
 
       if(this.empmentDetails){ this.editemp()}
 
-      if (this.empPresentAddress){ }
+      if (this.empPresentAddress){ this.editPresentAddress()}
   
-      if (this.empPermanentAddress){ }
+      if (this.empPermanentAddress){this.editPermanentAddress() }
       
      },error=>{
        console.log("error from getempDetails method:",error);
@@ -341,7 +346,7 @@ export class EmployeeDetailsComponent implements OnInit{
           this.candOrempFormUpdate = this.formbulider.group({
             startDate:[formatDate(this.empRecord.EFFECTIVE_START_DATE, 'yyyy-MM-dd','en'),Validators.required],
             endDate:[formatDate(this.empRecord.EFFECTIVE_END_DATE,'yyyy-MM-dd','en'),Validators.required],
-            presenterType:[this.empRecord.presentER_TYPE,Validators.required],
+            workerType:[this.empRecord.WORKER_TYPE,Validators.required],
             employeeNumber:[this.empRecord.Employee_Number,Validators.required],
             email:[this.empRecord.Email,Validators.required],
             firstName:[this.empRecord.Employee_First_Name,Validators.required],
@@ -407,10 +412,10 @@ export class EmployeeDetailsComponent implements OnInit{
         this.employementForm.disable();
         this.form2();
         this.editemp();
-        const presenterTypeControl = this.candOrempFormUpdate.get('presenterType');
+        const workerTypeControl = this.candOrempFormUpdate.get('workerType');
         const personTypeControl = this.employementForm.get('personType');
-        if (presenterTypeControl && personTypeControl) {
-          personTypeControl.setValue(presenterTypeControl.value);
+        if (workerTypeControl && personTypeControl) {
+          personTypeControl.setValue(workerTypeControl.value);
         }   
     }
   }
@@ -484,6 +489,8 @@ export class EmployeeDetailsComponent implements OnInit{
     this.service.empSendDate(this.employementStartDate,this.empData.Employee_id,this.empEndDate).subscribe((res)=>{
       console.log("res from submitEmployementData method:",res);
         this.filteredEmpData = res['data'];
+        console.log("filteredEmpData",this.filteredEmpData);
+        
         
       this.employementForm = this.formbulider.group({
         effectiveStartDate:[formatDate(this.filteredEmpData.EFFECTIVE_START_DATE, 'yyyy-MM-dd','en'),Validators.required],
@@ -530,6 +537,9 @@ export class EmployeeDetailsComponent implements OnInit{
       // console.log(this.empData.Employee_id);
       // this.empDataDetails=res['data'];
 
+      console.log("empmentdetails:",this.empmentDetails.ORGANIZATION_NAME);
+      
+
       this.employementForm=this.formbulider.group({
 
         effectiveStartDate:[formatDate(this.empmentDetails.EFFECTIVE_START_DATE, 'yyyy-MM-dd','en'),Validators.required],
@@ -567,7 +577,7 @@ export class EmployeeDetailsComponent implements OnInit{
       this.PresentAddressForm = this.formbulider.group({
 
         employeeId:[this.empData.Employee_id],
-        presentAddressType:['',Validators.required],
+        presentAddressType:['WORK',Validators.required],
         presentAddress:['',Validators.required],
         presentState:['',Validators.required],
         presentCountry:['',Validators.required],
@@ -583,18 +593,6 @@ export class EmployeeDetailsComponent implements OnInit{
 
   }
 
-  toggleEdit3(): void {
-    this.isEditable3 = !this.isEditable3;
-    if (this.isEditable3) {
-      this.PresentAddressForm.enable();
-      this.PermanentAddressForm.enable();
-    } else {
-      this.PresentAddressForm.disable();
-      this.PermanentAddressForm.disable();
-      this.form3();
-      this.form4();
-    }
-  }
 
 
 
@@ -655,7 +653,7 @@ export class EmployeeDetailsComponent implements OnInit{
   form4(){
     this.PermanentAddressForm = this.formbulider.group({
       employeeId:[this.empData.Employee_id],
-      permanentaddressType:['',Validators.required],
+      permanentaddressType:['HOME',Validators.required],
       permanentaddress:['',Validators.required],
       permanentstate:['',Validators.required],
       permanentcountry:['',Validators.required],
@@ -716,6 +714,20 @@ export class EmployeeDetailsComponent implements OnInit{
       });
       console.log("Permanent Address form editPermanentAddress method:",this.PermanentAddressForm.value);
   }
+
+  toggleEdit3(): void {
+    this.isEditable3 = !this.isEditable3;
+    if (this.isEditable3) {
+      this.PresentAddressForm.enable();
+      this.PermanentAddressForm.enable();
+    } else {
+      this.PresentAddressForm.disable();
+      this.PermanentAddressForm.disable();
+      // this.form3();
+      // this.form4();
+    }
+  }
+
 
   
 }

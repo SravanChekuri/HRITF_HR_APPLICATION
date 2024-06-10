@@ -213,6 +213,8 @@ export class EmployeeAddComponent implements OnInit{
         this.router.navigate(['/home/employees/empProfile']); 
       });
     }, error=>{
+      console.log(error);
+      
       console.log("Bulk Upload failed!");
       // alert("fail");
       if (error.error && error.error.message) {
@@ -233,40 +235,40 @@ export class EmployeeAddComponent implements OnInit{
     });
   }
 
-  updateBulk(){
-    let formData = new FormData();
-    formData.append("EXCEL",this.file);
+  // updateBulk(){
+  //   let formData = new FormData();
+  //   formData.append("EXCEL",this.file);
 
-    this.service.bulkUpdate(formData).subscribe(res=>{
-      console.log("bulk Update Success",res);
-      // this.bulkpass=true;
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "BulkUpdate Successfull 🎉",
-        showConfirmButton: false,
-        timer: 1500,
-      }).then(() => {
-        // this.bulkpass = false;
-        this.router.navigate(['/home/employees/empProfile']); 
-      });
-    },error=>{
-      console.log("bulk Update fail");
-      if (error.error && error.error.error) {
-        console.log(error);
-        // this.bulkfail=true;
-        this.bulkUpadateMsg=error.error.error;
-        Swal.fire({
-          position: "top",
-          icon: "error",
-          title: "Failed to Add ☹️",
-          text: `${this.bulkUpadateMsg}`,
-          width:400,
-        });
+  //   this.service.bulkUpdate(formData).subscribe(res=>{
+  //     console.log("bulk Update Success",res);
+  //     // this.bulkpass=true;
+  //     Swal.fire({
+  //       position: "top-end",
+  //       icon: "success",
+  //       title: "BulkUpdate Successfull 🎉",
+  //       showConfirmButton: false,
+  //       timer: 1500,
+  //     }).then(() => {
+  //       // this.bulkpass = false;
+  //       this.router.navigate(['/home/employees/empProfile']); 
+  //     });
+  //   },error=>{
+  //     console.log("bulk Update fail");
+  //     if (error.error && error.error.error) {
+  //       console.log(error);
+  //       // this.bulkfail=true;
+  //       this.bulkUpadateMsg=error.error.error;
+  //       Swal.fire({
+  //         position: "top",
+  //         icon: "error",
+  //         title: "Failed to Add ☹️",
+  //         text: `${this.bulkUpadateMsg}`,
+  //         width:400,
+  //       });
 
-      }
-    });
-  }
+  //     }
+  //   });
+  // }
 
 
   resetForm(): void {

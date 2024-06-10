@@ -29,7 +29,7 @@
                 <div><img src="../../../../../assets/Images/emp_profile.png" alt="emp Img" width="50%"></div>
                 <div style="font-weight: bold;">{{employeData.Employee_Number}}</div>
                 <div style="color:#8C1428;">{{employeData.Employee_First_Name}}&nbsp;{{employeData.Last_Name}}</div>
-                <div routerLink="/home/employees/empdetails" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square edit-icon"><span class="edit-text"(click)="updateEmp(employeData,employementData)">Edit</span></i></div>
+                <div routerLink="/home/employees/empdetails" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square edit-icon"><span class="edit-text"(click)="updateEmp(employeData,employementData,presentEmployeeAddress,permanentEmployeeAddress)">Edit</span></i></div>
             </div>
         </div>
     </div>

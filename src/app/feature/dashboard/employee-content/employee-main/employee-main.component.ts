@@ -14,8 +14,12 @@ export class EmployeeMainComponent implements OnInit{
   textInput: string | Date;
   effStartDate:any;
   effEndDate:any;
+
   employeData:any;
   employementData:any;
+  presentEmployeeAddress:any;
+  permanentEmployeeAddress:any;
+
 
 
   constructor(private service:EmployeeAddService){
@@ -50,17 +54,35 @@ export class EmployeeMainComponent implements OnInit{
   // }
 
 
-  updateEmp(filtemp,employementData) {
+  updateEmp(filtemp,employementData,presentEmployeeAddress,permanentEmployeeAddress) {
+
     console.log("filtemp",filtemp);
-    
     console.log("editdata",employementData);
     // console.log("editdata", filtemp);
-    localStorage.removeItem('employeementData');
-    if (employementData != undefined){
-      localStorage.setItem('employeementData',JSON.stringify(employementData));
+
+    localStorage.removeItem('employementData');
+    if (employementData !== undefined){
+      localStorage.setItem('employementData',JSON.stringify(employementData));
+      console.log("employementData form localstorage:",this.employementData);
+      
     }
+
+    localStorage.removeItem('presentAddress');
+    if(presentEmployeeAddress !== undefined){
+      localStorage.setItem('presentAddress',JSON.stringify(presentEmployeeAddress));
+      console.log("employee present address from localstorage:",presentEmployeeAddress);
+      
+    }
+    localStorage.removeItem('permanentAddress');
+    if(permanentEmployeeAddress !== undefined){
+      localStorage.setItem('permanentAddress',JSON.stringify(permanentEmployeeAddress));
+      console.log("employee permanent address from localstorage:",permanentEmployeeAddress);
+    }
+
     localStorage.setItem('empData', JSON.stringify(filtemp));
-    // this.router.navigateByUrl('/home/employees/empdetails');
+    console.log("empdata  from localstorage:",filtemp);
+    
+
 }
 
 onStartDateChange(event:any){
@@ -87,6 +109,14 @@ onSubmit(){
 
     this.employementData = res['Employement_Details'];
     console.log("Employement Data:",this.employementData);
+
+    this.permanentEmployeeAddress=res['Home_Address_Details']
+    console.log("this.permanentEmployeeAddress", this.permanentEmployeeAddress);
+    
+    this.presentEmployeeAddress=res['Work_Address_Details']
+    console.log("presentEmployeeAddress",this.presentEmployeeAddress);
+
+
     
 
   },error=>{
