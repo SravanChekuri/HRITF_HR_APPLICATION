@@ -26,6 +26,8 @@ export class LoginComponent {
 
   passwordVisible: boolean = false;
 
+  isLoading: boolean = false;
+
   constructor(private formbuilder:FormBuilder, private service:LoginService, private router:Router, private AuthService:AuthService){}
 
   ngOnInit(): void {
@@ -42,6 +44,11 @@ export class LoginComponent {
   login(){
     this.submitted=true;
     // console.log(this.loginform.value);
+    if (this.loginform.invalid) {
+      return;
+    }
+
+    this.isLoading = true;
 
     const data={
       User_Id:this.loginform.value['UserID'],
@@ -95,14 +102,17 @@ export class LoginComponent {
           width:400,
         });
       }
+      this.isLoading = false;
+    },()=>{
+      this.isLoading = false;
     });
     }
 
-    resetlogin(){
+    // resetlogin(){
       // this.loginFail=false;
       // this.successMessage = '';
       // this.loginform.reset();
-    }
+    // }
     
     togglePasswordVisibility() {
       this.passwordVisible = !this.passwordVisible; 
