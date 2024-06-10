@@ -53,8 +53,8 @@ export class EmployeeDetailsComponent implements OnInit{
   empsd:any;
   employeement:any;
 
-  empHomeAddress:any;
-  empWorkAddress:any;
+  empPresentAddress:any;
+  empPermanentAddress:any;
 
   addressEsd:any;
   addressEnd:any;
@@ -69,10 +69,10 @@ export class EmployeeDetailsComponent implements OnInit{
       console.log("employement Data from constr:",this.empmentDetails);
     this.empsd = localStorage.getItem('effectiveStartDate');
     this.employeement = localStorage.getItem('effectiveStartDate');
-    this.empHomeAddress=JSON.parse(localStorage.getItem('empHomeAddress'));
-    console.log("empHomeAddress from constr:", this.empHomeAddress);
-    this.empWorkAddress=JSON.parse(localStorage.getItem('EmpworkAddress'));
-    console.log("empWorkAddress from constr:",this.empWorkAddress);
+    this.empPresentAddress=JSON.parse(localStorage.getItem('empPresentAddress'));
+    console.log("empPresentAddress from constr:", this.empPresentAddress);
+    this.empPermanentAddress=JSON.parse(localStorage.getItem('empPermanentAddress'));
+    console.log("empPermanentAddress from constr:",this.empPermanentAddress);
 
   }
 
@@ -83,6 +83,7 @@ export class EmployeeDetailsComponent implements OnInit{
     this.form1();
     this.form2();
     this.form3();
+    this.form4();
 
     this.today = this.getTodayDate(); //*** DOB validation ***
     this.maxDate = this.getMaxDate(); //*** DOB validation ***
@@ -90,24 +91,27 @@ export class EmployeeDetailsComponent implements OnInit{
 
     // console.log("empmentDetails", this.empmentDetails.ORGANIZATION_NAME);
 
-    console.log("empmentDetails from onInit:", this.empmentDetails.ORGANIZATION_NAME);
+    console.log("empmentDetails org name from onInit:", this.empmentDetails.ORGANIZATION_NAME);
 
     if(this.empmentDetails){
-            this.editemp();    
+            this.editemp();
+            this.form2();
+            this.form3();
+            this.form4();            
     }
 
-    if(this.empHomeAddress){
-            // this.editAddress()
+    if(this.empPresentAddress){
+            this.editPresentAddress();
     }
 
-    if (this.empWorkAddress){
-            // this.workAddress()
+    if (this.empPermanentAddress){
+            this.editPermanentAddress();
     }
 
 
-    //***setting default values to respective worker type ***
+    //***setting default values to respective presenter type ***
 
-    if(this.candOrempFormUpdate.get('workerType').value === 'Candidate'){
+    if(this.candOrempFormUpdate.get('presenterType').value === 'Candidate'){
       this.employementForm.patchValue({ personType:'Candidate'});
     }
     else this.employementForm.patchValue({ personType: 'Employee'});
@@ -122,14 +126,14 @@ export class EmployeeDetailsComponent implements OnInit{
   form1(){ 
             // console.log("editemp",this.empData);
     // console.log(this.empData.Employee_First_Name);
-    // console.log('Worker type:',this.empData.WORKER_TYPE);
+    // console.log('presenter type:',this.empData.presentER_TYPE);
 
 
     this.candOrempFormUpdate=this.formbulider.group({
 
       startDate:[formatDate(this.empData.EFFECTIVE_START_DATE, 'yyyy-MM-dd','en'),Validators.required],
       endDate:[formatDate(this.empData.EFFECTIVE_END_DATE,'yyyy-MM-dd','en'),Validators.required],
-      workerType:[this.empData.WORKER_TYPE,Validators.required],
+      presenterType:[this.empData.presentER_TYPE,Validators.required],
       employeeNumber:[this.empData.Employee_Number,Validators.required],
       email:[this.empData.Email,Validators.required],
       firstName:[this.empData.Employee_First_Name,Validators.required],
@@ -226,7 +230,7 @@ export class EmployeeDetailsComponent implements OnInit{
 
       Effective_Start_Date:this.candOrempFormUpdate.value['startDate'],
       Effective_End_Date:this.candOrempFormUpdate.value['endDate'],
-      Worker_Type:this.candOrempFormUpdate.value['workerType'],
+      presenter_Type:this.candOrempFormUpdate.value['presenterType'],
       Employee_Number:this.candOrempFormUpdate.value['employeeNumber'],
       Email_Id:this.candOrempFormUpdate.value['email'],
       First_Name:this.candOrempFormUpdate.value['firstName'],
@@ -288,16 +292,16 @@ export class EmployeeDetailsComponent implements OnInit{
       console.log("employeeData from getempDetails method:",this.empData);
 
       this.empmentDetails=res['Employement_Details'];
-      this.empHomeAddress=res['Home_Address_Details'];
-      this.empWorkAddress=res['Work_Address_Details'];
+      this.empPresentAddress=res['Home_Address_Details'];
+      this.empPermanentAddress=res['present_Address_Details'];
 
       console.log("employeementData from getempDetails method:",this.empmentDetails);
 
       if(this.empmentDetails){ this.editemp()}
 
-      if (this.empHomeAddress){ }
+      if (this.empPresentAddress){ }
   
-      if (this.empWorkAddress){ }
+      if (this.empPermanentAddress){ }
       
      },error=>{
        console.log("error from getempDetails method:",error);
@@ -337,7 +341,7 @@ export class EmployeeDetailsComponent implements OnInit{
           this.candOrempFormUpdate = this.formbulider.group({
             startDate:[formatDate(this.empRecord.EFFECTIVE_START_DATE, 'yyyy-MM-dd','en'),Validators.required],
             endDate:[formatDate(this.empRecord.EFFECTIVE_END_DATE,'yyyy-MM-dd','en'),Validators.required],
-            workerType:[this.empRecord.WORKER_TYPE,Validators.required],
+            presenterType:[this.empRecord.presentER_TYPE,Validators.required],
             employeeNumber:[this.empRecord.Employee_Number,Validators.required],
             email:[this.empRecord.Email,Validators.required],
             firstName:[this.empRecord.Employee_First_Name,Validators.required],
@@ -403,10 +407,10 @@ export class EmployeeDetailsComponent implements OnInit{
         this.employementForm.disable();
         this.form2();
         this.editemp();
-        const workerTypeControl = this.candOrempFormUpdate.get('workerType');
+        const presenterTypeControl = this.candOrempFormUpdate.get('presenterType');
         const personTypeControl = this.employementForm.get('personType');
-        if (workerTypeControl && personTypeControl) {
-          personTypeControl.setValue(workerTypeControl.value);
+        if (presenterTypeControl && personTypeControl) {
+          personTypeControl.setValue(presenterTypeControl.value);
         }   
     }
   }
@@ -563,19 +567,20 @@ export class EmployeeDetailsComponent implements OnInit{
       this.PresentAddressForm = this.formbulider.group({
 
         employeeId:[this.empData.Employee_id],
-        workAddressType:['',Validators.required],
-        workAddress:['',Validators.required],
-        workState:['',Validators.required],
-        workCountry:['',Validators.required],
-        workCity:['',Validators.required],
-        workPincode:['',Validators.required],
-        workEffectiveStartDate:[,Validators.required],
-        workEffectiveEndDate:['4712-12-31',Validators.required]  
+        presentAddressType:['',Validators.required],
+        presentAddress:['',Validators.required],
+        presentState:['',Validators.required],
+        presentCountry:['',Validators.required],
+        presentCity:['',Validators.required],
+        presentPincode:['',Validators.required],
+        presentEffectiveStartDate:[,Validators.required],
+        presentEffectiveEndDate:['4712-12-31',Validators.required]  
 
       });
-      this.PermanentAddressForm.disable();
-      console.log("Work Address data from frontend:",this.PresentAddressForm.value);
-      
+
+      console.log("present Address data from frontend:",this.PresentAddressForm.value);
+      this.PresentAddressForm.disable();
+
   }
 
   toggleEdit3(): void {
@@ -593,23 +598,24 @@ export class EmployeeDetailsComponent implements OnInit{
 
 
 
-  addressData(){
+  presentaddressData(){
 
     console.log("Home Address data from addressData method:",this.PresentAddressForm.value);
 
-    const addressData = {
-      Date_From:this.PresentAddressForm.value['workEffectiveStartDate'],
-      Date_To:this.PresentAddressForm.value['workEffectiveEndDate'],
-      Address_Type:this.PresentAddressForm.value['workAddressType'],
+    const presentaddressData = {
+      Date_From:this.PresentAddressForm.value['presentEffectiveStartDate'],
+      Date_To:this.PresentAddressForm.value['presentEffectiveEndDate'],
+      Address_Type:this.PresentAddressForm.value['presentAddressType'],
+      Address:this.PresentAddressForm.value['presentAddress'],
       Employee_Id:this.PresentAddressForm.value['employeeId'],
-      City:this.PresentAddressForm.value['workCity'],
-      State:this.PresentAddressForm.value['workState'],
-      Country:this.PresentAddressForm.value['workCountry'],
-      Pin_Code:this.PresentAddressForm.value['workPincode'],
+      City:this.PresentAddressForm.value['presentCity'],
+      State:this.PresentAddressForm.value['presentState'],
+      Country:this.PresentAddressForm.value['presentCountry'],
+      Pin_Code:this.PresentAddressForm.value['presentPincode'],
     }
-      console.log("Home Address data to backend:",addressData);
+      console.log("Present Address data to backend:",presentaddressData);
 
-      this.service.address(addressData).subscribe((res:any)=>{
+      this.service.address(presentaddressData).subscribe((res:any)=>{
 
         console.log("res from address api:",res);
 
@@ -617,7 +623,7 @@ export class EmployeeDetailsComponent implements OnInit{
           alert(res.message);
         }
 
-        console.log(" work Address stored Successfully");
+        console.log(" present Address stored Successfully");
    
     },error =>{
         console.log("error from address api:",error);
@@ -627,26 +633,88 @@ export class EmployeeDetailsComponent implements OnInit{
     });
   }
 
-  editWorkAddress(){
+  editPresentAddress(){
 
       this.PresentAddressForm = this.formbulider.group({
-        effectiveStartDate:[formatDate(this.empWorkAddress.DATE_FROM, 'yyyy-MM-dd','en'),Validators.required],
-        effectiveEndDate:[formatDate(this.empWorkAddress.DATE_TO, 'yyyy-MM-dd','en'),Validators.required],
-        addressType:[this.empWorkAddress.ADDRESS_TYPE,Validators.required],
-        address:[this.empWorkAddress.ADDRESS,Validators.required],
-        city:[this.empWorkAddress.CITY,Validators.required],
-        state:[this.empWorkAddress.STATE,Validators.required],
-        country:[this.empWorkAddress.COUNTRY,Validators.required],
-        pincode:[this.empWorkAddress.PIN_CODE,Validators.required]  
+        presentEffectiveStartDate:[formatDate(this.empPresentAddress.DATE_FROM, 'yyyy-MM-dd','en'),Validators.required],
+        presentEffectiveEndDate:[formatDate(this.empPresentAddress.DATE_TO, 'yyyy-MM-dd','en'),Validators.required],
+        presentAddressType:[this.empPresentAddress.ADDRESS_TYPE,Validators.required],
+        employeeId:[this.empData.Employee_id],
+        presentAddress:[this.empPresentAddress.ADDRESS,Validators.required],
+        presentCity:[this.empPresentAddress.CITY,Validators.required],
+        presentState:[this.empPresentAddress.STATE,Validators.required],
+        presentCountry:[this.empPresentAddress.COUNTRY,Validators.required],
+        presentPincode:[this.empPresentAddress.PIN_CODE,Validators.required]  
       });
 
-      console.log("work Address form editHomeAddress method:",this.PresentAddressForm.value);
+      console.log("present Address form editPresentAddress method:",this.PresentAddressForm.value);
       
   }
 
 
   form4(){
+    this.PermanentAddressForm = this.formbulider.group({
+      employeeId:[this.empData.Employee_id],
+      permanentaddressType:['',Validators.required],
+      permanentaddress:['',Validators.required],
+      permanentstate:['',Validators.required],
+      permanentcountry:['',Validators.required],
+      permanentcity:['',Validators.required],
+      permanentpincode:['',Validators.required],
+      permanenteffectiveStartDate:[,Validators.required],
+      permanenteffectiveEndDate:['4712-12-31',Validators.required]  
+    });
 
+      console.log("permanent Address data from frontend:",this.PermanentAddressForm.value);
+      this.PermanentAddressForm.disable();
+
+  }
+
+  permanentaddressData(){
+      const permanentAddressData = {
+        Date_From:this.PermanentAddressForm.value['permanenteffectiveStartDate'],
+        Date_To:this.PermanentAddressForm.value['permanenteffectiveEndDate'],
+        Address_Type:this.PermanentAddressForm.value['permanentaddressType'],
+        Address:this.PermanentAddressForm.value['permanentaddress'],
+        Employee_Id:this.PermanentAddressForm.value['employeeId'],
+        City:this.PermanentAddressForm.value['permanentcity'],
+        State:this.PermanentAddressForm.value['permanentstate'],
+        Country:this.PermanentAddressForm.value['permanentcountry'],
+        Pin_Code:this.PermanentAddressForm.value['permanentpincode'],  
+      }
+
+      console.log("Present Address data to backend:",permanentAddressData);
+      this.service.address(permanentAddressData).subscribe((res:any)=>{
+
+        console.log("res from address api:",res);
+
+        if (res && res.message){
+          alert(res.message);
+        }
+
+        console.log(" Permanent Address stored Successfully");
+   
+    },error =>{
+        console.log("error from address api:",error);
+        if (error.error && error.error.message) {
+          alert(error.error.message); 
+        }
+    });
+  }
+
+  editPermanentAddress(){
+      this.PermanentAddressForm = this.formbulider.group({
+        permanenteffectiveStartDate:[formatDate(this.empPermanentAddress.DATE_FROM, 'yyyy-MM-dd','en'),Validators.required],
+        permanenteffectiveEndDate:[formatDate(this.empPermanentAddress.DATE_TO, 'yyyy-MM-dd','en'),Validators.required],
+        permanentaddressType:[this.empPermanentAddress.ADDRESS_TYPE,Validators.required],
+        employeeId:[this.empData.Employee_id],
+        permanentaddress:[this.empPermanentAddress.ADDRESS,Validators.required],
+        permanentcity:[this.empPermanentAddress.CITY,Validators.required],
+        permanentstate:[this.empPermanentAddress.STATE,Validators.required],
+        permanentcountry:[this.empPermanentAddress.COUNTRY,Validators.required],
+        permanentpincode:[this.empPermanentAddress.PIN_CODE,Validators.required]  
+      });
+      console.log("Permanent Address form editPermanentAddress method:",this.PermanentAddressForm.value);
   }
 
   

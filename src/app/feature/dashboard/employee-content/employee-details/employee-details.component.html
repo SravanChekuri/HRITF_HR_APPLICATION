@@ -8,9 +8,9 @@
 
     <div class="profile-container">
         <img src="../../../../../assets/Images/emp_profile.png" alt="emp Img" class="profile-img">
-        <div class="profile-info"><h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Name :' : 'Candidate Name :' }} <span style="color: red;">{{ empData.Employee_First_Name }} {{ empData.Middle_Name }} {{ empData.Last_Name }}</span></h6>
-            <h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Number :' : 'Candidate Number :' }}<span style="color: red;"> {{ empData.Employee_Number }}</span></h6>
-            <!-- <h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Status :' : '' }} {{ empDataDetails.STATUS }}</h6> -->
+        <div class="profile-info"><h6>{{ candOrempFormUpdate.get('presenterType').value === 'Employee' ? 'Employee Name :' : 'Candidate Name :' }} <span style="color: red;">{{ empData.Employee_First_Name }} {{ empData.Middle_Name }} {{ empData.Last_Name }}</span></h6>
+            <h6>{{ candOrempFormUpdate.get('presenterType').value === 'Employee' ? 'Employee Number :' : 'Candidate Number :' }}<span style="color: red;"> {{ empData.Employee_Number }}</span></h6>
+            <!-- <h6>{{ candOrempFormUpdate.get('presenterType').value === 'Employee' ? 'Status :' : '' }} {{ empDataDetails.STATUS }}</h6> -->
         </div>
     </div>
 
@@ -21,7 +21,7 @@
     
     <div>
 
-        <h5 style="margin: 1% 0 1% 1.5%; ">{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Details :' : 'Candidate Details :' }}&nbsp; <span (click)="toggleEdit1()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
+        <h5 style="margin: 1% 0 1% 1.5%; ">{{ candOrempFormUpdate.get('presenterType').value === 'Employee' ? 'Employee Details :' : 'Candidate Details :' }}&nbsp; <span (click)="toggleEdit1()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
 
         <div [hidden]="!isEditable1">
             <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
@@ -42,8 +42,8 @@
             </div>
         </div>
         
-        <div *ngIf="updateSuccessMsg" class="success-msg"><p>{{ msg }}</p></div>
-        <div *ngIf="updateFailMsg" class="fail-msg"><p>{{ msg }}</p></div>
+        <!-- <div *ngIf="updateSuccessMsg" class="success-msg"><p>{{ msg }}</p></div>
+        <div *ngIf="updateFailMsg" class="fail-msg"><p>{{ msg }}</p></div> -->
 
         <form [formGroup]="candOrempFormUpdate" (ngSubmit)="update()">
 
@@ -60,8 +60,8 @@
                 </div>
 
                 <div class="label-container">
-                    <label for="worker">Worker Type :</label>
-                    <select id="worker" class="form-control" formControlName="workerType">
+                    <label for="presenter">presenter Type :</label>
+                    <select id="presenter" class="form-control" formControlName="presenterType">
                         <option value="" disabled selected>Select...</option>
                         <option value="Candidate">Candidate</option>
                         <option value="Employee">Employee</option>
@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="label-container">
-                    <label for="empno">{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Number' : 'Candidate Number' }} :</label>
+                    <label for="empno">{{ candOrempFormUpdate.get('presenterType').value === 'Employee' ? 'Employee Number' : 'Candidate Number' }} :</label>
                     <input type="text" id="empno" class="form-control" formControlName="employeeNumber">
                 </div>
 
@@ -182,11 +182,11 @@
                 </div>
 
                 <div class="label-container">
-                    <label for="empID">{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee ID' : 'Candidate ID' }} :</label>
+                    <label for="empID">{{ candOrempFormUpdate.get('presenterType').value === 'Employee' ? 'Employee ID' : 'Candidate ID' }} :</label>
                     <input type="text" class="form-control" id="empId" formControlName="employeeId"  [value]="empData.Employee_id" readonly style="cursor: not-allowed;">
                 </div>
 
-                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('presenterType').value === 'Candidate' ">
                     <label for="status">Status :</label>
                     <select id="status" class="form-control" formControlName="status">
                         <option value="" selected disabled>Select...</option>
@@ -209,7 +209,7 @@
                         <option value="Quality Assurance (QA) and Testing">Quality Assurance (QA) and Testing</option>
                         <option value="DevOps">DevOps</option>
                         <option value="IT Support/Help Desk">IT Support/Help Desk</option>
-                        <option value="Network and Infrastructure">Network and Infrastructure</option>
+                        <option value="Netpresent and Infrastructure">Netpresent and Infrastructure</option>
                     </select>
                 </div>
 
@@ -223,7 +223,7 @@
                         <option value="QA Engineer">QA Engineer</option>
                         <option value="Data Analyst">Data Analyst</option>
                         <option value="DevOps Engineer">DevOps Engineer</option>
-                        <option value="Network Engineer">Network Engineer</option>
+                        <option value="Netpresent Engineer">Netpresent Engineer</option>
                         <option value="Software Architect">Software Architect</option>
                         <option value="Front-End Developer">Front-End Developer</option>
                         <option value="Back-End Developer">Back-End Developer</option>
@@ -233,7 +233,7 @@
 
                 </div>
 
-                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('presenterType').value === 'Candidate' ">
                     <label for="cnfdate">Conformation Date :</label>
                     <input type="date" class="form-control" formControlName="confirmationDate" readonly style="cursor: not-allowed;">
                 </div>
@@ -244,32 +244,32 @@
                 </div>
 
                 <div class="label-container">
-                    <label for="CAS" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">Current Annual Salary :</label>
-                    <label for="CAS" [hidden]="candOrempFormUpdate.get('workerType').value === 'Employee'">CTC :</label>
+                    <label for="CAS" [hidden]="candOrempFormUpdate.get('presenterType').value === 'Candidate' ">Current Annual Salary :</label>
+                    <label for="CAS" [hidden]="candOrempFormUpdate.get('presenterType').value === 'Employee'">CTC :</label>
                     <input type="number" class="form-control" formControlName="currentAnnualSalary">
                 </div>
 
-                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('presenterType').value === 'Candidate' ">
                     <label for="CExp">Current Experince :</label>
                     <input type="text" class="form-control" formControlName="currentCompanyExp">
                 </div>
 
-                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('presenterType').value === 'Candidate' ">
                     <label for="PAS">Previous Annual Salary :</label>
                     <input type="number" class="form-control" formControlName="previousAnnualSalary">
                 </div>
 
-                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('presenterType').value === 'Candidate' ">
                     <label for="PExp">Previous Experince :</label>
                     <input type="text" class="form-control" formControlName="previousExp">
                 </div>
 
-                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('presenterType').value === 'Candidate' ">
                     <label for="TExp">Total Experince :</label>
                     <input type="text" class="form-control" formControlName="totalExp">
                 </div>
 
-                <div class="label-container" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+                <div class="label-container" [hidden]="candOrempFormUpdate.get('presenterType').value === 'Candidate' ">
                     <label for="PP">Probation Period :</label>
                     <select id="PP" class="form-control" formControlName="probationPeriod">
                         <option value="" disabled selected>Select...</option>
@@ -301,13 +301,13 @@
 
     </div>
 
-    <hr class="hr" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+    <hr class="hr" [hidden]="candOrempFormUpdate.get('presenterType').value === 'Candidate' ">
 
-    <div [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' " style="margin-bottom: 7%;">
+    <div [hidden]="candOrempFormUpdate.get('presenterType').value === 'Candidate' " style="margin-bottom: 7%;">
 
         <h5 style="margin: 2% 0 2% 1.5%;">Address Details : <span (click)="toggleEdit3()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
 
-        <div>
+        <div [hidden]="!isEditable3">
 
             <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
 
@@ -332,7 +332,7 @@
 
         <div>
 
-            <form [formGroup]="PermanentAddressForm">
+            <form [formGroup]="PresentAddressForm" (ngSubmit)="presentaddressData()">
 
                 <h6 class="address-heading">Present Address :</h6>
                 
@@ -340,17 +340,17 @@
 
                     <div class="label-container">
                         <label for="address">Date From :</label>
-                        <input type="date" id="address" formControlName="workEffectiveStartDate" class="form-control">            
+                        <input type="date" id="address" formControlName="presentEffectiveStartDate" class="form-control">            
                     </div>
 
                     <div class="label-container">
                         <label for="address">Date To :</label>
-                        <input type="date" id="address" formControlName="workEffectiveEndDate" class="form-control">            
+                        <input type="date" id="address" formControlName="presentEffectiveEndDate" class="form-control">            
                     </div>
 
                     <div class="label-container">
                         <label for="addressType">Address Type :</label>
-                        <input  type="text" id="addressType" formControlName="workAddressType" class="form-control" value="Present" readonly style="cursor: not-allowed;">            
+                        <input  type="text" id="addressType" formControlName="presentAddressType" class="form-control" value="Present" readonly style="cursor: not-allowed;">            
                     </div>
  
                     <div class="label-container" hidden="true">
@@ -360,32 +360,32 @@
     
                     <div class="label-container">
                         <label for="address">Address :</label>
-                        <textarea id="address" formControlName="workAddress" class="form-control"></textarea>         
+                        <textarea id="address" formControlName="presentAddress" class="form-control"></textarea>         
                     </div>
 
                     <div class="label-container">
                         <label for="city">City :</label>
-                        <input type="text" id="city" formControlName="workCity" class="form-control">            
+                        <input type="text" id="city" formControlName="presentCity" class="form-control">            
                     </div>
 
                     <div class="label-container">
                         <label for="addressId">State :</label>
-                        <input type="text" id="addressId" formControlName="workState" class="form-control">            
+                        <input type="text" id="addressId" formControlName="presentState" class="form-control">            
                     </div>
 
                     <div class="label-container">
                         <label for="employeeId">Country :</label>
-                        <input type="text" id="employeeId" formControlName="workCountry" class="form-control">            
+                        <input type="text" id="employeeId" formControlName="presentCountry" class="form-control">            
                     </div>
 
                     <div class="label-container">
                         <label for="addressType">Pincode :</label>
-                        <input type="text" id="addressType" formControlName="workPincode" class="form-control">            
+                        <input type="text" id="addressType" formControlName="presentPincode" class="form-control">            
                     </div>
 
                 </div>
 
-                <div class="btn-align" style="margin-top:2%;">
+                <div class="btn-align" style="margin-top:2%;" [hidden]="!isEditable3">
                     <button type="submit" class="btn btn-info">Update</button>&nbsp;&nbsp;
                     <button type="button" class="btn btn-secondary">Cancel</button>
                 </div>    
@@ -397,7 +397,7 @@
         <hr class="hr">
 
         <div>
-            <form [formGroup]="PresentAddressForm">
+            <form [formGroup]="PermanentAddressForm" (ngSubmit)="permanentaddressData()">
 
                 <h6 class="address-heading">Permanent Address :</h6>
                 
@@ -405,17 +405,17 @@
 
                     <div class="label-container">
                         <label for="address">Date From :</label>
-                        <input type="date" id="address" formControlName="effectiveStartDate" class="form-control">            
+                        <input type="date" id="address" formControlName="permanenteffectiveStartDate" class="form-control">            
                     </div>
 
                     <div class="label-container">
                         <label for="address">Date To :</label>
-                        <input type="date" id="address" formControlName="effectiveEndDate" class="form-control">            
+                        <input type="date" id="address" formControlName="permanenteffectiveEndDate" class="form-control">            
                     </div>
 
                     <div class="label-container">
                         <label for="addressType">Address Type :</label>
-                        <input  type="text" id="addressType" formControlName="addressType" class="form-control" value="Permanent" readonly style="cursor: not-allowed;">            
+                        <input  type="text" id="addressType" formControlName="permanentaddressType" class="form-control" value="Permanent" readonly style="cursor: not-allowed;">            
                     </div>
 
                     <div class="label-container" hidden="true">
@@ -425,32 +425,32 @@
     
                     <div class="label-container">
                         <label for="address">Address :</label>
-                        <textarea type="text" id="address" formControlName="address" class="form-control"></textarea>            
+                        <textarea type="text" id="address" formControlName="permanentaddress" class="form-control"></textarea>            
                     </div>
 
                     <div class="label-container">
                         <label for="city">City :</label>
-                        <input type="text" id="city" formControlName="city" class="form-control">            
+                        <input type="text" id="city" formControlName="permanentcity" class="form-control">            
                     </div>
 
                     <div class="label-container">
                         <label for="addressId">State :</label>
-                        <input type="text" id="addressId" formControlName="state" class="form-control">            
+                        <input type="text" id="addressId" formControlName="permanentstate" class="form-control">            
                     </div>
 
                     <div class="label-container">
                         <label for="employeeId">Country :</label>
-                        <input type="text" id="employeeId" formControlName="country" class="form-control">            
+                        <input type="text" id="employeeId" formControlName="permanentcountry" class="form-control">            
                     </div>
 
                     <div class="label-container">
                         <label for="addressType">Pincode :</label>
-                        <input type="text" id="addressType" formControlName="pincode" class="form-control">            
+                        <input type="text" id="addressType" formControlName="permanentpincode" class="form-control">            
                     </div>
     
                 </div>
 
-                <div class="btn-align" style="margin-top:2%;">
+                <div class="btn-align" style="margin-top:2%;" [hidden]="!isEditable3">
                     <button type="submit" class="btn btn-info">Update</button>&nbsp;&nbsp;
                     <button type="button" class="btn btn-secondary">Cancel</button>
                 </div>    
