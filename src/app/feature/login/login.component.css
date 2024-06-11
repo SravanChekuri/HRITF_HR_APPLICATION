@@ -3,7 +3,9 @@
     background-image: url('../../../assets/Images/login-img-background.png');
     height: 100vh;
     background-size: cover;
-    max-width: 100%;
+    background-position: center;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 /* css for for side image and loginform */
@@ -11,6 +13,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    /* height: 100%;  */
+    overflow: hidden; 
 }
 
 /* css for 2nd image size and alignments */
@@ -25,8 +30,9 @@
     width: 80%;
     max-width: 500px;
     background-color: rgba(0,0,0,0.2);
-    margin:3% auto;
+    margin:0 auto;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 /* heading for the form  */

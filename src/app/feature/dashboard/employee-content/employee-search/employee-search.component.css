@@ -1,5 +1,5 @@
 .emp-search{
-    width: 180vh;
+    width: 87%;
     height: 90vh;
     position: fixed;
     top:14%;
@@ -20,7 +20,7 @@ input{
 
 .search-icon{
     position: absolute;
-    top:9%;
+    top:10%;
     left: 38%;
     cursor: pointer;
 }
@@ -54,7 +54,7 @@ input{
     text-align: center;
  }
 
- @media screen and (max-width: 768px) {
+ /* @media screen and (max-width: 768px) {
     .emp-search {
         width: 90vw;
         left: 5%;
@@ -77,4 +77,4 @@ input{
     .emp-notfound {
         font-size: 3vw;
     }
-}
+} */

@@ -13,21 +13,22 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent {
 
-  data:FormGroup;
+  // data:FormGroup;
   loginform:FormGroup;
 
   // loginFail:boolean=false;
   submitted:boolean=false;
 
-  email:string='';
+  // email:string='';
 
-  successMessage: string = '';
+  // successMessage: string = '';
   errorMsg:string='';
 
   passwordVisible: boolean = false;
 
   isLoading: boolean = false;
 
+  
   constructor(private formbuilder:FormBuilder, private service:LoginService, private router:Router, private AuthService:AuthService){}
 
   ngOnInit(): void {
@@ -61,6 +62,8 @@ export class LoginComponent {
       // alert("Login Success")
       // this.successMessage = 'Successfully logged in';
       // this.router.navigate(['/home']);
+      console.log(res);
+
       Swal.fire({
         position: "top",
         icon: "success",

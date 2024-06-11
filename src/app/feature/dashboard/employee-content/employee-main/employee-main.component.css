@@ -1,13 +1,12 @@
 .main-container{
-    /* border: 1px solid black; */
-    width: 180vh;
+    width: 87%;
     height: 90vh;
     position: fixed;
     top:14%;
     left:12.5%;
-    /* background-color:#EDEDED; */
     background-color: #FFFFFF;
     overflow-y: auto;
+    box-sizing: border-box;
 }
 /* .search-sec{
     background-color: #FFFFFF;
@@ -99,4 +98,6 @@ input{
 .align-inputs > label{
     margin-top: 4%;
 }
+
+
 

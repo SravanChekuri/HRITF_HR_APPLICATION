@@ -1,8 +1,5 @@
 .dash-home{
-    /* min-width: 192vh;
-    min-height:90vh; */
-    /* border: 1px solid black; */
-    width: 180vh;
+    width: 87%;
     height: 90vh;
     position: fixed;
     top:14%;
@@ -10,10 +7,11 @@
     bottom: 5%;
     background-color: #ffffff;
     overflow-y:auto;
+    box-sizing: border-box;
 }
 
 .marquee{
-    margin: 1% 0 1% 0;
+    margin: 1% 0;
 }
 
 .h3{
@@ -25,7 +23,5 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-img{
-    margin-left: 15%;
-    margin-top: 3%;
-}
+
+
