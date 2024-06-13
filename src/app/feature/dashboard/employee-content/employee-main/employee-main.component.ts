@@ -23,10 +23,11 @@ export class EmployeeMainComponent implements OnInit{
   errorMessage: string = '';
   empAllData:any;
   onchangeText:any;
-  isHideAllEmp:boolean=false;
+
+  editEmp:boolean=true;
+  searchHide:boolean=true;
 
   constructor(private service:EmployeeAddService){
-
     this.textInput = '';
   }
 
@@ -34,30 +35,8 @@ export class EmployeeMainComponent implements OnInit{
 
   }
 
-  // getAllperson(){
-  //   this.service.getAllperson().subscribe(res=>{
-  //     // console.log(res);
-  //     this.empData=res['data'];
-  //     this.allEmp=res['data'];
-  //     this.filteredEmp=res['data'];
-  //   })
-  // }
-  // filtEmpRes(event:any){
-  //   const filterValue=event.target.value;
-  //   let filterValueLower=filterValue.toLowerCase();
-  //   if (filterValue===''){
-  //     this.filteredEmp=this.allEmp;
-  //   }
-  //   else{
-  //     this.filteredEmp=this.allEmp.filter((employee)=>employee.Employee_First_Name.toLowerCase().includes(filterValueLower) ||
-  //     employee.Employee_Number.toLowerCase().includes(filterValueLower)||
-  //     employee.Last_Name.toLowerCase().includes(filterValueLower)||
-  //     employee.Email.toLowerCase().includes(filterValueLower))
-  //   }
-  // }
 
-
-  updateEmp(filtemp,employementData,presentEmployeeAddress,permanentEmployeeAddress) {
+updateEmp(filtemp,employementData,presentEmployeeAddress,permanentEmployeeAddress) {
 
     console.log("filtemp",filtemp);
     console.log("editdata",employementData);
@@ -100,11 +79,13 @@ onEndDateChange(event:any){
 }
 
 onSubmit(){
+  this.editEmp=true;
   console.log("Input Textbox:",this.textInput);
   console.log(this.effStartDate);
+  this.clearEmployeeData();
 
   this.service.sendDateOrEmpnumber(this.textInput,this.effStartDate,this.effEndDate).subscribe((res)=>{
-    this.isHideAllEmp=true;
+    this.searchHide=false;
     console.log("res",res);
     console.log("responce",res['EMPLOYEE_DETAILS']);
     
@@ -120,8 +101,9 @@ onSubmit(){
     this.presentEmployeeAddress=res['Work_Address_Details']
     console.log("presentEmployeeAddress",this.presentEmployeeAddress);
 
-
-    
+    this.textInput = '';
+    this.effStartDate = '';
+    this.effEndDate = '';
 
   },error=>{
     console.log(error);
@@ -141,44 +123,36 @@ onSubmit(){
 clearEmployeeData(): void {
   this.employeData = null;
   this.empAllData = [];
-  this.isHideAllEmp = true;
 }
 
 onEmployeeNumberEnter(event:any){
   const input = event.target as HTMLInputElement;
- 
+  this.editEmp=false;
+  this.searchHide=true;
   if (input.value === '') {
     this.clearEmployeeData();
   }
   else {
-    this.isHideAllEmp = false;
     // If you want to fetch data on every input, you can uncomment the line below
     // this.fetchEmployeeData(input.value);
   }
   console.log(event.target.value);
   this.onchangeText=event.target.value;
- 
   this.service.getAllEmployeeDetails(this.onchangeText).subscribe((res)=>{
     console.log("onchage res",res);
     this.empAllData=res;
     console.log("length",this.empAllData);
-   
     console.log("this.empAllData", this.empAllData);
-   
-   
   },error=>{
     console.log(error);
-   
+    this.empAllData = undefined;
       this.errorMessage=error.error.message
       console.log("this.errorMessage",this.errorMessage);
-     
-   
-   
-  })
- 
- 
- 
- 
+  });
 }
+
+
+
+
 
 }

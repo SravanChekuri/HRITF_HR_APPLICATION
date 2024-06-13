@@ -1,5 +1,5 @@
 .dash-home{
-    width: 87%;
+    width: 87.5%;
     height: 90vh;
     position: fixed;
     top:14%;
@@ -25,19 +25,20 @@
 
 .dashboard-content {
     display: flex;
-    justify-content: space-around;
+    justify-content:baseline;
     flex-wrap: wrap;
-    margin-top: 3%;
+    margin:3% 0 5% 3%;
 }
 
 .card {
     background-color: #c3eaf3;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    padding: 15px;
+    padding: 10px;
     margin: 10px;
-    flex: 1 1 calc(25% - 20px); 
-    max-width: 400px;
+    flex: 1 1 calc(22% - 20px); 
+    max-width: 22%;
+    height: 370px;
     box-sizing: border-box;
 }
 
@@ -56,13 +57,15 @@
 .card ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .card ul li {
     background-color: rgb(250, 241, 241);
-    padding: 10px;
+    padding: 8px;
     margin: 5px 0;
     border-radius: 4px;
+    font-size: 14px;
 }
 
 .card ul li:nth-child(odd) {
@@ -77,4 +80,7 @@ li{
     font-weight: 500;
 }
 
-
+.birthday-img{
+    width: 100%;
+    height: auto;
+}
