@@ -6,12 +6,12 @@
         </div>
         <span>
             <form>
-                <input type="text" placeholder=" Search by First Name, Last Name, Emp ID, Email" autofocus [(ngModel)]="searchTxt" (input)="filtEmpRes($event)" style="padding-left: 10px;">
+                <input type="text" placeholder=" Search by First Name, Last Name, Emp ID, Email" autofocus [(ngModel)]="searchTxt" (input)="filtEmpRes($event)" style="padding-left: 10px;"  name="searchText">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
             </form>
         </span>
         <span class="addemp-btn">
-            <button type="submit" class="btn btn-danger"(click)="addbtnclk()">Add New Profile</button>
+            <button class="btn btn-danger"(click)="addbtnclk()">Add New Profile</button>
         </span>
     </div>
 

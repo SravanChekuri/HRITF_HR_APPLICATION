@@ -109,6 +109,12 @@
     font-weight: 500;
   }
 
+  .heading20{
+    text-align: center;
+    margin: 1% 0 0 2%;
+    color: red;
+  }
+
   .heading2{
     margin: 1% 0 0 2%;
   }

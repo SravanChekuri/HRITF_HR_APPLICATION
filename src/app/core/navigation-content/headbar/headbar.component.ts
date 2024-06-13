@@ -16,10 +16,8 @@ export class HeadbarComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // this.userName = this.userService.getUserName();
-    // this.userId = this.userService.getUserId();
     this.login_data = JSON.parse(localStorage.getItem('loginData'));
-    console.log("Login data header:",this.login_data);
+    // console.log("Login data header:",this.login_data);
     
   }
 }

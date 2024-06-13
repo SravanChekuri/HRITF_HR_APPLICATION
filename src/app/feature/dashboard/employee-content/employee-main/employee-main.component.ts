@@ -12,101 +12,115 @@ export class EmployeeMainComponent implements OnInit{
   empData:any;
 
   textInput: string | Date;
+
   effStartDate:any;
+
   effEndDate:any;
 
   employeData:any;
+
   employementData:any;
+
   presentEmployeeAddress:any;
+
   permanentEmployeeAddress:any;
 
   errorMessage: string = '';
+
   empAllData:any;
+
   onchangeText:any;
 
   editEmp:boolean=true;
+
   searchHide:boolean=true;
 
   constructor(private service:EmployeeAddService){
+
     this.textInput = '';
-  }
-
-  ngOnInit(){
 
   }
 
+  ngOnInit(){ }
 
 updateEmp(filtemp,employementData,presentEmployeeAddress,permanentEmployeeAddress) {
 
-    console.log("filtemp",filtemp);
-    console.log("editdata",employementData);
+    // console.log("filtemp",filtemp);
+    // console.log("editdata",employementData);
     // console.log("editdata", filtemp);
 
     localStorage.removeItem('employementData');
+
     if (employementData !== undefined){
       localStorage.setItem('employementData',JSON.stringify(employementData));
-      console.log("employementData form localstorage:",this.employementData);
-      
+      // console.log("employementData form localstorage:",this.employementData);
     }
 
     localStorage.removeItem('presentAddress');
+
     if(presentEmployeeAddress !== undefined){
       localStorage.setItem('presentAddress',JSON.stringify(presentEmployeeAddress));
-      console.log("employee present address from localstorage:",presentEmployeeAddress);
-      
+      // console.log("employee present address from localstorage:",presentEmployeeAddress);  
     }
+
     localStorage.removeItem('permanentAddress');
+
     if(permanentEmployeeAddress !== undefined){
       localStorage.setItem('permanentAddress',JSON.stringify(permanentEmployeeAddress));
-      console.log("employee permanent address from localstorage:",permanentEmployeeAddress);
+      // console.log("employee permanent address from localstorage:",permanentEmployeeAddress);
     }
 
     localStorage.setItem('empData', JSON.stringify(filtemp));
-    console.log("empdata  from localstorage:",filtemp);
-    
-
+    // console.log("empdata  from localstorage:",filtemp);
 }
 
+
+
 onStartDateChange(event:any){
+
   this.effStartDate = event.target.value;
-  console.log("Start date:",this.effStartDate);
+  // console.log("Start date:",this.effStartDate);
   localStorage.setItem('effectiveStartDate',this.effStartDate);
 }
 
 onEndDateChange(event:any){
+
   this.effEndDate = event.target.value;
-  console.log("End date:", this.effEndDate);
+  // console.log("End date:", this.effEndDate);
 }
 
 onSubmit(){
   this.editEmp=true;
-  console.log("Input Textbox:",this.textInput);
-  console.log(this.effStartDate);
+  // console.log("Input Textbox:",this.textInput);
+  // console.log(this.effStartDate);
   this.clearEmployeeData();
 
   this.service.sendDateOrEmpnumber(this.textInput,this.effStartDate,this.effEndDate).subscribe((res)=>{
     this.searchHide=false;
-    console.log("res",res);
-    console.log("responce",res['EMPLOYEE_DETAILS']);
+    // console.log("res",res);
+    // console.log("responce",res['EMPLOYEE_DETAILS']);
     
     this.employeData = res['EMPLOYEE_DETAILS'];
-    console.log("Employee data:",this.employeData);
+    // console.log("Employee data:",this.employeData);
 
     this.employementData = res['Employement_Details'];
-    console.log("Employement Data:",this.employementData);
+    // console.log("Employement Data:",this.employementData);
 
     this.permanentEmployeeAddress=res['Home_Address_Details']
-    console.log("this.permanentEmployeeAddress", this.permanentEmployeeAddress);
+    // console.log("this.permanentEmployeeAddress", this.permanentEmployeeAddress);
     
     this.presentEmployeeAddress=res['Work_Address_Details']
-    console.log("presentEmployeeAddress",this.presentEmployeeAddress);
+    // console.log("presentEmployeeAddress",this.presentEmployeeAddress);
 
     this.textInput = '';
+
     this.effStartDate = '';
+
     this.effEndDate = '';
 
   },error=>{
-    console.log(error);
+
+    // console.log(error);
     Swal.fire({
       position: "top",
       icon: "error",
@@ -114,10 +128,7 @@ onSubmit(){
       text: `${error.error.message}`,
       width:400,
     });
-
-    
-  })
-  
+  });
 }
 
 clearEmployeeData(): void {
@@ -126,32 +137,37 @@ clearEmployeeData(): void {
 }
 
 onEmployeeNumberEnter(event:any){
+
   const input = event.target as HTMLInputElement;
+
   this.editEmp=false;
+
   this.searchHide=true;
+
   if (input.value === '') {
     this.clearEmployeeData();
   }
-  else {
-    // If you want to fetch data on every input, you can uncomment the line below
-    // this.fetchEmployeeData(input.value);
-  }
-  console.log(event.target.value);
+  // console.log(event.target.value);
   this.onchangeText=event.target.value;
+
   this.service.getAllEmployeeDetails(this.onchangeText).subscribe((res)=>{
-    console.log("onchage res",res);
+    // console.log("onchage res",res);
+
     this.empAllData=res;
-    console.log("length",this.empAllData);
-    console.log("this.empAllData", this.empAllData);
+
+    // console.log("length",this.empAllData);
+    // console.log("this.empAllData", this.empAllData);
+
   },error=>{
-    console.log(error);
+    // console.log(error);
+
     this.empAllData = undefined;
-      this.errorMessage=error.error.message
-      console.log("this.errorMessage",this.errorMessage);
+
+      this.errorMessage=error.error.message;
+
+      // console.log("this.errorMessage",this.errorMessage);
   });
 }
-
-
 
 
 

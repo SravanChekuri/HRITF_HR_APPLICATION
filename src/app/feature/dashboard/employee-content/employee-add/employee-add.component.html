@@ -10,30 +10,35 @@
         <div class="container">
 
             <div class="bulkUpload-container"><!--bulk div sec start-->
-                <div>
-                    <h5>Quick Add Candidate/Employee to the company</h5>
-                    <p>Add an Candidate/Employee by filling the from or add add a bunch of employee by clicking bulk upload </p>
 
-                    <!-- <div *ngIf="bulkpass"><p style="text-align:right;padding:0 3% 0 0;color:green;font-weight:bold;"><i class="fa-solid fa-check" style="color: green;"></i>&nbsp;Successfully uploaded the data</p></div>
-                    <div *ngIf="bulkfail"><p style="text-align: right; padding: 0 3% 0 0;color:red;font-weight: bold;"><i class="fa-solid fa-xmark" style="color: red;"></i>&nbsp;Failed to add Employees,because {{bulkmsg}}</p></div> -->
+                <div>
+
+                    <h5>Quick Add Candidate/Employee to the company</h5>
+
+                    <p>Add an Candidate/Employee by filling the from or add add a bunch of employee by clicking bulk upload </p>
 
                     <input id="file-upload" class="form-control file-upload" type="file"  accept=".xlsx, .xls" required (change)="selectFile($event)" />
 
-                    <div *ngIf="fileError" class="text-danger">
-                        {{ fileError }}
-                    </div>
+                    <div *ngIf="fileError" class="text-danger"><span>{{ fileError }}</span></div>
+
                     <br>
+
                     <label  class="custom-file-upload" (click)="uploadFile()">Add Bulk Details</label>
-                    <!-- <button type="button" (click)="updateBulk()" class=btn btn-primary>update</button> -->
+
                 </div>
                
                 <div style="margin-top: 1%;">
+
                     <span>Click on download, to download sample Excel sheet, <button type="button" class="excel-button" (click)="excelview()">Download</button></span>
+                
                 </div>
+
             </div><!--bulk div sec end-->
 
             <div  class="image-container">
+
                 <img src="../../../../../assets/Images/bulk-emp.png" alt="bulkIMG" class="bulk-img">
+            
             </div>
 
         </div>
@@ -45,9 +50,7 @@
 
             <div style="margin: 0 0 1.5% 0;"><h5>Add details of new Candidate/Employee:</h5></div>
 
-            <!-- <div *ngIf="successmsg" class="success-msg"><img src=".../../../../../../../assets/Images/success-tick-dribbble-gif.gif" alt="Sucessfully img" class="sucessfull-img"><span class="success-text"> Employee Added Sucessfully to the database</span></div> -->
 
-            <!-- <div *ngIf="failmsg" class="fail-msg"><span class="fail-text">Failed to add employee: {{msg}}</span></div> -->
 
             <div> <!--form start-->
 
@@ -79,7 +82,6 @@
                         </div>
 
                         <div class="label-container">
-                            <!-- <label for="empno">Candidate Number<span class="mandatory">*</span>:</label> -->
                             <label for="empno">
                                 {{ addEmpForm.get('workerType').value === 'Employee' ? 'Employee Number' : 'Candidate Number' }}
                                 <span class="mandatory">*</span>:
@@ -168,7 +170,7 @@
 
                     <div class="button-container">
                         <button class="btn btn-info" type="submit" [disabled]="addEmpForm.invalid || submitted">save</button>&nbsp;&nbsp;
-                        <button class="btn btn-secondary" type="button">Cancel</button>
+                        <button class="btn btn-secondary" type="button" routerLink="/home/employees">Cancel</button>
                     </div>
 
                 </form>
@@ -179,6 +181,12 @@
 
     </div><!--Bulk div and Form div end-->
 
-
+    <div *ngIf="isLoading" class="loading-spinner-container">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <div *ngIf="isBulkLoading" class="loading-spinner-container">
+        <div class="loading-spinner"></div>
+    </div>
 
 </div><!--Main div-->

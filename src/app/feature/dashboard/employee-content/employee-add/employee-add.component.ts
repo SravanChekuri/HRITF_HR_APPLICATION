@@ -11,54 +11,64 @@ import Swal from 'sweetalert2';
 })
 export class EmployeeAddComponent implements OnInit{
 
-  addEmpForm:FormGroup;
+  addEmpForm:FormGroup; //for emp/candi form
 
-  submitted=false;
+  submitted=false; //validations
 
-  file:any;
+  file:any; //excel file
 
-  msg:any;
+  msg:any; // candi/emp add success/fail msg
 
-  bulkmsg:any='';
+  bulkmsg:any=''; // bulk msg
 
-  bulkUpadateMsg:any='';
+  bulkUpadateMsg:any=''; //bulk update msg
 
-  today: string;
+  today: string; // dob validation
 
-  maxDate: string;
+  maxDate: string; // dob validation
   
-  minDate: string;
+  minDate: string; // dob validation
 
-  fileError:any;
+  fileError:any; //excel file error
+
+  isLoading:boolean = false; //loading animation
+
+  isBulkLoading: boolean = false; // bulk loading animation
 
   constructor(private formBuilder:FormBuilder,private service:EmployeeAddService,private router:Router){ }
 
   ngOnInit(): void {
-    this.empData();
     this.today = this.getTodayDate();
     this.maxDate = this.getMaxDate();
     this.minDate = this.getMinDate();
-    this.addEmpForm.patchValue({ workerType: 'Candidate' });
+    // this.addEmpForm.patchValue({ workerType: 'Candidate' });
+    this.empData();
+    this.addEmpForm.patchValue({ workerType: 'Candidate', endDate: '4712-12-31' });
   }
   
+/***** Emp/Candi form ****/
+
   empData(){
+
     this.addEmpForm=this.formBuilder.group({
+
       FirstName:['',Validators.required],
       MiddleName:['',],
       LastName:['',Validators.required],
       EmployeeNumber:['',Validators.required],
       mobileNumber:['',[Validators.required,Validators.pattern(/^[0-9]*$/), Validators.maxLength(10),Validators.minLength(10)]],
-      // DateOfJoining:['',Validators.required],
       Location:['',Validators.required],
       Email:['',[Validators.required,Validators.email]],
       workerType:['',Validators.required],
       startDate:['',Validators.required],
       DateOfBirth:['',[Validators.required,this.dateOfBirthValidator.bind(this)]],
       endDate:['4712-12-31']
-    });
 
+    });
     this.addEmpForm.setValidators(this.customValidation.bind(this));  
   }
+
+//validation for first name and last name
 
   customValidation(formGroup: FormGroup): { [key: string]: any } | null {
     const firstName = formGroup.get('FirstName').value.toLowerCase();
@@ -69,34 +79,41 @@ export class EmployeeAddComponent implements OnInit{
     return null;
   }
 
-      getTodayDate(): string {
+
+  //DOB validation
+
+  getTodayDate(): string {
         const today = new Date();
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
         const day = String(today.getDate()).padStart(2, '0');
         return `${year}-${month}-${day}`;
-      }
+  }
 
-      getMaxDate(): string {
+  //DOB validation
+
+  getMaxDate(): string {
         const today = new Date();
         const year = today.getFullYear() - 18;
         const month = String(today.getMonth() + 1).padStart(2, '0');
         const day = String(today.getDate()).padStart(2, '0');
         return `${year}-${month}-${day}`;
-      }
+  }
 
-      getMinDate(): string {
+  //DOB validation
+
+  getMinDate(): string {
         const today = new Date();
         const year = today.getFullYear() - 67;
         const month = String(today.getMonth() + 1).padStart(2, '0');
         const day = String(today.getDate()).padStart(2, '0');
         return `${year}-${month}-${day}`;
-      }
+  }
 
-      dateOfBirthValidator(control: AbstractControl): { [key: string]: boolean } | null {
+  dateOfBirthValidator(control: AbstractControl): { [key: string]: boolean } | null {
         if (!control.value) {
           return null; 
-        }
+    }
         const dob = new Date(control.value);
         const today = new Date();
         const minAge = 18;
@@ -106,16 +123,23 @@ export class EmployeeAddComponent implements OnInit{
 
         if (dob < minDate || dob > maxDate) {
           return { invalidDateOfBirth: true };
-        }
+    }
         return null;
-      }
+  }
 
-  submitEmpData(){
+
+/**** emp/candi form submit methos ****/
+
+submitEmpData(){
+
     this.submitted = true;
-    // console.log(this.addEmpForm);
+
+    this.isLoading = true;
+
     if (this.addEmpForm.valid){
 
     const addEmpData={
+
       First_Name:this.addEmpForm.value['FirstName'],
       Middle_Name:this.addEmpForm.value['MiddleName'],
       Last_Name:this.addEmpForm.value['LastName'],
@@ -127,12 +151,11 @@ export class EmployeeAddComponent implements OnInit{
       Effective_Start_Date:this.addEmpForm.value['startDate'],
       Effective_End_Date:this.addEmpForm.value['endDate'],
       Date_Of_Birth:this.addEmpForm.value['DateOfBirth']
+
     };
 
-      // console.log(addEmpData);
-      
-      this.service.addEmployee(addEmpData).subscribe(res=>{
-      console.log(res);
+    this.service.addEmployee(addEmpData).subscribe(res=>{
+      // console.log(res);
 
       Swal.fire({
         position: "top-end",
@@ -141,10 +164,13 @@ export class EmployeeAddComponent implements OnInit{
         showConfirmButton: false,
         timer: 1500,
       }).then(()=>{
+        this.isLoading = false;
         this.router.navigate(['/home/employees/empProfile']); 
       });
+
     },error=>{
-      console.log(error);
+      // console.log(error);
+      this.isLoading = false;
       if (error.error && error.error.message) {
         this.msg = error.error.message;
       }
@@ -164,6 +190,7 @@ export class EmployeeAddComponent implements OnInit{
     });
   }
     else{
+      this.isLoading = false;
       this.msg='Form is Invalid';
       Swal.fire({
         position: "top",
@@ -175,12 +202,12 @@ export class EmployeeAddComponent implements OnInit{
     }
   }
 
-
+/*** Excel file  ***/
 
 selectFile(event:any){
-    console.log('event',event);
+    // console.log('event',event);
     this.file=event.target.files[0];
-    console.log(this.file);
+    // console.log(this.file);
     if (this.file) {
       const fileName = this.file.name;
       const fileExtension = fileName.split('.').pop()?.toLowerCase();
@@ -193,9 +220,9 @@ selectFile(event:any){
     }
   }
 
-
-
+  
 uploadFile(){
+  this.isBulkLoading = true;
     let formData=new FormData();
     formData.append("EXCEL",this.file);
     this.service.bulkUpload(formData).subscribe(res=>{
@@ -207,10 +234,12 @@ uploadFile(){
         showConfirmButton: false,
         timer: 1500,
       }).then(() => {
+        this.isBulkLoading = false;
         this.router.navigate(['/home/employees/empProfile']); 
       });
     }, error=>{
       // console.log(error);
+      this.isBulkLoading = false;
       if (error.error && error.error.message) {
         this.bulkmsg = error.error.message;
         Swal.fire({
@@ -235,13 +264,10 @@ uploadFile(){
     
   }
 
-
   resetForm(): void {
     this.submitted = false; 
-    this.addEmpForm.reset(); 
-    // this.addEmpForm.patchValue({ workerType: 'Candidate' });
-    // this.addEmpForm.markAsUntouched(); 
-    // this.addEmpForm.markAsPristine();
+    this.addEmpForm.reset();
+
   }
 
 

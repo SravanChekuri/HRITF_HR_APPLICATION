@@ -3,15 +3,15 @@
      <div>
         <div><h4 class="heading">Registration for Admin/HR persons:</h4></div>
 
-        <div class="d-flex flex-row justify-content-end success-div" *ngIf="registerFail">
+        <!-- <div class="d-flex flex-row justify-content-end success-div" *ngIf="registerFail">
             <div><i class="fa-regular fa-circle-xmark" style="color: red;"></i></div>&nbsp;
             <p style="color:red;font-weight: bold;font-size: 1.1em;">Failed to add new role, because {{msg}}</p>
-        </div>
+        </div> -->
 
-        <div class="d-flex flex-row justify-content-end success-div" *ngIf="submitted">
+        <!-- <div class="d-flex flex-row justify-content-end success-div" *ngIf="submitted">
             <div><i class="fa-regular fa-circle-check" style="color: green;"></i></div>&nbsp;
             <div><p style="color:rgb(8, 195, 8);font-weight: bold;font-size: 1.1em;">Congratulations!&nbsp;{{regSuccessMsg}}</p></div>
-        </div>
+        </div> -->
 
         <div class="d-flex flex-row formandimg-container"><!--***************************************************Form Started***************************************************-->
             <div class="form-container"> <!--Form main container-->
@@ -60,12 +60,7 @@
                                 *First Name and Last Name cannot be the same
                               </div>
                         </div>
-
-                    <!-- </div><br> -->
-
-                    <!-- <div class="-flex flex-wrap input-container"> -->
                         
-
                         <div >
                             <label for="mobile">Contact<span class="mandatory">*</span>:</label>
                             <input type="tel" id="mobile" class="form-control" formControlName="mobileNumber" (click)="resetmsg()">
@@ -118,37 +113,6 @@
                             </div>
                         </div>
 
-
-                        <!-- <div class="d-flex flex-column">
-                            <label for="pw">Generate Password<span class="mandatory">*</span></label>
-                            <div >
-                                <input type="password" id="pw" formControlName="password">
-                                <button type="button" class="show-hide" (click)="togglePasswordVisibility('pw')">{{ newPasswordVisible ? 'Hide' : 'Show' }}</button>
-                            </div>
-                            <input type="password" id="pw" class="form-control" formControlName="password">
-                            <div *ngIf="signUpForm.get('password').touched && signUpForm.get('password').invalid || submitted && signUpForm.get('password').invalid" class="text-danger">
-                                <div *ngIf="signUpForm.get('password')?.hasError('required')">
-                                    *Password required
-                                </div>
-                            </div>
-                            <div *ngIf="signUpForm.get('password').touched && signUpForm.get('password').hasError('length')" class="text-danger">
-                                *Password must be exactly 8 characters long
-                              </div>
-                              
-                              <div *ngIf="signUpForm.get('password').touched && signUpForm.get('password').hasError('uppercase')" class="text-danger">
-                                *Password must contain at least one uppercase letter
-                              </div>
-                              
-                              <div *ngIf="signUpForm.get('password').touched && signUpForm.get('password').hasError('number')" class="text-danger">
-                                *Password must contain at least one digit
-                              </div>
-                              
-                              <div *ngIf="signUpForm.get('password').touched && signUpForm.get('password').hasError('special')" class="text-danger">
-                                *Password must contain at least one special character
-                              </div>                                                       
-                        </div> -->
-                    <!-- </div> -->
-<!-- <div class="-flex flex-wrap input-container"> -->
                         <div >
                             <label for="effectiveenddate">Effective End Date:</label>
                             <input type="date" id="effectiveenddate" class="form-control" value="4712-12-31"> 

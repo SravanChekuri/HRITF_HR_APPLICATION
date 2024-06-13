@@ -18,10 +18,10 @@ export class EmployeeViewallUsersComponent {
 
   getAdminDetails():void{
   this.service.getadmin().subscribe((res:any)=>{
-    console.log('Admin details:',res);
+    // console.log('Admin details:',res);
     this.adminData = res.data;
   },error=>{
-    console.log('Error fetching admin details:', error);
+    // console.log('Error fetching admin details:', error);
   }); 
   }
 

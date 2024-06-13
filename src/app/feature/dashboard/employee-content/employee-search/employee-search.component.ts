@@ -10,8 +10,11 @@ import { EmployeeAddService } from 'src/app/feature/Services/employee-add.servic
 export class EmployeeSearchComponent implements OnInit{
 
   empData:any;
+
   allEmp:any=[];
+
   searchTxt:any;
+
   filteredEmp:any=[];
 
   displayedEmp: any = [];
@@ -19,8 +22,11 @@ export class EmployeeSearchComponent implements OnInit{
   recordCount:any;
 
   initialRecordsCount: number = 10;
+
   totalRecordsCount: number = 0;
+
   currentPage: number = 1;
+
   totalPages: number = 0;
   
 
@@ -28,12 +34,12 @@ export class EmployeeSearchComponent implements OnInit{
 
   ngOnInit(){
     this.getAllperson();
-    console.log(this.allEmp);
+    // console.log(this.allEmp);
   }
 
   getAllperson(){
     this.service.getAllperson().subscribe(res=>{
-      console.log(res);
+      // console.log(res);
       this.empData=res['data'];
       this.allEmp=res['data'];
       this.filteredEmp=res['data'];

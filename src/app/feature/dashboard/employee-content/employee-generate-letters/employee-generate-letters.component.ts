@@ -9,10 +9,15 @@ import { LettersService } from 'src/app/feature/Services/letters.service';
   styleUrls: ['./employee-generate-letters.component.css']
 })
 export class EmployeeGenerateLettersComponent implements OnInit {
+
   genarateLetterForm: FormGroup;
+
   letterType: any;
+  
   letterId: any;
+
   pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
+
   lettersData: any = [
     {name:'HRITF Offer Letter ',id:10001},
     {name:'HRITF Confirmation Letter ',id:10002},
@@ -32,26 +37,27 @@ export class EmployeeGenerateLettersComponent implements OnInit {
 
   ngOnInit() {
     this.form();
-    // this.getLetters();
     
   }
 
   form() {
+
     this.genarateLetterForm = this.formbuilder.group({
+
       letterTypeName: ['', Validators.required],
       letterIdNumber: ['', Validators.required], 
-      employeeNumber: ['', Validators.required],
-      // ctc: ['', Validators.required],
+      employeeNumber: ['', Validators.required]
+
     });
   }
 
+
   onLetterTypeChange(event: any) {
     this.letterType = event.target.value;
-    console.log(this.letterType);
+    // console.log(this.letterType);
     this.lettersData.forEach((element) => {
       if (element.name === this.letterType) {
         this.letterId = element.id;
-        // After setting letterId, update the value of letterIdNumber in the form
         this.genarateLetterForm.patchValue({
           letterIdNumber: this.letterId,
         });
@@ -61,51 +67,38 @@ export class EmployeeGenerateLettersComponent implements OnInit {
   }
 
   Genarate() {
-    console.log('generate letter fields', this.genarateLetterForm.value);
+    // console.log('generate letter fields', this.genarateLetterForm.value);
 
     const genarateData={
       letterType:this.genarateLetterForm.value['letterTypeName'],
       letterId:this.genarateLetterForm.value['letterIdNumber'],
       Employee_Number:this.genarateLetterForm.value['employeeNumber'],
-      // CTC:this.genarateLetterForm.value['ctc']
 
     }
 
-
-    console.log("genarateData",genarateData);
+    // console.log("genarateData",genarateData);
 
     this.service.genarateTemplate(genarateData).subscribe((res)=>{
-      console.log(res);
-      alert("success");
-
+      // console.log(res);
+      // alert("success");
       this.genarateLetterForm.reset();
       
     },error=>{
-      console.log('error',error);
-      
-      alert(error.error.error);
-    })
-    
+      // console.log('error',error);
+      // alert(error.error.error);
+    });
   }
 
-  view(letterId: number, empNumber: string) {
-    const genarateData={
-      // letterType:this.genarateLetterForm.value['letterTypeName'],
-      // letterId:this.genarateLetterForm.value['letterIdNumber'],
-      // Employee_Number:this.genarateLetterForm.value['employeeNumber'],
-      // CTC:this.genarateLetterForm.value['ctc']
 
-    }
-    // console.log(genarateData.letterId,genarateData.Employee_Number);
+
+  view(letterId: number, empNumber: string) {
 
      this.service.letterData(letterId,empNumber).subscribe((res)=>{
-      console.log(res);
+      // console.log(res);
       const fileURL = URL.createObjectURL(res);
       window.open(fileURL, '_blank');
-
      },error=>{
-      console.log(error);
-      
+      // console.log(error); 
      });
 }
 
@@ -113,27 +106,14 @@ export class EmployeeGenerateLettersComponent implements OnInit {
 
   viewLetters(){
     this.service.getLetters(this.empNumber).subscribe((res)=>{
-      console.log(res);
+      // console.log(res);
       this.empletters = res.data;
     },error=>{
-      console.log(error);
-      alert(error.error.error);
+      // console.log(error);
+      // alert(error.error.error);
     });
 }
 
-// getLetters(): void {
-//   this.service.getLetters()
-//     .subscribe(
-//       (res) => {
-//         console.log(res);
-//         this.generatedLetters = res.data;
-//         console.log("generated letters data:",this.generatedLetters);
-         
-//       },
-//       (error) => {
-//         console.log(error); 
-//       });
-// }
 
 
 

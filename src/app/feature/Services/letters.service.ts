@@ -33,7 +33,7 @@ export class LettersService {
 
    updateEmp(empdata:any,id:any){
     const update=`${this.updateApi}/${id}`
-    console.log(update);
+    // console.log(update);
     
     return this.http.put(update,empdata)
   
@@ -50,7 +50,7 @@ export class LettersService {
     let params = new HttpParams();
     params = params.append('param1', letterId);
     params = params.append('param2', Employee_Number);
-    console.log(params);
+    // console.log(params);
     
     return this.http.get("http://127.0.0.1:5000/view_pdf",{ params: params, responseType: 'blob' })
    

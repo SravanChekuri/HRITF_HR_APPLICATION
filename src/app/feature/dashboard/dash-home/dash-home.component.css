@@ -25,9 +25,9 @@
 
 .dashboard-content {
     display: flex;
-    justify-content:baseline;
+    justify-content:left;
     flex-wrap: wrap;
-    margin:3% 0 5% 3%;
+    margin:4% 0 5% 1%;
 }
 
 .card {
@@ -35,10 +35,10 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 10px;
-    margin: 10px;
-    flex: 1 1 calc(22% - 20px); 
-    max-width: 22%;
-    height: 370px;
+    margin: 1%;
+    flex: 1 1 calc(30% - 10px); 
+    max-width: 300px;
+    /* height: 50%; */
     box-sizing: border-box;
 }
 
@@ -80,7 +80,3 @@ li{
     font-weight: 500;
 }
 
-.birthday-img{
-    width: 100%;
-    height: auto;
-}

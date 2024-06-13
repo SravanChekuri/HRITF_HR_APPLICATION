@@ -12,13 +12,13 @@ export class EmployeeDetailsService {
 
   updateEmp(empdata:any,id:any){
     const update=`${this.updateApi}/${id}`
-    console.log(update);
+    // console.log(update);
     return this.http.put(update,empdata)
    }
 
 
   empData(id:any,data:any){
-    console.log(id);
+    // console.log(id);
     return this.http.post("http://127.0.0.1:5000/employement_details/"+id,data)
   }
  

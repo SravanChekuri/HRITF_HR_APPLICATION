@@ -132,7 +132,7 @@
 
     <div>
 
-        <h5 style="margin: 2% 0 1% 1.5%;">Employment Details : <span (click)="toggleEdit2()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
+        <h5 style="margin: 2% 0 1% 1.5%;">{{candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Employment Details : ' : 'Candidate Employment Details : ' }} <span (click)="toggleEdit2()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
 
         <div [hidden]="!isEditable2">
 
@@ -298,6 +298,10 @@
 
         </form>
 
+    </div>
+
+    <div [hidden]="candOrempFormUpdate.get('workerType').value === 'Employee' ">
+        <h1 style="color: white;">a</h1>
     </div>
 
     <hr class="hr" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
