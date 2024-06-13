@@ -28,6 +28,7 @@ export class LoginComponent {
 
   isLoading: boolean = false;
 
+  loginData:any;
   
   constructor(private formbuilder:FormBuilder, private service:LoginService, private router:Router, private AuthService:AuthService){}
 
@@ -64,6 +65,14 @@ export class LoginComponent {
       // this.router.navigate(['/home']);
       console.log(res);
 
+      this.loginData = res;
+      console.log("login data:",this.loginData.User_Id);
+
+      // localStorage.setItem('loginData',this.loginData);
+
+      localStorage.setItem('loginData', JSON.stringify(this.loginData));
+
+
       Swal.fire({
         position: "top",
         icon: "success",
@@ -73,6 +82,8 @@ export class LoginComponent {
         width:400,
         timer: 2000
       });
+
+
       setTimeout(() => {
         // this.router.navigate(['/home']);
         this.onlogin();
@@ -123,6 +134,7 @@ export class LoginComponent {
 
     onlogin(){
       this.AuthService.Login();
+      this.router.navigate(['/home']);
     }
 
 

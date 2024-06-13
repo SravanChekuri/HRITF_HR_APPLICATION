@@ -1,30 +1,86 @@
 <div class="main-container">
-  <div>
-     <form action="" [formGroup]="genarateLetterForm" (ngSubmit)="Genarate()">
-      <div class="m-5">
-          <label for="letterType">Select Letter Type:</label>
-          <select id="letterType" (change)="onLetterTypeChange($event)" class="form-control w-50" formControlName="letterTypeName">
-              <option value="">select</option>
-              <ng-container *ngFor="let data of lettersData">
-              <option value={{data.name}}>{{data.name}}</option>
-              </ng-container>
-          </select>
-        </div>
-        <div class="m-5">
-          <label for="">Letter Id</label>
-          <input type="text" value={{letterId}} class="form-control w-50" formControlName="letterIdNumber" id="letterId">
 
-        </div>
-        <div class="m-5">
-          <label for="">Employee Number</label>
-          <input type="text"  class="form-control w-50" formControlName="employeeNumber" formControlName="employeeNumber" id="empNum">
-
-        </div>
-        <button class="btn btn-primary m-5" type="submit">Genarate Letter</button>
-        <button class="btn btn-primary m-2" (click)="view()" type="button"> Letter view</button>
-          
-     </form>
+  <div class="heading">
+    <h5>Genarate Letters for Candidates/Employees :</h5>
+    <p>Select the type of the letter you want to prepare and enter candidate/employee number and click generate letter, the letter will generate. </p>
   </div>
+
+    <div>
+
+      <form action="" [formGroup]="genarateLetterForm" (ngSubmit)="Genarate()">
+      <div class="flex-container">
+        <div class="label-container">
+            <label for="letterType">Select Letter Type:</label>
+            <select id="letterType" (change)="onLetterTypeChange($event)"  formControlName="letterTypeName" class="form-control">
+                <option value="">select</option>
+                <ng-container *ngFor="let data of lettersData">
+                <option [value]="data.name">{{data.name}}</option>
+                </ng-container>
+            </select>
+          </div>
+
+          <div class="label-container" hidden="true">
+            <label for="">Letter Id :</label>
+            <input type="text" [value]="letterId"  formControlName="letterIdNumber" id="letterId">
+          </div>
+
+          <div class="label-container">
+            <label for="">Candidate/Employee Number :</label>
+            <input type="text"   formControlName="employeeNumber" id="empNum" class="form-control">
+          </div>
+
+          <div class="label-container">
+            <label style="color: white;">Letter Id :</label><br>
+            <button class="btn btn-info" type="submit">Genarate Letter</button>
+            <!-- <button class="btn btn-primary m-2" (click)="view()" type="button"> Letter view</button> -->
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+    <hr class="hr">
+
+    <div>
+
+        <div class="heading">
+            <h5>Generated Letters :</h5>
+            <p>Search generated letters by entering employee/candidate number.</p>
+        </div>
+
+        <div class="flex-container">
+
+            <div class="label-container">
+              <input type="text" [(ngModel)]="empNumber" class="form-control" placeholder="Enter Emp/Candi number">
+            </div>
+
+            <div class="label-container">
+              <button type="button" class="btn btn-info" (click)="viewLetters()">Search</button>
+            </div>
+
+        </div>
+
+        <div style="display: flex;justify-content: center;">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Letter Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let letter of empletters">
+                <td>{{ letter.LETTER_NAME }}</td>
+                <td>
+                  <button type="button" (click)="view(letter.TEMPLATE_ID, empNumber)">Full View</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>          
+        </div>
+
+    </div>
+
 </div>
 
 <router-outlet></router-outlet>

@@ -24,6 +24,13 @@
   margin:0 0 2% 2%;
 }
 
+.bulkUpload-container input{
+  width: 50%;
+  font-weight: 500;
+  background-color:#e3f6fb;
+
+}
+
       /* input[type="file"] {
         color:green;
         margin-bottom: 10px;
@@ -47,6 +54,7 @@
   border: none;
   height: 5px;
   background-color:#bfbcbc;
+  margin: 0 0 2% 0;
 }
 
 .form-container{
@@ -94,7 +102,6 @@ select.form-control {
   background-position: right 10px center;
   background-size: 15px; 
   padding-right: 30px; 
-  
 }
 
 .mandatory{
@@ -156,4 +163,16 @@ select.form-control {
     width: 50%;
     margin-left: 50%;
   }
+}
+
+
+.excel-button{
+  border: none; 
+  background-color: white;
+  font-weight: 500;
+}
+
+.excel-button:hover{
+  color: blue;
+  text-decoration: underline;
 }

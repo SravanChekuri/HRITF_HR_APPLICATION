@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -22,9 +23,9 @@ export class LettersService {
     return this.http.post("http://127.0.0.1:5000/add_template",formData)
     
    }
+
+
    displayPdf(letterId){
-    // const rtf=`${this.rtfApi}/${letterId}`
-    // window.open(rtf,'_blank')
     const pdfApi=`${this.getApi}/${letterId}`
     window.open(pdfApi,'_blank');
 
@@ -42,9 +43,9 @@ export class LettersService {
     return this.http.post("http://127.0.0.1:5000/generate_letter",genarateData,{ responseType: 'blob' })
    }
   
-   letterData(letterId:any,Employee_Number:any){
-    console.log("lh",letterId);
-    console.log("ghj",Employee_Number);
+   letterData(letterId:any,Employee_Number:any): Observable<any>{
+    // console.log("lh",letterId);
+    // console.log("ghj",Employee_Number);
     
     let params = new HttpParams();
     params = params.append('param1', letterId);
@@ -55,6 +56,12 @@ export class LettersService {
    
    }
   
-  
+   getTemplates(): Observable<any> {
+    return this.http.get<any>('http://127.0.0.1:5000/get_template');
+  }
+
+  getLetters(empNumber:any):Observable<any>{
+    return this.http.get<any>('http://127.0.0.1:5000/get_letter/'+empNumber);
+  }
   
 }

@@ -40,11 +40,11 @@ export class SidebarComponent {
         route: '/home/employees/all-users',
         icon: 'fa-user'
       },
-      {
-        name: 'Backend Data',
-        route: '/home/employees/backend-data',
-        icon: 'fa-cog'
-      }
+      // {
+      //   name: 'Backend Data',
+      //   route: '/home/employees/backend-data',
+      //   icon: 'fa-cog'
+      // }
     ],
       icon: 'fa-cog'
     },

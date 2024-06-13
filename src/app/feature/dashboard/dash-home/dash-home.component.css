@@ -7,15 +7,15 @@
     bottom: 5%;
     background-color: #ffffff;
     overflow-y:auto;
-    box-sizing: border-box;
 }
 
 .marquee{
-    margin: 1% 0;
+    margin: 2% 0;
 }
 
 .h3{
     font-style: italic;
+    color: #333;
 }
 
 .name-color{
@@ -23,5 +23,58 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.dashboard-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 3%;
+}
+
+.card {
+    background-color: #c3eaf3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    flex: 1 1 calc(25% - 20px); 
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.card h4 {
+    margin-top: 0;
+    color: #444;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.card h4 i {
+    margin-right: 10px;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.card ul li {
+    background-color: rgb(250, 241, 241);
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+}
+
+.card ul li:nth-child(odd) {
+    background-color: rgb(244, 222, 222);;
+}
+
+i{
+    color: #8C1428;
+}
+
+li{
+    font-weight: 500;
+}
 
 

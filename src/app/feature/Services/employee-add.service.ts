@@ -28,5 +28,15 @@ export class EmployeeAddService {
  
   }
 
+getAllEmployeeDetails(num:any){
+    return this.http.get("http://127.0.0.1:5000/searchempnum/"+num)
+  }
+
+sampleExcelView(){
+    const view='http://127.0.0.1:5000/get_excel'
+    window.open(view,'_blank');
+  }
+
+  
 
 }

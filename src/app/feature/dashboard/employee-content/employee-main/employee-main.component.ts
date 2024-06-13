@@ -20,7 +20,10 @@ export class EmployeeMainComponent implements OnInit{
   presentEmployeeAddress:any;
   permanentEmployeeAddress:any;
 
-
+  errorMessage: string = '';
+  empAllData:any;
+  onchangeText:any;
+  isHideAllEmp:boolean=false;
 
   constructor(private service:EmployeeAddService){
 
@@ -101,7 +104,8 @@ onSubmit(){
   console.log(this.effStartDate);
 
   this.service.sendDateOrEmpnumber(this.textInput,this.effStartDate,this.effEndDate).subscribe((res)=>{
-    console.log(res);
+    this.isHideAllEmp=true;
+    console.log("res",res);
     console.log("responce",res['EMPLOYEE_DETAILS']);
     
     this.employeData = res['EMPLOYEE_DETAILS'];
@@ -132,6 +136,49 @@ onSubmit(){
     
   })
   
+}
+
+clearEmployeeData(): void {
+  this.employeData = null;
+  this.empAllData = [];
+  this.isHideAllEmp = true;
+}
+
+onEmployeeNumberEnter(event:any){
+  const input = event.target as HTMLInputElement;
+ 
+  if (input.value === '') {
+    this.clearEmployeeData();
+  }
+  else {
+    this.isHideAllEmp = false;
+    // If you want to fetch data on every input, you can uncomment the line below
+    // this.fetchEmployeeData(input.value);
+  }
+  console.log(event.target.value);
+  this.onchangeText=event.target.value;
+ 
+  this.service.getAllEmployeeDetails(this.onchangeText).subscribe((res)=>{
+    console.log("onchage res",res);
+    this.empAllData=res;
+    console.log("length",this.empAllData);
+   
+    console.log("this.empAllData", this.empAllData);
+   
+   
+  },error=>{
+    console.log(error);
+   
+      this.errorMessage=error.error.message
+      console.log("this.errorMessage",this.errorMessage);
+     
+   
+   
+  })
+ 
+ 
+ 
+ 
 }
 
 }

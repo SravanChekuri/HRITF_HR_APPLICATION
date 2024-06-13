@@ -38,6 +38,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-left: 2%;
+    /* margin-bottom: 5%; */
 }
 
 .emp-notfound{
@@ -99,5 +100,7 @@ input{
     margin-top: 4%;
 }
 
-
+.bottom-space{
+    margin: 1% 0 5% 2%;
+}
 

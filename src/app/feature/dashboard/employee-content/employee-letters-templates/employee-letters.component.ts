@@ -9,8 +9,10 @@ import { LettersService } from 'src/app/feature/Services/letters.service';
   styleUrls: ['./employee-letters-templates.component.css']
 })
 export class EmployeeLettersTemplatesComponent implements OnInit{
-  //fileUrl: string = 'file:///C:/Users/anant/Downloads/sample-1.rtf';
-  rtfTemplate:any;
+
+  rtfTemplate:any[]=[];
+
+
   file:any;
   letterData:any;
   letterType:any;
@@ -18,16 +20,16 @@ export class EmployeeLettersTemplatesComponent implements OnInit{
   templateName:any;
   employeeNumber:any;
   CTC:any;
-  GenrateLetter:any=new FormGroup({})
+  GenrateLetter:FormGroup;
    
   fileUrl: SafeUrl | null = null;
   lettersData:any=[
-    {name:'Confirmation Letter',id:10001},
-    {name:'Offer Letter',id:10002},
-    {name:'Appoinment Letter',id:10003},
-
-
-    
+    {name:'HRITF Offer Letter Template',id:10001},
+    {name:'HRITF Confirmation Letter Template',id:10002},
+    {name:'HRITF Appointment Letter Template',id:10003},
+    {name:'HRITF Revision Letter Template',id:10004},
+    {name:'HRITF Experince Letter Template',id:10005},
+    {name:'HRITF Termination Letter Template',id:1006},
   ]
 
 
@@ -37,19 +39,14 @@ export class EmployeeLettersTemplatesComponent implements OnInit{
   
   ngOnInit() {
     this.genarate()
-   
+    this.getTemplates();
     
   }
   
   genarate(){
     this.GenrateLetter=this.formbulider.group({
       letterType:['',Validators.required],
-      employeeNumber:['',Validators.required],
-      ctc:['',Validators.required]
-
-
-
-
+      
     })
   }
 
@@ -57,8 +54,6 @@ export class EmployeeLettersTemplatesComponent implements OnInit{
     console.log("letterdata",this.GenrateLetter.value);
     
   }
-
-
 
   onLetterTypeChange(event:any){
     this.letterType=event.target.value
@@ -68,9 +63,6 @@ export class EmployeeLettersTemplatesComponent implements OnInit{
         this.letterId = element.id
        }
     });
-    
-    
-
   }
 
   onFileChange(event:any){
@@ -80,8 +72,6 @@ export class EmployeeLettersTemplatesComponent implements OnInit{
     console.log(this.file);
     const errorElement = document.getElementById('fileError');
 
-    // Reset the file input and error display
-    //fileInput.value = '';
     if (errorElement) {
       errorElement.textContent='';
         errorElement.style.display = 'none';
@@ -91,7 +81,6 @@ export class EmployeeLettersTemplatesComponent implements OnInit{
         const fileExtension = this.file.name.split('.').pop();
         const maxSize = 5 * 1024 * 1024;
         if (fileExtension && fileExtension.toLowerCase() !== 'rtf') {
-            // File is not an .rtf file
             if (errorElement) {
                 errorElement.style.display = 'inline';
                 errorElement.textContent='Please select an .rtf file.'
@@ -107,14 +96,7 @@ export class EmployeeLettersTemplatesComponent implements OnInit{
           }
           return;
       }
-      // const blob = new Blob([this.file], { type: 'application/rtf' });
-      // this.fileUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
-      // console.log("url",this.fileUrl);
-      
-      
     }
-    
-    
 
 }
 
@@ -144,18 +126,22 @@ export class EmployeeLettersTemplatesComponent implements OnInit{
   
   displayPdf(letterId: string) {
     this.service.displayPdf(letterId);
-    console.log(this.letterId);
+    console.log("letterId",this.letterId);
     
   }
 
-  // beforeStoringDatabase(): void {
-  //   if (this.fileUrl) {
-  //     window.open(this.fileUrl.toString(), '_blank'); // Open the Blob URL in a new tab
-     
-  //   } else {
-  //     // this.displayError('No file available to view.');
-  //   }
-  // }
+  getTemplates(): void {
+    this.service.getTemplates()
+      .subscribe(
+        (res) => {
+          console.log(res); 
+          this.rtfTemplate = res.data;
+        },
+        (error) => {
+          console.log(error); 
+        }
+      );
+  }
 
 
 }

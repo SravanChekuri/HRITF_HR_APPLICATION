@@ -400,6 +400,12 @@
 
                 <h6 class="address-heading">Permanent Address :</h6>
                 
+                <div class="label-container" [hidden]="!isEditable3">
+                    <label for="sameAsPresent">
+                      <input type="checkbox" id="sameAsPresent" (change)="copyAddressDetails($event)">&nbsp;<span style="font-weight: 500;">Select, if both present address and permanent address are same.</span>
+                    </label>
+                </div>
+
                 <div class="grid-container form-container">
 
                     <div class="label-container">

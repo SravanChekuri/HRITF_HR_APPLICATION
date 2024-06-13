@@ -264,7 +264,7 @@ export class EmployeeDetailsComponent implements OnInit{
         this.updateSuccessMsg = false;
         this.candOrempFormUpdate.disable();
         this.isEditable1 = !this.isEditable1;
-      },2500);
+      },2000);
     },
     error=>{
       // console.log(error);
@@ -577,7 +577,7 @@ export class EmployeeDetailsComponent implements OnInit{
       this.PresentAddressForm = this.formbulider.group({
 
         employeeId:[this.empData.Employee_id],
-        presentAddressType:['WORK',Validators.required],
+        presentAddressType:['Present',Validators.required],
         presentAddress:['',Validators.required],
         presentState:['',Validators.required],
         presentCountry:['',Validators.required],
@@ -653,7 +653,7 @@ export class EmployeeDetailsComponent implements OnInit{
   form4(){
     this.PermanentAddressForm = this.formbulider.group({
       employeeId:[this.empData.Employee_id],
-      permanentaddressType:['HOME',Validators.required],
+      permanentaddressType:['Permanent',Validators.required],
       permanentaddress:['',Validators.required],
       permanentstate:['',Validators.required],
       permanentcountry:['',Validators.required],
@@ -728,6 +728,35 @@ export class EmployeeDetailsComponent implements OnInit{
     }
   }
 
+  //address data incase  permenantaddress presenaddress same.
+ 
+copyAddressDetails(event){
+  if (event.target.checked) {
+    this.PermanentAddressForm.patchValue({
+      permanentaddress: this.PresentAddressForm.get('presentAddress')?.value,
+      permanentcity: this.PresentAddressForm.get('presentCity')?.value,
+      permanentstate: this.PresentAddressForm.get('presentState')?.value,
+      permanentcountry: this.PresentAddressForm.get('presentCountry')?.value,
+      permanentpincode: this.PresentAddressForm.get('presentPincode')?.value
+    });
+  } else {
+    this.PermanentAddressForm.reset({
+      permanenteffectiveStartDate: '',
+      permanenteffectiveEndDate: '',
+      permanentaddressType: 'Permanent',
+      employeeId: this.empData.Employee_id,
+      permanentaddress: '',
+      permanentcity: '',
+      permanentstate: '',
+      permanentcountry: '',
+      permanentpincode: ''
+    });
+  }
+}
 
-  
+
+
+
+
+
 }

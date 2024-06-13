@@ -1,51 +1,63 @@
 <div class="main-container">
-    <div >
-        <div class="m-5">
-            <label for="letterType">Select Letter Type:</label>
-            <select id="letterType" (change)="onLetterTypeChange($event)" class="form-control w-50" >
-                <option value="">select</option>
-                <ng-container *ngFor="let data of lettersData">
-                <option value={{data.name}}>{{data.name}}</option>
-                </ng-container>
-            </select>
-          </div>
-          
-          <div class="margin m-5">
-           
-            <input type="file" id="rtfFile" (change)="onFileChange($event)" accept=".rtf" class="form-control w-50">
-            <span id="fileError" style="color: red; display: none;"></span>
-            <br>
-            <button (click)="uploadFile()" class="btn btn-primary m-3">submit</button>
-            <!-- <button (click)=" beforeStoringDatabase()" class="btn btn-primary">before View </button> -->
+
+        <div class="heading">
+            <h5>Templates for Generating letters :</h5>
+            <p>Add/Modify the templates by selecting the type of template and upload the file</p>
+        </div>
+
+        <div class="grid-container" >
+
+            <div class="label-container">
+                <label for="letterType">Select Template Type :</label>
+                <select id="letterType" (change)="onLetterTypeChange($event)" class="form-control">
+                    <option value="" selected disabled>Select...</option>
+                    <ng-container *ngFor="let data of lettersData">
+                    <option value={{data.name}}>{{data.name}}</option>
+                    </ng-container>
+                </select>
+            </div>
             
-            <button (click)="displayPdf(letterId)" class="btn btn-primary m-3"> View </button>
-            <br/>
-            <!-- <form action="" (ngSubmit)="genarateletter()">
-                <div class="d-flex flex-column">
-                    <label for="">Letter Type</label>
-               <input type="text" value="{{letterType}}" class="form-control w-50" formControlName="letterType">
-    
+            <div class="label-container">
+                    <label for="rtfFile">Choose RTF File :</label>
+                    <input type="file" id="rtfFile" (change)="onFileChange($event)" accept=".rtf" class="form-control">
+                    <div id="fileError" style="color: red; display: none;"></div>
+                    <!-- <button (click)="displayPdf(letterId)" class="btn btn-info m-3"> View </button> -->
+                    <!-- <br/> -->
+            </div>
+
+            <div class="label-container">
+                <label for="submit" style="color: white;">Submit :</label><br>
+                <button (click)="uploadFile()" class="btn btn-info" id="submit">submit</button>                
+            </div>
+                    
+        </div>
+
+    <hr class="hr">
+
+    <div class=".bottom-space">
+
+        <div *ngIf="rtfTemplate.length <= 0">
+            <h5 class="heading2">No Templates are there in Data base</h5>
+        </div>
+
+        <div *ngIf="rtfTemplate.length > 0">
+            <h5 class="heading2">View all Templates:</h5>
+            <div class="templates-container">
+                <div *ngFor="let template of rtfTemplate" class="template-card">
+                    <div class="card">
+                        <p>{{ template.TEMPLATE_NAME }}</p>
+                        <p>{{ template.TEMPLATE_ID }}</p>
+                        <button class="btn btn-info" (click)="displayPdf(template.TEMPLATE_ID)">Full View</button>
+                    </div>
                 </div>
-              
-                <div class="d-flex flex-column">
-                    <label for="">Employee Number</label>
-               <input type="text" class="form-control w-50" formControlName="employeeNumber">
-    
-                </div>
-                <div class="d-flex flex-column">
-                    <label for="">CTC</label>
-               <input type="text" class="form-control w-50" formControlName="ctc">
-    
-                </div>
-                <button class="btn btn-primary m-2" type="submit">Genarate Letter</button>
-                
-            </form> -->
-            
-           
-          </div>
-          
-        
+            </div>
+        </div>
+
+
     </div>
+
+
+
 </div>
 
 
