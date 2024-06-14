@@ -1,0 +1,9 @@
+.main-container{
+    width: 87%;
+    height: 90vh;
+    position: fixed;
+    top:14%;
+    left:12.5%;
+    background-color: #FFFFFF;
+    overflow-y: auto;
+}

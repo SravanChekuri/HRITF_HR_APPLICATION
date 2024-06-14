@@ -1,0 +1,65 @@
+<div class="login-container"><!--Main div-->
+
+    <div>
+        <img src="../../../assets/Images/Home-Img.png" alt="logo" class="m-4">
+    </div>
+
+    <div class="sub-container "><!-- main div for side image and loginform-->
+
+        <div> <!--this div is for image -->
+            <img src="../../../assets/Images/login-image1.png" alt="Logo Image" class="image">
+        </div>
+        <!--************************************Form div*******************************************-->
+
+        <div class="card login-form">
+            <div><h3 class="text-white heading">Please Login</h3></div>
+
+            <!-- <div *ngIf="loginFail" class="error-msg"><h3><span>!{{errorMsg}}</span></h3></div> -->
+
+            <!-- <div *ngIf="successMessage"class="success-div"><h3 class="text-success"><span style="background-color: rgba(147, 246, 147,0.5);">{{ successMessage }}</span></h3></div> -->
+                
+                <div>
+                    <form [formGroup]="loginform" (ngSubmit)="login()">
+
+                        <div class="align">
+                            <label for="userid" class="text-white labels">User ID:</label><br>
+                            <input type="text" id="userid" name="userid" formControlName="UserID"  class="form-control" placeholder="Enter user Id">
+                            <br>
+                            <div *ngIf="loginform.get('UserID').touched && loginform.get('UserID').invalid || submitted && loginform.get('UserID').invalid" class="text-danger">
+                                <div *ngIf="loginform.get('UserID')?.hasError('required')">*User Id  required</div>
+                            </div>
+                        </div>
+
+                        <div class="align">
+                            <label for="pw" class="text-white labels">Password:</label><br>
+                                <div class="password-input-wrapper">
+                                    <input type="{{ passwordVisible ? 'text' : 'password' }}" id="pw" name="password" formControlName="Password" class="form-control" placeholder="Enter Password">
+                                    <span class="password-toggle" (click)="togglePasswordVisibility()">
+                                        <i class="fas" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
+                                    </span>
+                                </div>
+                                <br>
+                                <div *ngIf="loginform.get('Password').touched && loginform.get('Password').invalid || submitted && loginform.get('Password').invalid" class="text-danger">
+                                    <div *ngIf="loginform.get('Password')?.hasError('required')">*Password required</div>
+                                </div>
+                        </div>
+
+                        <div class="forgot-pw">
+                            <a routerLink="/forgotpassword" class="margin" style="color: #F9E108;"><u>ForgotPassword?</u></a>
+                        </div>
+
+                        <div>
+                            <button type="submit" class="btn btn-danger loginButton" [disabled]="loginform.invalid">Login</button>
+                        </div>
+
+                        <div *ngIf="isLoading" class="loading-spinner">
+                            <div class="half-ring"></div>
+                        </div>
+
+                    </form>
+                </div>
+        </div>
+        <!--********************************Form sec end**********************************************************-->
+    </div>
+
+</div><!--main div-->

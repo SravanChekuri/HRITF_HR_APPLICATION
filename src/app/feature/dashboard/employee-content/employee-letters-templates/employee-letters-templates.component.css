@@ -1,0 +1,125 @@
+.main-container{
+    width: 87%;
+    height: 90vh;
+    position: fixed;
+    top:14%;
+    left:12.5%;
+    background-color: #FFFFFF;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.margin{
+    margin-top: 40px;
+}
+
+
+.custom-file-upload {
+    background-color: #47B7D0;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border: none;
+    color:white;
+    border-radius: 8px;
+  }
+
+  /* input[type="file"] {
+    display: none;
+  } */
+
+
+  .templates-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 7%;
+  }
+  
+  .template-card {
+    flex: 0 0 calc(20% - 20px); 
+    margin:2% 2%;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    background-color: #e3f6fb;
+    width: 100%;
+    height: 100%;
+  }
+
+  .card p{
+    color: #8C1428;    
+    font-weight: bold;
+  }
+
+
+  .hr{
+    border: none;
+    height: 5px;
+    background-color:#bfbcbc;
+  }
+
+  .grid-container {
+    /* display: flex;
+    align-items: center;  */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3%;
+    margin: 1% 0 2% 3%;
+  }
+  
+  .container > div {
+    margin-right: 10px; 
+  }
+  
+  .container > div:last-child {
+    margin-right: 0;
+  }
+
+  .label-container > input , select{
+    border: 0.5px solid gray;
+    font-weight: 500;
+    background-color:#e3f6fb;
+  }
+
+  .label-container > label{
+    font-weight:400;
+    /* color: #8C1428; */
+    margin-bottom: 2%;
+  }
+
+  .grid-container select {
+    appearance: none; 
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNiIgdmlld0JveD0iMCAwIDEyIDYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMmgxMkw2IDZMNCA0eiIgZmlsbD0iIzAwMDAwMCIvPjwvc3ZnPg=='); 
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px; 
+    padding-right: 30px; 
+  }
+
+  .heading{
+    margin: 1% 0 1% 2%;
+  }
+
+  .heading p {
+    margin-left: 1%;
+    font-weight: 500;
+  }
+
+  .heading20{
+    text-align: center;
+    margin: 1% 0 0 2%;
+    color: red;
+  }
+
+  .heading2{
+    margin: 1% 0 0 2%;
+  }
+
+  .bottom-space{
+    margin-bottom: 5%;
+  }
+  

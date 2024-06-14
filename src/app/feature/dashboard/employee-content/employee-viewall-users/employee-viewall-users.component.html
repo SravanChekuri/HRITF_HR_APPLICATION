@@ -1,0 +1,53 @@
+<div class="main-container">
+
+    <div>
+        <h5>All Users List</h5>
+    </div>
+
+    <br>
+
+    <div style="font-weight: bold;">
+        <div class="container text-center">
+            <div class="row">
+                <!-- <div class="col">Employee ID</div> -->
+                <div class="col">User ID</div>
+                <div class="col">First Name</div>
+                <!-- <div class="col">Middle Name</div> -->
+                <div class="col">Last Name</div>
+                <div class="col">Email</div>
+                <div class="col">Mobile Number</div>
+                <div class="col">ESD</div>
+                <div class="col">EED</div>
+                <div class="col">Created By</div>
+                <!-- <div class="col">Creation Date</div> -->
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div *ngFor="let data of adminData">
+
+        <div class="container text-center">
+
+        <div class="row">
+
+            <div class="col">{{ data.USER_ID }}</div>
+            <div class="col">{{ data.FIRST_NAME }}</div>
+            <!-- <div class="col">{{ data.MIDDLE_NAME }}</div> -->
+            <div class="col">{{ data.LAST_NAME }}</div>
+            <div class="col">{{ data.EMAIL_ID }}</div>
+            <div class="col">{{ data.MOBILE_NUMBER }}</div>
+            <div class="col">{{ data.EFFECTIVE_START_DATE }}</div>
+            <div class="col">{{ data.EFFECTIVE_END_DATE }}</div>
+            <div class="col">{{ data.CREATED_BY }}</div>
+            <!-- <div class="col">{{ data.CREATION_DATE }}</div> -->
+            <hr style="margin-bottom: 8px;">
+
+        </div>
+
+        </div>
+
+    </div>
+
+</div>

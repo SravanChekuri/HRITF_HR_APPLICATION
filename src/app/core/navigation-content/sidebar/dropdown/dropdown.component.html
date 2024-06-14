@@ -1,0 +1,45 @@
+<div class="dropdown">
+    
+    <div class="dropdown-btn">
+
+        <button class="home-drop-btn" (click)="toggleSubDropdown()">
+            <img src="../../../../../assets/Images/emp-logo.png" alt="img">&nbsp;
+            <span>Employees &nbsp;<i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+
+    </div>  
+
+    <div class="dropdown-content" *ngIf="isSubDropdownOpen">
+
+        <ng-container *ngFor="let item of items">
+
+                <div *ngIf="item.subItems; else regularItems" class="main-dropdown-item">
+
+                    <button class="main-dropdown-item2" (click)="onDropdownItemClick(item)">
+
+                        <i class="fa-solid {{item.icon}}"></i>&nbsp;&nbsp;<span>{{item.name}}</span>&nbsp;
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </button>
+                        <!-- <div *ngIf="item.isSubDropdownOpen" class="sub-dropdown-container   ">
+                            <a *ngFor="let subItem of item.subItems"[routerLink]="subItem.route"><div class="sub-dropdown-content">{{ subItem.name }}</div></a>
+                        </div> -->
+                        <div *ngIf="item.isSubDropdownOpen">
+
+                            <ng-container *ngFor="let subItem of item.subItems">
+                              <a [routerLink]="subItem.route">
+                                <div class="sub-dropdown-content">
+                                  <i class="fa-solid {{subItem.icon}}"></i>&nbsp;{{ subItem.name }}
+                                </div>
+                              </a>
+                            </ng-container>
+                        </div>
+                </div>
+            <ng-template #regularItems>
+                <div class="main-dropdown-item">
+                    <a [routerLink]="item.route"><i class="fa-solid {{item.icon}}"></i>&nbsp;{{ item.name }}</a>
+                </div>
+            </ng-template>
+        </ng-container>
+        </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="main-container">
+    <div class="search-sec">
+        <div><h5>Search for Employee profile :</h5></div>
+        <div><p style="margin-left:2%; font-size:smaller;"><span style="font-weight: 500;">Note :</span> When you enter an Employee Number, all records to that employee will be displayed. Then, enter Effective Start Date to search for a specific record. The edit button will become visible.</p></div>
+        <div  style="margin: 1% 21%;">
+            <div>
+                <label for="empNum">Enter Employee Number* :</label>
+                <input type="text" id="empNum" [(ngModel)]="textInput" class="form-control" style="width: 85%;" (input)="onEmployeeNumberEnter($event)">
+            </div>
+            <div class="d-flex flex-row ">
+                <div class="align-inputs">
+                    <label for="esd">Enter Effective Start Date* :</label>
+                    <input type="date" id="esd" [(ngModel)]="effStartDate" (change)="onStartDateChange($event)" class="form-control">
+                </div>
+                <div class="align-inputs">
+                    <label for="eed">Enter Effective End Date :</label>
+                    <input type="date" id="eed" (change)="onEndDateChange($event)" class="form-control">
+                </div>
+            </div>
+            <div class="btn-align"><button type="submit" class="btn btn-info" (click)="onSubmit()">Search</button></div>
+        </div>
+    </div>
+
+    <hr class="hr">
+
+    <div style="text-align: center;color: red;"><h5>{{errorMessage}}</h5></div>
+
+    <div class="loading-message" *ngIf="isLoading">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+    
+    <!-- <div class="emp-notfound">Employee not found.</div> -->
+
+    <div *ngIf="!isLoading">
+        <div class="card-order" *ngIf="editEmp">
+            <div *ngIf="employeData">
+                <div class="card" style="cursor: pointer;">
+                    <div><img src="../../../../../assets/Images/emp_profile.png" alt="emp Img" width="50%"></div>
+                    <div style="font-weight: bold;">{{employeData.Employee_Number}}</div>
+                    <div style="color:#8C1428;">{{employeData.Employee_First_Name}}&nbsp;{{employeData.Last_Name}}</div>
+                    <div routerLink="/home/employees/empdetails" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square edit-icon"><span class="edit-text"(click)="updateEmp(employeData,employementData,presentEmployeeAddress,permanentEmployeeAddress)">Edit</span></i></div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <div *ngIf="searchHide">
+        <div class="card-order bottom-space">
+            <div *ngFor="let allEmp of empAllData">
+                <div class="card" style="cursor: pointer;">
+                    <div><img src="../../../../../assets/Images/emp_profile.png" alt="emp Img" width="50%"></div>
+                    <div style="font-weight: bold;">{{allEmp.Employee_Number}}</div>
+                    <div style="color:#8C1428;">{{allEmp.Employee_First_Name}}&nbsp;{{allEmp.Last_Name}}</div>
+                    <div >ESD : {{allEmp.EFFECTIVE_START_DATE | date: 'dd/MM/yyyy'}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<router-outlet></router-outlet>
+
+  

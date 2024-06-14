@@ -1,0 +1,127 @@
+.emp-details{
+  /* min-width: 192vh;
+  min-height:90vh; */
+  /* border: 1px solid black; */
+  width: 192vh;
+  height: 90vh;
+  position: fixed;
+  top:14%;
+  left:12.5%;
+  background-color: #FFFFFF;
+  overflow-y: auto;
+}
+select.form-control {
+  appearance: none;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNiIgdmlld0JveD0iMCAwIDEyIDYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMmgxMkw2IDZMNCA0eiIgZmlsbD0iIzAwMDAwMCIvPjwvc3ZnPg==');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px;
+  padding-right: 30px;
+}
+
+
+.hr{
+  border: none;
+  height: 5px;
+  background-color:#bfbcbc;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3%;
+}
+
+.label-container{
+  margin: 1% 8% 1% 2%;
+}
+
+.label-container > label{
+  font-weight:400;
+  /* color: #8C1428; */
+  margin-bottom: 2%;
+}
+
+label{
+  font-weight:500;
+  /* color: #8C1428; */
+  margin-bottom: 2%;
+}
+
+input, textarea {
+  border: 0.5px solid gray;
+  background-color:#e3f6fb;
+}
+
+input, select,textarea {
+  font-weight: 500;
+}
+
+.label-container > input , select, textarea {
+  border: 0.5px solid gray;
+  /* background-color: rgb(246, 243, 243); */
+  /* background-color:#e3f6fb; */
+}
+
+select{
+      background-color:#e3f6fb;
+
+}
+
+.form-container{
+  margin: 0 0 3% 2%;
+}
+
+.btn-align{
+  margin: 2.3% 0 1% 85.6%;
+}
+
+input[disabled],
+select[disabled],
+textarea[disabled],
+button[disabled] {
+cursor: not-allowed;
+}
+
+.success-msg{
+width: 20%;
+text-align: center; 
+margin-left: 77%; 
+color: green; 
+font-weight: bold; 
+background-color: rgb(154, 239, 154);
+}
+
+.fail-msg{
+width: 40%;
+text-align: center; 
+margin-left: 57%;
+font-weight: bold; 
+color: red;
+background-color: rgb(250, 159, 159);
+
+}
+
+.profile-container {
+display: flex;
+align-items: center;
+}
+
+.profile-img {
+width: 7%; 
+height: auto; 
+margin-left: 3%;
+}
+
+.profile-info {
+display: flex;
+flex-direction: column;
+margin:2% 0 0 0.5%
+}
+
+
+
+.address-heading{
+margin: 2% 0 1% 2%;
+}

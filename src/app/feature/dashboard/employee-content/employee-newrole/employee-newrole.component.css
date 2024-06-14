@@ -1,0 +1,101 @@
+.main-container{
+    width: 87.5%;
+    height: 90vh;
+    position: fixed;
+    top:14%;
+    left:12.5%;
+    background-color: #FFFFFF;
+    overflow-y: auto;
+}
+
+
+.heading{
+    margin: 1% 0 1% 2%;
+}
+
+.success-div{
+    margin: 0 4% 0 0;
+}
+
+.form-container{
+    width: 50%;
+    margin: 1% 0 1% 3%;
+    background-color: aliceblue;
+    border-radius: 10px;
+}
+
+.input-container{
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    margin:4% 0 2% 10%;
+}
+
+.input-sec-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.formandimg-container{
+    margin-bottom: 4%;
+}
+
+
+.mandatory{
+    color: red;
+    font-weight: bold;
+}
+
+.show-hide{
+    margin-left: 1%;
+    border-radius: 4px;
+    width:20%;
+    /* background-color: #FFFFFF; */
+    border: 1px solid black;
+} 
+
+.show-hide:hover{
+    background-color: #FFFFFF;
+}
+
+label{
+    font-weight: bold;
+    margin-bottom: 1%;
+}
+
+input, select{
+    width: 60%;
+    margin-left: 20%;
+    margin-bottom: 2%;
+}
+
+.text-danger{
+    margin-left: 20%;
+}
+
+.button-align{
+    text-align: center;
+    margin-bottom: 4%;
+}
+
+.img-form{
+    margin-top: 10%;
+}
+
+.loading-spinner {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

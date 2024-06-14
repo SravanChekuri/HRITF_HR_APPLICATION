@@ -1,0 +1,82 @@
+.dash-home{
+    width: 87.5%;
+    height: 90vh;
+    position: fixed;
+    top:14%;
+    left:12.5%;
+    bottom: 5%;
+    background-color: #ffffff;
+    overflow-y:auto;
+}
+
+.marquee{
+    margin: 2% 0;
+}
+
+.h3{
+    font-style: italic;
+    color: #333;
+}
+
+.name-color{
+    color: #8C1428;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.dashboard-content {
+    display: flex;
+    justify-content:left;
+    flex-wrap: wrap;
+    margin:4% 0 5% 1%;
+}
+
+.card {
+    background-color: #c3eaf3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    margin: 1%;
+    flex: 1 1 calc(30% - 10px); 
+    max-width: 300px;
+    /* height: 50%; */
+    box-sizing: border-box;
+}
+
+.card h4 {
+    margin-top: 0;
+    color: #444;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.card h4 i {
+    margin-right: 10px;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card ul li {
+    background-color: rgb(250, 241, 241);
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.card ul li:nth-child(odd) {
+    background-color: rgb(244, 222, 222);;
+}
+
+i{
+    color: #8C1428;
+}
+
+li{
+    font-weight: 500;
+}
+

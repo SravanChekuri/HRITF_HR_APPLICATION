@@ -1,0 +1,34 @@
+<nav class="sidebar">
+
+    <div>
+
+        <div class="home-btn" (click)="collapseEmployeesDropdown()" routerLink="/home">
+            <a routerLink="/home" style="text-align: center;  font-size: 1.2em;">
+                <i class="fa-solid fa-house-chimney" ></i><span>Home</span>
+            </a>
+        </div>
+
+        <dropdown [items]="dropdownItems"></dropdown>
+
+        <div class="emp-btn">
+            <a><img src="../../../../assets/Images/Payroll-logo.png" alt="img"><span>Payroll</span></a>
+        </div>
+
+        <div class="emp-btn">
+            <a><img src="../../../../assets/Images/calender-logo.png" alt="img"><span>Calender</span></a>
+        </div>
+
+        <div class="emp-btn">
+            <a><img src="../../../../assets/Images/workflow-logo.png" alt="img"><span>Workflow</span></a>
+        </div>
+
+    </div>
+    <div>
+        <div class="logout-btn" (click)="onlogout()">
+            <a (click)="onlogout()" style="text-align: center;">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span>
+            </a>
+        </div>
+    </div>
+</nav>
+<router-outlet></router-outlet>
