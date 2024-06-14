@@ -35,6 +35,8 @@ export class EmployeeMainComponent implements OnInit{
 
   searchHide:boolean=true;
 
+  isLoading: boolean = false;
+
   constructor(private service:EmployeeAddService){
 
     this.textInput = '';
@@ -42,6 +44,7 @@ export class EmployeeMainComponent implements OnInit{
   }
 
   ngOnInit(){ }
+
 
 updateEmp(filtemp,employementData,presentEmployeeAddress,permanentEmployeeAddress) {
 
@@ -90,12 +93,14 @@ onEndDateChange(event:any){
 }
 
 onSubmit(){
+  this.isLoading = true;
   this.editEmp=true;
   // console.log("Input Textbox:",this.textInput);
   // console.log(this.effStartDate);
   this.clearEmployeeData();
 
   this.service.sendDateOrEmpnumber(this.textInput,this.effStartDate,this.effEndDate).subscribe((res)=>{
+    this.isLoading = false;
     this.searchHide=false;
     // console.log("res",res);
     // console.log("responce",res['EMPLOYEE_DETAILS']);
@@ -119,6 +124,8 @@ onSubmit(){
     this.effEndDate = '';
 
   },error=>{
+
+    this.isLoading = false;
 
     // console.log(error);
     Swal.fire({

@@ -123,6 +123,9 @@
                         <button type="submit" class="btn btn-primary" [disabled]="!isFormValid()" (click)="submitForm()">Save</button>&nbsp;
                         <button type="reset" class="btn btn-secondary" (click)="resetmsg()">Cancel</button>
                     </div>
+
+                    <div *ngIf="loading" class="loading-spinner"></div>
+
                 </form>
 
             </div>

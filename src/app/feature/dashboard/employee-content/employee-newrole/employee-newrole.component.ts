@@ -18,6 +18,8 @@ export class EmployeeNewroleComponent implements OnInit{
 
   regSuccessMsg:string='';
 
+  loading: boolean = false; 
+
   constructor(private formbulider:FormBuilder, private service:LoginService) { }
 
   ngOnInit() {
@@ -59,6 +61,9 @@ export class EmployeeNewroleComponent implements OnInit{
       this.submitted = true;
       return;
     }
+
+    this.loading = true;
+
     const signupData={
 
       User_Id:this.signUpForm.value['userId'],
@@ -82,6 +87,8 @@ export class EmployeeNewroleComponent implements OnInit{
 
         this.regSuccessMsg=(res as any).message;
 
+        this.loading = false;
+
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -91,6 +98,8 @@ export class EmployeeNewroleComponent implements OnInit{
         });
 
       },error=>{
+
+        this.loading = false;
 
         if (error.error && error.error.message){
           this.msg=error.error.message;
@@ -105,7 +114,6 @@ export class EmployeeNewroleComponent implements OnInit{
           showConfirmButton: true,
           width:400,
         });      
-  
       });
     }
 

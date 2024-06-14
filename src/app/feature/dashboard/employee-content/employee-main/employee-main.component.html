@@ -24,18 +24,26 @@
     <hr class="hr">
 
     <div style="text-align: center;color: red;"><h5>{{errorMessage}}</h5></div>
+
+    <div class="loading-message" *ngIf="isLoading">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
     
     <!-- <div class="emp-notfound">Employee not found.</div> -->
-    <div class="card-order" *ngIf="editEmp">
-        <div *ngIf="employeData">
-            <div class="card" style="cursor: pointer;">
-                <div><img src="../../../../../assets/Images/emp_profile.png" alt="emp Img" width="50%"></div>
-                <div style="font-weight: bold;">{{employeData.Employee_Number}}</div>
-                <div style="color:#8C1428;">{{employeData.Employee_First_Name}}&nbsp;{{employeData.Last_Name}}</div>
-                <div routerLink="/home/employees/empdetails" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square edit-icon"><span class="edit-text"(click)="updateEmp(employeData,employementData,presentEmployeeAddress,permanentEmployeeAddress)">Edit</span></i></div>
+
+    <div *ngIf="!isLoading">
+        <div class="card-order" *ngIf="editEmp">
+            <div *ngIf="employeData">
+                <div class="card" style="cursor: pointer;">
+                    <div><img src="../../../../../assets/Images/emp_profile.png" alt="emp Img" width="50%"></div>
+                    <div style="font-weight: bold;">{{employeData.Employee_Number}}</div>
+                    <div style="color:#8C1428;">{{employeData.Employee_First_Name}}&nbsp;{{employeData.Last_Name}}</div>
+                    <div routerLink="/home/employees/empdetails" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square edit-icon"><span class="edit-text"(click)="updateEmp(employeData,employementData,presentEmployeeAddress,permanentEmployeeAddress)">Edit</span></i></div>
+                </div>
             </div>
         </div>
-    </div>
+    </div>    
 
     <div *ngIf="searchHide">
         <div class="card-order bottom-space">

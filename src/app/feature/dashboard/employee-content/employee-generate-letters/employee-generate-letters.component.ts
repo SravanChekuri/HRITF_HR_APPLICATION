@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LettersService } from 'src/app/feature/Services/letters.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'employee-generate-letters',
@@ -32,6 +33,8 @@ export class EmployeeGenerateLettersComponent implements OnInit {
   empNumber:any;
 
   empletters:any[]=[];
+
+  isLoading: boolean = false;
 
   constructor(private formbuilder: FormBuilder,private service:LettersService) {}
 
@@ -68,7 +71,7 @@ export class EmployeeGenerateLettersComponent implements OnInit {
 
   Genarate() {
     // console.log('generate letter fields', this.genarateLetterForm.value);
-
+    this.isLoading = true;
     const genarateData={
       letterType:this.genarateLetterForm.value['letterTypeName'],
       letterId:this.genarateLetterForm.value['letterIdNumber'],
@@ -81,36 +84,75 @@ export class EmployeeGenerateLettersComponent implements OnInit {
     this.service.genarateTemplate(genarateData).subscribe((res)=>{
       // console.log(res);
       // alert("success");
-      this.genarateLetterForm.reset();
+      this.isLoading = false;
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Letter Generated Successfully",
+        showConfirmButton: false,
+        timer: 1500
+      }).then(()=>{
+        this.genarateLetterForm.reset();
+      });
       
     },error=>{
+      this.isLoading = false;
       // console.log('error',error);
       // alert(error.error.error);
+      Swal.fire({
+        position:'top',
+        icon: "error",
+        title: "Oops...",
+        text: `${error.error.error}`,
+        showConfirmButton: true,
+        width:400,
+      });      
     });
   }
 
 
 
-  view(letterId: number, empNumber: string) {
+view(letterId: number, empNumber: string) {
 
+    this.isLoading = true;
      this.service.letterData(letterId,empNumber).subscribe((res)=>{
       // console.log(res);
+      this.isLoading = false;
       const fileURL = URL.createObjectURL(res);
       window.open(fileURL, '_blank');
      },error=>{
-      // console.log(error); 
+      // console.log(error);
+      Swal.fire({
+        position:'top',
+        icon: "error",
+        title: "Oops...",
+        text: `${error.error.error}`,
+        showConfirmButton: true,
+        width:400,
+      });       
      });
 }
 
 
 
   viewLetters(){
+    this.isLoading = true;
     this.service.getLetters(this.empNumber).subscribe((res)=>{
       // console.log(res);
+      this.isLoading = false;
       this.empletters = res.data;
     },error=>{
+      this.isLoading = false; 
       // console.log(error);
       // alert(error.error.error);
+      Swal.fire({
+        position:'top',
+        icon: "error",
+        title: "Oops...",
+        text: `${error.error.error}`,
+        showConfirmButton: true,
+        width:400,
+      });      
     });
 }
 

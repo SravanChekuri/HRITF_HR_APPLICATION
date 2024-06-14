@@ -100,7 +100,7 @@ export class EmployeeDetailsComponent implements OnInit{
 
   ngOnInit():void {
 
-    console.log("emp Id from onInit: ",this.empData.Employee_id);
+    // console.log("emp Id from onInit: ",this.empData.Employee_id);
 
     this.form1();
 
@@ -126,6 +126,8 @@ export class EmployeeDetailsComponent implements OnInit{
 
     if(this.empPresentAddress){
             this.editPresentAddress();
+            // console.log(this.empPresentAddress);
+            
     }
 
     if (this.empPermanentAddress){
@@ -284,7 +286,7 @@ export class EmployeeDetailsComponent implements OnInit{
         icon: "success",
         title: `${this.msg}`,
         showConfirmButton: false,
-        timer: 1500
+        timer: 2000,
       }).then(()=>{
 
         this.candOrempFormUpdate.disable();
@@ -807,7 +809,7 @@ export class EmployeeDetailsComponent implements OnInit{
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Template Imported Successfully",
+            title: `${res.message}`,
             showConfirmButton: false,
             timer: 1500
           }).then(()=>{
