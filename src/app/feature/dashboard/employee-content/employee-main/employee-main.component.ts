@@ -70,7 +70,7 @@ updateEmp(filtemp,employementData,presentEmployeeAddress,permanentEmployeeAddres
 
     if(permanentEmployeeAddress !== undefined){
       localStorage.setItem('permanentAddress',JSON.stringify(permanentEmployeeAddress));
-      // console.log("employee permanent address from localstorage:",permanentEmployeeAddress);
+    //  console.log("employee permanent address from localstorage:",permanentEmployeeAddress);
     }
 
     localStorage.setItem('empData', JSON.stringify(filtemp));
@@ -111,11 +111,11 @@ onSubmit(){
     this.employementData = res['Employement_Details'];
     // console.log("Employement Data:",this.employementData);
 
-    this.permanentEmployeeAddress=res['Home_Address_Details']
+    this.permanentEmployeeAddress=res['Permanent_Address_Details']
     // console.log("this.permanentEmployeeAddress", this.permanentEmployeeAddress);
     
-    this.presentEmployeeAddress=res['Work_Address_Details']
-    // console.log("presentEmployeeAddress",this.presentEmployeeAddress);
+    this.presentEmployeeAddress=res['Present_Address_Details']
+   // console.log("presentEmployeeAddress",this.presentEmployeeAddress);
 
     this.textInput = '';
 

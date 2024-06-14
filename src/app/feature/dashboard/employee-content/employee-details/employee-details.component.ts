@@ -126,12 +126,14 @@ export class EmployeeDetailsComponent implements OnInit{
 
     if(this.empPresentAddress){
             this.editPresentAddress();
+            this.PresentAddressForm.disable();
             // console.log(this.empPresentAddress);
             
     }
 
     if (this.empPermanentAddress){
             this.editPermanentAddress();
+            this.PermanentAddressForm.disable();
     }
 
     //***setting default values to respective presenter type ***

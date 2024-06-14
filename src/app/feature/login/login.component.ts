@@ -63,10 +63,10 @@ export class LoginComponent {
       // alert("Login Success")
       // this.successMessage = 'Successfully logged in';
       // this.router.navigate(['/home']);
-      console.log(res);
+      // console.log(res);
 
       this.loginData = res;
-      console.log("login data:",this.loginData.User_Id);
+      // console.log("login data:",this.loginData.User_Id);
 
       // localStorage.setItem('loginData',this.loginData);
 
