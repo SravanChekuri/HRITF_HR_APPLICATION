@@ -1,53 +1,32 @@
 <div class="main-container">
-
-    <div>
-        <h5>All Users List</h5>
-    </div>
-
+    <h5 style="margin: 2% 0 0 0;">All Users List</h5>
     <br>
-
-    <div style="font-weight: bold;">
-        <div class="container text-center">
-            <div class="row">
-                <!-- <div class="col">Employee ID</div> -->
-                <div class="col">User ID</div>
-                <div class="col">First Name</div>
-                <!-- <div class="col">Middle Name</div> -->
-                <div class="col">Last Name</div>
-                <div class="col">Email</div>
-                <div class="col">Mobile Number</div>
-                <div class="col">ESD</div>
-                <div class="col">EED</div>
-                <div class="col">Created By</div>
-                <!-- <div class="col">Creation Date</div> -->
-            </div>
-        </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Mobile Number</th>
+                    <th>ESD</th>
+                    <th>EED</th>
+                    <th>Created By</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of adminData">
+                    <td>{{ data.USER_ID }}</td>
+                    <td>{{ data.FIRST_NAME }}</td>
+                    <td>{{ data.LAST_NAME }}</td>
+                    <td>{{ data.EMAIL_ID }}</td>
+                    <td>{{ data.MOBILE_NUMBER }}</td>
+                    <td>{{ data.EFFECTIVE_START_DATE | date :'dd/mm/yyyy'}}</td>
+                    <td>{{ data.EFFECTIVE_END_DATE | date :'dd/mm/yyyy' }}</td>
+                    <td>{{ data.CREATED_BY }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
-    <hr>
-
-    <div *ngFor="let data of adminData">
-
-        <div class="container text-center">
-
-        <div class="row">
-
-            <div class="col">{{ data.USER_ID }}</div>
-            <div class="col">{{ data.FIRST_NAME }}</div>
-            <!-- <div class="col">{{ data.MIDDLE_NAME }}</div> -->
-            <div class="col">{{ data.LAST_NAME }}</div>
-            <div class="col">{{ data.EMAIL_ID }}</div>
-            <div class="col">{{ data.MOBILE_NUMBER }}</div>
-            <div class="col">{{ data.EFFECTIVE_START_DATE }}</div>
-            <div class="col">{{ data.EFFECTIVE_END_DATE }}</div>
-            <div class="col">{{ data.CREATED_BY }}</div>
-            <!-- <div class="col">{{ data.CREATION_DATE }}</div> -->
-            <hr style="margin-bottom: 8px;">
-
-        </div>
-
-        </div>
-
-    </div>
-
 </div>

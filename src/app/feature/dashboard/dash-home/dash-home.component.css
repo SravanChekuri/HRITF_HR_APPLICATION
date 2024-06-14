@@ -31,7 +31,7 @@
 }
 
 .card {
-    background-color: #c3eaf3;
+    background-color: #dfeef2;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 10px;
@@ -61,7 +61,7 @@
 }
 
 .card ul li {
-    background-color: rgb(250, 241, 241);
+    background-color: rgb(246, 242, 242);
     padding: 8px;
     margin: 5px 0;
     border-radius: 4px;
@@ -69,7 +69,7 @@
 }
 
 .card ul li:nth-child(odd) {
-    background-color: rgb(244, 222, 222);;
+    background-color: rgb(247, 234, 234);;
 }
 
 i{

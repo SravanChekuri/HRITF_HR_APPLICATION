@@ -136,6 +136,10 @@ view(letterId: number, empNumber: string) {
 
 
   viewLetters(){
+    if (!this.empNumber) {
+      this.empletters = [];
+      return;
+    }
     this.isLoading = true;
     this.service.getLetters(this.empNumber).subscribe((res)=>{
       // console.log(res);
@@ -156,7 +160,11 @@ view(letterId: number, empNumber: string) {
     });
 }
 
-
+onEmpNumberInput() {
+  if (!this.empNumber) {
+    this.empletters = [];
+  }
+}
 
 
 }

@@ -42,4 +42,9 @@ export class EmployeeDetailsService {
   }
 
 
+  emergencyDetails(emergenctData:any){
+    return this.http.post("http://127.0.0.1:5000/"+emergenctData.Employee_Id,emergenctData);
+  }
+
+
 }

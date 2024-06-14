@@ -27,11 +27,15 @@ export class EmployeeDetailsComponent implements OnInit{
 
   PermanentAddressForm:FormGroup;
 
+  emergencyDetailsForm:FormGroup;
+
   isEditable1: boolean = false; //*** emp/candiate edit/readonly toggle***
 
   isEditable2:boolean = false; //***Employement details edit/readonly toggle ***
 
   isEditable3:boolean = false; //***Employement Address edit/readonly toggle ***
+
+  isEditable4:boolean = false; //***Emergency details edit/readonly toggle ***
 
   today: string; //*** DOB validation ***
 
@@ -75,8 +79,9 @@ export class EmployeeDetailsComponent implements OnInit{
 
   addressEnd:any;
 
-  // addressType:any;
+  emergSD:any;
 
+  emergMsg:any;
 
   constructor(private service:EmployeeDetailsService,public empAddService:EmployeeAddService,private formbulider:FormBuilder){
    
@@ -109,6 +114,8 @@ export class EmployeeDetailsComponent implements OnInit{
     this.form3();
 
     this.form4();
+
+    this.form5();
 
     this.today = this.getTodayDate(); //*** DOB validation ***
 
@@ -896,6 +903,85 @@ copyAddressDetails(event){
   }
 }
 
+
+/******************************************************* Emergency Contact details *********************************************************/
+
+
+form5(){
+
+  this.emergencyDetailsForm = this.formbulider.group({
+
+    personname:['',Validators.required],
+    relation:['',Validators.required],
+    contact:['',Validators.required],
+    bloodgroup:['',Validators.required]
+
+  });
+      console.log("Emergency data from frontend:",this.emergencyDetailsForm.value);
+      this.emergencyDetailsForm.disable();
+}
+
+emergencyData(){
+  const emergencyData = {
+    Person_Name:this.emergencyDetailsForm.value['personname'],
+    Relation:this.emergencyDetailsForm.value['relation'],
+    Contact:this.emergencyDetailsForm.value['contact'],
+    Blood_Group:this.emergencyDetailsForm.value['bloodgroup']
+  }
+
+  this.service.emergencyDetails(this.emergencyDetailsForm).subscribe((res:any)=>{
+
+    console.log("res from emergency api:",res);
+
+    if (res && res.message){
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `${res.message}`,
+        showConfirmButton: false,
+        timer: 1500
+      }).then(()=>{
+        this.emergencyDetailsForm.disable();
+        this.isEditable4 = !this.isEditable4;
+      });
+      // alert(res.message);
+    }
+  },error =>{
+    console.log("error from emergency api:",error);
+    if (error.error && error.error.error) {
+      // alert(error.error.message);
+      this.emergMsg = error.error.error;
+    }
+    if(error.error && error.error.message){
+      this.emergMsg  = error.error.message;
+    }
+    else{
+      this.emergMsg = error.error.statusText;
+    }
+    Swal.fire({
+      position:'top',
+      icon: "error",
+      title: "Oops...",
+      text: `${this.emergMsg}`,
+      showConfirmButton: true,
+      width:400,
+    });      
+
+});
+
+}
+
+
+
+
+toggleEdit4(): void {
+  this.isEditable4 = !this.isEditable4;
+  if (this.isEditable4) {
+    this.emergencyDetailsForm.enable();
+  } else {
+    this.emergencyDetailsForm.disable();
+  }
+}
 
 
 
