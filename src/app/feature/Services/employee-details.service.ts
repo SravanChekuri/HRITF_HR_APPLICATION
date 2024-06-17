@@ -46,5 +46,18 @@ export class EmployeeDetailsService {
     return this.http.post("http://127.0.0.1:5000/"+emergenctData.Employee_Id,emergenctData);
   }
 
+  searchPrsentAddress(id,esd,end,addressType){
+    console.log(esd,end,addressType,id);
+    return this.http.get("http://127.0.0.1:5000/get_address_detail/"+id+'/'+esd+'/'+end+'/'+addressType)
+ 
+  }
+
+  searcPhermanentAddress(id,esd,end,addressType){
+    console.log(esd,end,addressType,id);
+    return this.http.get("http://127.0.0.1:5000/get_address_detail/"+id+'/'+esd+'/'+end+'/'+addressType)
+  
+  }
+ 
+
 
 }

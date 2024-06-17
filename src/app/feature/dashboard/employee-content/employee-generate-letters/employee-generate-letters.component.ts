@@ -121,6 +121,7 @@ view(letterId: number, empNumber: string) {
       const fileURL = URL.createObjectURL(res);
       window.open(fileURL, '_blank');
      },error=>{
+      this.isLoading = false;
       // console.log(error);
       Swal.fire({
         position:'top',

@@ -1,60 +1,77 @@
 <div class="emp-search"><!--Main Div-->
 
     <div class="search-block">
+
         <div>
             <h5>Quick Search</h5>
         </div>
+
         <span>
-            <form>
-                <input type="text" placeholder=" Search by First Name, Last Name, Emp ID, Email" autofocus [(ngModel)]="searchTxt" (input)="filtEmpRes($event)" style="padding-left: 10px;"  name="searchText">
+            <form class="search-form">
+                <input type="text" placeholder=" Search by First Name, Last Name, Emp ID, Email" autofocus [(ngModel)]="searchTxt" (input)="filtEmpRes($event)" name="searchText">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
             </form>
         </span>
+
         <span class="addemp-btn">
             <button class="btn btn-danger"(click)="addbtnclk()">Add New Profile</button>
         </span>
+
     </div>
 
     <hr class="hr">
 
     <div class="emp-list-block">
-        <h5>Total Number of profiles in Database : <span style="color: red;">{{ recordCount }}</span></h5>
+        <h5>Total Number of Employees in the Organization : <span style="color: red;">{{ recordCount }}</span></h5>
     </div>
     
     <hr class="hr">
 
-    <div class="emp-list-block">
+    <div>
+
         <div class="container text-center">
-            <div class="row">
-                <!-- <div class="col">S.no</div> -->
-                <div class="col">Emp/Candi Number</div>
-                <div class="col">First Name</div>
-                <div class="col">Last Name</div>
-                <div class="col">Email</div>
-                <div class="col">Worker Type</div>
-                <div class="col">Work Location</div>
-            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Emp Number</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Worker Type</th>
+                        <th>Work Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let filtemp of displayedEmp">
+                        <td>{{filtemp.Employee_Number}}</td>
+                        <td>{{filtemp.Employee_First_Name}}</td>
+                        <td>{{filtemp.Last_Name}}</td>
+                        <td>{{filtemp.Email}}</td>
+                        <td>{{filtemp.WORKER_TYPE}}</td>
+                        <td>{{filtemp.JOB_LOCATION}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
+
     </div>
+
     <hr>
+
     <div class="emp-notfound" *ngIf="filteredEmp.length === 0">Employee not found.</div>
+
         <div class="bottom-spc">
-            <div class="container text-center" *ngFor="let filtemp of displayedEmp">
-                <div class="row">
-                    <!-- <div class="col">{{filtemp.Employee_id}}</div> -->
-                    <div class="col">{{filtemp.Employee_Number}}</div>
-                    <div class="col">{{filtemp.Employee_First_Name}}</div>
-                    <div class="col">{{filtemp.Last_Name}}</div>
-                    <div class="col">{{filtemp.Email}}</div>
-                    <div class="col">{{filtemp.WORKER_TYPE}}</div>
-                    <div class="col">{{filtemp.JOB_LOCATION}}</div>
-                    <hr style="margin-bottom: 9.5px;">
-                </div>
-            </div>
+
               <div class="container text-center" *ngIf="totalRecordsCount > initialRecordsCount">
+
                 <button (click)="previousPage()" class="btn btn-secondary" [disabled]="currentPage === 1">Previous</button>&nbsp;
+
                 <button (click)="nextPage()" class="btn btn-secondary" [disabled]="currentPage === totalPages">Next</button>
+
               </div>
-        </div>
+
+            </div>
     
 </div><!--Main Div-->

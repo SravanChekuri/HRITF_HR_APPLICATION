@@ -4,14 +4,42 @@
     <!-- <hr class="hr"> -->
 
 
-    <hr class="hr">
+    <!-- <hr class="hr"> -->
 
-    <div class="profile-container">
+    <!-- <div class="profile-container">
         <img src="../../../../../assets/Images/emp_profile.png" alt="emp Img" class="profile-img">
         <div class="profile-info"><h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Name :' : 'Candidate Name :' }} <span style="color: red;">{{ empData.Employee_First_Name }} {{ empData.Middle_Name }} {{ empData.Last_Name }}</span></h6>
             <h6>{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Number :' : 'Candidate Number :' }}<span style="color: red;"> {{ empData.Employee_Number }}</span></h6>
         </div>
+    </div> -->
+
+     <div class="profile-container">
+        <div class="profile-left">
+            <img src="../../../../../assets/Images/emp_profile.png" alt="emp Img" class="profile-img">
+            <div class="icon upload-icon" title="Upload Image">
+                <i class="fas fa-camera"></i>
+            </div>
+        </div>
+
+        <div class="profile-info">
+            <h6>
+                {{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Name :' : 'Candidate Name :' }}
+                <span class="profile-name">{{ empData.Employee_First_Name }} {{ empData.Middle_Name }} {{ empData.Last_Name }}</span>
+            </h6>
+            <h6>
+                {{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Number :' : 'Candidate Number :' }}
+                <span class="profile-number">{{ empData.Employee_Number }}</span>
+            </h6>
+        </div>
+        <div class="icon delete-icon" title="Delete Profile">
+            <i class="fas fa-trash-alt"></i>
+        </div>
     </div>
+    
+    <div *ngIf="isLoading" class="loading-spinner-container">
+        <div class="loading-spinner"></div>
+    </div>
+
 
     <hr class="hr">
 
@@ -20,10 +48,10 @@
     
     <div>
 
-        <h5 style="margin: 1% 0 1% 1.5%; ">{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Details :' : 'Candidate Details :' }}&nbsp; <span (click)="toggleEdit1()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
+        <div class="sideheading-bg"><h5 style="margin: 1% 0 1% 1.5%; ">{{ candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Details :' : 'Candidate Details :' }}&nbsp; <span (click)="toggleEdit1()" class="edit-icon"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span><span class="collapse-icon-align" (click)="collapse1()"><span style="font-size: medium;">{{ isCollapsabled ? "Expand": "Collapse" }}</span>&nbsp;<i [class.fa-solid]="true" [class.fa-plus]="isCollapsabled" [class.fa-minus]="!isCollapsabled"></i></span></h5></div>
 
         <div [hidden]="!isEditable1">
-            <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
+            <div style="margin: 1% 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
 
             <div class="d-flex flex-row grid-container" style="margin:0 0 2% 3%;">
                 <div>
@@ -44,7 +72,7 @@
         <!-- <div *ngIf="updateSuccessMsg" class="success-msg"><p>{{ msg }}</p></div>
         <div *ngIf="updateFailMsg" class="fail-msg"><p>{{ msg }}</p></div> -->
 
-        <form [formGroup]="candOrempFormUpdate" (ngSubmit)="update()">
+        <form [formGroup]="candOrempFormUpdate" (ngSubmit)="update()" [hidden]="isCollapsabled">
 
             <div class="grid-container form-container">
 
@@ -125,18 +153,20 @@
 
     </div>
 
-    <hr class="hr">
+    <hr class="hr" [hidden]="isCollapsabled">
+
+    <!-- <br [hidden]="!isCollapsabled"> -->
 
 
     <!--Employment Details-->
 
     <div>
 
-        <h5 style="margin: 2% 0 1% 1.5%;">{{candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Employment Details : ' : 'Candidate Employment Details : ' }} <span (click)="toggleEdit2()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
+        <div class="sideheading-bg"><h5 style="margin: 1% 0 1% 1.5%;">{{candOrempFormUpdate.get('workerType').value === 'Employee' ? 'Employee Employment Details : ' : 'Candidate Employment Details : ' }} <span (click)="toggleEdit2()" class="edit-icon"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span><span class="collapse-icon-align" (click)="collapse2()"><span style="font-size: medium;">{{ isCollapsabled2 ? "Expand": "Collapse" }}</span>&nbsp;<i [class.fa-solid]="true" [class.fa-plus]="isCollapsabled2" [class.fa-minus]="!isCollapsabled2"></i></span></h5></div>
 
         <div [hidden]="!isEditable2">
 
-            <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
+            <div style="margin: 1% 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
 
             <div class="d-flex flex-row grid-container" style="margin:0 0 2% 3%;">
                 <div>
@@ -157,7 +187,7 @@
         </div>    
 
 
-        <form [formGroup]="employementForm" (ngSubmit)="employementData()">
+        <form [formGroup]="employementForm" (ngSubmit)="employementData()" [hidden]="isCollapsabled2">
 
             <div class="grid-container form-container" style="margin-bottom: 4%;">
 
@@ -217,12 +247,12 @@
                     <select id="desig" class="form-control" formControlName="designation">
                         <option value="" selected disabled>Select...</option>
                         <option value="Project Manager">Project Manager</option>
-                        <option value="Software Developer/Engineer">Software Developer/Engineer</option>
+                        <option value="Software Developer/Engineer">Associate Software Developer/Engineer</option>
+                        <option value="Software Developer/Engineer"> Senior Software Developer/Engineer</option>
                         <option value="Database Administrator (DBA)">Database Administrator (DBA)</option>
                         <option value="QA Engineer">QA Engineer</option>
                         <option value="Data Analyst">Data Analyst</option>
                         <option value="DevOps Engineer">DevOps Engineer</option>
-                        <option value="Netpresent Engineer">Netpresent Engineer</option>
                         <option value="Software Architect">Software Architect</option>
                         <option value="Front-End Developer">Front-End Developer</option>
                         <option value="Back-End Developer">Back-End Developer</option>
@@ -304,15 +334,17 @@
         <h1 style="color: white;">a</h1>
     </div>
 
-    <hr class="hr" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
+        <!-- <br [hidden]="!isCollapsabled2"> -->
+
+    <span [hidden]="isCollapsabled2"><hr class="hr" [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' " ></span>
 
     <div [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' ">
 
-        <h5 style="margin: 2% 0 2% 1.5%;">Address Details : <span (click)="toggleEdit3()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
+        <div class="sideheading-bg"><h5 style="margin: 1% 0 1% 1.5%;">Address Details : <span (click)="toggleEdit3()" class="edit-icon"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span><span class="collapse-icon-align" (click)="collapse3()"><span style="font-size: medium;">{{ isCollapsabled3 ? "Expand": "Collapse" }}</span>&nbsp;<i [class.fa-solid]="true" [class.fa-plus]="isCollapsabled3" [class.fa-minus]="!isCollapsabled3"></i></span></h5></div>
 
         <div [hidden]="!isEditable3">
 
-            <div style="margin: 0 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
+            <div style="margin: 1% 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
 
             <div class="d-flex flex-row grid-container" style="margin:0 0 1% 3%;">
                 <div>
@@ -321,19 +353,19 @@
                 </div>  
                 <div>
                     <label for="stratDate">Date To :</label><br>
-                    <input type="date" class="form-control" [value]="empEndDate">
+                    <input type="date" class="form-control" [value]="empEndDate" [(ngModel)]="PeffectiveEndDate">
                 </div>
 
                 <div>
                     <label for="" style="color: white;">Search :</label><br>
-                    <button type="submit" class="btn btn-info" >Search</button>
+                    <button type="button" class="btn btn-info" (click)="presentAddressSearch()">Search</button>
                 </div>
 
             </div>
             
         </div>    
 
-        <div>
+        <div [hidden]="isCollapsabled3">
 
             <form [formGroup]="PresentAddressForm" (ngSubmit)="presentaddressData()">
 
@@ -390,16 +422,42 @@
 
                 <div class="btn-align" style="margin-top:2%;" [hidden]="!isEditable3">
                     <button type="submit" class="btn btn-info">Update</button>&nbsp;&nbsp;
-                    <button type="button" class="btn btn-secondary">Cancel</button>
+                    <button type="button" class="btn btn-secondary" (click)="toggleEdit3()">Cancel</button>
                 </div>    
 
             </form>
 
         </div>
 
-        <hr class="hr">
+        <hr class="hr" [hidden]="isCollapsabled3">
 
-        <div>
+
+        <div [hidden]="isCollapsabled3">
+
+            <div [hidden]="!isEditable3">
+
+                <div style="margin: 1% 0 -0.5% 2%; font-weight: 500;"><p>Select the effective start date to view past or future records.</p></div>
+    
+                <div class="d-flex flex-row grid-container" style="margin:0 0 1% 3%;">
+                    <div>
+                        <label for="stratDate">Date From :</label><br>
+                        <input type="date" class="form-control"  [(ngModel)]="permanentEsd">
+                    </div>  
+                    <div>
+                        <label for="stratDate">Date To :</label><br>
+                        <input type="date" class="form-control" [value]="empEndDate" [(ngModel)]="permanentEnd">
+                    </div>
+    
+                    <div>
+                        <label for="" style="color: white;">Search :</label><br>
+                        <button type="button" class="btn btn-info" (click)="permanentAddressSearch()">Search</button>
+                    </div>
+    
+                </div>
+                
+            </div>    
+    
+
             <form [formGroup]="PermanentAddressForm" (ngSubmit)="permanentaddressData()">
 
                 <h6 class="address-heading">Permanent Address :</h6>
@@ -461,7 +519,7 @@
 
                 <div class="btn-align" style="margin-top:2%;" [hidden]="!isEditable3">
                     <button type="submit" class="btn btn-info">Update</button>&nbsp;&nbsp;
-                    <button type="button" class="btn btn-secondary">Cancel</button>
+                    <button type="button" class="btn btn-secondary" (click)="toggleEdit3()">Cancel</button>
                 </div>    
 
             </form>
@@ -470,11 +528,14 @@
 
     </div>
 
-    <hr class="hr">
+    <hr class="hr" [hidden]="isCollapsabled3">
+
+    <!-- <br [hidden]="!isCollapsabled4"> -->
+
 
     <div [hidden]="candOrempFormUpdate.get('workerType').value === 'Candidate' " style="margin-bottom: 7%;"> <!--Emergency contacts-->
 
-        <h5 style="margin: 2% 0 2% 1.5%;">Emergency Contact Details : <span (click)="toggleEdit4()" style="cursor: pointer;"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span></h5>
+        <div class="sideheading-bg"><h5 style="margin: 1% 0 1% 1.5%;">Emergency Contact Details : <span (click)="toggleEdit4()" class="edit-icon"><i class="fa-solid fa-pen-to-square"></i><span style="font-size:x-small;">Edit details</span></span><span class="collapse-icon-align" (click)="collapse4()"><span style="font-size: medium;">{{ isCollapsabled4 ? "Expand": "Collapse" }}</span>&nbsp;<i [class.fa-solid]="true" [class.fa-plus]="isCollapsabled4" [class.fa-minus]="!isCollapsabled4"></i></span></h5></div>
 
         <div [hidden]="!isEditable4">
 
@@ -492,7 +553,7 @@
 
                 <div>
                     <label for="" style="color: white;">Search :</label><br>
-                    <button type="submit" class="btn btn-info" >Search</button>
+                    <button type="submit" class="btn btn-info">Search</button>
                 </div>
 
             </div>
@@ -501,7 +562,7 @@
 
 
 
-        <form [formGroup]="emergencyDetailsForm" (ngSubmit)="emergencyData()">
+        <form [formGroup]="emergencyDetailsForm" (ngSubmit)="emergencyData()" [hidden]="isCollapsabled4">
 
             <div class="grid-container form-container">
 
@@ -546,12 +607,15 @@
 
             <div class="btn-align" style="margin-top:2%;" [hidden]="!isEditable4">
                 <button type="submit" class="btn btn-info">Update</button>&nbsp;&nbsp;
-                <button type="button" class="btn btn-secondary">Cancel</button>
+                <button type="button" class="btn btn-secondary" (click)="toggleEdit4()">Cancel</button>
             </div>    
 
         </form>
 
+        <!-- <hr class="hr"> -->
+
     </div>
+
     
     
 </div> 

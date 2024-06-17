@@ -75,8 +75,8 @@ export class ResetPasswordComponent implements OnInit {
     const newPassword = this.resetPasswordForm.get('newPassword')?.value;
     const reEnterPassword = this.resetPasswordForm.get('reEneterPassword')?.value;
 
-    console.log('New Password:', newPassword);
-    console.log('Re-Enter Password:', reEnterPassword);
+    // console.log('New Password:', newPassword);
+    // console.log('Re-Enter Password:', reEnterPassword);
 
     if (newPassword===reEnterPassword){
       const newPasswordSend={
@@ -96,7 +96,7 @@ export class ResetPasswordComponent implements OnInit {
         // this.loading = false;
         // alert("fail to change password")
         // this.pwFailMsg=error.error.message;
-        console.log(error.error.message);
+        // console.log(error.error.message);
         
       })  
     }

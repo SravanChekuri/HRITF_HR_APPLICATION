@@ -95,13 +95,21 @@ export class ForgotpasswordComponent implements OnInit{
 
   otpInitialization(){
     this.verifyOTP=this.formbuilder.group({
-      otp: ['', Validators.required]
+      // otp: ['', Validators.required]
+      otp1: ['', Validators.required],
+      otp2: ['', Validators.required],
+      otp3: ['', Validators.required],
+      otp4: ['', Validators.required],
+      otp5: ['', Validators.required],
+      otp6: ['', Validators.required],
+ 
     });
   }
 
   verifyOtp(){
+    const otp = this.verifyOTP.value.otp1 + this.verifyOTP.value.otp2 + this.verifyOTP.value.otp3 + this.verifyOTP.value.otp4+this.verifyOTP.value.otp5 + this.verifyOTP.value.otp6;
     const sendOtp={
-      OTP:this.verifyOTP.value['otp'],
+      OTP:otp,
       Email_Id:this.forgotPasswordForm.value['emailId']
       // Email_Id:this.email
 
@@ -157,6 +165,23 @@ export class ForgotpasswordComponent implements OnInit{
       // this.otpSentFail=false;
       // this.verifyotpFail=false;
     // }, 1500);
+  }
+  onOtpInput(event: any, boxIndex: number) {
+    if (event.target.value.length === 1 && boxIndex < 6) {
+      const nextBox = document.getElementById('otp' + (boxIndex + 1));
+      if (nextBox) {
+        nextBox.focus();
+      }
+    }
+  }
+ 
+  onOtpKeyup(event: any, boxIndex: number) {
+    if (event.key === 'Backspace' && boxIndex > 1) {
+      const prevBox = document.getElementById('otp' + (boxIndex - 1));
+      if (prevBox) {
+        prevBox.focus();
+      }
+    }
   }
 
 }

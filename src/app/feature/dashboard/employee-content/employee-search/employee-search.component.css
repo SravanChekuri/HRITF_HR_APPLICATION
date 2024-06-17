@@ -18,17 +18,31 @@ input{
     margin: 10px auto;
 }
 
+.search-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+
+.search-form input[type="text"] {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 40px; 
+    box-sizing: border-box;
+}
+
 .search-icon{
     position: absolute;
-    top:10%;
-    left: 38%;
+    left: 94%;
     cursor: pointer;
 }
 
 .addemp-btn{
     position: absolute;
     top:5%;
-    right: 5%;
+    right: 4%;
 }
 
 .hr{
@@ -43,6 +57,33 @@ input{
     margin-bottom: 1%;
 }
 
+.container {
+    margin: 0 auto;
+    padding: 0 15px; 
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    /* border-bottom: 2px solid #dee2e6; */
+}
+
+.table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
  .bottom-spc{
     margin-bottom: 5vh;
  }
@@ -54,27 +95,3 @@ input{
     text-align: center;
  }
 
- /* @media screen and (max-width: 768px) {
-    .emp-search {
-        width: 90vw;
-        left: 5%;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .emp-search {
-        width: 95vw;
-        left: 2.5%;
-    }
-    input {
-        width: 90%;
-    }
-    .search-icon,
-    .addemp-btn {
-        top: 3%;
-        left: 45%;
-    }
-    .emp-notfound {
-        font-size: 3vw;
-    }
-} */

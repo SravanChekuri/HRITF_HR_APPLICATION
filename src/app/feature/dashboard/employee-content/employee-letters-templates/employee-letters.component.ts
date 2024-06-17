@@ -126,6 +126,7 @@ export class EmployeeLettersTemplatesComponent implements OnInit{
         showConfirmButton: false,
         timer: 1500
       });
+      this.getTemplates();
     },
     (error)=>{
       // console.log(error);

@@ -161,6 +161,7 @@ onEmployeeNumberEnter(event:any){
     // console.log("onchage res",res);
 
     this.empAllData=res;
+    this.errorMessage='';
 
     // console.log("length",this.empAllData);
     // console.log("this.empAllData", this.empAllData);
