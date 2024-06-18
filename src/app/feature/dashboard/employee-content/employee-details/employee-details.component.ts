@@ -103,6 +103,8 @@ export class EmployeeDetailsComponent implements OnInit{
 
   permanentEnd:any;
 
+  presentEnd:any;
+
 
   constructor(private service:EmployeeDetailsService,public empAddService:EmployeeAddService,private formbulider:FormBuilder){
    
@@ -113,8 +115,11 @@ export class EmployeeDetailsComponent implements OnInit{
       // console.log("employement Data from constr:",this.empmentDetails);
 
     this.empSD = localStorage.getItem('effectiveStartDate');
+
     this.employeementSD = localStorage.getItem('effectiveStartDate');
+
     this.addressSD = localStorage.getItem('effectiveStartDate');
+
     this.permanentEsd = localStorage.getItem('effectiveStartDate');
 
     this.empPresentAddress=JSON.parse(localStorage.getItem('presentAddress'));
@@ -499,7 +504,7 @@ export class EmployeeDetailsComponent implements OnInit{
     });
 
     this.employementForm.disable();
-    console.log("employement data from frontend:",this.employementForm.value);
+    // console.log("employement data from frontend:",this.employementForm.value);
     
   }
 
@@ -526,7 +531,7 @@ export class EmployeeDetailsComponent implements OnInit{
 
     this.isLoading = true;
 
-    console.log("data from employement Data method:",this.employementForm.value);
+    // console.log("data from employement Data method:",this.employementForm.value);
 
     const data = {
       Effective_Start_Date:this.employementForm.value['effectiveStartDate'],
@@ -548,13 +553,13 @@ export class EmployeeDetailsComponent implements OnInit{
       Notice_Period:this.employementForm.value['noticePeriod']
     }
 
-    console.log("employement data to backend",data);
+    // console.log("employement data to backend",data);
 
     this.service.empData(this.empData.Employee_id,data).subscribe((res:any)=>{
 
       this.isLoading = false;
 
-      console.log("res from employement Data method:",res);
+      // console.log("res from employement Data method:",res);
       
       if (res && res.message) {
         // alert(res.message);
@@ -662,7 +667,7 @@ export class EmployeeDetailsComponent implements OnInit{
 
       });
 
-      console.log("employement data***:",this.employementForm.value);
+      // console.log("employement data***:",this.employementForm.value);
       
     },error =>{
       this.isLoading = false;
@@ -729,7 +734,7 @@ export class EmployeeDetailsComponent implements OnInit{
 
       });
 
-      console.log("employement form data from editemp method:",this.employementForm.value);
+      // console.log("employement form data from editemp method:",this.employementForm.value);
       
       this.employementForm.disable();
       // });
@@ -842,14 +847,21 @@ export class EmployeeDetailsComponent implements OnInit{
       // console.log("present Address form editPresentAddress method:",this.PresentAddressForm.value);
       
   }
+
+
+
+
   presentAddressSearch(){
-    const addressType='Present'
-    console.log("ESD",this.addressSD);
-    console.log("PeffectiveEndDate",this.PeffectiveEndDate);
-    this.service.searchPrsentAddress(this.empData.Employee_id,this.addressSD,this.PeffectiveEndDate,addressType).subscribe((res)=>{
-      console.log("res",res);
-      this.presentAddressData=res['data']
-      console.log("this.presentAddressData",this.presentAddressData);
+  // console.log("this.presentEnd",this.presentEnd);
+    const addressType='Present';
+    this.isLoading = true;
+    // console.log("ESD",this.addressSD);
+    // console.log("PeffectiveEndDate",this.PeffectiveEndDate);
+    this.service.searchPrsentAddress(this.empData.Employee_id,this.addressSD,this.presentEnd,addressType).subscribe((res)=>{
+      this.isLoading = false;
+      // console.log("res",res);
+      this.presentAddressData=res['data'];
+      // console.log("this.presentAddressData",this.presentAddressData);
       this.PresentAddressForm = this.formbulider.group({
  
         presentEffectiveStartDate:[formatDate(this.presentAddressData.DATE_FROM, 'yyyy-MM-dd','en'),Validators.required],
@@ -861,17 +873,45 @@ export class EmployeeDetailsComponent implements OnInit{
         presentState:[this.presentAddressData.STATE,Validators.required],
         presentCountry:[this.presentAddressData.COUNTRY,Validators.required],
         presentPincode:[this.presentAddressData.PIN_CODE,Validators.required]
- 
       });
- 
-     
      
     },error=>{
-      console.log(error);
-     
-    })
- 
+      this.isLoading = false;
+      // console.log(error);
+      if (error.error && error.error.message) {
+        // alert(error.error.message); 
+        Swal.fire({
+          position:'top',
+          icon: "error",
+          title: "Oops...",
+          text: `${error.error.message}`,
+          showConfirmButton: true,
+          width:400,
+        });      
       }
+      if (error.error && error.error.error) {
+        // alert(error.error.message); 
+        Swal.fire({
+          position:'top',
+          icon: "error",
+          title: "Oops...",
+          text: `${error.error.error}`,
+          showConfirmButton: true,
+          width:400,
+        });      
+      }
+
+    });
+ 
+  }
+
+  presentEsdAddress(event:any){
+    this.presentEnd=event.target.value;
+  //  console.log("Esd",this.presentEnd);
+  
+ }
+
+
 
   form4(){
 
@@ -964,13 +1004,21 @@ export class EmployeeDetailsComponent implements OnInit{
   }
 
 
+  permanentAddEnd(event:any){
+    this.permanentEnd=event.target.value;
+    // console.log("this.permanentEnd",this.permanentEnd);
+  }
+
 
   permanentAddressSearch(){
+    this.isLoading = true;
+
     const AddressType='Permanent'
     this.service.searcPhermanentAddress(this.empData.Employee_id,this.permanentEsd,this.permanentEnd,AddressType).subscribe((res)=>{
-      console.log("res",res);
+      this.isLoading = false;
+      // console.log("res",res);
       this.permanentAddressData=res['data']
-      console.log("this.permanentAddressData",this.permanentAddressData);
+      // console.log("this.permanentAddressData",this.permanentAddressData);
       this.PermanentAddressForm = this.formbulider.group({
         permanenteffectiveStartDate:[formatDate(this.permanentAddressData.DATE_FROM, 'yyyy-MM-dd','en'),Validators.required],
         permanenteffectiveEndDate:[formatDate(this.permanentAddressData.DATE_TO, 'yyyy-MM-dd','en'),Validators.required],
@@ -983,13 +1031,33 @@ export class EmployeeDetailsComponent implements OnInit{
         permanentpincode:[this.permanentAddressData.PIN_CODE,Validators.required]  
  
       });
- 
-     
-     
     },error=>{
-      console.log(error);
-     
-    })
+      this.isLoading = false;
+      // console.log(error);
+      if (error.error && error.error.message) {
+        // alert(error.error.message); 
+        Swal.fire({
+          position:'top',
+          icon: "error",
+          title: "Oops...",
+          text: `${error.error.message}`,
+          showConfirmButton: true,
+          width:400,
+        });      
+      }
+      if (error.error && error.error.error) {
+        // alert(error.error.message); 
+        Swal.fire({
+          position:'top',
+          icon: "error",
+          title: "Oops...",
+          text: `${error.error.error}`,
+          showConfirmButton: true,
+          width:400,
+        });      
+      }
+
+    });
   }
 
   toggleEdit3(): void {

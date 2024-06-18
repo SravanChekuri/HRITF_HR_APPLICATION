@@ -353,7 +353,7 @@
                 </div>  
                 <div>
                     <label for="stratDate">Date To :</label><br>
-                    <input type="date" class="form-control" [value]="empEndDate" [(ngModel)]="PeffectiveEndDate">
+                    <input type="date" class="form-control" [value]="empEndDate" (change)="presentEsdAddress($event)">
                 </div>
 
                 <div>
@@ -445,7 +445,7 @@
                     </div>  
                     <div>
                         <label for="stratDate">Date To :</label><br>
-                        <input type="date" class="form-control" [value]="empEndDate" [(ngModel)]="permanentEnd">
+                        <input type="date" class="form-control" [value]="empEndDate" (change)="permanentAddEnd($event)">
                     </div>
     
                     <div>
